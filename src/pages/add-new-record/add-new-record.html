@@ -1,0 +1,37 @@
+  <ion-header>
+      <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Add New Record</ion-title>
+      </ion-navbar>
+    </ion-header>
+      
+  
+  
+  <ion-content padding class="backgroundColor">
+  
+    <!-- <ion-card *ngIf="recordservice.getAuthenticatingVolunteerKey() != null"  padding> -->
+    <ion-card padding>
+            
+    <button ion-button type="button" (click)="onSubmitVoterRecord()" block large>
+      Voter Record
+    </button>
+  
+  
+    <button ion-button type="button" (click)="onSubmitNonVoterRecord()" block large>
+      Non Voter Record
+    </button>
+    
+    <button ion-button type="button" (click)="onSubmitAnomalyRecord()" block large>
+      Anomaly Record
+    </button>
+    
+    <button ion-button type="button" (click)="onSubmitAmendmentRecord()" block large>
+      Amendment Record
+    </button>
+  
+    </ion-card>
+    
+  </ion-content>
+  
