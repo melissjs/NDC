@@ -11,6 +11,7 @@ import { InstructionsPage } from '../pages/instructions/instructions';
 import { FaqPage } from '../pages/faq/faq';
 import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
 import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
+import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +25,8 @@ import { RecordServiceProvider } from '../providers/record-service/record-servic
     InstructionsPage,
     FaqPage,
     AddNewRecordPage,
-    MorningCheckInPage
+    MorningCheckInPage,
+    EveningCheckOutPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { RecordServiceProvider } from '../providers/record-service/record-servic
     InstructionsPage,
     FaqPage,
     AddNewRecordPage,
-    MorningCheckInPage
+    MorningCheckInPage,
+    EveningCheckOutPage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Evening Check Out</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+                 
+          <ion-content padding class="backgroundColor">
+          <form name="eveningcheckout" novalidate>
+          <ion-card>
+             
+  <ion-list>
+  
+    <ion-item>
+       <ion-icon name="md-camera" item-right></ion-icon> 
+       <ion-icon name="md-image" item-right></ion-icon>
+      <ion-label stacked>Detailed Photos of Door Printout(s): </ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  
+     <ion-item>
+       <ion-icon name="md-camera" item-right></ion-icon> 
+       <ion-icon name="md-image" item-right></ion-icon>
+      <ion-label stacked>Photos of Team: </ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  
+  
+       <ion-item>
+       <ion-label stacked style="height: 5em">Comments: </ion-label>
+      <ion-textarea></ion-textarea>
+      </ion-item>
+  
+  </ion-list>
+  </ion-card>
+  
+  
+  
+    <!-- <button *ngIf="(recordservice.getAuthenticatingVolunteerKey() != null)" 
+      block large type="submit" (click)="onSubmit()">Check Out</button> -->
+      <button ion-button block large type="submit" (click)="onSubmit()">Check Out</button>
+         
+          </form>
+  
+    <!-- <check-login></check-login> -->
+  
+        </ion-content>
+  
