@@ -11,10 +11,15 @@ import { InstructionsPage } from '../pages/instructions/instructions';
 import { FaqPage } from '../pages/faq/faq';
 import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
 import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
+import { LogInPage } from '../pages/log-in/log-in';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RecordServiceProvider } from '../providers/record-service/record-service';
+import { VolunteerServiceProvider } from '../providers/volunteer-service/volunteer-service';
+import { RestServiceProvider } from '../providers/rest-service/rest-service';
+import { PollingStationServiceProvider } from '../providers/polling-station-service/polling-station-service';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,8 @@ import { RecordServiceProvider } from '../providers/record-service/record-servic
     InstructionsPage,
     FaqPage,
     AddNewRecordPage,
-    MorningCheckInPage
+    MorningCheckInPage,
+    LogInPage  
   ],
   imports: [
     BrowserModule,
@@ -40,13 +46,17 @@ import { RecordServiceProvider } from '../providers/record-service/record-servic
     InstructionsPage,
     FaqPage,
     AddNewRecordPage,
-    MorningCheckInPage
+    MorningCheckInPage,
+    LogInPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RecordServiceProvider
+    RecordServiceProvider,
+    VolunteerServiceProvider,
+    RestServiceProvider,
+    PollingStationServiceProvider
   ]
 })
 export class AppModule {}
