@@ -10,6 +10,7 @@ import { FaqPage } from '../pages/faq/faq';
 import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
 import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
 import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
+import { LogInPage } from '../pages/log-in/log-in';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +18,7 @@ import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-ou
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LogInPage;
 
   pages: Array<{title: string, component: any}>;
 
