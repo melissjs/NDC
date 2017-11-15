@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the VoteRecordPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-vote-record',
@@ -15,11 +8,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class VoteRecordPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VoteRecordPage');
+  constructor(private navCtrl: NavController) {
+    this.navCtrl = navCtrl;
+    }
+  
+  
+        onSubmit() {
+          var that = this;
+          try {
+              that.navCtrl.push('AffidavitPage', {
+              })
+  
+          } catch (EE) {
+              console.log('error in Submitting, exc='+ EE.toString())
+          }
+      }
+  
+  
   }
-
-}
+  

@@ -10,6 +10,10 @@ import { FaqPage } from '../pages/faq/faq';
 import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
 import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
 import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
+import { ActivityRecordPage } from './../pages/activity-record/activity-record';
+import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
+
+
 import { LogInPage } from '../pages/log-in/log-in';
 
 @Component({
@@ -28,12 +32,13 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
       { title: 'Instructions', component: InstructionsPage },
       { title: 'FAQ', component: FaqPage },
       { title: 'Add New Record', component: AddNewRecordPage },
       { title: 'Morning Check In', component: MorningCheckInPage },
-      { title: 'Evening Check Out', component: EveningCheckOutPage }
+      { title: 'Evening Check Out', component: EveningCheckOutPage },
+      { title: 'Volunteer List', component: VolunteerListPage },
+      { title: 'Activity Record', component: ActivityRecordPage }
     ];
 
   }

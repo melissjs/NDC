@@ -1,18 +1,33 @@
-<!--
-  Generated template for the VoteRecordPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>voteRecord</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Democracy Counts</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  
+  <ion-content class="backgroundColor" padding>
+    
+  <ion-card padding>
+    
+     <img style=max-width:830px;margin-bottom:10px src="../../img/DC.jpg">
+    
+    Thank you for participating in the Democracy Counts! 2016 General Election Audit. This process takes about three minutes; there are three parts to fill out:
+  <br>
+  <br>1) An affidavit
+  <br>2) Your vote and voter preferences
+  <br>3) Demographic information
+  <br><br>
+  The objective of this independent, non-profit and volnteer organized audit is to safegaurd election inegrity by providing data that will be compared with the official recorded vote share at this polling station. If this audit uncovers substantial vote share discrepensies, our data will be instrumental in potential legal proceedings.
+  <br><br>
+  *Your personal information is kept private and stored separately from your vote record. Your vote will never be linked to your personal information.
+  <br><br>
+           <button ion-button type="submit" (click)="onSubmit()" block large>
+           Let’s Get Started! 
+           </button>
+  </ion-card>
+  </ion-content>
+  

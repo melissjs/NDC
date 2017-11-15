@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Volunteer List</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+    <ion-card *ngIf="initialized">
+      <ion-list>
+        <ion-list-header>Volunteer List: {{currentVolunteer.fullName}}</ion-list-header>
+  
+        <ion-item *ngFor="let item of currentTeam">
+          <ion-label>{{item.fullName}} <span style=float:right *ngIf=item.exposeEmail>{{item.emailAddress}}</span></ion-label>
+          <!-- <ion-label *ngIf=item.exposeEmail>{{item.emailAddress}}</ion-label> -->
+        </ion-item>
+  
+      </ion-list>
+    </ion-card>
+  
+    <ion-card *ngIf="initialized">
+      <ion-list>
+        <!--<ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header>-->
+  
+        <ion-item>
+  
+        </ion-item>
+  
+      </ion-list>
+    </ion-card>
+  
+
+    <ion-card *ngIf="!initialized">
+        <ion-list-header text-wrap>Volunteer List:
+        </ion-list-header>
+        <ion-item text-wrap>
+    <ion-label text-wrap>
+      Must be logged in, authenticated and you must be at a polling station to see volunteer list.
+    </ion-label>
+        </ion-item>
+      </ion-card>
+  
+    <button ion-button type="button" (click)="onRefresh()" block large>
+      Refresh
+    </button>
+  
+    <!-- <check-login></check-login> -->
+  
+  </ion-content>
+  

@@ -1,3 +1,4 @@
+import { ActivityRecordPage } from './../pages/activity-record/activity-record';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -12,6 +13,7 @@ import { FaqPage } from '../pages/faq/faq';
 import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
 import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
 import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
+import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
 import { LogInPage } from '../pages/log-in/log-in';
 
 
@@ -31,11 +33,10 @@ import { PollingStationServiceProvider } from '../providers/polling-station-serv
     FaqPage,
     AddNewRecordPage,
     MorningCheckInPage,
-<<<<<<< HEAD
-    EveningCheckOutPage
-=======
-    LogInPage  
->>>>>>> ff0b86ea19b8a0ac6e7ae8233eed129acc4f567c
+    EveningCheckOutPage,
+    VolunteerListPage,
+    ActivityRecordPage,
+    LogInPage
   ],
   imports: [
     BrowserModule,
@@ -52,11 +53,10 @@ import { PollingStationServiceProvider } from '../providers/polling-station-serv
     FaqPage,
     AddNewRecordPage,
     MorningCheckInPage,
-<<<<<<< HEAD
-    EveningCheckOutPage
-=======
+    EveningCheckOutPage,
+    VolunteerListPage,
+    ActivityRecordPage,
     LogInPage
->>>>>>> ff0b86ea19b8a0ac6e7ae8233eed129acc4f567c
   ],
   providers: [
     StatusBar,
