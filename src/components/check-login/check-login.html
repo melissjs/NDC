@@ -1,0 +1,11 @@
+
+<ion-card *ngIf="!restSvc.getLoggedIn()"  padding>
+  <button ion-button type="button" (click)="onSubmitLogin()" block large>
+    Must Login First
+  </button>
+</ion-card>
+<ion-card *ngIf="restSvc.getLoggedIn() && (recordservice.getAuthenticatingVolunteerKey() == null)"  padding>
+  <button type="button" (click)="onSubmitAuthenticate()" block large>
+    Must Authenticate First
+  </button>
+</ion-card>

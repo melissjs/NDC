@@ -1,0 +1,23 @@
+  
+  <ion-item text-wrap>
+      <ion-label text-wrap stacked>Please select candidate you <span *ngIf="(!recordservice.getNonVoteBool() && electThisOffice.inner.election=='General') || (recordservice.getPrimarySuccess() && electThisOffice.inner.election=='Primary')">voted for</span><span *ngIf="(recordservice.getNonVoteBool() && electThisOffice.inner.election=='General') || (recordservice.getPrimaryIntention() && electThisOffice.inner.election=='Primary')">intended to vote for</span> in the {{electThisOffice.inner.election}} Election for {{electThisOffice.inner.office}}:</ion-label>
+             <ion-select text-wrap [(ngModel)]="candidateChoice"  (ionChange)="onChangeChoice(candidateChoice)">
+               <ion-option  *ngFor="let cand of electThisOffice.candidates" value="{{cand.value}}">{{cand.label}}</ion-option>
+             </ion-select>
+       </ion-item>
+   
+       <ion-item *ngIf="choosenCandidate=='26' || (choosenCandidate==writeInCandidate && writeInCandidate!==null)">
+           <ion-label text-wrap stacked>Please write in candidate name:</ion-label>
+           <ion-input type="text" [(ngModel)]="candidateVoteWriteIn" (change)="onChangeCandidateVoteWriteIn(candidateVoteWriteIn)"></ion-input>
+       </ion-item>
+   
+   
+        <ion-item *ngIf="!(choosenCandidate=='25' || choosenCandidate=='27')">
+       <ion-label text-wrap stacked>Level of support:</ion-label>
+               <ion-select text-wrap [(ngModel)]="los"  (ionChange)="onChangeLos(los)">
+               <ion-option value="highlySupport">Highly Support</ion-option>
+               <ion-option value="moderatelySupport">Moderately Support</ion-option>
+               <ion-option value="dislike">Dislike but dislike other candidate(s) more.</ion-option>
+               </ion-select>
+       </ion-item>
+   

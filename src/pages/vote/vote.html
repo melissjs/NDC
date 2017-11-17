@@ -1,18 +1,213 @@
-<!--
-  Generated template for the VotePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>vote</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Step 2: Vote</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+                 
+            <ion-content class="backgroundColor" padding>
+          <ion-card>
+          <ion-list>
+          <ion-list-header text-wrap>General Election</ion-list-header> 
+          <ion-item *ngIf="!recordservice.getNonVoteBool()">
+          <ion-label stacked>How did you cast your vote in the General Election?</ion-label>
+          <ion-select text-wrap [(ngModel)]="generalCastBy" (change)="onChangeGeneralCastBy(generalCastBy)">
+              <ion-option value="votingMachine">Voting Machine</ion-option>
+              <ion-option value="voteByMail">Vote by Mail (returned at this location)</ion-option>
+              <ion-option value="absentee">Absentee Ballot (returned at this location)</ion-option>
+              <ion-option value="provisional">Provisional Ballot</ion-option>
+              <ion-option value="paperBallot">Paper Ballot</ion-option>
+          </ion-select>
+          </ion-item>
+  
+  
+           <ion-item *ngIf="recordservice.getNonVoteBool()">
+          <ion-label stacked>Reason for not being able to vote today:</ion-label>
+          <ion-select text-wrap [(ngModel)]="reasonForCouldNotVotePGE" (ionChange)="onChangeReasonForCouldNotVoteGeneral(reasonForCouldNotVotePGE)">
+              <ion-option value="nameNotOnRole">My name was not on the voter role.</ion-option>
+              <ion-option value="incorrectVBM">I was incorrectly designated as a VBM (vote by mail) voter.</ion-option>
+              <ion-option value="inaccessableLocation">Polling location inaccessible due to long lines and/or insufficient parking.</ion-option>
+              <ion-option value="otherReasonForCouldNotVotePGE">Other</ion-option>
+              </ion-select>
+          </ion-item>
+  
+          <!--"recordservice.getNonVoteBool() && (reasonForCouldNotVoteGeneral=='otherReasonForCouldNotVotePGE' || reasonForCouldNotVoteGeneral==otherReasonForCouldNotVoteGeneral)"-->
+  
+          <ion-item *ngIf="recordservice.getNonVoteBool() && (reasonForCouldNotVoteGeneral=='otherReasonForCouldNotVotePGE' || reasonForCouldNotVoteGeneral==otherReasonForCouldNotVoteGeneral && otherReasonForCouldNotVoteGeneral!=null)">
+          <ion-label stacked>Please explain why you could not vote today:</ion-label>
+          <ion-input type="text" [(ngModel)]="otherReasonForCouldNotVotePGE" (change)="onChangeOtherReasonForCouldNotVotePGE(otherReasonForCouldNotVotePGE)"></ion-input>
+          </ion-item>
+  
+          <!--ion-label stacked style="color:#999999; margin-left:15px"-->
+         
+            <ovr-component [electThisOffice]=PRESIDENT></ovr-component>
+         
+          </ion-list>
+          </ion-card>
+  
+      <ion-card>
+      <ion-list>
+      <ion-list-header text-wrap>Primary Election</ion-list-header> 
+        <!--PRIMARY-->
+  
+      <ion-item text-wrap>
+      <ion-label stacked>Did you vote in the Primary Election?</ion-label>
+            <ion-select text-wrap [(ngModel)]="primarySuccess"  (ionChange)="onChangePrimarySuccess(primarySuccess)">
+              <ion-option value="didVote">Yes, I did vote in the primary.</ion-option>
+              <ion-option value="didNotVote">No, I did not vote in the primary.</ion-option>
+              <ion-option value="couldNotVote">I tried but could not vote in the primary.</ion-option>
+            </ion-select>
+      </ion-item>
+  
+      <ion-item  *ngIf="recordservice.getPrimaryIntention()">
+          <ion-label stacked>Reason for not being able to vote in the Primary:</ion-label>
+          <ion-select text-wrap [(ngModel)]="reasonForCouldNotVotePrimary" (change)="onChangeReasonForCouldNotVotePrimary(reasonForCouldNotVotePrimary)">
+              <ion-option value="registrationIncorrectlyChanged">My registration was incorrectly changed.</ion-option>
+              <ion-option value="notRegisteredInTime">I did not register in time.</ion-option>
+              <ion-option value="nameNotOnRole">My name was not on the voter role.</ion-option>
+              <ion-option value="incorrectVBM">I was incorrectly designated as a VBM (vote by mail) voter.</ion-option>
+              <ion-option value="noPollingLocation">There were no polling places close enough to my location.</ion-option>
+              <ion-option value="noTimeOff">I couldn't get time off work.</ion-option>
+              <ion-option value="inaccessableLocation">Polling location inaccessible due to long lines and/or insufficient parking.</ion-option>
+              <ion-option value="otherReasonForCouldNotVotePrimary">Other</ion-option>
+              </ion-select>
+          </ion-item>
+  
+          <ion-item *ngIf="(recordservice.getPrimaryIntention() && reasonForCouldNotVotePrimary=='otherReasonForCouldNotVotePrimary')">
+          <ion-label stacked>Please explain why you could not vote in the primary:</ion-label>
+          <ion-input type="text" [(ngModel)]="otherReasonForCouldNotVotePrimary" (change)="onChangeOtherReasonForCouldNotVotePrimary(otherReasonForCouldNotVotePrimary)"></ion-input>
+          </ion-item>
+  
+               <ion-item text-wrap  *ngIf="recordservice.getPrimarySuccess() || recordservice.getPrimaryIntention()">
+      <ion-label stacked>Was this your primary polling location?</ion-label>
+            <ion-select text-wrap [(ngModel)]="primaryLocation" (change)="onChangePrimaryLocation(primaryLocation)">
+              <ion-option value="sameLocation">This polling station is where I voted (or attempted to vote) during the primary.</ion-option>
+              <ion-option value="notSameLocation">I did not vote (or attempt to vote) at this polling station during the primary.</ion-option>
+              <ion-option value="dontRemeber">I don't remember.</ion-option>
+            </ion-select>
+      </ion-item>
+  
+      <ion-item *ngIf="recordservice.getPrimarySuccess()">
+      <ion-label stacked>How did you cast your primary vote?</ion-label>
+          <ion-select text-wrap [(ngModel)]="primaryVoteCastBy" (ionChange)="onChangePrimaryCastBy(primaryVoteCastBy)">
+              <ion-option value="votingMachine">Voting Machine</ion-option>
+              <ion-option value="voteByMail">Vote by Mail</ion-option>
+              <ion-option value="absentee">Absentee Ballot</ion-option>
+              <ion-option value="provisional">Provisional Ballot</ion-option>
+              <ion-option value="paperBallot">Paper Ballot</ion-option>
+              <ion-option value="dontRemember">I don't remember.</ion-option>
+            </ion-select>
+      </ion-item>
+  
+    
+      <ovr-component [electThisOffice]=PRIMARYPRES *ngIf="recordservice.getPrimarySuccess() || recordservice.getPrimaryIntention()"></ovr-component>
+  
+   
+     <ovr-component [electThisOffice]=PRIMARYCONGRESS *ngIf="inFlorida && (recordservice.getPrimarySuccess() || recordservice.getPrimaryIntention())"></ovr-component>
+      
+  
+  
+       <!-- Could not vote logic lines -->
+          <ion-item  *ngIf="primaryPresVote=='couldNotVote'">
+          <ion-label stacked>Reason for not being able to vote in the primary:</ion-label>
+          <ion-select text-wrap [(ngModel)]="reasonForCouldNotVotePrimary" (change)="onChangeReasonForCouldNotVotePrimary(reasonForCouldNotVotePrimary)">
+              <ion-option value="registrationIncorrectlyChanged">My registration was incorrectly changed.</ion-option>
+              <ion-option value="notRegisteredInTime">I did not register in time.</ion-option>
+              <ion-option value="nameNotOnRole">My name was not on the voter role.</ion-option>
+              <ion-option value="incorrectVBM">I was incorrectly designated as a VBM (vote by mail) voter.</ion-option>
+              <ion-option value="noPollingLocation">There were no polling places close enough to my location.</ion-option>
+              <ion-option value="noTimeOff">I couldn't get time off work.</ion-option>
+              <ion-option value="inaccessableLocation">Polling location inaccessible due to long lines and/or insufficient parking.</ion-option>
+              <ion-option value="otherReasonForCouldNotVotePrimary">Other</ion-option>
+              </ion-select>
+          </ion-item>
+  
+          <ion-item *ngIf="(primaryPresVote=='couldNotVote' && reasonForCouldNotVotePrimary=='otherReasonForCouldNotVotePrimary')">
+          <ion-label stacked>Please explain why you could not vote in the primary:</ion-label>
+          <ion-input type="text" [(ngModel)]="otherReasonForCouldNotVotePrimary" (change)="onChangeOtherReasonForCouldNotVotePrimary(otherReasonForCouldNotVotePrimary)"></ion-input>
+          </ion-item>
+  
+      </ion-list>
+      </ion-card>
+  
+  
+  
+  
+     <ion-card>
+      <ion-list>
+  <ion-list-header text-wrap>Please choose your ideal first, second and third choice for president. These choices do not have to match with who you officially voted for in the primary or general election, also they do not need to be chosen from candidates who are officially on the ballot.</ion-list-header> 
+          
+  
+      <ion-item text-wrap>
+      <ion-label stacked>Presidential First Choice:</ion-label>
+            <ion-select text-wrap [(ngModel)]="firstPresVote"  (change)="onChangeFirstPresVote(firstPresVote)">
+              <ion-option value="bernieSanders">Bernie Sanders</ion-option>
+              <ion-option value="donaldTrump">Donald Trump</ion-option>
+              <ion-option value="garyJohnson">Gary Johnson</ion-option>
+              <ion-option value="hillaryClinton">Hillary Clinton</ion-option>
+              <ion-option value="jillStein">Jill Stein</ion-option>
+              <ion-option value="writeIn">Other</ion-option>
+              <ion-option value="none">None</ion-option>
+            </ion-select>
+      </ion-item>
+  
+          <!-- Show line if they need to write in a candidate -->
+          <ion-item *ngIf="firstPresVote=='writeIn'">
+          <ion-label stacked>Please Write in Candidate Name:</ion-label>
+          <ion-input type="text" [(ngModel)]="firstPresVoteWriteIn"  (change)="onChangeFirstPresVoteWriteIn(firstPresVoteWriteIn)"></ion-input>
+          </ion-item>
+          <!-- end--> 
+  
+      <ion-item>
+      <ion-label stacked>Presidential Second Choice:</ion-label>
+            <ion-select text-wrap [(ngModel)]="secondPresVote"  (change)="onChangeSecondPresVote(secondPresVote)">
+              <ion-option value="bernieSanders">Bernie Sanders</ion-option>
+              <ion-option value="donaldTrump">Donald Trump</ion-option>
+              <ion-option value="garyJohnson">Gary Johnson</ion-option>
+              <ion-option value="hillaryClinton">Hillary Clinton</ion-option>
+              <ion-option value="jillStein">Jill Stein</ion-option>
+              <ion-option value="writeIn">Other</ion-option>
+              <ion-option value="none">None</ion-option>
+            </ion-select>
+      </ion-item>
+  
+          <!-- Show line if they need to write in a candidate -->
+          <ion-item *ngIf="secondPresVote=='writeIn'">
+          <ion-label stacked>Please Write in Candidate Name:</ion-label>
+          <ion-input type="text" [(ngModel)]="secondPresVoteWriteIn"  (change)="onChangeSecondPresVoteWriteIn(secondPresVoteWriteIn)"></ion-input>
+          </ion-item>
+          <!-- end--> 
+  
+      <ion-item>
+      <ion-label stacked>Presidential Third Choice:</ion-label>
+            <ion-select text-wrap [(ngModel)]="thirdPresVote"  (change)="onChangeThirdPresVote(thirdPresVote)">
+              <ion-option value="bernieSanders">Bernie Sanders</ion-option>
+              <ion-option value="donaldTrump">Donald Trump</ion-option>
+              <ion-option value="garyJohnson">Gary Johnson</ion-option>
+              <ion-option value="hillaryClinton">Hillary Clinton</ion-option>
+              <ion-option value="jillStein">Jill Stein</ion-option>
+              <ion-option value="writeIn">Other</ion-option>
+              <ion-option value="none">None</ion-option>
+            </ion-select>
+      </ion-item>
+  
+          <!-- Show line if they need to write in a candidate -->
+          <ion-item *ngIf="thirdPresVote=='writeIn'">
+          <ion-label stacked>Please Write in Candidate Name:</ion-label>
+          <ion-input type="text" [(ngModel)]="thirdPresVoteWriteIn"  (change)="onChangeThirdPresVoteWriteIn(thirdPresVoteWriteIn)"></ion-input>
+          </ion-item>
+          <!-- end--> 
+  
+      </ion-list>
+     </ion-card>
+  
+        <button ion-button type="submit" (click)="onSubmit()" block large>
+        Submit
+        </button>
+  
+        </ion-content>
+  

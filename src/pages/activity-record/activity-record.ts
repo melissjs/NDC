@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
 //import { Team } from '../../team';
 //import {VotePage} from '../vote/vote';

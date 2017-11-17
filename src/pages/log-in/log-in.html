@@ -14,7 +14,7 @@
 <ion-card padding>
 
 <!-- <center> -->
-  <img style="max-width:830px;"  src="../../assets/imgs/DC.jpg" >	
+  <img style="max-width:830px;"  src="assets/imgs/DC.jpg" >	
 <!-- </center> -->
 
 <!--
@@ -42,10 +42,13 @@
    <!--
    [disabled]="!loginForm.valid"
    -->
-    <button ion-button type="submit"  (click)="onSubmit(loginForm.value)" block large>
+  <button color="secondary" ion-button block type="submit"  (click)="onSubmit(loginForm.value)"  large>
+    Register
+  </button>
+  <button ion-button block type="submit"  (click)="onSubmit(loginForm.value)"  large>
     Log In
-    </button>
-    <ion-list-header text-wrap>
+  </button>
+    <!-- <ion-list-header text-wrap>
       Forgot your password or haven't registered yet?
       <a href="https://volunteer-dc.herokuapp.com" target="_blank">
         <button type="button" ion-button item-right>
@@ -53,7 +56,7 @@
         </button>
       </a>
 
-    </ion-list-header>
+    </ion-list-header> -->
 
     <P style="color:red" *ngIf="errorMessage!=null">{{errorMessage}}</P>
 </ion-card>
