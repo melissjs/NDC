@@ -1,18 +1,186 @@
-<!--
-  Generated template for the AccountSettingsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>accountSettings</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Account Settings</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="backgroundColor" padding>
 
-</ion-content>
+        <ion-card *ngIf="currentTempVolunteer && currentTempVolunteer.associatedPollingStationKey && !resetPasscode">
+        <ion-list text-wrap>
+
+            <ion-list-header >
+              Polling Station Team Information
+                 <button (click)="askShifts()" ion-button item-right >
+                 Delete Shifts
+                </button>
+            </ion-list-header>
+
+
+   <ion-item style="cursor:pointer" (click)="goToStationDetails();">
+  <!-- <pollingstationcomponent [passedStations]=thisTempStation> </pollingstationcomponent>  -->
+   </ion-item>
+
+
+        
+
+      <div padding>
+      <h2 style="margin-bottom:10px">Volunteer List:</h2>
+      <p *ngFor="let item of (fullVolunteerList)"> 
+        <span >{{item.fullName}}</span> <span style="float: right" *ngIf="item.exposeEmail">{{item.emailAddress}}</span>
+      </p>
+      </div>
+    
+
+        </ion-list>
+        </ion-card>
+
+
+<!-- Login -->
+<!-- <ion-card padding *ngIf="currentTempVolunteer.fullName==null && !resetPasscode"> -->
+<!--
+  <ion-card padding *ngIf="!restSvc.getLoggedIn() && !resetPasscode">
+<logincomponent></logincomponent>
+</ion-card>
+-->
+
+<!-- note for unreg -->
+<ion-card padding *ngIf="!restSvc.getLoggedIn() && !resetPasscode">
+ Login to your account or register <span style="color:#1c396d; cursor:pointer" (click)="onClickRegister()">here</span> if you don't have an account yet. If you have forgotten your password, reset it <span style="color:#1c396d; cursor:pointer" (click)="onClickReset()">here</span>. 
+</ion-card>
+
+<!-- reset password -->
+<ion-card padding *ngIf="resetPasscode">
+<changepasswordcomponent></changepasswordcomponent>
+</ion-card>
+
+
+       <!--  <ion-card *ngIf="currentTempVolunteer && currentTempVolunteer.fullName"> -->
+         <ion-card *ngIf="currentTempVolunteer && restSvc.getLoggedIn() && !resetPasscode">
+            <form [formGroup]="changeForm"  (ngSubmit)="onSubmit(changeForm.value)" novalidate>
+              <ion-list text-wrap>
+
+<ion-list-header>
+  Account Settings 
+
+   <button (click)="onConfirmOldPasscode()" ion-button item-right>
+      Change Passcode
+    </button>
+  
+     <button (click)="onLogout()" ion-button item-right>
+      Log Out
+    </button>
+  </ion-list-header>
+
+  <ion-item>
+    <ion-label stacked>Volunteer Key (make a note of this):</ion-label>
+    <ion-input readOnly=true value="{{currentTempVolunteer.volunteerKey}}" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Full Name:</ion-label>
+    <ion-input (click)="wasThisTouched()" type="text" formControlName="fullNameCtrl" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Email:</ion-label>
+    <ion-input  (click)="wasThisTouched()" type="text" formControlName="emailAddressCtrl"></ion-input>
+  </ion-item>
+
+
+      <ion-item>
+      <ion-label stacked>Email Exposed:</ion-label>
+         <ion-select [(ngModel)]="currentTempVolunteer.exposeEmail" name="exposeEmail" formControlName="exposeEmailCtrl" (change)="onChangeExposeEmail(exposeEmail)" >
+            <ion-option value=true>Yes</ion-option>
+            <ion-option value=false>No</ion-option>
+          </ion-select> 
+      </ion-item>
+
+    <ion-item>
+    <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
+    <ion-input (click)="wasThisTouched()" type="text" formControlName="phoneNumberCtrl" ></ion-input>
+  </ion-item>
+
+    <ion-item>
+    <ion-label stacked>Age:</ion-label>
+    <ion-input (click)="wasThisTouched()" type="text" formControlName="ageCtrl" ></ion-input>
+  </ion-item>
+
+
+
+    <ion-item>
+    <ion-label stacked>Sex:</ion-label>
+         <ion-select text-wrap [(ngModel)]="currentTempVolunteer.sex" formControlName="sexCtrl" (click)="wasThisTouched()" >
+            <ion-option value="Female">Female</ion-option>
+            <ion-option value="Male">Male</ion-option>
+            <ion-option value="No Answer">No Answer</ion-option>
+          </ion-select> 
+  </ion-item>
+  
+
+<!-- letting them only write in 
+     <ion-item>
+    <ion-label stacked>Party Affiliation:</ion-label>
+         <ion-select text-wrap [(ngModel)]="currentTempVolunteer.partyAffiliation" name="enterPartyAffiliationFromList" formControlName="partyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(enterPartyAffiliationFromList)" (click)="wasThisTouched()">
+            <ion-option value="No Party Preference">No Party Preference</ion-option>
+            <ion-option value="Democratic Party"C>Democratic Party</ion-option>
+            <ion-option value="Green Party">Green Party</ion-option>
+            <ion-option value="Republican Party">Republican Party</ion-option>
+            <ion-option value="Other Party">Other Party</ion-option>
+          </ion-select> 
+  </ion-item>
+  -->
+
+   
+        <ion-item>
+        <ion-label stacked>Party Affiliation:</ion-label>
+        <ion-input type="text" [(ngModel)]="currentTempVolunteer.partyAffiliation"  formControlName="partyAffiliationCtrl" (click)="wasThisTouched()"></ion-input>
+        </ion-item> 
+  
+
+       
+        <ion-item *ngIf="currentTempVolunteer.shifts!=''">
+        <ion-label stacked>Registered Shifts:</ion-label>
+        <ion-textarea readonly [(ngModel)]="currentTempVolunteer.shifts" name="shift" formControlName="shiftsCtrl" (click)="askShifts()"></ion-textarea>
+        </ion-item>
+       
+ <!--
+         <ion-item>
+        <ion-label stacked>Registered Shifts:</ion-label>
+         <ion-select  multiple="true" text-wrap [(ngModel)]="currentTempVolunteer.shifts" name="shift" formControlName="shiftsCtrl" (change)="onChangeShifts(shift)" (click)="wasThisTouched()" >
+            <ion-option value="Early Morning">Early Morning</ion-option>
+            <ion-option value="Late Morning">Late Morning</ion-option>
+            <ion-option value="Early Afternoon">Early Afternoon</ion-option>
+            <ion-option value="Late Afternoon">Late Afternoon</ion-option>
+            <ion-option value="Early Evening">Early Evening</ion-option>
+            <ion-option value="Late Evening">Late Evening</ion-option>
+          </ion-select> 
+        </ion-item> 
+<!--
+  <ion-item>
+    <ion-label stacked>Passcode:</ion-label>
+    <ion-input (click)="wasThisTouched()" type="password" formControlName="passcodeCtrl" [ngModel]="promptPWD"  (change)="onConfirmOldPasscode(promptPWD)"></ion-input>
+  </ion-item>
+  -->
+
+              </ion-list>
+             </form>
+           </ion-card>  
+
+
+
+<!-- currentTempVolunteer.fullName!=null -->
+  <button *ngIf="restSvc.getLoggedIn()" type="submit" [disabled]="!changeForm.valid" (click)="onSubmit(changeForm.value)" block large>
+    Submit
+  </button>
+
+
+
+ <!--  <p>Form: {{ changeForm.value | json }}</p> 
+<p>Form Status: {{ changeForm.status }}</p> -->
+
+      </ion-content>

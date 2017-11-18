@@ -3,22 +3,16 @@ import { Http } from '@angular/http';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-
 // interfaces
 import { Volunteer} from '../../models/volunteer';
 import { PollingStation } from '../../models/pollingstation';
-
 // globals
 import * as globals from '../../globals';
-
 // config
 import * as config from '../../configuration/config';
-
-
 // services
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
-
 let baseURL = config.NDCS_BASE_URL;
 
  
@@ -69,15 +63,47 @@ export class VolunteerServiceProvider {
   }
   */
 
+  // Bug Fix
+  private handleAngularJsonBug (error: HttpErrorResponse) {
+    const JsonParseError = 'Http failure during parsing for';
+    const matches = error.message.match(JsonParseError);
+    if (error.status === 200 && matches != null) {
+        return;
+    } else {
+        console.log('Error Occured', error)
+    }
+}
+
 getVolunteers(): void {
     this.http.get(baseURL + '/volunteers').subscribe(
     (data: Volunteer) => {
         console.log('hey', data[0].firstName);
     },
     (err: HttpErrorResponse) => {
-        console.log("Error Occured", err);
-});
+        if (err.error instanceof Error) {
+            console.log("Client side error occured", err);
+        } else {
+            console.log("Server side error occured", err);
+        }
+    });
+}
 
+//// tryyyyy
+setVolunteer() {
+    this.http.post(baseURL + '/volunteers/add', {
+        firstName: 'from here',
+        lastName: 'from here',
+        phoneNumber: '1234567890',
+        email: 'blah@email.com'
+    }).subscribe(
+        res => {
+            console.log(res);
+        },
+        (err: HttpErrorResponse) => {
+            this.handleAngularJsonBug(err);
+            // console.log('Error Occured', err)
+        }
+    )
 }
 
   /* 

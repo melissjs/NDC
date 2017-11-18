@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Volunteer} from '../../models/volunteer';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+// Models
+import { Volunteer} from '../../models/volunteer';
+// Services
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
+import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
+// Globals
+import * as globals from '../../globals';
+// pages
 import { AccountSettingsPage } from '../account-settings/account-settings';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { SignInSuccessPage } from '../sign-in-success/sign-in-success';
-import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { AuthenticationPage } from '../../pages/authentication/authentication';
-import * as globals from '../../globals';
+
 
 
 @Component({
@@ -47,6 +52,7 @@ export class LogInPage {
   
     // TEST 
     ngOnInit(): void {
+        // this.volSvc.setVolunteer();
         this.volSvc.getVolunteers();
     }
   
