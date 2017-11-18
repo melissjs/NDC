@@ -1,0 +1,47 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Confirmation</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="backgroundColor" padding>
+  
+          <ion-card padding>
+          <ion-list text-wrap>
+  
+              <ion-list-header >
+                Polling Station Team Information
+                   <button (click)="askShifts()" ion-button item-right >
+                   Delete Shifts
+                  </button>
+              </ion-list-header>
+  
+  
+     <ion-item style="cursor:pointer" (click)="goToStationDetails();">
+    <!-- <pollingstation [passedStations]=thisTempStation> </pollingstation>  -->
+    <pollingstation> </pollingstation> 
+  </ion-item>
+  
+  
+          <ion-item>
+          <ion-label stacked>Registered Shifts:</ion-label>
+          <ion-textarea readonly style="margin-bottom:10px" [innerHTML]="currentVolunteer.shifts" (click)="askShifts()"></ion-textarea>
+          </ion-item>
+  
+          </ion-list>
+          </ion-card>
+  
+          
+  
+          <ion-card padding>
+  
+            Thank you so much for signing up. Please check out the videos, FAQs and instructions pages (located in the "App Training" menu option) so you may be prepared and efficient on election day. We would also greatly appreciate you promoting the audit to your friends and neighbors to help fill shifts.
+  
+          </ion-card>
+  
+  
+  </ion-content>

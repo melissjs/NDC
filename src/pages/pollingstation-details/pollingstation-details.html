@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Polling Station Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="backgroundColor" padding>          
+        <ion-card padding>
+      <pollingstationcomponent [passedStations]=pollingStationService.getStation()> </pollingstationcomponent> 
+        </ion-card>
+  
+  
+  <div *ngIf="restSvc.getLoggedIn()">
+  
+  <ion-card padding>
+    
+  <div>
+    <b>Early Morning (5:00 AM - 8:15 AM)</b>
+        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_MORNING))"> 
+          {{item.fullName}}
+        </p>
+  </div>
+  
+  
+  
+  
+  <div>
+    <b>Late Morning (8:00 AM - 11:15 AM)</b>
+        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_MORNING))"> 
+          {{item.fullName}}
+        </p>
+  </div>
+  
+  
+  
+  
+  <div>
+    <b>Early Afternoon (11:00 AM - 2:15 PM)</b>
+        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_AFTERNOON))"> 
+          {{item.fullName}}
+        </p>
+  </div>
+  
+  
+  
+  
+  <div>
+    <b>Late Afternoon (2:00 PM - 5:15 PM)</b>
+        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_AFTERNOON))"> 
+          {{item.fullName}}
+        </p>
+  </div>
+  
+  
+  
+  <div>
+      <b>Early Evening (5:00 PM - 8:15 PM)</b>
+        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_EVENING))"> 
+          {{item.fullName}}
+        </p>
+  </div>
+  
+  
+  
+  <div>
+    <b>Late Evening (8:00 PM - 10:30 PM)</b>
+        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_EVENING))"> 
+          {{item.fullName}}
+        </p>
+  </div>
+  </ion-card>
+  
+  <ion-card padding>
+     <ion-list>
+          <ion-list-header>Station Stats</ion-list-header>
+          <ion-item text-wrap>
+  There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks. 
+  <br><br>
+  Total registered volunteers so far: {{volunteerCount}}
+  <br>
+  Total shifts filled so far: {{shiftsFilled}}
+  <br>
+  Total remaining shifts to fill: {{shiftsToFill}}
+          </ion-item>
+     </ion-list>
+  </ion-card>
+  
+  
+  
+  <ion-card padding>
+    <ion-list>
+    <ion-list-header>Select all shifts you want to volunteer for:</ion-list-header>
+    <ion-item>
+      <ion-label>Early Morning (5:00 AM - 8:15 AM)</ion-label>
+      <ion-checkbox [(ngModel)]="earlyM" (click)="onChangeEarlyM(earlyM)" ></ion-checkbox>
+    </ion-item>
+    <ion-item>
+       <ion-label>Late Morning (8:00 AM - 11:15 AM)</ion-label>
+      <ion-checkbox [(ngModel)]="lateM" (click)="onChangeLateM(lateM)" ></ion-checkbox>
+    </ion-item>
+     <ion-item>
+       <ion-label>Early Afternoon (11:00 AM - 2:15 PM)</ion-label>
+        <ion-checkbox [(ngModel)]="earlyA" (click)="onChangeEarlyA(earlyA)" ></ion-checkbox>
+    </ion-item>
+     <ion-item>
+       <ion-label>Late Afternoon (2:00 PM - 5:15 PM)</ion-label>
+        <ion-checkbox [(ngModel)]="lateA" (click)="onChangeLateA(lateA)" ></ion-checkbox>
+    </ion-item>
+     <ion-item>
+       <ion-label>Early Evening (5:00 PM - 8:15 PM)</ion-label>
+        <ion-checkbox [(ngModel)]="earlyE" (click)="onChangeEarlyE(earlyE)" ></ion-checkbox>
+    </ion-item>
+     <ion-item>
+       <ion-label>Late Evening (8:00 PM - 10:30 PM)</ion-label>
+        <ion-checkbox [(ngModel)]="lateE" (click)="onChangeLateE(lateE)" ></ion-checkbox>
+    </ion-item>
+    </ion-list>
+  </ion-card>
+  
+              <!-- for  reg -->
+              <button type="submit" (click)="onSubmit()" block large *ngIf="restSvc.loggedIn">
+              Submit
+             </button>
+  
+             <!-- for non reg -->
+             <button (click)="onRegister()" block large *ngIf="!restSvc.loggedIn" style="background-color:#959eb0; cursor:default">
+              Register to sign up for shifts
+             </button>
+     
+  </div>
+  
+  <div *ngIf="!restSvc.getLoggedIn()">
+  <ion-card>
+     <ion-label>Please Login to see Polling Station details.</ion-label>  
+    <button type="button" (click)="onLoginClick()" block large>
+      Log in 
+    </button>
+  </ion-card>
+  
+  </div>
+  </ion-content>

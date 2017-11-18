@@ -14,7 +14,7 @@ import * as globals from '../../globals';
 // Components
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
 //import { Logincomponent } from '../logincomponent/logincomponent';
-import { Changepasswordcomponent } from '../changepasswordcomponent/changepasswordcomponent';
+import { ChangePasswordComponent } from '../../components/change-password/change-password';
 // Providers
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
@@ -307,61 +307,61 @@ onChangePartyAffiliationFromList(passedValue){
 
   onSubmit(value: any): void {
 
-      if ((this.changeForm.valid) && (this.currentTempVolunteer) &&
-          (!this.loggingout)) {
-          //console.log('Submitted value: ', value);
-          this.currentTempVolunteer.fullName = value.fullNameCtrl;
-          this.currentTempVolunteer.emailAddress = value.emailAddressCtrl;
-          this.currentTempVolunteer.phoneNumber = value.phoneNumberCtrl;
-          this.currentTempVolunteer.age = value.ageCtrl;
-          //this.currentTempVolunteer.sex = value.sexCtrl;
-          //this.currentTempVolunteer.partyAffiliation = value.partyAffiliationCtrl;
-          //this.currentTempVolunteer.passcode = value.passcodeCtrl;
-          this.wasTouched = false;
-          if(this.currentTempVolunteer.shifts == ""){ this.currentTempVolunteer.associatedPollingStationKey = null;}
+  //     if ((this.changeForm.valid) && (this.currentTempVolunteer) &&
+  //         (!this.loggingout)) {
+  //         //console.log('Submitted value: ', value);
+  //         this.currentTempVolunteer.fullName = value.fullNameCtrl;
+  //         this.currentTempVolunteer.emailAddress = value.emailAddressCtrl;
+  //         this.currentTempVolunteer.phoneNumber = value.phoneNumberCtrl;
+  //         this.currentTempVolunteer.age = value.ageCtrl;
+  //         //this.currentTempVolunteer.sex = value.sexCtrl;
+  //         //this.currentTempVolunteer.partyAffiliation = value.partyAffiliationCtrl;
+  //         //this.currentTempVolunteer.passcode = value.passcodeCtrl;
+  //         this.wasTouched = false;
+  //         if(this.currentTempVolunteer.shifts == ""){ this.currentTempVolunteer.associatedPollingStationKey = null;}
 
-          var that = this;
-          this.restSvc.saveVolunteerInfo()
-              .subscribe( (data) => {
-                  // Expect response created here...
-                  if (data.status == 200)  {
-                      console.log('successful call to save:' + data);
-                      this.successForward(true);
-                  } else {
-                      // ?? shouldn't happen ??
-                      console.log('UNKNOWN STATUS:' + data);
-                      this.successForward(true);              
-                  }
-              } , err => {
-                  console.log('error occurred ' + err.toString());
-                  var errStr = null;
-                  if ((err.status == 0) ||
-                      (err.status == 404)) {
-                      this.successForward(false);
-                  } else if (err.status == 400) {
-                      errStr = err._body // toString();
-                  } else {
-                      errStr = err.toString();
-                  }
-                  // console.log(error.stack());
-                  let alert = that.alertCtrl.create({
-                      title: 'Error Saving Account Settings',
-                      subTitle: errStr,
-                      buttons: [{
-                          text: 'OK',
-                          handler: () => {
-                              alert.dismiss();
-                          }
-                      }]
-                  }
-                                                   );
-                  //timeout the error to let other modals finish dismissing.
-                  setTimeout(()=>{
-                      alert.present();
-                  },250);
-              }, () => {console.log('save polling details complete')}
-                        );
-      }
+  //         var that = this;
+  //         this.restSvc.saveVolunteerInfo()
+  //             .subscribe( (data) => {
+  //                 // Expect response created here...
+  //                 if (data.status == 200)  {
+  //                     console.log('successful call to save:' + data);
+  //                     this.successForward(true);
+  //                 } else {
+  //                     // ?? shouldn't happen ??
+  //                     console.log('UNKNOWN STATUS:' + data);
+  //                     this.successForward(true);              
+  //                 }
+  //             } , err => {
+  //                 console.log('error occurred ' + err.toString());
+  //                 var errStr = null;
+  //                 if ((err.status == 0) ||
+  //                     (err.status == 404)) {
+  //                     this.successForward(false);
+  //                 } else if (err.status == 400) {
+  //                     errStr = err._body // toString();
+  //                 } else {
+  //                     errStr = err.toString();
+  //                 }
+  //                 // console.log(error.stack());
+  //                 let alert = that.alertCtrl.create({
+  //                     title: 'Error Saving Account Settings',
+  //                     subTitle: errStr,
+  //                     buttons: [{
+  //                         text: 'OK',
+  //                         handler: () => {
+  //                             alert.dismiss();
+  //                         }
+  //                     }]
+  //                 }
+  //                                                  );
+  //                 //timeout the error to let other modals finish dismissing.
+  //                 setTimeout(()=>{
+  //                     alert.present();
+  //                 },250);
+  //             }, () => {console.log('save polling details complete')}
+  //                       );
+  //     }
   }
 
   successForward(real:boolean) {
