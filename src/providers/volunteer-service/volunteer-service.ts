@@ -1,4 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { NDCS_BASE_URL } from './../../configuration/config';
+import { Http } from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -6,14 +8,18 @@ import 'rxjs/add/operator/map';
 import { Volunteer} from '../../models/volunteer';
 import { PollingStation } from '../../models/pollingstation';
 
-// station json array
-// import { VOLUNTEERS } from '../../fakedata';
+// globals
 import * as globals from '../../globals';
 
-//other service
-// import { Pollingstationservice } from '../../providers/pollingstationservice/pollingstationservice';
+// config
+import * as config from '../../configuration/config';
 
-// import {RestService} from '../../providers/rest-service/rest-service';
+
+// services
+import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
+import { RestServiceProvider } from '../../providers/rest-service/rest-service';
+
+let baseURL = config.NDCS_BASE_URL;
 
  
 @Injectable()
@@ -37,7 +43,7 @@ export class VolunteerServiceProvider {
   usingReal: boolean;
   activeVolunteers: number;
 
-  constructor(/* pollingstationservice: Pollingstationservice, restSvc: RestService */) {
+  constructor(private http: HttpClient) {
       this.currentVolunteer = null;
       // this.pollingstationservice = pollingstationservice;
       // this.restSvc = restSvc;
@@ -62,15 +68,17 @@ export class VolunteerServiceProvider {
       that.currentVolunteer = that.setToVoidVolunteer();
   }
   */
-  
-  getVolunteers() {
-      if (!this.usingReal) {
-          if (this.volunteerListInMemory == null) {
-              // this.volunteerListInMemory = VOLUNTEERS;
-          }
-      }
-      return this.volunteerListInMemory;
-  }
+
+getVolunteers(): void {
+    this.http.get(baseURL + '/volunteers').subscribe(
+    (data: Volunteer) => {
+        console.log('hey', data[0].firstName);
+    },
+    (err: HttpErrorResponse) => {
+        console.log("Error Occured", err);
+});
+
+}
 
   /* 
      Added the following function to properly set the volunteers

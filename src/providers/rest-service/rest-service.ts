@@ -51,6 +51,11 @@ export class RestServiceProvider {
       this.initIonic(false,null);
   }
 
+//   // THIS IS A TEST
+//   testAJAX(): void {
+//       this.http.get('http://localhost:8080/volunteers').subscribe(data => console.log('hey', data));
+//   }
+
   initIonic(onlogin: boolean,phoneNumber: string) {
 
 //       if (onlogin) {

@@ -45,6 +45,10 @@ export class LogInPage {
           });
     }
   
+    // TEST 
+    ngOnInit(): void {
+        this.volSvc.getVolunteers();
+    }
   
       onChangePhoneNumber(value: string) {
           if (!value.match(globals.REGEXPHONE)) {

@@ -16,3 +16,4 @@
 export var MT_HOST  = '';
 export var AUTHY_VER_URL = MT_HOST + '/api/verificationinit/';
 export var AUTHY_CHK_URL = MT_HOST + '/api/verificationcheck/';
+export var NDCS_BASE_URL  = 'http://localhost:8080';
