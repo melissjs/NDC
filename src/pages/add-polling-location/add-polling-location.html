@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>addPollingLocation</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="backgroundColor" padding>
+  
+  <ion-card padding>
+     Use the form below to add a new polling location to our list and initiate a new audit.
+     <br><br>
+     Find your designated polling location, or a different one that you would like to volunteer at even if it is not the one that you are designated to vote at, by googling "find my voting location" along with your state.
+     <br><br>
+      Alternatively you can start here with the <a href="https://www.usa.gov/election-office" target="_blank">U.S. Polling Location Reference</a>. 
+      <br><br>
+      Each state has different websites where you enter your address and then find your polling location. For example, in California, <a href="http://www.sos.ca.gov/elections/polling-place" target="_blank"> http://www.sos.ca.gov/elections/polling-place</a> lists websites that help you look up your polling location by county. Sometimes it can be difficult to find the precinct number. For example, when looking for a polling location from <a href="https://lavote.net/locator/" target="_blank"> https://lavote.net/locator/</a> the election precinct number is shown at the bottom, but when finding the same polling location from <a href="http://www.sos.ca.gov/elections/polling-place" target="_blank">http://www.sos.ca.gov/elections/polling-place</a>, the precinct number is not shown; it may take some effort to find.
+      <br><br>
+      If you want to find a polling location in a different area, enter an address in that area instead of your own. Choosing a different location to initiate an audit is sometimes smart; for example, if you live in a less busy area it might be a better use of time and energy to volunteer in a close by area that is more populated. 
+       <br><br>
+       College areas are good choices and other factors to consider when choosing a polling location to volunteer at are access to shade, parking, bathrooms, electrical outlets, etc. and also it is beneficial to choose a location with one central entrance and exit. That way you have a better chance of getting close to 100% of voters to participate because auditors will see them come and go. However, if an audit is well staffed, there can be multiple volunteers at multiple doors. 
+    <br><br>
+    On occasion, one location is used for more than one precinct number. In that case, enter both in the precinct numbers field separated by a comma. 
+  </ion-card>
+  
+          <ion-card>
+        <form [formGroup]="addPollingLocationForm"  (ngSubmit)="onSubmit(addPollingLocationForm.value)" novalidate>      
+  <ion-list>
+  
+    <ion-item>
+      <ion-label stacked>Precinct Number(s):</ion-label>
+      <ion-input type="text" formControlName="enterPrecinctNumber" (change)="onChangePrecinctNumber(enterPrecinctNumber)"></ion-input>
+    </ion-item>
+  
+    
+  
+    <ion-item>
+      <ion-label stacked>Street Address:</ion-label>
+      <ion-input type="text" formControlName="enterStreetAddress" (change)="onChangeStreetAddress(enterStreetAddress)"></ion-input>
+    </ion-item>
+  
+  
+      <ion-item>
+      <ion-label stacked>Unit Number (if applicable):</ion-label>
+      <ion-input type="text" formControlName="enterUnitNumber" (change)="onChangeUnitNumber(enterUnitNumber)"></ion-input>
+    </ion-item>
+  
+      <ion-item>
+      <ion-label stacked>Room Number (if applicable):</ion-label>
+      <ion-input type="text" formControlName="enterRoomNumber" (change)="onChangeRoomNumber(enterRoomNumber)"></ion-input>
+    </ion-item>
+    
+  
+      <ion-item>
+      <ion-label stacked>City:</ion-label>
+      <ion-input type="text" formControlName="enterCity" (change)="onChangeCity(enterCity)"></ion-input>
+    </ion-item>
+  
+      <ion-item>
+      <ion-label stacked>State:</ion-label>
+      <ion-input type="text" formControlName="enterState" (change)="onChangeState(enterState)"></ion-input>
+    </ion-item>
+  
+      <ion-item>
+      <ion-label stacked>Zip:</ion-label>
+      <ion-input type="text" formControlName="enterZip" (change)="onChangeZip(enterZip)"></ion-input>
+    </ion-item>
+  
+  
+  
+  </ion-list>
+        </form>    
+          </ion-card>  
+  
+  <!-- for  non registered -->
+    <button *ngIf="!restSvc.getLoggedIn()" (click)="onRegister()" block large  style="background-color:#959eb0; cursor:default" >
+      Register to add a location
+    </button>
+  
+  <!--for  registered *ngIf="currentVolunteerHere && currentVolunteerHere.fullName!=null"-->
+    <button *ngIf="restSvc.getLoggedIn()" type="submit" block large [disabled]="!addPollingLocationForm.valid" (click)="onSubmit(addPollingLocationForm.value)">
+      Add Location 
+    </button>
+  
+     <!-- <p>Form: {{ addPollingLocationForm.value | json }}</p> 
+  <p>Form Status: {{ addPollingLocationForm.status }}</p> 
+  -->
+  
+  </ion-content>

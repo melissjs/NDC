@@ -2,5 +2,7 @@
   "name": "NDC",
   "app_id": "e8e59612",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }

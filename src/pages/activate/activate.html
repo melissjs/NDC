@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Activate</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  
+    <div *ngIf="stat == 0">
+      <p>Attempting to Activate Account with Key = {{key}}, please wait...</p>
+    </div>
+    <div *ngIf="stat == 1">
+      <p>Activation of Account with Key = {{key}}, successful!</p>
+      <p>click 
+        <button type="submit" (click)="onSubmit()">Sign In</button>
+        to login</p>
+    </div>
+    <div *ngIf="stat == 2">
+      <p>Activation of Account with Key = {{key}}, unable to be performed!</p>
+      <p>For test purposes.. </p>
+      <p>click 
+        <button type="submit" (click)="onSubmit()">Sign In</button>
+        to login</p>
+    </div>
+    <div *ngIf="stat == 3">
+      <p>Error Attempting to Activate Account with Key = {{key}}</p>
+      <p>{{errString}}</p>
+      <p>You may have inadvertently refreshed this page.</p>
+      <p>Recommend that you close this window after opening a new one to this application</p>
+        <div *ngIf="!restSvc.loggedIn">
+          <p>Or else go to the Login Page by clicking 
+      <a href="#/login" target="_blank">HERE</a>
+        </div>
+        <div *ngIf="restSvc.loggedIn">
+          <p>Or else go to Home Page by clicking
+      <a href="#/login" target="_blank">HERE</a>
+        </div>
+    </div>
+  
+  </ion-content>
