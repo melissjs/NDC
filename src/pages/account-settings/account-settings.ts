@@ -6,9 +6,9 @@ import { Volunteer} from '../../models/volunteer';
 import { PollingStation} from '../../models/pollingstation';
 // Pages
 //import {VotePage} from '../vote/vote';
-import { PollingstationdetailsPage } from '../pollingstationdetails/pollingstationdetails';
-import { ResetpasswordPage } from '../resetpassword/resetpassword';
-import { UnregisteredsigninPage } from '../unregisteredsignin/unregisteredsignin';
+// import { PollingstationDetailsPage } from '../pollingstation-details/pollingstation-details';
+// import { ResetPasswordPage } from '../reset-password/reset-password';
+// import { UnregisteredSignInPage } from '../unregistered-sign-in/unregistered-sign-in';
 // Globals
 import * as globals from '../../globals';
 // Components
@@ -47,7 +47,7 @@ export class AccountSettingsPage {
   titlec: {page: any, title: string};
   loggingout :boolean;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, private restSvc: RestServiceProvider) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
       // this.navCtrl = navCtrl;
       // this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
       // this.volunteerservice = volunteerservice; 
@@ -120,7 +120,7 @@ onClickRegister(){
       var that = this;
       try {
           
-          this.navCtrl.push(UnregisteredsigninPage, {
+          this.navCtrl.push('UnregisteredSignInPage', {
               title: globals.UNREGPAGETITLE,
               menupg: that.titlec.page
           });
@@ -135,7 +135,7 @@ onClickReset(){
 //this.resetPasscode = true;
       try {
           
-          this.navCtrl.push(ResetpasswordPage, {
+          this.navCtrl.push('ResetPasswordPage', {
               title: globals.RESETPWDTITLE,
               menupg: this.titlec.page
           });
@@ -147,8 +147,8 @@ onClickReset(){
 }
 
   onLogout() {
-      this.loggingout=true;
-      this.restSvc.onLogout(this,this.displayError);
+      // this.loggingout=true;
+      // this.restSvc.onLogout(this,this.displayError);
   }
 
 // CHANGE EXPOSE EMAIL
@@ -294,7 +294,7 @@ onChangePartyAffiliationFromList(passedValue){
       var that = this;
       try {
           
-          this.navCtrl.push(PollingstationdetailsPage, {
+          this.navCtrl.push('PollingstationDetailsPage', {
               title: globals.PSDETAILTITLE,
               menupg: that.titlec.page
           });

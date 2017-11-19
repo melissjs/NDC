@@ -9,8 +9,10 @@
 
 <ion-content class="backgroundColor" padding>          
         <ion-card padding>
-      <pollingstationcomponent [passedStations]=pollingStationService.getStation()> </pollingstationcomponent> 
-        </ion-card>
+      <!-- <pollingstation [passedStations]=pollingStationService.getStation()> </pollingstation>  -->
+      <pollingstation [passedStations]=pollingStationService.getStation()> </pollingstation> 
+      
+    </ion-card>
   
   
   <div *ngIf="restSvc.getLoggedIn()">
