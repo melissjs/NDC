@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>donate</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="backgroundColor" padding>
+  
+      <ion-card padding>
+        <p>{{alertMsg}}</p>
+      </ion-card>
+          
+        
+  
+        
+         <ion-card>
+           <ion-list-header>Station you Entered</ion-list-header>
+           <ion-item>
+             <p>Precinct Number: {{pollingStationService.getStation().precinctNumber}}</p>
+              <p>{{pollingStationService.getStation().streetAddress}}</p>
+              <p>{{pollingStationService.getStation().city}}, {{pollingStationService.getStation().state}} {{pollingStationService.getStation().zip}}</p> 
+                    <ion-buttons end>
+                      <button small item-right (click)="onCancel()">Cancel</button>
+                    <button small item-right (click)="onAdd()">Add</button>
+                    </ion-buttons> 
+           </ion-item>
+         </ion-card>
+  
+          <ion-card>
+           <ion-list-header>{{alertMsgHeading}}</ion-list-header>
+           <ion-list>
+            <ion-item style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of pollingStationService.matchingPrecinctAndZipList">
+            <pollingstation [passedStations]=item> </pollingstation>
+            </ion-item>
+           </ion-list>
+            </ion-card>
+
+  </ion-content>

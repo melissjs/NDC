@@ -3,16 +3,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-success-splash',
-  templateUrl: 'success-splash.html',
+  selector: 'page-promote',
+  templateUrl: 'promote.html',
 })
-export class SuccessSplashPage {
+export class PromotePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SuccessSplashPage');
+    console.log('ionViewDidLoad PromotePage');
   }
 
 }

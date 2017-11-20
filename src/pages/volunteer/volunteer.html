@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>Volunteer</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="backgroundColor" padding>  
+  
+    <ion-card padding>
+    
+  <img style="max-width:830px;" src="../../img/quote2.jpg">
+  
+  
+            <button [disabled]="restSvc.getLoggedIn()" type="submit" (click)="onRegister()" block large>
+              Register to Volunteer  
+             </button>
+  
+             <button type="submit" (click)="onFindPolling()" block large>
+              Find a Polling Location 
+             </button>
+  
+             <button type="submit" (click)="onAddPolling()" block large>
+              Add a Polling Location
+             </button>
+  
+  <!--
+             <a href="https://www.usa.gov/election-office" target="_blank">
+              <button type="submit" block large>
+              U.S. Polling Location Reference
+             </button>
+            </a>
+  -->
+  
+    </ion-card>
+  
+  </ion-content>

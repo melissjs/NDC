@@ -25,7 +25,7 @@ export class HomePage {
   titlec: {page: any, title: string};
 
 //userDataSvc: UserDataService;
-constructor(public navCtrl: NavController, navParams: NavParams, private restSvc: RestServiceProvider) {
+constructor(public navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider) {
 
     this.navCtrl = navCtrl;
     this.buttonsDisabled = false;

@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>Registration Success</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="backgroundColor" padding>
+  
+    <ion-card padding>
+      <ion-list>
+     <ion-list-header>About Shifts</ion-list-header>
+     <ion-item text-wrap>
+      Once you sign up, if you need to cancel or reschedule your shifts, edit them from your 'Account' menu option. It is important to do this if your plans change so that your other team members know how many volunteers are still needed for each shift. 
+      <br><br>
+      Shifts are three hours long with fifteen minute grace periods at the end to allow enough time for volunteers to transition in and out. Those finishing a shift should help the incoming new volunteers to sign in and understand how to use the app.
+      <br><br>
+      We would really like some dedicated volunteers to take two consecutive shifts, especially early morning and late evening shifts bc the morning and evening procedures need to be taken care of by someone who has invested time and knows what they are doing. It would be preferable if two or three people would take on team lead responsibility and stay the entire day, or do all the shifts except the middle two so they can take a long break, but we know that is an extremely long day and not realistic in every case.
+      <br><br>
+     </ion-item>
+      </ion-list>
+    </ion-card>
+  
+    <ion-card padding>
+      <ion-list>
+     <ion-list-header>About Polling Stations</ion-list-header>
+     <ion-item text-wrap>
+      When attempting to choose a polling station from the list, you may not see a listing close enough to your location. If there are no audit initiated near you already, then initiate one yourself by adding a polling location to our list. Please try to help promote the audit and network with friends and neighbors in your community to fill the shifts.
+      <br><br>
+      There are a few ways that audits can be successful. The best way is to have a very well staffed audit with at least the recommended amount of volunteers present at all times. The reason for this is because, unlike an exit poll that only samples portion of voter data, an audit strives to get data from as close to 100% of exiting voters as possible. 
+      <br><br>
+      Voters exiting polling stations are generally glad to participate in the audit, but they don't want to spend time waiting for other voters to finish before their turn. So when a station is understaffed, the chances of getting as close to 100% of voters decreases.
+      <br><br>
+      We understand that not every polling location will be able to be adequately staffed, and that is ok too although not preferable and this is why: data gathered by an understaffed polling station audit that does not get close to 100% of exiting voters to participate can still be used as exit <i>polling</i> data. This data is also very helpful for understanding if fraud is taking place although it is not actionable in court the way audit data will be. So if you are trying to get a polling station staffed, don't despair if there are not enough volunteers. However, if your station is substantailly understaffed we recommend joining another close by polling station's effort instead. It is better to have one well staffed audit than two less well staffed exit polls. 
+     </ion-item>
+      </ion-list>
+    </ion-card>
+  
+  
+             <button type="submit" (click)="onFindPolling()" block large>
+              Find a Polling Location 
+             </button>
+  
+             <button type="submit" (click)="onAddPolling()" block large>
+              Add a Polling Location
+             </button>
+  
+  </ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>Find Polling Location</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="backgroundColor" padding>
+        
+        <div id="searchDiv" style="background:#ededed">
+        <ion-searchbar style="margin-bottom:0px; padding-bottom:0px; width:98.5%" [(ngModel)]="query"></ion-searchbar> 
+        </div>
+  
+        <div style="margin-top:90px">
+         <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations | searchpipe:query)">
+    <!--       <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations)">  -->
+         <pollingstation [passedStations]=item> </pollingstation>
+         </ion-card>
+        </div>
