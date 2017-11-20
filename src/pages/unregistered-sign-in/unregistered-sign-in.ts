@@ -475,10 +475,7 @@ export class UnregisteredSignInPage {
       // Send to login page
       // CHANGING THIS BECAUSE EMAIL LINK TAKES HERE _ THIS WONT WORK UNTIL EMAIL IS SENT
      //that.navCtrl.setRoot(LoginPage);
-      that.navCtrl.setRoot(SuccesssplashPage, {
-          title: globals.SUCCSPLASHTITLE,
-          menupg: that.titlec.page
-      });
+      that.navCtrl.setRoot('SuccessSplashPage');
   }
 
   testError() {
