@@ -14,6 +14,7 @@ import * as globals from '../../globals';
 // import { LogInPage } from '../log-in/log-in';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -23,6 +24,7 @@ export class HomePage {
 
   buttonsDisabled: boolean;
   errorMessage: string;
+  pageTitle: string;
 
 //userDataSvc: UserDataService;
 constructor(public navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider) {
@@ -30,6 +32,7 @@ constructor(public navCtrl: NavController, navParams: NavParams, public restSvc:
     this.navCtrl = navCtrl;
     this.buttonsDisabled = false;
     this.errorMessage = null;
+    this.pageTitle = "Democracy Counts"
 
     if (navParams.get("dontdoagain")) {
         // we don't want to infinitely recurse this.. 

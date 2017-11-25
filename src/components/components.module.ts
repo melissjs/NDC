@@ -4,6 +4,7 @@ import { OvrComponent } from './ovr/ovr';
 import { CheckLoginComponent } from './check-login/check-login';
 import { PollingstationComponent } from './pollingstation/pollingstation';
 import { ChangePasswordComponent } from './change-password/change-password';
+import { TopBarComponent } from './top-bar/top-bar';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -12,12 +13,14 @@ import { ChangePasswordComponent } from './change-password/change-password';
     OvrComponent,
     CheckLoginComponent,
     PollingstationComponent,
-    ChangePasswordComponent],
+    ChangePasswordComponent,
+    TopBarComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
     CheckLoginComponent,
     PollingstationComponent,
-    ChangePasswordComponent]
+    ChangePasswordComponent,
+    TopBarComponent]
 })
 export class ComponentsModule {}
