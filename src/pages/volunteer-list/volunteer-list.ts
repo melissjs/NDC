@@ -6,6 +6,7 @@ import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { RecordServiceProvider } from '../../providers/record-service/record-service';
 // import { CheckLogin } from '../../components/check-login/check-login';
 
+@IonicPage()
 @Component({
   selector: 'page-volunteer-list',
   templateUrl: 'volunteer-list.html',

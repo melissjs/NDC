@@ -6,7 +6,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RecordServiceProvider } from '../../providers/record-service/record-service';
 // import {CheckLogin } from '../../components/check-login/check-login';
 
-
+@IonicPage()
 @Component({
   selector: 'page-add-new-record',
   templateUrl: 'add-new-record.html',

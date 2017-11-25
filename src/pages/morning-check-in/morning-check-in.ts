@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RecordServiceProvider } from '../../providers/record-service/record-service';
 
+@IonicPage()
 @Component({
   selector: 'page-morning-check-in',
   templateUrl: 'morning-check-in.html',

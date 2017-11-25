@@ -16,7 +16,7 @@ import { SignInSuccessPage } from '../sign-in-success/sign-in-success';
 import { AuthenticationPage } from '../../pages/authentication/authentication';
 
 
-
+@IonicPage()
 @Component({
   selector: 'page-log-in',
   templateUrl: 'log-in.html',

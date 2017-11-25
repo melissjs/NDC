@@ -11,6 +11,7 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 // Globals
 import * as globals from '../../globals';
+// import { LogInPage } from '../log-in/log-in';
 
 
 @IonicPage()
@@ -22,7 +23,6 @@ export class HomePage {
 
   buttonsDisabled: boolean;
   errorMessage: string;
-  titlec: {page: any, title: string};
 
 //userDataSvc: UserDataService;
 constructor(public navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider) {
@@ -130,10 +130,7 @@ constructor(public navCtrl: NavController, navParams: NavParams, public restSvc:
 
   setLoginFalse(that) {
       // The user is logged in.. so leave on home page.
-      that.navCtrl.push('LogInPage', {
-          title: globals.LOGINPAGETITLE,
-          menupg: that.titlec.page
-      });
+      that.navCtrl.push('LogInPage');
   }
 
 
@@ -182,7 +179,7 @@ onLoginClick(){
   try {
       that.buttonsDisabled = true;
       console.log('about to setroot login component...');
-      that.navCtrl.push('LoginPage');
+      that.navCtrl.push('LogInPage');
       setTimeout(()=>{
           this.enableButtons();
       },10000);

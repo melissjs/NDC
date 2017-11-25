@@ -55,48 +55,48 @@ export class ResetPasswordPage {
     
     onSubmitEmailOnly(value: any): void {
   
-        var that = this;
-        try {
-            that.restSvc.resetPasswordInit(value.enterEmailAddress.toLowerCase())
-                .subscribe( (data) => {
-                    // that.properties = data;
-                    // Expect response created here...
-                    if (data.status == 200) {
-                        console.log('successful call:' + data);
-                        this.successResetInit(true);
-                        return;
-                    } else {
-                        // ?? shouldn't happen ??
-                        console.log('UNKNOWN STATUS:' + data);
-                        this.errorTextEmail = 'Unknown Error occurred attempting to reset password';
-                    }
-                } , err => {
-                    console.log('error occurred ' + err.toString());
-                    var subtitle;
-                    if ((err.status == 0) ||
-                        (err.status == 404)) {
-                        this.successResetInit(false);
-                        // fake success
-                    } else if (err.status == 400) {
-                        that.errorTextEmail = err._body; // toString();
-                    } else if (err.status == 401) {
-                        // Actual error (most likely bad password)
-                        if (err._body) {
-                            var jsonobj = JSON.parse(err._body);
-                            that.errorTextEmail = jsonobj.message;
-                        } else {
-                            that.errorTextEmail = err.toString();
-                        }
-                    } else {
-                        that.errorTextEmail = err.toString() + ':' + err._body;
-                    }
-                }, () => {console.log('password reset init complete')}
-                          );
-        } catch (err) {
-            console.error(err);
-            console.log('error in Submitting, exc='+ err.toString());
-            this.errorTextEmail = err.toString();
-        }
+    //     var that = this;
+    //     try {
+    //         that.restSvc.resetPasswordInit(value.enterEmailAddress.toLowerCase())
+    //             .subscribe( (data) => {
+    //                 // that.properties = data;
+    //                 // Expect response created here...
+    //                 if (data.status == 200) {
+    //                     console.log('successful call:' + data);
+    //                     this.successResetInit(true);
+    //                     return;
+    //                 } else {
+    //                     // ?? shouldn't happen ??
+    //                     console.log('UNKNOWN STATUS:' + data);
+    //                     this.errorTextEmail = 'Unknown Error occurred attempting to reset password';
+    //                 }
+    //             } , err => {
+    //                 console.log('error occurred ' + err.toString());
+    //                 var subtitle;
+    //                 if ((err.status == 0) ||
+    //                     (err.status == 404)) {
+    //                     this.successResetInit(false);
+    //                     // fake success
+    //                 } else if (err.status == 400) {
+    //                     that.errorTextEmail = err._body; // toString();
+    //                 } else if (err.status == 401) {
+    //                     // Actual error (most likely bad password)
+    //                     if (err._body) {
+    //                         var jsonobj = JSON.parse(err._body);
+    //                         that.errorTextEmail = jsonobj.message;
+    //                     } else {
+    //                         that.errorTextEmail = err.toString();
+    //                     }
+    //                 } else {
+    //                     that.errorTextEmail = err.toString() + ':' + err._body;
+    //                 }
+    //             }, () => {console.log('password reset init complete')}
+    //                       );
+    //     } catch (err) {
+    //         console.error(err);
+    //         console.log('error in Submitting, exc='+ err.toString());
+    //         this.errorTextEmail = err.toString();
+    //     }
     }
   
       successResetInit(real:boolean) {
@@ -122,52 +122,52 @@ export class ResetPasswordPage {
       }
   
   onSubmitCodes(value: any): void {
-      if(value.enterCreatePasscode !== value.enterConfirmPasscode){
-          this.errorText = 'Passwords do not match.'
-          return;
-      } 
-      var that = this;
-      try {
-            that.restSvc.resetPasswordFinish(this.key,value.enterConfirmPasscode)
-                .subscribe( data => {
-                    // that.properties = data;
-                    // Expect response created here...
-                    if (data.status == 200) {
-                        console.log('successful call:' + data);
-                        this.successResetFinish(true);
-                        return;
-                    } else {
-                        // ?? shouldn't happen ??
-                        console.log('UNKNOWN STATUS:' + data);
-                        this.errorText = 'Unknown Error occurred attempting to reset password';
-                    }
-                } , err => {
-                    console.log('error occurred ' + err.toString());
-                    var subtitle;
-                    if ((err.status == 0) ||
-                        (err.status == 404)) {
-                        this.successResetFinish(false);
-                        // fake success
-                    } else if (err.status == 400) {
-                        that.errorText = err._body; // toString();
-                    } else if (err.status == 401) {
-                        // Actual error (most likely bad password)
-                        if (err._body) {
-                            var jsonobj = JSON.parse(err._body);
-                            that.errorText = jsonobj.message;
-                        } else {
-                            that.errorText = err.toString();
-                        }
-                    } else {
-                        that.errorText = err.toString() + ':' + err._body;
-                    }
-                }, () => {console.log('password reset finish complete')}
-                          );
-      } catch (err) {
-          console.error(err);
-          console.log('error in Submitting, exc='+ err.toString());
-          this.errorText = err.toString();
-      }
+  //     if(value.enterCreatePasscode !== value.enterConfirmPasscode){
+  //         this.errorText = 'Passwords do not match.'
+  //         return;
+  //     } 
+  //     var that = this;
+  //     try {
+  //           that.restSvc.resetPasswordFinish(this.key,value.enterConfirmPasscode)
+  //               .subscribe( data => {
+  //                   // that.properties = data;
+  //                   // Expect response created here...
+  //                   if (data.status == 200) {
+  //                       console.log('successful call:' + data);
+  //                       this.successResetFinish(true);
+  //                       return;
+  //                   } else {
+  //                       // ?? shouldn't happen ??
+  //                       console.log('UNKNOWN STATUS:' + data);
+  //                       this.errorText = 'Unknown Error occurred attempting to reset password';
+  //                   }
+  //               } , err => {
+  //                   console.log('error occurred ' + err.toString());
+  //                   var subtitle;
+  //                   if ((err.status == 0) ||
+  //                       (err.status == 404)) {
+  //                       this.successResetFinish(false);
+  //                       // fake success
+  //                   } else if (err.status == 400) {
+  //                       that.errorText = err._body; // toString();
+  //                   } else if (err.status == 401) {
+  //                       // Actual error (most likely bad password)
+  //                       if (err._body) {
+  //                           var jsonobj = JSON.parse(err._body);
+  //                           that.errorText = jsonobj.message;
+  //                       } else {
+  //                           that.errorText = err.toString();
+  //                       }
+  //                   } else {
+  //                       that.errorText = err.toString() + ':' + err._body;
+  //                   }
+  //               }, () => {console.log('password reset finish complete')}
+  //                         );
+  //     } catch (err) {
+  //         console.error(err);
+  //         console.log('error in Submitting, exc='+ err.toString());
+  //         this.errorText = err.toString();
+  //     }
   }
   
       successResetFinish(real:boolean) {

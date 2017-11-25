@@ -6,15 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { InstructionsPage } from '../pages/instructions/instructions';
-import { FaqPage } from '../pages/faq/faq';
-import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
-import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
-import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
-import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
-import { LogInPage } from '../pages/log-in/log-in';
+// import { HomePage } from '../pages/home/home';
+// import { ListPage } from '../pages/list/list';
+// import { InstructionsPage } from '../pages/instructions/instructions';
+// import { FaqPage } from '../pages/faq/faq';
+// import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
+// import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
+// import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
+// import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
+// import { LogInPage } from '../pages/log-in/log-in';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,16 +27,13 @@ import { PollingStationServiceProvider } from '../providers/polling-station-serv
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage,
-    InstructionsPage,
-    FaqPage,
-    AddNewRecordPage,
-    MorningCheckInPage,
-    EveningCheckOutPage,
-    VolunteerListPage,
-    ActivityRecordPage,
-    LogInPage
+    // ListPage,
+    // InstructionsPage,
+    // AddNewRecordPage,
+    // MorningCheckInPage,
+    // EveningCheckOutPage,
+    // VolunteerListPage,
+    // ActivityRecordPage,
   ],
   imports: [
     BrowserModule,
@@ -47,16 +44,13 @@ import { PollingStationServiceProvider } from '../providers/polling-station-serv
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage,
-    InstructionsPage,
-    FaqPage,
-    AddNewRecordPage,
-    MorningCheckInPage,
-    EveningCheckOutPage,
-    VolunteerListPage,
-    ActivityRecordPage,
-    LogInPage
+    // ListPage,
+    // InstructionsPage,
+    // AddNewRecordPage,
+    // MorningCheckInPage,
+    // EveningCheckOutPage,
+    // VolunteerListPage,
+    // ActivityRecordPage,
   ],
   providers: [
     StatusBar,

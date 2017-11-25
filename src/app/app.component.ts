@@ -3,26 +3,26 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { InstructionsPage } from '../pages/instructions/instructions';
-import { FaqPage } from '../pages/faq/faq';
-import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
-import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
-import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
-import { ActivityRecordPage } from './../pages/activity-record/activity-record';
-import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
-
-
-import { LogInPage } from '../pages/log-in/log-in';
+// import { HomePage } from '../pages/home/home';
+// import { ListPage } from '../pages/list/list';
+// import { InstructionsPage } from '../pages/instructions/instructions';
+// import { FaqPage } from '../pages/faq/faq';
+// import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
+// import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
+// import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
+// import { ActivityRecordPage } from './../pages/activity-record/activity-record';
+// import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
+// import { LogInPage } from '../pages/log-in/log-in';
 
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LogInPage;
+  // loggedIn: Boolean = true;
+  rootPage: any = 'HomePage';
 
   pages: Array<{title: string, component: any}>;
 
@@ -30,18 +30,22 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+  // if (this.loggedIn) {
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Instructions', component: InstructionsPage },
-      { title: 'FAQ', component: FaqPage },
-      { title: 'Add New Record', component: AddNewRecordPage },
-      { title: 'Morning Check In', component: MorningCheckInPage },
-      { title: 'Evening Check Out', component: EveningCheckOutPage },
-      { title: 'Volunteer List', component: VolunteerListPage },
-      { title: 'Activity Record', component: ActivityRecordPage }
+      { title: 'Home', component: 'HomePage' },
+      { title: 'About', component: 'AboutPage' },
+      { title: 'Volunteer', component: 'VolunteerPage' },
+      { title: 'Donate', component: 'DonatePage' },
+      { title: 'Instructions', component: 'InstructionsPage' },
+      { title: 'FAQ', component: 'FaqPage' },
+      { title: 'Add New Record', component: 'AddNewRecordPage' },
+      { title: 'Morning Check In', component: 'MorningCheckInPage' },
+      { title: 'Evening Check Out', component: 'EveningCheckOutPage' },
+      { title: 'Volunteer List', component: 'VolunteerListPage' },
+      { title: 'Activity Record', component: 'ActivityRecordPage' }
     ];
-
   }
+  // }
 
   initializeApp() {
     this.platform.ready().then(() => {

@@ -5,6 +5,7 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
 // import {Recordservice} from '../../providers/recordservice/recordservice';
 // import {CheckLogin } from '../../components/check-login/check-login';
 
+@IonicPage()
 @Component({
   selector: 'page-evening-check-out',
   templateUrl: 'evening-check-out.html',
