@@ -13,7 +13,7 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
   templateUrl: 'affidavit.html',
 })
 export class AffidavitPage {
-
+  pageTitle: string;
   affidavitForm: FormGroup;
   fullName: string;
   addressNumName: string;
@@ -26,6 +26,7 @@ export class AffidavitPage {
 
 
 constructor(private navCtrl: NavController, private alertCtrl: AlertController, private navParams: NavParams, private fb: FormBuilder, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider) {
+this.pageTitle = "Step 1: Affidavit";
 this.navCtrl = navCtrl;
 this.fullName = null;
 this.addressNumName = null;

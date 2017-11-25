@@ -29,6 +29,7 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
   // directives: [PollingstationComponent /*, Logincomponent */, Changepasswordcomponent, Headerc],
 })
 export class AccountSettingsPage {
+  pageTitle: string;
   changeForm: FormGroup;
   currentVolunteer: Volunteer; 
   exposedYesOrNo: string;
@@ -48,6 +49,7 @@ export class AccountSettingsPage {
   loggingout :boolean;
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
+    this.pageTitle = "Account Settings"    
       // this.navCtrl = navCtrl;
       // this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
       // this.volunteerservice = volunteerservice; 

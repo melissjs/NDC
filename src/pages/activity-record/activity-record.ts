@@ -16,7 +16,7 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
   // directives: [CheckLogin],
 })
 export class ActivityRecordPage {
-
+  pageTitle: string;
   currentVolunteer: Volunteer; 
   currentTeam: Volunteer[];
   totalRegisteredVolunteers: number;
@@ -44,6 +44,7 @@ export class ActivityRecordPage {
   initialized: boolean;
 
   constructor(private navCtrl: NavController, private pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider) {
+this.pageTitle = "Activity Record";
 this.navCtrl = navCtrl;
 this.totalIndividualAnomalyRecords = 0;
 this.totalIndividualDemographicsRecords = 0;

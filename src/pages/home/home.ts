@@ -21,10 +21,9 @@ import * as globals from '../../globals';
   templateUrl: 'home.html',
 })
 export class HomePage {
-
+  pageTitle: string;
   buttonsDisabled: boolean;
   errorMessage: string;
-  pageTitle: string;
 
 //userDataSvc: UserDataService;
 constructor(public navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider) {

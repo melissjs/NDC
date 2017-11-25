@@ -11,12 +11,13 @@ import * as globals from '../../globals';
   templateUrl: 'activate.html',
 })
 export class ActivatePage {
-
+  pageTitle: string;  
   key: string;
   stat: number;
   errString: string;
 
   constructor(private navCtrl: NavController, public params: NavParams, public restSvc: RestServiceProvider) {
+      this.pageTitle = "Activate";
       this.key = this.params.get('key');
       this.stat = 0;
       this.errString = null;

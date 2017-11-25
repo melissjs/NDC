@@ -13,9 +13,9 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
   // directives: [CheckLogin],
 })
 export class AddNewRecordPage {
-  
+  pageTitle: string;
   constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider) {
-
+    this.pageTitle = "Add New Record";
   
   }
 

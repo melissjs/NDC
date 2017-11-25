@@ -22,6 +22,7 @@ import * as globals from '../../globals';
   // inputs: ['pollingstation', 'volunteer'],
 })
 export class AddPollingLocationPage {
+  pageTitle: string;
   pollingStationKey: string;
   newPollingStation: PollingStation;
   // pollingStationService: Pollingstationservice;
@@ -44,6 +45,7 @@ export class AddPollingLocationPage {
       // loggedIn: boolean;
       constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, 
 private pollingStationService: PollingStationServiceProvider, private volunteerservice: VolunteerServiceProvider, public fb: FormBuilder, private restSvc: RestServiceProvider) {
+    this.pageTitle = "Add Polling Location";
     this.navCtrl = navCtrl;
     this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
     this.restSvc = restSvc;

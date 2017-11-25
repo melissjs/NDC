@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the AboutPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-about',
@@ -15,7 +8,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor(private navCtrl: NavController, navParams: NavParams) {
+  pageTitle: string;
 
+  constructor(private navCtrl: NavController, navParams: NavParams) {
+    this.pageTitle = "About"
   }
 }
