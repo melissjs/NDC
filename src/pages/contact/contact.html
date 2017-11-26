@@ -1,10 +1,5 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    <ion-title>contact</ion-title>
-  </ion-navbar>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
 
 
@@ -36,7 +31,7 @@
      
     
   
-   <button type="submit" [disabled]="!contactForm.valid" (click)="onSubmit(contactForm.value)" large block>Submit</button>
+   <button ion-button type="submit" [disabled]="!contactForm.valid" (click)="onSubmit(contactForm.value)" large block>Submit</button>
   
   <!-- <p>Form: {{ contactForm.value | json }}</p>
   <p>Form Status: {{ contactForm.status }}</p>

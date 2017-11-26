@@ -14,7 +14,7 @@ import { RestServiceProvider } from '../../providers/rest-service/rest-service';
   templateUrl: 'contact.html',
 })
 export class ContactPage {
-
+  pageTitle: string;
   contactForm: FormGroup;
   email: any;
   contactFormObj: ContactForm;
@@ -22,6 +22,7 @@ export class ContactPage {
   
   constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, 
               public fb: FormBuilder, private restSvc: RestServiceProvider) {
+this.pageTitle = "Contact";
 this.navCtrl = navCtrl;
 this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
 this.contactFormObj = null;

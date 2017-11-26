@@ -19,7 +19,7 @@ import * as globals from '../../globals';
   // directives: [PollingstationComponent]
 })
 export class ConfirmationPage {
-
+  pageTitle: string;
   currentVolunteer: Volunteer; 
   // volunteerservice: Volunteerservice;
   // pollingstationservice: Pollingstationservice;
@@ -29,6 +29,7 @@ export class ConfirmationPage {
   titlec: {page: any, title: string};
   
     constructor(private navCtrl: NavController, navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, private restSvc: RestServiceProvider, private alertCtrl: AlertController) {
+          this.pageTitle = "Confirmation";
           this.navCtrl = navCtrl;
           this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
           this.volunteerservice = volunteerservice; 
