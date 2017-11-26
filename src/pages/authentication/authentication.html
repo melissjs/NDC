@@ -1,12 +1,54 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>authentication</ion-title>
-  </ion-navbar>
-
+  <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
 
-
-<ion-content padding>
-
-</ion-content>
+<ion-content class="backgroundColor" padding>
+    
+    <ion-card>
+     <ion-list>
+    
+        <ion-item>
+         <ion-icon name="md-locate" item-right (click)="onChangegeoLocation(geoLocation)"></ion-icon> 
+         <ion-label stacked>Set Geolocation:</ion-label>
+         <ion-input readOnly=true value="{{geoLocation}}" ></ion-input>
+         <!--
+         <ion-input type="text" [(ngModel)]="geoLocation"  readOnly
+                        (click)="onChangegeoLocation(geoLocation)" 
+                        ></ion-input>-->
+         </ion-item>
+    
+        <ion-item text-wrap>
+    
+          <ion-checkbox [(ngModel)]="affirm" (click)="onChangeAffirmation(affirm)" ></ion-checkbox>
+    
+            <ion-label *ngIf="getChkBoxLabelState()==2" style="margin-bottom: 15px" stacked>I  affirm that {{volunteerservice.getNewVolunteer().fullName}} and I (the authenticating volunteer) are volunteering together at precinct {{pollingstationservice.getStation().precinctNumber}} in {{pollingstationservice.getStation().city}}, {{pollingstationservice.getStation().state}}.</ion-label>
+            <ion-label *ngIf="chkBoxLabelState==0" style="margin-bottom: 15px" stacked>I  affirm that OTHER VOLUNTEER and I (the authenticating volunteer) are volunteering together.</ion-label>
+            <ion-label *ngIf="chkBoxLabelState==1" style="margin-bottom: 15px" stacked>I  affirm that {{volunteerservice.getNewVolunteer().fullName}} and I (the authenticating volunteer) are volunteering together.</ion-label>
+    
+        </ion-item>
+    
+        <ion-item>
+          <ion-label stacked>Authenticating Volunteer Key (NOT PHONE)#:</ion-label>
+          <!-- style="-webkit-text-security:disc;" -->
+    
+          <ion-input type="tel" [(ngModel)]="authenticatingVolunteerKey" (change)="onChangeAuthenticatingVolunteerKey(authenticatingVolunteerKey)"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label stacked>Authenticating Volunteer Passcode:</ion-label>
+          <ion-input type="password" [(ngModel)]="authenticatingVolunteerPasscode" (change)="onChangeAuthenticatingVolunteerPasscode(authenticatingVolunteerPasscode)"></ion-input>
+        </ion-item>
+    
+    
+    </ion-list>
+                 
+            </ion-card>
+    
+            <button type="submit" (click)="onSubmit()" block large>
+             Submit 
+             </button>
+    
+        <P style="color:red" *ngIf="errorMessage!=null">{{errorMessage}}</P>
+    
+    </ion-content>
+    

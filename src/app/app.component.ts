@@ -34,6 +34,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: 'HomePage' },
       { title: 'About', component: 'AboutPage' },
+      { title: 'Audit Checklist', component: 'AuditCheckListPage' },
       { title: 'Volunteer', component: 'VolunteerPage' },
       { title: 'Donate', component: 'DonatePage' },
       { title: 'Instructions', component: 'InstructionsPage' },
