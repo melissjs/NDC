@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DonatePage } from './donate';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { DonatePage } from './donate';
   ],
   imports: [
     IonicPageModule.forChild(DonatePage),
+    ComponentsModule,
   ],
 })
 export class DonatePageModule {}
