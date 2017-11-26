@@ -1,0 +1,18 @@
+<ion-header>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
+</ion-header>
+  
+<ion-content padding>
+  <ion-card>
+    <form name="signin" novalidate>
+      <ion-list>
+        <ion-item text-wrap>
+          <span style="font-size:.9em">Thank you for all your hard work. Safeguarding the integrity of our election is essential for democracy; you are an important part of this historical event.</span>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-card>  
+  <button ion-button disabled type="submit" (click)="onSubmit()" block large>
+    Check Out
+  </button>
+</ion-content>
