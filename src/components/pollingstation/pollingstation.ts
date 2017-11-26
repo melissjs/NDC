@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
 // pipes
-//import { Searchpipe } from '../../pipes/searchpipe.ts';
+// import { SearchPipe } from '../../pipes/search/search';
 
 @Component({
   selector: 'pollingstation',
-  templateUrl: 'pollingstation.html'
-  // inputs: ['passedStations', 'Volunteer']
-  // //pipes: [Searchpipe],
+  templateUrl: 'pollingstation.html',
+  inputs: ['passedStations', 'Volunteer'],
+  // pipes: [SearchPipe],
 })
 export class PollingstationComponent {
 
@@ -20,3 +20,4 @@ export class PollingstationComponent {
   }
 
 }
+

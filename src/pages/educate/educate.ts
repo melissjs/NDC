@@ -10,8 +10,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-educate',
   templateUrl: 'educate.html',
 })
-export class EducatePage {constructor(private navCtrl: NavController, navParams: NavParams) {
-}
+export class EducatePage {
+  pageTitle: string;
+  constructor(private navCtrl: NavController, navParams: NavParams) {
+    this.pageTitle = "Educate";
+  }
 
 onSubmitInstructions(){
    var that = this;

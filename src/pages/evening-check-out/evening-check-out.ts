@@ -12,9 +12,9 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
   // directives: [CheckLogin],  
 })
 export class EveningCheckOutPage {
-
-
+  pageTitle: string;
   constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider) {
+    this.pageTitle = "Evening Check Out";
   }
 
   onSubmit() {

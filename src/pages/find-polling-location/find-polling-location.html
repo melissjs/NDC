@@ -1,11 +1,6 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      <ion-title>Find Polling Location</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
+</ion-header>
   
   <ion-content class="backgroundColor" padding>
         
@@ -14,7 +9,7 @@
         </div>
   
         <div style="margin-top:90px">
-         <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations | searchpipe:query)">
+         <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations | SearchPipe:query)">
     <!--       <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations)">  -->
          <pollingstation [passedStations]=item> </pollingstation>
          </ion-card>

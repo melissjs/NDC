@@ -7,8 +7,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'end.html',
 })
 export class EndPage {
-
+  pageTitle: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.pageTitle = "End";
   }
 
   ionViewDidLoad() {

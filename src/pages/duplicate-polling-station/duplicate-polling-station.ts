@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PollingStation } from '../../models/pollingstation';
-import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
+// import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
 //import { Pollingstationdetailscomponent } from '../pollingstationdetailscomponent/pollingstationdetailscomponent';
 // interfaces
 import { Volunteer} from '../../models/volunteer'; 
@@ -16,17 +16,19 @@ import * as globals from '../../globals';
   selector: 'page-duplicate-polling-station',
   templateUrl: 'duplicate-polling-station.html',
   // inputs: ['pollingstation', 'volunteer'],
-  // directives: [PollingstationComponent]
+  // inputs: ['pollingstation'],
+    // directives: [PollingstationComponent]
 })
 export class DuplicatePollingStationPage {
-
+  pageTitle: string;
   // pollingStationService: PollingStationServiceProvider;
   alertMsg: string;
   alertMsgHeading: string;
   selectedStation: PollingStation;
 
-  constructor(private navCtrl: NavController, navParams: NavParams, private pollingStationService: PollingStationServiceProvider, private restSvc: RestServiceProvider) {
-  this.navCtrl = navCtrl;
+  constructor(private navCtrl: NavController, navParams: NavParams, public pollingStationService: PollingStationServiceProvider, private restSvc: RestServiceProvider) {
+    this.pageTitle = "Duplicate Polling Station"
+    this.navCtrl = navCtrl;
   // this.pollingStationService = pollingStationService;
   
 

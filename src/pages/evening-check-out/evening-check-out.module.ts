@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EveningCheckOutPage } from './evening-check-out';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { EveningCheckOutPage } from './evening-check-out';
   ],
   imports: [
     IonicPageModule.forChild(EveningCheckOutPage),
+    ComponentsModule,
   ],
 })
 export class EveningCheckOutPageModule {}

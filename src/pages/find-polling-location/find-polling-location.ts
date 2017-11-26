@@ -31,11 +31,11 @@ export class FindPollingLocationPage {
   selectedStation: PollingStation;
   // pollingStationService: PollingStationServiceProvider;
   searchpipe: SearchPipe;
-  titlec: {page: any, title: string};
+  pageTitle: string;
 
     constructor(private navCtrl: NavController, navParams: NavParams, private pollingStationService: PollingStationServiceProvider, private restSvc: RestServiceProvider ) {
+  this.pageTitle = "Find Polling Location";
   this.navCtrl = navCtrl;
-  this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
   this.stations = pollingStationService.getStations();
   this.pollingStationService = pollingStationService;
   this.restSvc.getLatestPollStations();
