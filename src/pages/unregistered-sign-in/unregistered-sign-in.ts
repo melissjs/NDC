@@ -17,7 +17,7 @@ import * as globals from '../../globals';
   //providers: [RestService]
 })
 export class UnregisteredSignInPage {
-
+  pageTitle: string;
   newVolunteer: Volunteer;
   volunteerKey: string;
   enterFullName: string;
@@ -44,13 +44,12 @@ export class UnregisteredSignInPage {
   dbSex: string;
   dbPartyAffiliation: string;
   properties: any;
-  titlec: {page: any, title: string};
 
   constructor(private navCtrl: NavController, navParams: NavParams, 
               private alertCtrl: AlertController, public fb: FormBuilder, 
               private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
-      this.navCtrl = navCtrl;
-      this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
+      this.pageTitle = "Register";
+      // this.navCtrl = navCtrl;
       this.newVolunteer = null;
       this.volunteerKey = null;
       this.enterFullName = null;
@@ -70,8 +69,8 @@ export class UnregisteredSignInPage {
       this.enterTotalAnomalyRecords = null;
       this.enterTotalAmendmentRecords = null;
       this.enterOtherPartyAffiliation = null;
-      this.volunteerservice = volunteerservice;
-      this.restSvc = restSvc;
+      // this.volunteerservice = volunteerservice;
+      // this.restSvc = restSvc;
       this.properties = null;
 
       //form stuff
@@ -82,7 +81,7 @@ export class UnregisteredSignInPage {
       this.registerForm = fb.group({  
           'enterFullName': ['', Validators.compose([Validators.required])],
           'enterEmailAddress': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExEmail)])],
-          'enterExposeEmailCtrl': [''],
+          'enterExposeEmailCtrl': [null, Validators.required],// had '' then i put false? https://forum.ionicframework.com/t/checkbox-validation/55400/8
           'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExPhone)])],
           'enterAge': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(regExAge)])],
           'sexCtrl': ['' , Validators.required],
@@ -153,9 +152,17 @@ export class UnregisteredSignInPage {
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
 
-  onChangeExposeEmail(value){
-      var newval = !value;
-      console.log('signature selected:' + newval);
+  // onChangeExposeEmail(value){
+  //   console.log('value before' + value);
+  //     var newval = !value;
+  //     console.log('checked in now:' + newval);
+  //     this.enterExposeEmail = newval;
+  // }
+
+  onChangeExposeEmail(e){
+    console.log('value before:' + this.enterExposeEmail);
+      var newval = !this.enterExposeEmail;
+      console.log('checked in now:' + newval);
       this.enterExposeEmail = newval;
   }
 

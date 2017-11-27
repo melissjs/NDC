@@ -1,14 +1,6 @@
 <ion-header>
-  <ion-navbar>
-    <!--[disabled]="!loggedIn"-->
-    <button ion-button  menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Democracy Counts</ion-title>
-  </ion-navbar>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
-
-
 
 <ion-content class="backgroundColor" padding>
 <ion-card padding>

@@ -11,8 +11,7 @@ import { CollaborateForm } from '../../models/collaborate-form';
   templateUrl: 'participate.html',
 })
 export class ParticipatePage {
-
-//
+pageTitle: string;
 collaboratorForm: FormGroup;
 resetName: string;
 resetAreasOfExpertise: string;
@@ -21,15 +20,12 @@ resetRelevantLinks: string;
 resetContact: string;
 collabFormObj: CollaborateForm;
 
-titlec: {page: any, title: string};
-
 constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder,
 private restSvc: RestServiceProvider) {
 
 this.navCtrl = navCtrl;
 this.collabFormObj = null;
-this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
-
+this.pageTitle = "Participate";
     //form stuff
     var regExEmail: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
     var regExPhone: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';

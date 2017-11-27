@@ -12,13 +12,10 @@ import * as globals from '../../globals';
 })
 export class RegistrationSuccessPage {
 
-  titlec: {page: any, title: string};
-  
-      constructor(private navCtrl: NavController, navParams: NavParams) {
-  
-        this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
-  
-      }
+  pageTitle: string;  
+  constructor(private navCtrl: NavController, navParams: NavParams) {
+    this.pageTitle = "Registration Success";
+  }
   
       onFindPolling(){
           var that = this;

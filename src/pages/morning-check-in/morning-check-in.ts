@@ -9,8 +9,9 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
   // directives: [CheckLogin],
 })
 export class MorningCheckInPage {
-
+  pageTitle: string;
   constructor(private navCtrl: NavController, private navParams: NavParams, private recordservice: RecordServiceProvider) {
+    this.pageTitle = "Morning Check In";
   }
 
   onSubmit() {

@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SignInSuccessPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Volunteer} from '../../models/volunteer';
+// Services
+import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
+import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 
 @IonicPage()
 @Component({
@@ -14,12 +11,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'sign-in-success.html',
 })
 export class SignInSuccessPage {
+  pageTitle: string;
+  // volunteerservice: VolunteerServiceProvider;
+  volunteerHere: Volunteer;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(private navCtrl: NavController, public volunteerservice: VolunteerServiceProvider) {
+    this.pageTitle = "Democracy Counts";
+    this.navCtrl = navCtrl;
+    this.volunteerservice = volunteerservice;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignInSuccessPage');
+    // this.volunteerHere = this.volunteerservice.getNewVolunteer();
+    // testing
+    this.volunteerHere = this.volunteerservice.setToVoidVolunteer();
+    
+    console.log(this.volunteerservice.getNewVolunteer());
   }
 
 }

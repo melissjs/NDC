@@ -14,7 +14,7 @@ import * as globals from '../../globals';
   templateUrl: 'reset-password.html',
 })
 export class ResetPasswordPage {
-
+  pageTitle: string;
   resetForm: FormGroup;
   resetWithCodeForm: FormGroup;
   regExPassword: string;
@@ -24,7 +24,6 @@ export class ResetPasswordPage {
   emailWasSent: boolean;
   errorTextEmail: string;
   key: string;
-      titlec: {page: any, title: string};
   
     constructor(private navCtrl: NavController, private alertCtrl: AlertController, public params: NavParams, public fb: FormBuilder, private restSvc: RestServiceProvider) {
     if (this.params != null) {
@@ -32,13 +31,12 @@ export class ResetPasswordPage {
     } else {
         this.key = null;
     }
+    this.pageTitle = "Reset Password";
     this.navCtrl = navCtrl;
     this.restSvc = restSvc;
     this.loggedIn = false;
     this.emailWasSent = false;
-  
-        this.titlec = { page: params.get("menupg"), title: globals.RESETPWDTITLE };
-  
+    
     this.regExEmail = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
   
     this.resetForm = fb.group({  

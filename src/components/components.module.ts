@@ -5,6 +5,8 @@ import { CheckLoginComponent } from './check-login/check-login';
 import { PollingstationComponent } from './pollingstation/pollingstation';
 import { ChangePasswordComponent } from './change-password/change-password';
 import { TopBarComponent } from './top-bar/top-bar';
+import { LosComponent } from './los/los';
+import { QrCodeScanComponent } from './qr-code-scan/qr-code-scan';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -14,13 +16,17 @@ import { TopBarComponent } from './top-bar/top-bar';
     CheckLoginComponent,
     PollingstationComponent,
     ChangePasswordComponent,
-    TopBarComponent],
+    TopBarComponent,
+    LosComponent,
+    QrCodeScanComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
     CheckLoginComponent,
     PollingstationComponent,
     ChangePasswordComponent,
-    TopBarComponent]
+    TopBarComponent,
+    LosComponent,
+    QrCodeScanComponent]
 })
 export class ComponentsModule {}

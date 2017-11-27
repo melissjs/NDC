@@ -1,25 +1,17 @@
-
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      <ion-title>Success</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
+</ion-header>
   
-  <ion-content class="backgroundColor" padding>
-  
-                <ion-card>			
-              <ion-list>
-              <ion-list-header>Registration Almost Complete</ion-list-header>
-              <ion-item text-wrap>
-              Thank you for registering. Next you will recieve an email, verify your email address by following the link to sign in.
-              <br>
-              <br>
-              Once you are signed in you can get started volunteering for shifts at a polling station in the list and/or you may add polling stations to the list.
-              </ion-item>
-              </ion-list>
-              </ion-card>
-  
-  </ion-content>
+<ion-content class="backgroundColor" padding>
+  <ion-card>
+      <ion-list>
+        <ion-list-header>Registration Almost Complete</ion-list-header>
+        <ion-item text-wrap>
+          Thank you for registering. Next you will recieve an email, verify your email address by following the link to sign in.
+          <br>
+          <br>
+          Once you are signed in you can get started volunteering for shifts at a polling station in the list and/or you may add polling stations to the list.
+        </ion-item>
+      </ion-list>
+  </ion-card>
+</ion-content>

@@ -13,14 +13,12 @@ import * as globals from '../../globals';
   templateUrl: 'volunteer.html',
 })
 export class VolunteerPage {
-
-  titlec: {page: any, title: string};
+  pageTitle: string;
+  constructor(private navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider) {
   
-      constructor(private navCtrl: NavController, navParams: NavParams, private restSvc: RestServiceProvider) {
-  
-    this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
-    this.navCtrl = navCtrl;
-    this.restSvc = restSvc;
+    this.pageTitle = "Volunteer";
+    // this.navCtrl = navCtrl;
+    // this.restSvc = restSvc;
       }
   
       onRegister(){

@@ -1,11 +1,6 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      <ion-title>Registration Success</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
+</ion-header>
   
   <ion-content class="backgroundColor" padding>
   
@@ -39,11 +34,11 @@
     </ion-card>
   
   
-             <button type="submit" (click)="onFindPolling()" block large>
+             <button ion-button type="submit" (click)="onFindPolling()" block large>
               Find a Polling Location 
              </button>
   
-             <button type="submit" (click)="onAddPolling()" block large>
+             <button ion-button type="submit" (click)="onAddPolling()" block large>
               Add a Polling Location
              </button>
   

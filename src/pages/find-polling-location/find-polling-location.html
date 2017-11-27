@@ -9,7 +9,7 @@
         </div>
   
         <div style="margin-top:90px">
-         <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations | SearchPipe:query)">
+         <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations | search:query)">
     <!--       <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations)">  -->
          <pollingstation [passedStations]=item> </pollingstation>
          </ion-card>

@@ -26,7 +26,7 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
   // // //providers: [Pollingstationservice]
 })
 export class PollingstationDetailsPage {
-
+  pageTitle: string;
   currentVolunteerHere: Volunteer; 
   //currentTeam: Team;
   stations: PollingStation[];
@@ -61,13 +61,12 @@ export class PollingstationDetailsPage {
   volunteerCount: number;
   shiftsToFill: number;
   shiftsFilled: number;
-  titlec: {page: any, title: string};
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private pollingStationService: PollingStationServiceProvider, private volunteerservice: VolunteerServiceProvider, private alertCtrl: AlertController, private restSvc: RestServiceProvider ) {
-      this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
-      this.pollingStationService = pollingStationService;
-      this.volunteerservice = volunteerservice;
-      this.restSvc = restSvc;
+  constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, public volunteerservice: VolunteerServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider ) {
+      this.pageTitle = "Polling Station Details";
+      // this.pollingStationService = pollingStationService;
+      // this.volunteerservice = volunteerservice;
+      // this.restSvc = restSvc;
       // this.loggedIn = false;
       this.restSvc.getLoggedIn();
       this.volunteerCount = 0;
@@ -194,10 +193,7 @@ export class PollingstationDetailsPage {
   onRegister(){
       var that = this;
       try {
-          that.navCtrl.push('UnregisteredSignInPage', {
-              title: globals.UNREGPAGETITLE,
-              menupg: that.titlec.page
-          });
+          that.navCtrl.push('UnregisteredSignInPage');
 
       } catch (EE) {
           console.log('error in Submitting, exc='+ EE.toString())
@@ -333,10 +329,7 @@ onLoginClick(){
   var that = this;
   try {
       console.log('about to push login component...');
-      that.navCtrl.push('LogInPage', {
-          title: globals.LOGINPAGETITLE,
-          menupg: this.titlec.page
-      });
+      that.navCtrl.push('LogInPage');
   } catch (EE) { 
       console.log('error in Submitting, exc='+ EE.toString())
   }

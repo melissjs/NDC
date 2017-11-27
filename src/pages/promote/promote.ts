@@ -7,8 +7,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'promote.html',
 })
 export class PromotePage {
-
+  pageTitle: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.pageTitle = "Promote";
   }
 
   ionViewDidLoad() {

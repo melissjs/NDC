@@ -23,7 +23,7 @@ import { AuthenticationPage } from '../../pages/authentication/authentication';
     // inputs: ['Volunteer']
 })
 export class LogInPage {
-
+  pageTitle: string;
   loginForm: FormGroup;
   volunteerHere: Volunteer;
   loggedIn: boolean;
@@ -36,6 +36,7 @@ export class LogInPage {
   //pollingstationservice: Pollingstationservice;
     
     constructor(private navCtrl: NavController, private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider ) {
+    this.pageTitle = "Login";
     this.navCtrl = navCtrl;
     this.volSvc = volSvc;
     this.pollingstationservice = pollingstationservice;

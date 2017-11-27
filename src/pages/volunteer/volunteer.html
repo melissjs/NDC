@@ -1,11 +1,6 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      <ion-title>Volunteer</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
+</ion-header>
   
   <ion-content class="backgroundColor" padding>  
   
@@ -14,15 +9,15 @@
   <img style="max-width:830px;" src="../../img/quote2.jpg">
   
   
-            <button [disabled]="restSvc.getLoggedIn()" type="submit" (click)="onRegister()" block large>
+            <button ion-button [disabled]="restSvc.getLoggedIn()" type="submit" (click)="onRegister()" block large>
               Register to Volunteer  
              </button>
   
-             <button type="submit" (click)="onFindPolling()" block large>
+             <button ion-button type="submit" (click)="onFindPolling()" block large>
               Find a Polling Location 
              </button>
   
-             <button type="submit" (click)="onAddPolling()" block large>
+             <button ion-button type="submit" (click)="onAddPolling()" block large>
               Add a Polling Location
              </button>
   
