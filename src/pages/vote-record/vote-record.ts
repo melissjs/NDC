@@ -7,10 +7,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'vote-record.html',
 })
 export class VoteRecordPage {
-
-
+  pageTitle: string;
   constructor(private navCtrl: NavController) {
-    this.navCtrl = navCtrl;
+    this.pageTitle = "Vote Record";
     }
   
   

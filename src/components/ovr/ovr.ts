@@ -10,7 +10,7 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
 @Component({
   selector: 'ovr',
   templateUrl: 'ovr.html',
-  // inputs: ['electThisOffice'],
+  inputs: ['electThisOffice'],
 })
 export class OvrComponent {
 

@@ -1,11 +1,6 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Step 2: Vote</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
+</ion-header>
   
   
                  
@@ -44,7 +39,7 @@
   
           <!--ion-label stacked style="color:#999999; margin-left:15px"-->
          
-            <ovr-component [electThisOffice]=PRESIDENT></ovr-component>
+            <ovr [electThisOffice]=PRESIDENT></ovr>
          
           </ion-list>
           </ion-card>
@@ -104,10 +99,10 @@
       </ion-item>
   
     
-      <ovr-component [electThisOffice]=PRIMARYPRES *ngIf="recordservice.getPrimarySuccess() || recordservice.getPrimaryIntention()"></ovr-component>
+      <ovr [electThisOffice]=PRIMARYPRES *ngIf="recordservice.getPrimarySuccess() || recordservice.getPrimaryIntention()"></ovr>
   
    
-     <ovr-component [electThisOffice]=PRIMARYCONGRESS *ngIf="inFlorida && (recordservice.getPrimarySuccess() || recordservice.getPrimaryIntention())"></ovr-component>
+     <ovr [electThisOffice]=PRIMARYCONGRESS *ngIf="inFlorida && (recordservice.getPrimarySuccess() || recordservice.getPrimaryIntention())"></ovr>
       
   
   

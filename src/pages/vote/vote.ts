@@ -21,8 +21,7 @@ import {PRESIDENT} from '../../candidates/pres-list';
   // directives: [OvrComponent],
 })
 export class VotePage {
-
-  
+  pageTitle: string;
   generalCastBy: string;
   primaryLocation: string;
   primaryCastBy: string;
@@ -56,10 +55,10 @@ export class VotePage {
   constructor(private navCtrl: NavController, private alertCtrl: AlertController,
               private pollingstationservice: PollingStationServiceProvider,
               private volunteerservice: VolunteerServiceProvider,
-              private recordservice: RecordServiceProvider, private restSvc: RestServiceProvider) {
+              public recordservice: RecordServiceProvider, private restSvc: RestServiceProvider) {
 
       //testing
-
+      this.pageTitle = "Step 2: Vote";
       this.PRESIDENT = PRESIDENT;
       this.PRIMARYCONGRESS = PRIMARYCONGRESS;
       this.PRIMARYPRES = PRIMARYPRES;
@@ -74,13 +73,13 @@ export class VotePage {
       this.otherReasonForCouldNotVoteGeneral = null;
       this.reasonForCouldNotVotePrimary = null;
       this.otherReasonForCouldNotVotePrimary = null;
-      this.volunteerservice = volunteerservice;
-      this.recordservice = recordservice;
+      // this.volunteerservice = volunteerservice;
+      // this.recordservice = recordservice;
       this.newVoteRecord = this.recordservice.createVoidVoteRecord();
       this.firstPresVoteWriteIn = null;
       this.secondPresVoteWriteIn = null;
       this.thirdPresVoteWriteIn = null;
-      this.pollingstationservice = pollingstationservice;
+      // this.pollingstationservice = pollingstationservice;
       this.inFlorida = this.pollingstationservice.isThisInState('FL');
       console.log(this.inFlorida);
       console.log(this.pollingstationservice.selectedStationXX.state);

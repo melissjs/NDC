@@ -13,14 +13,15 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
   // directives: [CheckLogin],
 })
 export class VolunteerListPage {
-
+  pageTitle: string;
   currentVolunteer: Volunteer; 
   currentTeam: Volunteer[]; 
   initialized: boolean;
 
   constructor(private navCtrl: NavController, private volunteerservice: VolunteerServiceProvider, 
   private restSvc: RestServiceProvider, private recordservice: RecordServiceProvider) {
-    this.navCtrl = navCtrl;
+    this.pageTitle = "Volunteer List";
+    // this.navCtrl = navCtrl;
     this.initialized = false;
     this.initializeStuff();
   }
