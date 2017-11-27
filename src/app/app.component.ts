@@ -24,14 +24,14 @@ export class MyApp {
   // loggedIn: Boolean = true;
   rootPage: any = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
-
+  leftPages: Array<{title: string, component: any}>;
+  rightPages: Array<{title: string, component: any}>;
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
   // if (this.loggedIn) {
-    this.pages = [
+    this.leftPages = [
       { title: 'Home', component: 'HomePage' },
       { title: 'About', component: 'AboutPage' },
       { title: 'Audit Checklist', component: 'AuditCheckListPage' },
@@ -44,6 +44,11 @@ export class MyApp {
       { title: 'Evening Check Out', component: 'EveningCheckOutPage' },
       { title: 'Volunteer List', component: 'VolunteerListPage' },
       { title: 'Activity Record', component: 'ActivityRecordPage' }
+    ];
+
+    this.rightPages = [
+      { title: 'Home', component: 'HomePage' },
+      { title: 'Instructions', component: 'InstructionsPage' }
     ];
   }
   // }

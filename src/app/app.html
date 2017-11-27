@@ -1,3 +1,5 @@
+<!-- Left Menu -->
+
 <ion-menu [content]="content" side="left" id="mainMenu">
   <ion-header>
     <ion-toolbar>
@@ -7,14 +9,14 @@
 
   <ion-content>
     <ion-list>
-      <button ion-item menuClose="mainMenu" *ngFor="let p of pages" (click)="openPage(p)">
+      <button ion-item menuClose="mainMenu" *ngFor="let p of leftPages" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
   </ion-content>
 </ion-menu>
 
-<!-- try -->
+<!-- Right Menu -->
 
 <ion-menu [content]="content" side="right" id="auditorMenu">
     <ion-header>
@@ -25,8 +27,8 @@
 
     <ion-content>
       <ion-list>
-        <button ion-item  menuClose="auditorMenu" detail-none>
-          Close Menu 2
+        <button ion-item menuClose="auditorMenu" *ngFor="let p of rightPages" (click)="openPage(p)" detail-none>
+            {{p.title}}
         </button>
       </ion-list>
     </ion-content>
