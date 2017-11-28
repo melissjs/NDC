@@ -34,9 +34,16 @@ export class MyApp {
     this.leftPages = [
       { title: 'Home', component: 'HomePage' },
       { title: 'About', component: 'AboutPage' },
-      { title: 'Audit Checklist', component: 'AuditCheckListPage' },
       { title: 'Volunteer', component: 'VolunteerPage' },
       { title: 'Donate', component: 'DonatePage' },
+      { title: 'Participate', component: 'ParticipatePage' },
+      { title: 'Audit Training', component: 'AuditTrainingPage' },
+      { title: 'Audit Checklist', component: 'AuditCheckListPage' },
+      { title: 'Promote', component: 'PromotePage' },
+      { title: 'Contact Us', component: 'ContactPage' }
+    ];
+
+    this.rightPages = [
       { title: 'Instructions', component: 'InstructionsPage' },
       { title: 'FAQ', component: 'FaqPage' },
       { title: 'Add New Record', component: 'AddNewRecordPage' },
@@ -44,11 +51,6 @@ export class MyApp {
       { title: 'Evening Check Out', component: 'EveningCheckOutPage' },
       { title: 'Volunteer List', component: 'VolunteerListPage' },
       { title: 'Activity Record', component: 'ActivityRecordPage' }
-    ];
-
-    this.rightPages = [
-      { title: 'Home', component: 'HomePage' },
-      { title: 'Instructions', component: 'InstructionsPage' }
     ];
   }
   // }
