@@ -163,17 +163,7 @@ onVolunteerClick(){
 }   
 
 onDonateClick(){
-var that = this;
-      try {
-         that.buttonsDisabled = true;
-         that.navCtrl.push('DonatePage');
-          setTimeout(()=>{
-              this.enableButtons();
-          },10000);
-      } catch (EE) { 
-          that.buttonsDisabled = false;
-          console.log('error in Submitting, exc='+ EE.toString())
-      }
+  this.navCtrl.push('DonatePage');
 }  
 
 onLoginClick(){

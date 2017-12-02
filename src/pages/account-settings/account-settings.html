@@ -25,7 +25,7 @@
       <div padding>
       <h2 style="margin-bottom:10px">Volunteer List:</h2>
       <p *ngFor="let item of (fullVolunteerList)"> 
-        <span >{{item.fullName}}</span> <span style="float: right" *ngIf="item.exposeEmail">{{item.emailAddress}}</span>
+        <span>{{item.firstName}} {{item.lastName}}</span> <span style="float: right" *ngIf="item.exposeEmail">{{item.emailAddress}}</span>
       </p>
       </div>
     
@@ -76,9 +76,14 @@
   </ion-item>
 
   <ion-item>
-    <ion-label stacked>Full Name:</ion-label>
-    <ion-input (click)="wasThisTouched()" type="text" formControlName="fullNameCtrl" ></ion-input>
+    <ion-label stacked>First Name:</ion-label>
+    <ion-input (click)="wasThisTouched()" type="text" formControlName="firstNameCtrl" ></ion-input>
   </ion-item>
+
+  <ion-item>
+      <ion-label stacked>Last Name:</ion-label>
+      <ion-input (click)="wasThisTouched()" type="text" formControlName="lastNameCtrl" ></ion-input>
+    </ion-item>
 
   <ion-item>
     <ion-label stacked>Email:</ion-label>

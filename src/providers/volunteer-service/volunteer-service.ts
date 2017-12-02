@@ -91,8 +91,8 @@ getVolunteers(): void {
 //// tryyyyy
 setVolunteer() {
     this.http.post(baseURL + '/volunteers/add', {
-        firstName: 'from here',
-        lastName: 'from here',
+        firstName: 'Drew',
+        lastName: 'Hastings',
         phoneNumber: '1234567890',
         email: 'blah@email.com'
     }).subscribe(
@@ -149,27 +149,23 @@ setVolunteer() {
   }
 
   clearShifts() {
-      this.currentVolunteer.shifts = '';
+      this.currentVolunteer.shifts = [''];
   }
 
-  setShifts(passedString){
+  setShifts(passedString: string){
       //this.currentVolunteer.shifts = passedString;
-      if (!this.currentVolunteer.shifts.includes(passedString)) {
-          if (this.currentVolunteer.shifts != '') {
-              this.currentVolunteer.shifts = this.currentVolunteer.shifts + ", " + passedString;
-          } else {
-              this.currentVolunteer.shifts = passedString;
-          }
+      if (!this.currentVolunteer.shifts.includes(passedString) && this.currentVolunteer.shifts != ['']) {
+              this.currentVolunteer.shifts.push(passedString);               
       }
   }
 
   printVolunteer(passedVolunteer){
-  console.log('Name: ' + passedVolunteer.fullName + ' Email: ' + passedVolunteer.emailAddress + ' Exposed: ' + passedVolunteer.exposeEmail + ' Cell: ' + passedVolunteer.phoneNumber + ' Age: ' + passedVolunteer.age + ' Sex: ' + passedVolunteer.sex + ' Party: ' + passedVolunteer.partyAffiliation + ' Shifts: ' + passedVolunteer.shifts+ ' Code: ' + passedVolunteer.passcode);
+  console.log('Name: ' + passedVolunteer.firstName + ' ' + passedVolunteer.lastName + ' Email: ' + passedVolunteer.emailAddress + ' Exposed: ' + passedVolunteer.exposeEmail + ' Cell: ' + passedVolunteer.phoneNumber + ' Age: ' + passedVolunteer.age + ' Sex: ' + passedVolunteer.sex + ' Party: ' + passedVolunteer.partyAffiliation + ' Shifts: ' + passedVolunteer.shifts + ' Code: ' + passedVolunteer.passcode);
   }
 
 
   printShifts(passedVolunteer){
-      if (this.currentVolunteer.shifts != '') {
+      if (this.currentVolunteer.shifts != ['']) {
           return this.currentVolunteer.shifts;
       } else {
           console.log(this.notRegistered);
@@ -347,14 +343,15 @@ setVolunteer() {
   setToVoidVolunteer(){
           this.currentVolunteer = {
           volunteerKey: '',
-          fullName: '',
+          firstName: '',
+          lastName: '',
           emailAddress: '',
           exposeEmail: false,
           phoneNumber: '',
           age: null,
           sex: '',
           partyAffiliation: '',
-          shifts:'', 
+          shifts:[''], 
           associatedPollingStationKey: null, 
       }
       return this.currentVolunteer;

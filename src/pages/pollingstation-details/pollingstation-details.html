@@ -17,7 +17,7 @@
   <div>
     <b>Early Morning (5:00 AM - 8:15 AM)</b>
         <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_MORNING))"> 
-          {{item.fullName}}
+          {{item.firstName}} {{item.lastName}}
         </p>
   </div>
   
@@ -27,7 +27,7 @@
   <div>
     <b>Late Morning (8:00 AM - 11:15 AM)</b>
         <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_MORNING))"> 
-          {{item.fullName}}
+          {{item.firstName}} {{item.lastName}}
         </p>
   </div>
   
@@ -37,7 +37,7 @@
   <div>
     <b>Early Afternoon (11:00 AM - 2:15 PM)</b>
         <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_AFTERNOON))"> 
-          {{item.fullName}}
+          {{item.firstName}} {{item.lastName}}
         </p>
   </div>
   
@@ -47,7 +47,7 @@
   <div>
     <b>Late Afternoon (2:00 PM - 5:15 PM)</b>
         <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_AFTERNOON))"> 
-          {{item.fullName}}
+          {{item.firstName}} {{item.lastName}}
         </p>
   </div>
   
@@ -56,7 +56,7 @@
   <div>
       <b>Early Evening (5:00 PM - 8:15 PM)</b>
         <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_EVENING))"> 
-          {{item.fullName}}
+          {{item.firstName}} {{item.lastName}}
         </p>
   </div>
   
@@ -65,7 +65,7 @@
   <div>
     <b>Late Evening (8:00 PM - 10:30 PM)</b>
         <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_EVENING))"> 
-          {{item.fullName}}
+          {{item.firstName}} {{item.lastName}}
         </p>
   </div>
   </ion-card>

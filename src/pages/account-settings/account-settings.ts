@@ -92,7 +92,8 @@ export class AccountSettingsPage {
 
       if (this.currentTempVolunteer) {
           this.changeForm = fb.group({  
-              'fullNameCtrl': [this.currentTempVolunteer.fullName, Validators.compose([Validators.required])],
+              'firstNameCtrl': [this.currentTempVolunteer.firstName, Validators.compose([Validators.required])],
+              'lastNameCtrl': [this.currentTempVolunteer.lastName, Validators.compose([Validators.required])],
               'emailAddressCtrl': [this.currentTempVolunteer.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExEmail)])],
               'exposeEmailCtrl': [this.currentTempVolunteer.exposeEmail],
               'phoneNumberCtrl': [this.currentTempVolunteer.phoneNumber, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExPhone)])],
@@ -195,7 +196,7 @@ onClickReset(){
                       
                       //this.volunteerservice.clearShifts()
                       if (this.currentTempVolunteer) {
-                          this.currentTempVolunteer.shifts = '';
+                          this.currentTempVolunteer.shifts = [''];
                           this.printedShifts = "None";
                           this.currentTempVolunteer.associatedPollingStationKey = null;
                           this.volunteerservice.associatedVolunteerArray = [];

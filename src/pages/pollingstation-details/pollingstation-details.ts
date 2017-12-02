@@ -90,14 +90,15 @@ export class PollingstationDetailsPage {
 
           this.currentVolunteerHere = {
               volunteerKey: null,
-              fullName: null,
+              firstName: null,
+              lastName: null,
               emailAddress: null,
               exposeEmail: false,
               phoneNumber: null,
               age:null,
               sex: null,
               partyAffiliation: null,
-              shifts:'', 
+              shifts:[''], 
               associatedPollingStationKey:null
           }
           volunteerservice.setNewVolunteer(this.currentVolunteerHere);

@@ -18,7 +18,8 @@ import * as globals from '../../globals';
 export class UserProfileComponent {
   newVolunteer: Volunteer;
   volunteerKey: string;
-  enterFullName: string;
+  enterFirstName: string;
+  enterLastName: string;
   enterEmailAddress: string;
   enterExposeEmail: boolean;
   enterPhoneNumber: string;
@@ -49,7 +50,8 @@ export class UserProfileComponent {
       // this.navCtrl = navCtrl;
       this.newVolunteer = null;
       this.volunteerKey = null;
-      this.enterFullName = null;
+      this.enterFirstName = null;
+      this. enterLastName = null;
       this.enterEmailAddress = null;
       this.enterExposeEmail = false;
       this.enterPhoneNumber = null;
@@ -71,7 +73,8 @@ export class UserProfileComponent {
       this.properties = null;
 
       this.registerForm = fb.group({  
-          'enterFullName': ['', Validators.compose([Validators.required])],
+          'enterFirstName': ['', Validators.compose([Validators.required])],
+          'enterLastName': ['', Validators.compose([Validators.required])],
           'enterEmailAddress': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
           'enterExposeEmailCtrl': [null, Validators.required],// had '' then i put false? https://forum.ionicframework.com/t/checkbox-validation/55400/8
           'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
@@ -89,21 +92,26 @@ export class UserProfileComponent {
       //ATTEMP TO FIX PROBLEM
       this.newVolunteer = {
           volunteerKey: null,
-          fullName: null,
+          firstName: null,
+          lastName: null,
           emailAddress: null,
           exposeEmail: false,
           phoneNumber: null,
           age:null,
           sex: null,
           partyAffiliation: null,
-          shifts:'', 
+          shifts:[''], 
           associatedPollingStationKey:null
       }
   }
 
-  onChangeFullName(value){
-      this.enterFullName = value;
+  onChangeFirstName(value){
+      this.enterFirstName = value;
   }
+
+  onChangeLastName(value){
+    this.enterLastName = value;
+}
 
   onChangeEmail(value){
       this.enterEmailAddress = value;
@@ -235,10 +243,10 @@ export class UserProfileComponent {
       },500);
   }
 
-  onSubmit(value: any): void {
+  onSubmit(): void {
 
-      if(value.enterPasscode1 == value.enterPasscode2){
-          this.enterPasscode = value.enterPasscode1;
+      if(this.registerForm.value.enterPasscode1 == this.registerForm.value.enterPasscode2){
+          this.enterPasscode = this.registerForm.value.enterPasscode1;
       } else {
 
           let pcalert = this.alertCtrl.create({
@@ -251,16 +259,17 @@ export class UserProfileComponent {
       }
 
       // SET VALUES FROM TEXT INPUTS
-      this.newVolunteer.fullName = this.toTitleCase(value.enterFullName);
-      this.newVolunteer.emailAddress = value.enterEmailAddress.toLowerCase();
-      this.newVolunteer.phoneNumber = value.enterPhoneNumber;
-      this.newVolunteer.age = value.enterAge;
+      this.newVolunteer.firstName = this.toTitleCase(this.registerForm.value.enterFirstName);
+      this.newVolunteer.lastName = this.toTitleCase(this.registerForm.value.enterLastName);
+      this.newVolunteer.emailAddress = this.registerForm.value.enterEmailAddress.toLowerCase();
+      this.newVolunteer.phoneNumber = this.registerForm.value.enterPhoneNumber;
+      this.newVolunteer.age = this.registerForm.value.enterAge;
       this.newVolunteer.sex = this.enterSex;
 
       if (this.enterPartyAffiliationFromList!="Other Party"){
           this.newVolunteer.partyAffiliation = this.enterPartyAffiliationFromList;
-      } else if (this.enterPartyAffiliationFromList=="Other Party" && value.enterOtherPartyAffiliation){
-          this.newVolunteer.partyAffiliation = this.toTitleCase(value.enterOtherPartyAffiliation);
+      } else if (this.enterPartyAffiliationFromList=="Other Party" && this.registerForm.value.enterOtherPartyAffiliation){
+          this.newVolunteer.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliation);
       }
 
       //expose emailAddress
