@@ -7,6 +7,9 @@ import { ChangePasswordComponent } from './change-password/change-password';
 import { TopBarComponent } from './top-bar/top-bar';
 import { LosComponent } from './los/los';
 import { QrCodeScanComponent } from './qr-code-scan/qr-code-scan';
+import { LogoutComponent } from './logout/logout';
+import { LogOrSignInComponent } from './log-or-sign-in/log-or-sign-in';
+import { UserProfileComponent } from './user-profile/user-profile';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -18,7 +21,10 @@ import { QrCodeScanComponent } from './qr-code-scan/qr-code-scan';
     ChangePasswordComponent,
     TopBarComponent,
     LosComponent,
-    QrCodeScanComponent],
+    QrCodeScanComponent,
+    LogoutComponent,
+    LogOrSignInComponent,
+    UserProfileComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
@@ -27,6 +33,9 @@ import { QrCodeScanComponent } from './qr-code-scan/qr-code-scan';
     ChangePasswordComponent,
     TopBarComponent,
     LosComponent,
-    QrCodeScanComponent]
+    QrCodeScanComponent,
+    LogoutComponent,
+    LogOrSignInComponent,
+    UserProfileComponent]
 })
 export class ComponentsModule {}

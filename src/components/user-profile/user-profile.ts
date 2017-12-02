@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 // import { LoginPage } from '../loginpage/loginpage';
-import { SuccessSplashPage } from '../success-splash/success-splash';
+// import { SuccessSplashPage } from '../../pages/success-splash/success-splash';
 import { Volunteer} from '../../models/volunteer';
 // Services
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
@@ -10,14 +10,12 @@ import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 // Globals
 import * as globals from '../../globals';
 
-@IonicPage()
 @Component({
-  selector: 'page-unregistered-sign-in',
-  templateUrl: 'unregistered-sign-in.html',
+  selector: 'user-profile',
+  templateUrl: 'user-profile.html',
   //providers: [RestService]
 })
-export class UnregisteredSignInPage {
-  pageTitle: string;
+export class UserProfileComponent {
   newVolunteer: Volunteer;
   volunteerKey: string;
   enterFullName: string;
@@ -48,7 +46,6 @@ export class UnregisteredSignInPage {
   constructor(private navCtrl: NavController, navParams: NavParams, 
               private alertCtrl: AlertController, public fb: FormBuilder, 
               private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
-      this.pageTitle = "Register";
       // this.navCtrl = navCtrl;
       this.newVolunteer = null;
       this.volunteerKey = null;
@@ -72,11 +69,6 @@ export class UnregisteredSignInPage {
       // this.volunteerservice = volunteerservice;
       // this.restSvc = restSvc;
       this.properties = null;
-
-      //form stuff
-      // var regExEmail: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
-      // var regExPhone: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';
-      // var regExAge: string = '[1]*[0-9]?[0-9]';
 
       this.registerForm = fb.group({  
           'enterFullName': ['', Validators.compose([Validators.required])],

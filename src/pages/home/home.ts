@@ -191,9 +191,10 @@ onLoginClick(){
   }
 }  
 
-onLogout() {
-  // this.restSvc.onLogout(this,this.displayError);
-}
+// moved to logout component
+// onLogout() {
+//   // this.restSvc.onLogout(this,this.displayError);
+// }
 
   displayError(that:any,text: string,subtitle: string) {
       that.errorMessage = text + ':' + subtitle;

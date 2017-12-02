@@ -32,11 +32,7 @@
           Login or Register
         </button>
       </div>
-      <div *ngIf="restSvc.getLoggedIn()">
-        <button ion-button (click)="onLogout()" block large>
-          Log Out
-        </button>
-      </div>
+      <logout></logout>
       
       <P style="color:red" *ngIf="errorMessage">{{errorMessage}}</P>
       

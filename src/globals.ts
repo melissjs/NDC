@@ -10,20 +10,11 @@ export var MALE: string = 'Male';
 export var NO_ANSWER: string = 'No Answer';
 
 export var NPP: string = 'No Party Preference';
-export var DEMOCRATIC: string = 'Democratic Party';
-export var GREEN: string = 'Green Party';
-export var REPUBLICAN: string = 'Republican Party';
-export var OTHER: string = 'Other Party';
+export const DEMOCRATIC: string = 'Democratic Party';
+export const GREEN: string = 'Green Party';
+export const REPUBLICAN: string = 'Republican Party';
+export const OTHER: string = 'Other Party';
 
-export var UNREGPAGETITLE   = 'Step 1: Register';
-export var REGSUCCTITLE     = 'Step 2: Sign Up';
-export var FINDPOLLINGTITLE = 'Find Polling Location';
-export var ADDPOLLINGTITLE  = 'Add Polling Location';
-export var PSDETAILTITLE    = 'Polling Station Details';
-export var CONFPAGETITLE    = 'Confirmation Page';
-export var DUPEPSTITLE      = 'Possible Duplicate Location';
-export var RESETPWDTITLE    = 'Reset Password Page';
-export var SUCCSPLASHTITLE  = 'Registration';
-export var LOGINPAGETITLE   = 'Sign In';
-
-export var REGEXPHONE: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';
+export const REGEXPHONE: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';
+export const REGEXEMAIL: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
+export const REGEXAGE: string = '[1]*[0-9]?[0-9]';

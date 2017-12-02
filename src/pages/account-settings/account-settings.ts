@@ -122,10 +122,7 @@ onClickRegister(){
       var that = this;
       try {
           
-          this.navCtrl.push('UnregisteredSignInPage', {
-              title: globals.UNREGPAGETITLE,
-              menupg: that.titlec.page
-          });
+          this.navCtrl.push('UnregisteredSignInPage');
           
       } catch (EE) {
           console.log('error in Submitting, exc='+ EE.toString())
@@ -137,10 +134,7 @@ onClickReset(){
 //this.resetPasscode = true;
       try {
           
-          this.navCtrl.push('ResetPasswordPage', {
-              title: globals.RESETPWDTITLE,
-              menupg: this.titlec.page
-          });
+          this.navCtrl.push('ResetPasswordPage');
           
       } catch (EE) {
           console.log('error in Submitting, exc='+ EE.toString())
@@ -296,10 +290,7 @@ onChangePartyAffiliationFromList(passedValue){
       var that = this;
       try {
           
-          this.navCtrl.push('PollingstationDetailsPage', {
-              title: globals.PSDETAILTITLE,
-              menupg: that.titlec.page
-          });
+          this.navCtrl.push('PollingstationDetailsPage');
           
       } catch (EE) {
           console.log('error in Submitting, exc='+ EE.toString())

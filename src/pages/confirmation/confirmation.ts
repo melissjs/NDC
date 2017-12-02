@@ -26,12 +26,10 @@ export class ConfirmationPage {
   thisTempStation: PollingStation;
   thisTempStationPrecint: string;
   printedShifts: string;
-  titlec: {page: any, title: string};
   
     constructor(private navCtrl: NavController, navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, private restSvc: RestServiceProvider, private alertCtrl: AlertController) {
           this.pageTitle = "Confirmation";
           this.navCtrl = navCtrl;
-          this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
           this.volunteerservice = volunteerservice; 
           this.pollingstationservice = pollingstationservice;
           this.restSvc = restSvc;
@@ -57,10 +55,7 @@ export class ConfirmationPage {
           var that = this;
           try {
               
-              this.navCtrl.push('PollingstationDetailsPage', {
-                  title: globals.PSDETAILTITLE,
-                  menupg: this.titlec.page
-              });
+              this.navCtrl.push('PollingstationDetailsPage');
               
           } catch (EE) {
               console.log('error in Submitting, exc='+ EE.toString())

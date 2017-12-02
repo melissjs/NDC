@@ -1,0 +1,29 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
+      <ion-input type="tel" formControlName="enterPhoneNumber" (blur)="onChangePhoneNumber()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Passcode:</ion-label>
+      <ion-input type="password" formControlName="enterPasscode" (blur)="onChangePasscode()"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block type="submit" large [disabled]="!loginForm.valid">
+    Register
+  </button>
+
+  <button color="secondary" ion-button block type="submit" large [disabled]="!loginForm.valid">
+    Log In
+  </button>
+  
+  <P class="error-msg" *ngIf="errorMessage!=null">{{errorMessage}}</P>
+  
+
+</form> 
+
+
+
+
