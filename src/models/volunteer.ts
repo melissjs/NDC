@@ -10,6 +10,4 @@ export interface Volunteer {
     partyAffiliation: string;
     shifts?: string[];
     associatedPollingStationKey?: string;
-    } 
-    
-    
+    }

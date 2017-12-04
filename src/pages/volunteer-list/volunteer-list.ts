@@ -22,6 +22,7 @@ export class VolunteerListPage {
   private restSvc: RestServiceProvider, private recordservice: RecordServiceProvider) {
     this.pageTitle = "Volunteer List";
     // this.navCtrl = navCtrl;
+    // true for testing
     this.initialized = false;
     this.initializeStuff();
   }

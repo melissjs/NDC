@@ -10,6 +10,7 @@ import { QrCodeScanComponent } from './qr-code-scan/qr-code-scan';
 import { LogoutComponent } from './logout/logout';
 import { LogOrSignInComponent } from './log-or-sign-in/log-or-sign-in';
 import { UserProfileComponent } from './user-profile/user-profile';
+import { VolunteerListComponent } from './volunteer-list/volunteer-list';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -24,7 +25,8 @@ import { UserProfileComponent } from './user-profile/user-profile';
     QrCodeScanComponent,
     LogoutComponent,
     LogOrSignInComponent,
-    UserProfileComponent],
+    UserProfileComponent,
+    VolunteerListComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
@@ -36,6 +38,7 @@ import { UserProfileComponent } from './user-profile/user-profile';
     QrCodeScanComponent,
     LogoutComponent,
     LogOrSignInComponent,
-    UserProfileComponent]
+    UserProfileComponent,
+    VolunteerListComponent]
 })
 export class ComponentsModule {}

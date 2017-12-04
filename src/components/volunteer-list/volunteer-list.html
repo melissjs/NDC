@@ -1,0 +1,8 @@
+<ion-card >
+  <ion-list>
+    <ion-list-header>Volunteer List:</ion-list-header>
+      <ion-item *ngFor="let v of volunteers">
+        <ion-label>{{v?.firstName}} {{v?.lastName}} <span style=float:right *ngIf=v?.exposeEmail>{{v?.emailAddress}}</span></ion-label>
+      </ion-item>
+  </ion-list>
+</ion-card>

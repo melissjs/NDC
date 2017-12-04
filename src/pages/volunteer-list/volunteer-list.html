@@ -2,30 +2,25 @@
   <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
   
-  <ion-content padding>
+<ion-content padding>
   
-    <ion-card *ngIf="initialized">
-      <ion-list>
-        <ion-list-header>Volunteer List: {{currentVolunteer.fullName}}</ion-list-header>
+  <ion-card *ngIf="initialized">
+    <ion-list>
+      <ion-list-header>Volunteer List: {{currentVolunteer.firstName}} {{currentVolunteer.lastName}}</ion-list-header>
+      <ion-item *ngFor="let item of currentTeam">
+        <ion-label>{{item.firstName}} {{item.lastName}} <span style=float:right *ngIf=item.exposeEmail>{{item.emailAddress}}</span></ion-label>
+        <!-- <ion-label *ngIf=item.exposeEmail>{{item.emailAddress}}</ion-label> -->
+      </ion-item>
+    </ion-list>
+  </ion-card>
   
-        <ion-item *ngFor="let item of currentTeam">
-          <ion-label>{{item.fullName}} <span style=float:right *ngIf=item.exposeEmail>{{item.emailAddress}}</span></ion-label>
-          <!-- <ion-label *ngIf=item.exposeEmail>{{item.emailAddress}}</ion-label> -->
-        </ion-item>
-  
-      </ion-list>
-    </ion-card>
-  
-    <ion-card *ngIf="initialized">
-      <ion-list>
-        <!--<ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header>-->
-  
-        <ion-item>
-  
-        </ion-item>
-  
-      </ion-list>
-    </ion-card>
+  <ion-card *ngIf="initialized">
+    <ion-list>
+      <!--<ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header>-->
+      <ion-item>
+      </ion-item>
+    </ion-list>
+  </ion-card>
   
 
     <ion-card *ngIf="!initialized">
@@ -43,6 +38,8 @@
     </button>
   
     <!-- <check-login></check-login> -->
-  
-  </ion-content>
-  
+
+    <!-- TRY -->
+  <volunteer-list></volunteer-list>
+
+</ion-content>

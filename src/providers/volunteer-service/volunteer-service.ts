@@ -1,8 +1,9 @@
 import { NDCS_BASE_URL } from './../../configuration/config';
 import { Http } from '@angular/http';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 // interfaces
 import { Volunteer} from '../../models/volunteer';
 import { PollingStation } from '../../models/pollingstation';
@@ -74,37 +75,49 @@ export class VolunteerServiceProvider {
     }
 }
 
-getVolunteers(): void {
-    this.http.get(baseURL + '/volunteers').subscribe(
-    (data: Volunteer) => {
-        console.log('hey', data[0].firstName);
-    },
-    (err: HttpErrorResponse) => {
+  // GET ASSOCIATED VOLUNTEERS
+  getVolunteers(): Observable<Volunteer[]> {
+    return this.http.get(baseURL + '/volunteers').map(
+      data => {
+        for (let v of data.obj) {
+          let vol = {
+            volunteerKey: v._id,
+            firstName: v.firstName, 
+            lastName: v.lastName,
+            emailAddress: v.emailAddress,
+            exposeEmail: v.exposeEmail,
+            phoneNumber: v.phoneNumber,
+            age: v.age,
+            sex: v.sex,
+            partyAffiliation: v.partyAffiliation,
+            shifts: v.shifts,
+            associatedPollingStationKey: v.associatedPollingStationKey
+          }
+          this.associatedVolunteerArray.push(vol)
+        }
+        return this.associatedVolunteerArray;
+      },
+      (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
             console.log("Client side error occured", err);
         } else {
-            console.log("Server side error occured", err);
+          console.log("Server side error occured", err);
         }
     });
-}
+  }
 
-//// tryyyyy
-setVolunteer() {
-    this.http.post(baseURL + '/volunteers/add', {
-        firstName: 'Drew',
-        lastName: 'Hastings',
-        phoneNumber: '1234567890',
-        email: 'blah@email.com'
-    }).subscribe(
-        res => {
-            console.log(res);
-        },
-        (err: HttpErrorResponse) => {
-            this.handleAngularJsonBug(err);
-            // console.log('Error Occured', err)
-        }
+  // SAVE NEWLY REGISTERED VOLUNTEER
+  saveVolunteer(body: Volunteer) {
+    this.http.post(baseURL + '/volunteers/add', body)
+    .subscribe(
+      res => {
+          console.log(res);
+      },
+      (err: HttpErrorResponse) => {
+          this.handleAngularJsonBug(err);
+      }
     )
-}
+  }
 
   /* 
      Added the following function to properly set the volunteers
