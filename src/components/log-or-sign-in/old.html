@@ -1,13 +1,13 @@
 <form [formGroup]="loginForm">
   <ion-list>
     <ion-item>
-      <ion-label stacked>Username:</ion-label>
-      <ion-input type="text" formControlName="enterUsername" (blur)="onDirtyUsername()"></ion-input>
+      <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
+      <ion-input type="tel" formControlName="enterPhoneNumber" (blur)="onDirtyPhoneNumber()"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Password:</ion-label>
-      <ion-input type="password" formControlName="enterPassword" (blur)="onDirtyPassword()"></ion-input>
+      <ion-label stacked>Passcode:</ion-label>
+      <ion-input type="password" formControlName="enterPasscode" (blur)="onDirtyPasscode()"></ion-input>
     </ion-item>
   </ion-list>
 
