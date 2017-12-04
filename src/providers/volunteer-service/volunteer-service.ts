@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 // interfaces
 import { Volunteer} from '../../models/volunteer';
 import { PollingStation } from '../../models/pollingstation';
+import { ResponseObj } from '../../models/response-obj';
 // globals
 import * as globals from '../../globals';
 // config
@@ -78,7 +79,8 @@ export class VolunteerServiceProvider {
   // GET ASSOCIATED VOLUNTEERS
   getVolunteers(): Observable<Volunteer[]> {
     return this.http.get(baseURL + '/volunteers').map(
-      data => {
+      (data: ResponseObj) => {
+        this.associatedVolunteerArray = [];
         for (let v of data.obj) {
           let vol = {
             volunteerKey: v._id,

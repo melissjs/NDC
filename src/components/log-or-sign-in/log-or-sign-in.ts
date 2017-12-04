@@ -5,6 +5,7 @@ import { Volunteer} from '../../models/volunteer';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import * as globals from '../../globals';
 
 @Component({
@@ -22,7 +23,7 @@ export class LogOrSignInComponent {
   authenticatingVolunteerPhone: string;
   authenticatingVolunteerPasscode: string;
     
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider ) {
+  constructor(private navCtrl: NavController, private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider ) {
     this.loggedIn = false;
     this.loginForm = fb.group({  
       'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.pattern(globals.REGEXPHONE)])],
@@ -30,7 +31,7 @@ export class LogOrSignInComponent {
     });
   }
 
-  onChangePhoneNumber() {
+  onDirtyPhoneNumber() {
     if (!this.loginForm.value.enterPhoneNumber.match(globals.REGEXPHONE)) {
       this.errorMessage = 'ERROR: Phone Number must be exactly 10 digits';
       this.enterPhoneNumber = '';
@@ -39,7 +40,7 @@ export class LogOrSignInComponent {
     }
   }
 
-  onChangePasscode() {
+  onDirtyPasscode() {
     if (this.loginForm.value.enterPasscode.length < 8) {
       this.errorMessage = 'ERROR: Password is less than 8 characters';
     } else {
@@ -48,8 +49,12 @@ export class LogOrSignInComponent {
   }
 
   // TEST
-  onSubmit(): void { 
-    console.log("hi", this.loginForm.value.enterPhoneNumber);
+  onLogin(): void { 
+    console.log("hi from login", this.loginForm.value.enterPhoneNumber);
+  }
+
+  onRegister(): void {
+    console.log("hi from register", this.loginForm.value.enterPhoneNumber);
   }
 
   // onSubmit(value: any): void { 

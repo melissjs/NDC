@@ -23,6 +23,7 @@ import { RecordServiceProvider } from '../providers/record-service/record-servic
 import { VolunteerServiceProvider } from '../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../providers/polling-station-service/polling-station-service';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PollingStationServiceProvider } from '../providers/polling-station-serv
     RecordServiceProvider,
     VolunteerServiceProvider,
     RestServiceProvider,
-    PollingStationServiceProvider
+    PollingStationServiceProvider,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}
