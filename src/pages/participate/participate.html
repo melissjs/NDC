@@ -2,78 +2,81 @@
   <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
   
-  <ion-content class="backgroundColor" padding>
-  
+<ion-content class="backgroundColor" padding>
   <ion-card padding>
-    Volunteering to be an auditor on election day and donating money are two very important ways to participate in this effort but they are by no means the only two ways; there are so many valuable services one may to contribute to the success of this nationwide, community effort.
-    <br><br>
-    Do you have time and skills you can donate? We welcome people with diverse backgrounds, experience levels and education in various areas to volunteer as little or as much energy as they can offer. Specific categories of interest listed below but please reach out if you have time to offer even if your skillset does not fall into any of the listed categories. 
-    <br><br>
-    Please submit the form below if you are interested in participating. If you don't receive a prompt response, please don't worry - the team is small right now and it might be difficult to get through submissions, depending on how many we intake.
+    <ion-list> 
+      <ion-list-header>How to Participate</ion-list-header>
+      <ion-item text-wrap>
+        Volunteering to be an auditor on election day and donating money are two very important ways to participate in this effort but they are by no means the only two ways; there are so many valuable services one may to contribute to the success of this nationwide, community effort.
+        <br><br>
+        Do you have time and skills you can donate? We welcome people with diverse backgrounds, experience levels and education in various areas to volunteer as little or as much energy as they can offer. Specific categories of interest listed below but please reach out if you have time to offer even if your skillset does not fall into any of the listed categories. 
+        <br><br>
+        Please submit the form below if you are interested in participating. If you don't receive a prompt response, please don't worry - the team is small right now and it might be difficult to get through submissions, depending on how many we intake.
+      </ion-item>
+    </ion-list>
   </ion-card>
-  
-  <ion-card>
-  <ion-list text-wrap>
-  <ion-item><b>Legal Professionals:</b> Emphasis on election law and international relations. Legal observers wanted for election day, specifically in swing states.</ion-item>
-  <ion-item><b>Software Engineers and IT Professionals:</b> Empahasis on open source and free software ideologies, block chain technologies, mobile app development, security professionals, database specialists. Seeking hardware and firmware engineers in the future.</ion-item> 
-  <ion-item><b>Activists and Community Organizers:</b> Volunteers willing to coordinate and educate interested parties and answer inquiries. Multilingual a huge plus.</ion-item>
-  <ion-item><b>Translators:</b> Volunteers willing to translate our electronic and printed materials. Looking for volunteers to make training videos in languages other than english. We are also highly value multilingual auditors for election day.</ion-item>
-  <ion-item><b>Professors and Teachers:</b> Looking for educators that are willing to incentivize volunteering on election day for their students; this is a great opportunity for students to learn about our government and help our community at the same time - we think they deserve extra credit for it :)</ion-item>
-  <ion-item><b>Business Owners:</b> Seeking businessowners willing to incentivize volunteering and voter participation. We may be able to help promote your business to voters and auditors in exchange. For example, if you own a coffee shop and offer a free coffee for voters that bring in a snapshot of their audit, auditors will send your business potential customers. Also, if you have products that you could donate to the auditors, we can sometimes promote those products and/or give them away to voters and gain exposure for your products.</ion-item>
-  <ion-item><b>Advertising and PR Professionals:</b> Seeking networking specialists with reach. We need a lot of promotion in a short amount of time, any help in this area is greatly appreciated.</ion-item>
-  <ion-item><b>Multimedia, Film and Television Professionals:</b> Seeking help with promotional materials.</ion-item>
-  <ion-item><b>Voters:</b> Another obvious way to participate is as a voter! When you are leaving your polling station please take the time to participate in the audit. It literally only takes between 2-5 minutes if there is no line to be helped by a volunteer with the app. Also, spreading awareness about the audit will be extremely helpful and encourage other voters to participate as well. Additionally, if you know your station will be audited, participating in the audit as a voter might be a good argument for voting at your polling station instead of by mail - this way you know your vote will be counted in the audit.</ion-item>
-  </ion-list>
+
+  <ion-card padding>
+    <ion-list text-wrap>
+      <ion-list-header>Skills we need</ion-list-header>
+      <ion-item>
+        <b>Legal Professionals:</b> Emphasis on election law and international relations. Legal observers wanted for election day, specifically in swing states.
+      </ion-item>
+      <ion-item>
+        <b>Software Engineers and IT Professionals:</b> Empahasis on open source and free software ideologies, block chain technologies, mobile app development, security professionals, database specialists. Seeking hardware and firmware engineers in the future.
+      </ion-item> 
+      <ion-item>
+        <b>Activists and Community Organizers:</b> Volunteers willing to coordinate and educate interested parties and answer inquiries. Multilingual a huge plus.
+      </ion-item>
+      <ion-item>
+        <b>Translators:</b> Volunteers willing to translate our electronic and printed materials. Looking for volunteers to make training videos in languages other than english. We are also highly value multilingual auditors for election day.
+      </ion-item>
+      <ion-item>
+        <b>Professors and Teachers:</b> Looking for educators that are willing to incentivize volunteering on election day for their students; this is a great opportunity for students to learn about our government and help our community at the same time - we think they deserve extra credit for it!
+      </ion-item>
+      <ion-item>
+        <b>Business Owners:</b> Seeking businessowners willing to incentivize volunteering and voter participation. We may be able to help promote your business to voters and auditors in exchange. For example, if you own a coffee shop and offer a free coffee for voters that bring in a snapshot of their audit, auditors will send your business potential customers. Also, if you have products that you could donate to the auditors, we can sometimes promote those products and/or give them away to voters and gain exposure for your products.
+      </ion-item>
+      <ion-item>
+        <b>Advertising and PR Professionals:</b> Seeking networking specialists with reach. We need a lot of promotion in a short amount of time, any help in this area is greatly appreciated.
+      </ion-item>
+      <ion-item>
+        <b>Multimedia, Film and Television Professionals:</b> Seeking help with promotional materials.
+      </ion-item>
+      <ion-item>
+        <b>Voters:</b> Another obvious way to participate is as a voter! When you are leaving your polling station please take the time to participate in the audit. It literally only takes between 2-5 minutes if there is no line to be helped by a volunteer with the app. Also, spreading awareness about the audit will be extremely helpful and encourage other voters to participate as well. Additionally, if you know your station will be audited, participating in the audit as a voter might be a good argument for voting at your polling station instead of by mail - this way you know your vote will be counted in the audit.
+      </ion-item>
+    </ion-list>
   </ion-card>
-  
-  
-  
-  
-  
-  <ion-card >
-      <ion-list-header>
-      Collaborator Form 
-    </ion-list-header>
-    <form [formGroup]="collaboratorForm" (ngSubmit)="onSubmit(collaboratorForm.value)" novalidate>
-  <ion-list text-wrap>
-  
-  
-  
-  <ion-item>
-  <ion-label stacked>Full Name:</ion-label>
-  <ion-input type="text" [(ngModel)]=resetName name="name" formControlName="enterFullName"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-  <ion-label stacked>Your Email Addess:</ion-label>
-  <ion-input type="text" [(ngModel)]=resetContact name="contact" formControlName="enterContact"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-  <ion-label stacked>Area(s) of Expertise:</ion-label>
-  <ion-textarea [(ngModel)]=resetAreasOfExpertise name="areasOfExpertise" formControlName="enterAreasOfExpertise"></ion-textarea>
-  </ion-item>
-  
-  <ion-item>
-  <ion-label stacked>Ideal Way You Would Like to Contribute:</ion-label>
-  <ion-textarea [(ngModel)]=resetDesiredContribution name="desiredContribution" formControlName="enterDesiredContribution"></ion-textarea>
-  </ion-item>
-  
-  <ion-item>
-  <ion-label stacked>Links to Resume(s), Profile(s) or Relavent Work(s):</ion-label>
-  <ion-textarea [(ngModel)]=resetRelevantLinks name="relevantLinks" formControlName="enterRelevantLinks"></ion-textarea>
-  </ion-item>
-  
-  
-  
-  </ion-list>
-  </form>
+
+  <ion-card padding>
+    <ion-list text-wrap>
+      <ion-list-header>Collaborator Form </ion-list-header>
+      <form [formGroup]="collaboratorForm" (ngSubmit)="onSubmit(collaboratorForm.value)" novalidate>
+        <ion-item>
+          <ion-label stacked>Full Name:</ion-label>
+          <ion-input type="text" [(ngModel)]=resetName name="name" formControlName="enterFullName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Your Email Addess:</ion-label>
+          <ion-input type="text" [(ngModel)]=resetContact name="contact" formControlName="enterContact"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Area(s) of Expertise:</ion-label>
+          <ion-textarea [(ngModel)]=resetAreasOfExpertise name="areasOfExpertise" formControlName="enterAreasOfExpertise"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Ideal Way You Would Like to Contribute:</ion-label>
+          <ion-textarea [(ngModel)]=resetDesiredContribution name="desiredContribution" formControlName="enterDesiredContribution"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Links to Resume(s), Profile(s) or Relavent Work(s):</ion-label>
+          <ion-textarea [(ngModel)]=resetRelevantLinks name="relevantLinks" formControlName="enterRelevantLinks"></ion-textarea>
+        </ion-item>
+        <button ion-button type="submit" block large [disabled]="!collaboratorForm.valid" (click)="onSubmit(collaboratorForm.value)">
+          Submit 
+        </button>
+      </form>
+    </ion-list>
   </ion-card>
-  
-  
-  <button type="submit" block large [disabled]="!collaboratorForm.valid" (click)="onSubmit(collaboratorForm.value)">
-              Submit 
-             </button>
-  
-  
-  </ion-content>
+</ion-content>

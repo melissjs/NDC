@@ -7,14 +7,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-instructions',
   templateUrl: 'instructions.html',
 })
+
 export class InstructionsPage {
+  
   pageTitle: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.pageTitle = "Instructions";
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InstructionsPage');
   }
 
 }
