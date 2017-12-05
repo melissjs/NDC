@@ -2,12 +2,12 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>Username:</ion-label>
-      <ion-input type="text" formControlName="enterUsername" (blur)="onDirtyUsername()"></ion-input>
+      <ion-input type="text" formControlName="enterUsername" (ionBlur)="onDirtyUsername()"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Password:</ion-label>
-      <ion-input type="password" formControlName="enterPassword" (blur)="onDirtyPassword()"></ion-input>
+      <ion-input type="password" formControlName="enterPassword" (ionBlur)="onDirtyPassword()"></ion-input>
     </ion-item>
   </ion-list>
 

@@ -27,12 +27,12 @@
       <button ion-button type="button" (click)="onDonateClick()" block large>
         Donate 
       </button>
-      <div *ngIf="!restSvc.getLoggedIn()">
+      <div *ngIf="!authSvc.isLoggedIn()">
         <button color="secondary" ion-button type="button" (click)="onLoginClick()" block large>
           Login or Register
         </button>
       </div>
-      <logout></logout>
+      <logout *ngIf="authSvc.isLoggedIn()"></logout>
       
       <P style="color:red" *ngIf="errorMessage">{{errorMessage}}</P>
       

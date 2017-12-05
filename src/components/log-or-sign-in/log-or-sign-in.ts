@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Volunteer} from '../../models/volunteer';
+import { ResponseObj} from '../../models/response-obj';
 import { User} from '../../models/user';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
@@ -38,7 +39,7 @@ export class LogOrSignInComponent {
       this.errorMessage = 'ERROR: Username must be at least 3 characters';
     } else {
       this.errorMessage = null;
-      this.enterUsername = this.loginForm.value.enterUsername;
+      this.enterUsername = this.loginForm.value.enterUsername.toLowerCase();
     }
   }
 
@@ -53,12 +54,25 @@ export class LogOrSignInComponent {
 
   // TEST
   onLogin(): void { 
-    console.log("hi from login", this.loginForm.value.enterUsername);
+    this.newUser = {
+      username: this.loginForm.value.enterUsername.toLowerCase(),
+      password: this.loginForm.value.enterPassword,
+      volunteerKey: null
+    }
+    this.authSvc.signin(this.newUser)
+      .subscribe( 
+        (data: ResponseObj) => {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userId', data.userId);
+          this.navCtrl.setRoot('HomePage');
+        },
+        error => console.log(error)
+      );
   }
 
   onRegister(): void {
     this.newUser = {
-      username: this.loginForm.value.enterUsername,
+      username: this.loginForm.value.enterUsername.toLowerCase(),
       password: this.loginForm.value.enterPassword,
       volunteerKey: null
     }

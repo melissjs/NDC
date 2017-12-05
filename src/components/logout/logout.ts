@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @Component({
   selector: 'logout',
@@ -8,13 +9,10 @@ export class LogoutComponent {
 
   text: string;
 
-  constructor() {
-    console.log('Hello LogoutComponent Component');
-    this.text = 'Hello World';
-  }
+  constructor(private authSvc: AuthServiceProvider) {}
 
-  onLogout(){
-  // this.restSvc.onLogout(this,this.displayError);
+  onLogout() {
+    this.authSvc.logout();
   }
 
 }

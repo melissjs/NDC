@@ -9,6 +9,7 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 // import {MenuPage} from '../menu/menu';
 // Services
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 // Globals
 import * as globals from '../../globals';
 // import { LogInPage } from '../log-in/log-in';
@@ -26,9 +27,8 @@ export class HomePage {
   errorMessage: string;
 
 //userDataSvc: UserDataService;
-constructor(public navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider) {
-
-    this.navCtrl = navCtrl;
+constructor(public authSvc: AuthServiceProvider, public navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider) {
+    // this.navCtrl = navCtrl;
     this.buttonsDisabled = false;
     this.errorMessage = null;
     this.pageTitle = "Democracy Counts"
@@ -180,11 +180,6 @@ onLoginClick(){
       console.log('error in Submitting, exc='+ EE.toString())
   }
 }  
-
-// moved to logout component
-// onLogout() {
-//   // this.restSvc.onLogout(this,this.displayError);
-// }
 
   displayError(that:any,text: string,subtitle: string) {
       that.errorMessage = text + ':' + subtitle;

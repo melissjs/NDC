@@ -1,4 +1,8 @@
 export class ResponseObj {
-  message: any;
-  obj: any;
+  title?: any;
+  error?: any;
+  message?: any;
+  obj?: any;
+  token?: any;
+  userId?: any;
 }
