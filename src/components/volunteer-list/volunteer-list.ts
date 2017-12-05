@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 // Models
 import { Volunteer} from '../../models/volunteer';
-// Services
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
+
 
 @Component({
   selector: 'volunteer-list',

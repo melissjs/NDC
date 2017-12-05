@@ -4,6 +4,8 @@ import { Volunteer} from '../../models/volunteer';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { RecordServiceProvider } from '../../providers/record-service/record-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 // import { CheckLogin } from '../../components/check-login/check-login';
 
 @IonicPage()
@@ -19,7 +21,7 @@ export class VolunteerListPage {
   initialized: boolean;
 
   constructor(private navCtrl: NavController, private volunteerservice: VolunteerServiceProvider, 
-  private restSvc: RestServiceProvider, private recordservice: RecordServiceProvider) {
+  private restSvc: RestServiceProvider, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider) {
     this.pageTitle = "Volunteer List";
     // this.navCtrl = navCtrl;
     // true for testing

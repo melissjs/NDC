@@ -2,28 +2,31 @@
   <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
   
-<ion-content padding>
+<ion-content padding class="backgroundColor">
   
-  <ion-card *ngIf="initialized">
+  <volunteer-list *ngIf="authSvc.isLoggedIn()"></volunteer-list>
+
+  <!-- <ion-card *ngIf="initialized">
     <ion-list>
       <ion-list-header>Volunteer List: {{currentVolunteer.firstName}} {{currentVolunteer.lastName}}</ion-list-header>
       <ion-item *ngFor="let item of currentTeam">
         <ion-label>{{item.firstName}} {{item.lastName}} <span style=float:right *ngIf=item.exposeEmail>{{item.emailAddress}}</span></ion-label>
-        <!-- <ion-label *ngIf=item.exposeEmail>{{item.emailAddress}}</ion-label> -->
+        <ion-label *ngIf=item.exposeEmail>{{item.emailAddress}}</ion-label> OUT
       </ion-item>
     </ion-list>
-  </ion-card>
-  
+  </ion-card> -->
+
+<!--   
   <ion-card *ngIf="initialized">
     <ion-list>
-      <!--<ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header>-->
+      <ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header> OUT
       <ion-item>
       </ion-item>
     </ion-list>
-  </ion-card>
+  </ion-card> -->
   
 
-    <ion-card *ngIf="!initialized">
+    <ion-card *ngIf="!initialized && !authSvc.isLoggedIn()">
         <ion-list-header text-wrap>Volunteer List:
         </ion-list-header>
         <ion-item text-wrap>
@@ -38,8 +41,5 @@
     </button>
   
     <!-- <check-login></check-login> -->
-
-    <!-- TRY -->
-  <volunteer-list></volunteer-list>
 
 </ion-content>

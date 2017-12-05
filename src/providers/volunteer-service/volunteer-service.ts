@@ -1,6 +1,6 @@
 import { NDCS_BASE_URL } from './../../configuration/config';
 import { Http } from '@angular/http';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
@@ -15,6 +15,8 @@ import * as config from '../../configuration/config';
 // services
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 let baseURL = config.NDCS_BASE_URL;
 
  
@@ -39,7 +41,7 @@ export class VolunteerServiceProvider {
   usingReal: boolean;
   activeVolunteers: number;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authSvc: AuthServiceProvider) {
       this.currentVolunteer = null;
       // this.pollingstationservice = pollingstationservice;
       // this.restSvc = restSvc;
@@ -78,7 +80,7 @@ export class VolunteerServiceProvider {
 
   // GET ASSOCIATED VOLUNTEERS
   getVolunteers(): Observable<Volunteer[]> {
-    return this.http.get(baseURL + '/volunteers').map(
+    return this.http.get(baseURL + '/volunteers', {headers: new HttpHeaders().set('Authorization', this.authSvc.getToken())}).map(
       (data: ResponseObj) => {
         this.associatedVolunteerArray = [];
         for (let v of data.obj) {
