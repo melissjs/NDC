@@ -3,40 +3,22 @@
 </ion-header>
   
 <ion-content class="backgroundColor" padding>
-  
-    
-        <!-- <button type="button" item-left (click)="navCtrl.push(menupg);">
-          Menu
-        </button> -->
-    
-       <ion-card padding>
-    
-    
+  <ion-card padding>
     <img style="max-width:830px;" src="assets/imgs/DC.jpg">
-
-    
-    
-        <ion-item class='front' text-wrap>
-                Thank you for visiting the Democracy Counts 2018 Midterm Election Audit portal. The upcoming election is an important one and we are here to help people like you to collaborate with your friends and neighbors to establish community driven, independent audits of official election results on November 8th. Though audits are organized independently, our results will be standardized, fully aggregated, powerful tools for combating potential election fraud and voter suppression. 
-        </ion-item>
-
+    <ion-item class='front' text-wrap>
+      Thank you for visiting the Democracy Counts 2018 Midterm Election Audit portal. The upcoming election is an important one and we are here to help people like you to collaborate with your friends and neighbors to establish community driven, independent audits of official election results on November 8th. Though audits are organized independently, our results will be standardized, fully aggregated, powerful tools for combating potential election fraud and voter suppression. 
+    </ion-item>
     <button ion-button type="button" (click)="onVolunteerClick()" block large>
-        Volunteer 
+      Volunteer 
+    </button>
+    <button ion-button type="button" (click)="onDonateClick()" block large>
+      Donate 
+    </button>
+    <div *ngIf="!authSvc.isLoggedIn()">
+      <button color="secondary" ion-button type="button" (click)="onLoginOrRegisterClick()" block large>
+        Login or Register
       </button>
-      
-      <button ion-button type="button" (click)="onDonateClick()" block large>
-        Donate 
-      </button>
-      <div *ngIf="!authSvc.isLoggedIn()">
-        <button color="secondary" ion-button type="button" (click)="onLoginClick()" block large>
-          Login or Register
-        </button>
-      </div>
-      <logout *ngIf="authSvc.isLoggedIn()"></logout>
-      
-      <P style="color:red" *ngIf="errorMessage">{{errorMessage}}</P>
-      
-    
-       </ion-card>
-    
-    </ion-content>
+    </div>
+    <logout *ngIf="authSvc.isLoggedIn()"></logout>
+  </ion-card>
+</ion-content>

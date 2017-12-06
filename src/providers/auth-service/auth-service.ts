@@ -19,25 +19,20 @@ export class AuthServiceProvider {
     return this.http.post(baseURL + '/users/signin', body);
   }
 
-  // logout() {
-  //   localStorage.clear();
-  // }
-
   logout() {
-    let token =  localStorage.getItem('token');
-    var decoded = jwt_decode(token);
-    console.log(decoded);
-    }
-
-  isLoggedIn() {
-    return localStorage.getItem('token') !== null;
+    localStorage.clear();
   }
 
-  // isLoggedIn() {
-  //   let token =  localStorage.getItem('token');
-  //   var decoded = jwt_decode(token);
-  //   console.log(decoded);
-  // }
+  isLoggedIn() {
+    if (localStorage.getItem('token')) {
+      let token =  localStorage.getItem('token');
+      var decoded = jwt_decode(token);
+      let datetime = Math.floor(Date.now() / 1000);
+      return (token && decoded.exp > datetime) ? true : false;
+    } else {
+      return false;
+    }
+  }
 
   getToken() {
     return localStorage.getItem('token');

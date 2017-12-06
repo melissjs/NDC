@@ -78,7 +78,10 @@ export class LogOrSignInComponent {
     }
     this.authSvc.register(this.newUser)
       .subscribe( 
-        data => console.log(data),
+        data => {
+          this.navCtrl.setRoot('UnregisteredSignInPage');
+          console.log(data)
+        },
         error => console.log(error)
       );
   }
