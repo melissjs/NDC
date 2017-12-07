@@ -41,8 +41,8 @@ export class AuthServiceProvider {
   voidUser() {
     return {
       username: null,
-      password: null,
-      volunteerKey: null,
+      password: null
+      // volunteerKey: null,
     }
   }
 

@@ -357,21 +357,20 @@ export class VolunteerServiceProvider {
   }
 
 
-  setToVoidVolunteer(){
-          this.currentVolunteer = {
-          volunteerKey: '',
-          firstName: '',
-          lastName: '',
-          emailAddress: '',
-          exposeEmail: false,
-          phoneNumber: '',
-          age: null,
-          sex: '',
-          partyAffiliation: '',
-          shifts:[''], 
-          associatedPollingStationKey: null, 
-      }
-      return this.currentVolunteer;
+  voidVolunteer(){
+    return {
+      volunteerKey: '',
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      exposeEmail: false,
+      phoneNumber: '',
+      age: null,
+      sex: '',
+      partyAffiliation: '',
+      shifts:[''], 
+      associatedPollingStationKey: null, 
+    }
   }
 
 generateStationStats( /* passedStationKey */){

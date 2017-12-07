@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-// import { LoginPage } from '../loginpage/loginpage';
-// import { SuccessSplashPage } from '../../pages/success-splash/success-splash';
 import { Volunteer} from '../../models/volunteer';
 import { User} from '../../models/user';
-// Services
+import { ResponseObj} from '../../models/response-obj';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
-// Globals
 import * as globals from '../../globals';
+
 
 @Component({
   selector: 'user-profile',
@@ -17,7 +16,9 @@ import * as globals from '../../globals';
   inputs: ['newUser'],
   //providers: [RestService]
 })
+
 export class UserProfileComponent implements OnInit {
+
   newUser: User;
   newVolunteer: Volunteer;
   volunteerKey: string;
@@ -40,7 +41,6 @@ export class UserProfileComponent implements OnInit {
   enterTotalAmendmentRecords: number;
   enterPartyAffiliationFromList: string;
   enterOtherPartyAffiliation: string;
-  // volunteerservice: Volunteerservice;
   party: string;
   volunteers: Volunteer[];
   registerForm: FormGroup;
@@ -48,39 +48,14 @@ export class UserProfileComponent implements OnInit {
   dbPartyAffiliation: string;
   properties: any;
 
-  constructor(private navCtrl: NavController, navParams: NavParams, 
-              private alertCtrl: AlertController, public fb: FormBuilder, 
-              private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
-               
-      // this.navCtrl = navCtrl;
-      this.newVolunteer = null;
-      this.volunteerKey = null;
-      // this.enterUsername = 
-      this.enterFirstName = null;
-      this.enterLastName = null;
-      this.enterEmailAddress = null;
-      this.enterExposeEmail = false;
-      this.enterPhoneNumber = null;
-      this.enterAge = null;
-      this.enterSex = null;
-      this.enterPartyAffiliation = null;
-      this.enterPartyAffiliationFromList = null;
-      this.enterShifts = '';
-      this.enterPasscode = null;
-      this.enterPasscode1 = null;
-      this.enterPasscode2 = null;
-      this.enterTotalRecords = null;
-      this.enterTotalVoteRecords = null;
-      this.enterTotalAnomalyRecords = null;
-      this.enterTotalAmendmentRecords = null;
-      this.enterOtherPartyAffiliation = null;
-      // this.volunteerservice = volunteerservice;
-      // this.restSvc = restSvc;
-      this.properties = null;
+  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
+    this.newVolunteer = this.volunteerservice.voidVolunteer();
+    this.enterExposeEmail = false;
   }
 
   ngOnInit() {
-    console.log('user from profile component', this.newUser);
+    console.log('from init', this.newUser)
+    // this.newUser = this.navParams.get('newUser') || (this.authSvc.voidUser());
     this.registerForm = this.fb.group({  
       'enterUsername': [this.newUser.username, Validators.compose([Validators.required])],
       'enterFirstName': ['', Validators.compose([Validators.required])],
@@ -96,63 +71,21 @@ export class UserProfileComponent implements OnInit {
       'enterOtherPartyAffiliation':[''],
       'enterPasscode1': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPasscode2': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
-
-  });
-  }
-
-  onChangeFirstName(value){
-      this.enterFirstName = value;
-  }
-
-  onChangeLastName(value){
-    this.enterLastName = value;
-}
-
-  onChangeEmail(value){
-      this.enterEmailAddress = value;
-
-  }
-
-  /*
-    askToExposeEmail(){
-    
-    let confirm = this.alertCtrl.create({
-    title: 'Would you like to expose your email address to your team?',
-    message: 'This will help you organize with each other before and on election day. You can change this setting later in your account.',
-    buttons: [
-    {
-    text: 'No',
-    handler: () => {
-    this.enterExposeEmail = false;
-    console.log('Disagree clicked');
-    }
-    },
-    {
-    text: 'Yes',
-    handler: () => {
-    this.enterExposeEmail = true;
-    console.log('Agree clicked' + this.enterExposeEmail);
-    
-    }
-    }
-    ]
     });
-    confirm.present();
-    
-    
-    }
-  */
+  }
 
   toTitleCase(str){
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
 
-  // onChangeExposeEmail(value){
-  //   console.log('value before' + value);
-  //     var newval = !value;
-  //     console.log('checked in now:' + newval);
-  //     this.enterExposeEmail = newval;
-  // }
+  onChangePartyAffiliationFromList(value, otherParty, passcode){
+      this.enterPartyAffiliationFromList = value;
+      if (value == "Other Party") {
+          otherParty.setFocus();
+      } else {
+          passcode.setFocus();
+      }
+  }
 
   onChangeExposeEmail(e){
     console.log('value before:' + this.enterExposeEmail);
@@ -161,123 +94,101 @@ export class UserProfileComponent implements OnInit {
       this.enterExposeEmail = newval;
   }
 
-  onChangePhoneNumber(value){
-      this.enterPhoneNumber = value;
-  }
-
-  onChangeAge(value){
-      this.enterAge = value;
-  }
-
-  onChangeSex(value){
-      this.enterSex = value;
-  }
-
-  onChangePartyAffiliationFromList(value, otherParty, passcode){
-      this.enterPartyAffiliationFromList = value;
-      /*if (this.enterPartyAffiliationFromList!=="other"){
-        this.enterOtherPartyAffiliation=null;
-        this.enterPartyAffiliation=this.enterPartyAffiliationFromList;
-        }*/
-      if (value == "Other Party") {
-          otherParty.setFocus();
-      } else {
-          passcode.setFocus();
-      }
-  }
-
-  onChangeOtherPartyAffiliation(value){
-      this.enterOtherPartyAffiliation = value;
-      /*if (this.enterPartyAffiliationFromList=="other" && this.enterOtherPartyAffiliation!==null){
-        this.enterPartyAffiliation=this.enterOtherPartyAffiliation;
-        }*/
-  }
-
-  onChangePasscode1(value){
-      this.enterPasscode1 = value;
-  }
-
-  onChangePasscode2(value){
-      this.enterPasscode2 = value;
-      if (this.enterPasscode1==this.enterPasscode2){
-          this.enterPasscode=this.enterPasscode1;
-      }
-  }
-
-  presentVerificationInit() {
-      let alertpvi = this.alertCtrl.create({
-          title: 'Verify Phone Number',
-          subTitle: 'How would you like to be sent the code',
-          buttons: [
-              {
-                  text: 'Cancel',
-                  role: 'cancel',
-                  handler: data => {
-                      console.log('Cancel clicked.. nothing to do');
-                  }
-              },
-              {
-                  text: 'Voice Call',
-                  handler: data => {
-                      let navTransition = alertpvi.dismiss();
-                      this.verifyPhoneNumber('call');
-                  }
-              },
-              {
-                  text: 'SMS Text',
-                  handler: data => {
-                      let navTransition = alertpvi.dismiss();
-                      this.verifyPhoneNumber('sms');
-                  }
-              }
-          ]
-      });
-      //timeout the error to let other modals finish dismissing.
-      setTimeout(()=>{
-          alertpvi.present();
-      },500);
-  }
+  // presentVerificationInit() {
+  //     let alertpvi = this.alertCtrl.create({
+  //         title: 'Verify Phone Number',
+  //         subTitle: 'How would you like to be sent the code',
+  //         buttons: [
+  //             {
+  //                 text: 'Cancel',
+  //                 role: 'cancel',
+  //                 handler: data => {
+  //                     console.log('Cancel clicked.. nothing to do');
+  //                 }
+  //             },
+  //             {
+  //                 text: 'Voice Call',
+  //                 handler: data => {
+  //                     let navTransition = alertpvi.dismiss();
+  //                     this.verifyPhoneNumber('call');
+  //                 }
+  //             },
+  //             {
+  //                 text: 'SMS Text',
+  //                 handler: data => {
+  //                     let navTransition = alertpvi.dismiss();
+  //                     this.verifyPhoneNumber('sms');
+  //                 }
+  //             }
+  //         ]
+  //     });
+  //     //timeout the error to let other modals finish dismissing.
+  //     setTimeout(()=>{
+  //         alertpvi.present();
+  //     },500);
+  // }
 
   onSubmit(): void {
 
-      if(this.registerForm.value.enterPasscode1 == this.registerForm.value.enterPasscode2){
-          this.enterPasscode = this.registerForm.value.enterPasscode1;
-      } else {
+    // CHECK PASSWORDS
+    if(this.registerForm.value.enterPasscode1 == this.registerForm.value.enterPasscode2){
+        this.enterPasscode = this.registerForm.value.enterPasscode1;
+    } else {
+        let passwordAlert = this.alertCtrl.create({
+          title: 'Passwords do not match',
+          subTitle: 'Please re-enter your passcodes.',
+          buttons: ['OK'] 
+        });
+        passwordAlert.present();
+        return;
+    }
 
-          let pcalert = this.alertCtrl.create({
-              title: 'Passwords do not match',
-              subTitle: 'Please re-enter your passcodes.',
-              buttons: ['OK'] 
-          });
-          pcalert.present();
-          return;
+    // CHECK PARTY
+    if (this.enterPartyAffiliationFromList!="Other Party"){
+      this.newVolunteer.partyAffiliation = this.enterPartyAffiliationFromList;
+    } else if (this.enterPartyAffiliationFromList=="Other Party" && this.registerForm.value.enterOtherPartyAffiliation) {
+      this.newVolunteer.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliation);
+    }
+
+    // SET NEWVOLUNTEER
+    this.newVolunteer.firstName = this.toTitleCase(this.registerForm.value.enterFirstName);
+    this.newVolunteer.lastName = this.toTitleCase(this.registerForm.value.enterLastName);
+    this.newVolunteer.emailAddress = this.registerForm.value.enterEmailAddress.toLowerCase();
+    this.newVolunteer.exposeEmail = this.enterExposeEmail;
+    this.newVolunteer.phoneNumber = this.registerForm.value.enterPhoneNumber;
+    this.newVolunteer.age = this.registerForm.value.enterAge;
+    this.newVolunteer.sex = this.enterSex;
+    this.newVolunteer.shifts = [''];
+    this.newVolunteer.associatedPollingStationKey = null;
+
+    // SET NEWUSER
+    console.log('before', this.newUser);
+    this.newUser.username = this.registerForm.value.enterUsername;
+    this.newUser.password = this.enterPasscode;
+    console.log('after', this.newUser);
+    // this.newUser.volunteerKey = null;
+
+    // CREATE USER AND VOLUNTEER THEN SIGNIN
+    this.authSvc.register(this.newUser).subscribe(
+      (rData: ResponseObj) => {
+        this.authSvc.signin(this.newUser).subscribe(
+          (sData: ResponseObj) => {
+            localStorage.setItem('token', sData.token);
+            localStorage.setItem('userId', sData.userId);
+            this.newVolunteer.volunteerKey = sData.userId;
+            this.volunteerservice.saveVolunteer(this.newVolunteer);
+          },
+          error => {}
+        );
+      },
+      error => {
+        // console.log(error.error.title, error.error.message)
+        console.log(error)
       }
+    );
 
-      // SET VALUES FROM TEXT INPUTS
-      this.newVolunteer.firstName = this.toTitleCase(this.registerForm.value.enterFirstName);
-      this.newVolunteer.lastName = this.toTitleCase(this.registerForm.value.enterLastName);
-      this.newVolunteer.emailAddress = this.registerForm.value.enterEmailAddress.toLowerCase();
-      this.newVolunteer.exposeEmail = this.enterExposeEmail;
-      this.newVolunteer.phoneNumber = this.registerForm.value.enterPhoneNumber;
-      this.newVolunteer.age = this.registerForm.value.enterAge;
-      this.newVolunteer.sex = this.enterSex;
-
-      if (this.enterPartyAffiliationFromList!="Other Party"){
-          this.newVolunteer.partyAffiliation = this.enterPartyAffiliationFromList;
-      } else if (this.enterPartyAffiliationFromList=="Other Party" && this.registerForm.value.enterOtherPartyAffiliation){
-          this.newVolunteer.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliation);
-      }
-      this.newVolunteer.shifts = [''];
-      this.newVolunteer.associatedPollingStationKey = null;
-
-      //push volunteer to volunteerlist IS WORKING? CONSOLE LOG NOT WORKING
-      //This is only necessary for the "fake" version .. since we don't use
-      //this list for the "real" one.
-      // this.volunteerservice.setNewVolunteer(this.newVolunteer);
-      this.volunteerservice.saveVolunteer(this.newVolunteer);
-      
-      // ERICS Call
-      // this.presentVerificationInit();
+    // ERICS Call
+    // this.presentVerificationInit();
       
   }
 
