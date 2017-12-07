@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Volunteer} from '../../models/volunteer';
@@ -13,9 +13,11 @@ import * as globals from '../../globals';
 @Component({
   selector: 'log-or-sign-in',
   templateUrl: 'log-or-sign-in.html',
+  outputs: ['loginStatus']
   // inputs: ['Volunteer']
 })
 export class LogOrSignInComponent {
+  loginStatus: EventEmitter<any>
   loginForm: FormGroup;
   newUser: User;
   volunteerHere: Volunteer;
@@ -27,6 +29,7 @@ export class LogOrSignInComponent {
   authenticatingVolunteerPasscode: string;
     
   constructor(private navCtrl: NavController, private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider ) {
+    this.loginStatus = new EventEmitter<any>();
     this.loggedIn = false;
     this.loginForm = fb.group({  
       'enterUsername': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -64,9 +67,13 @@ export class LogOrSignInComponent {
         (data: ResponseObj) => {
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', data.userId);
-          this.navCtrl.setRoot('HomePage');
+          this.loginStatus.emit(data);
+          // this.navCtrl.setRoot('HomePage');
         },
-        error => console.log(error)
+        error => {
+          this.loginStatus.emit(error);
+          console.log("error from component", error)
+        }
       );
   }
 
@@ -76,14 +83,15 @@ export class LogOrSignInComponent {
       password: this.loginForm.value.enterPassword,
       volunteerKey: null
     }
-    this.authSvc.register(this.newUser)
-      .subscribe( 
-        data => {
-          this.navCtrl.setRoot('UnregisteredSignInPage');
-          console.log(data)
-        },
-        error => console.log(error)
-      );
+    // this.authSvc.register(this.newUser)
+    //   .subscribe( 
+    //     data => {
+    //       this.navCtrl.setRoot('UnregisteredSignInPage');
+    //       console.log(data)
+    //     },
+    //     error => console.log(error)
+    //   );
+    this.navCtrl.push('UnregisteredSignInPage', { user: this.newUser });
   }
 
   // onSubmit(value: any): void { 

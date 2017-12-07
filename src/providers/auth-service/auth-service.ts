@@ -38,4 +38,12 @@ export class AuthServiceProvider {
     return localStorage.getItem('token');
   }
 
+  voidUser() {
+    return {
+      username: null,
+      password: null,
+      volunteerKey: null,
+    }
+  }
+
 }

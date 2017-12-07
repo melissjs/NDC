@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-// import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-// import { SuccessSplashPage } from '../success-splash/success-splash';
-// import { Volunteer} from '../../models/volunteer';
-// // Services
+import { Volunteer} from '../../models/volunteer';
+import { User} from '../../models/user';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 // import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 // import { RestServiceProvider } from '../../providers/rest-service/rest-service';
-// // Globals
 // import * as globals from '../../globals';
 
 @IonicPage()
@@ -17,7 +15,24 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class UnregisteredSignInPage {
   pageTitle: string;
-  constructor() {
+  newUser: User;
+
+  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams) {
     this.pageTitle = "Register";
+    this.newUser = (this.navParams.get('user') || this.authSvc.voidUser);
+    console.log('user from unreg', this.newUser)
   }
+
+  // onRegister() {
+  //   // set user
+  //   this.authSvc.register(this.newUser)
+  //   .subscribe( 
+  //     data => {
+  //       console.log(data)
+  //         // set volunteer
+  //           // login user
+  //     },
+  //     error => console.log(error)
+  //   );
+  // }
 }

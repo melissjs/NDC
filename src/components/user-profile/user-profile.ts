@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 // import { LoginPage } from '../loginpage/loginpage';
 // import { SuccessSplashPage } from '../../pages/success-splash/success-splash';
 import { Volunteer} from '../../models/volunteer';
+import { User} from '../../models/user';
 // Services
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
@@ -13,11 +14,14 @@ import * as globals from '../../globals';
 @Component({
   selector: 'user-profile',
   templateUrl: 'user-profile.html',
+  inputs: ['newUser'],
   //providers: [RestService]
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
+  newUser: User;
   newVolunteer: Volunteer;
   volunteerKey: string;
+  enterUsername: string;
   enterFirstName: string;
   enterLastName: string;
   enterEmailAddress: string;
@@ -47,11 +51,13 @@ export class UserProfileComponent {
   constructor(private navCtrl: NavController, navParams: NavParams, 
               private alertCtrl: AlertController, public fb: FormBuilder, 
               private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
+               
       // this.navCtrl = navCtrl;
       this.newVolunteer = null;
       this.volunteerKey = null;
+      // this.enterUsername = 
       this.enterFirstName = null;
-      this. enterLastName = null;
+      this.enterLastName = null;
       this.enterEmailAddress = null;
       this.enterExposeEmail = false;
       this.enterPhoneNumber = null;
@@ -71,38 +77,27 @@ export class UserProfileComponent {
       // this.volunteerservice = volunteerservice;
       // this.restSvc = restSvc;
       this.properties = null;
+  }
 
-      this.registerForm = fb.group({  
-          'enterFirstName': ['', Validators.compose([Validators.required])],
-          'enterLastName': ['', Validators.compose([Validators.required])],
-          'enterEmailAddress': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
-          'enterExposeEmailCtrl': [null],// had '' then i put false? https://forum.ionicframework.com/t/checkbox-validation/55400/8
-          'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
-          'enterAge': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
-          'sexCtrl': ['' , Validators.required],
-          'partyAffiliationCtrl': ['' , Validators.required],
-          // 'otherPartyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation],
-          //'shiftsCtrl': [this.newVolunteer.shifts],
-          'enterOtherPartyAffiliation':[''],
-          'enterPasscode1': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-          'enterPasscode2': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+  ngOnInit() {
+    console.log('user from profile component', this.newUser);
+    this.registerForm = this.fb.group({  
+      'enterUsername': [this.newUser.username, Validators.compose([Validators.required])],
+      'enterFirstName': ['', Validators.compose([Validators.required])],
+      'enterLastName': ['', Validators.compose([Validators.required])],
+      'enterEmailAddress': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
+      'enterExposeEmailCtrl': [null],// had '' then i put false? https://forum.ionicframework.com/t/checkbox-validation/55400/8
+      'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
+      'enterAge': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
+      'sexCtrl': ['' , Validators.required],
+      'partyAffiliationCtrl': ['' , Validators.required],
+      // 'otherPartyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation],
+      //'shiftsCtrl': [this.newVolunteer.shifts],
+      'enterOtherPartyAffiliation':[''],
+      'enterPasscode1': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
+      'enterPasscode2': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
 
-      });
-
-      //ATTEMP TO FIX PROBLEM
-      this.newVolunteer = {
-          volunteerKey: null,
-          firstName: null,
-          lastName: null,
-          emailAddress: null,
-          exposeEmail: false,
-          phoneNumber: null,
-          age:null,
-          sex: null,
-          partyAffiliation: null,
-          shifts:[''], 
-          associatedPollingStationKey:null
-      }
+  });
   }
 
   onChangeFirstName(value){
