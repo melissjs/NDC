@@ -112,15 +112,15 @@ export class VolunteerServiceProvider {
 
   // SAVE NEWLY REGISTERED VOLUNTEER
   saveVolunteer(body: Volunteer) {
-    this.http.post(baseURL + '/volunteers/add', body)
-    .subscribe(
-      res => {
-          console.log(res);
-      },
-      (err: HttpErrorResponse) => {
-          this.handleAngularJsonBug(err);
-      }
-    )
+    return this.http.post(baseURL + '/volunteers/add', body, {headers: new HttpHeaders().set('Authorization', this.authSvc.getToken())});
+    // .subscribe(
+    //   res => {
+    //       console.log(res);
+    //   },
+    //   (err: HttpErrorResponse) => {
+    //       this.handleAngularJsonBug(err);
+    //   }
+    // )
   }
 
   /* 

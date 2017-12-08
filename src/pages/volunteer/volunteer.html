@@ -2,33 +2,22 @@
   <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
   
-  <ion-content class="backgroundColor" padding>  
-  
-    <ion-card padding>
-    
-  <img style="max-width:830px;" src="../../img/quote2.jpg">
-  
-  
-            <button ion-button [disabled]="restSvc.getLoggedIn()" type="submit" (click)="onRegister()" block large>
-              Register to Volunteer  
-             </button>
-  
-             <button ion-button type="submit" (click)="onFindPolling()" block large>
-              Find a Polling Location 
-             </button>
-  
-             <button ion-button type="submit" (click)="onAddPolling()" block large>
-              Add a Polling Location
-             </button>
-  
-  <!--
-             <a href="https://www.usa.gov/election-office" target="_blank">
-              <button type="submit" block large>
-              U.S. Polling Location Reference
-             </button>
-            </a>
-  -->
-  
-    </ion-card>
-  
-  </ion-content>
+<ion-content class="backgroundColor" padding>  
+  <ion-card padding>
+    <img style="max-width:830px;" src="../../img/quote2.jpg">
+    <button *ngIf="!authSvc.isLoggedIn()" ion-button (click)="onRegister()" block large>
+        Register to Volunteer  
+    </button>
+    <button ion-button (click)="onFindPolling()" block large>
+      Find a Polling Location 
+    </button>
+    <button ion-button (click)="onAddPolling()" block large>
+      Add a Polling Location
+    </button>
+    <!-- <a href="https://www.usa.gov/election-office" target="_blank">
+      <button block large>
+        U.S. Polling Location Reference
+      </button>
+    </a> -->
+  </ion-card>
+</ion-content>

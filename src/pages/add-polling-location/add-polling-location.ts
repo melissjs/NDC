@@ -1,18 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-// Pages
 // import {PollingstationdetailsPage} from '../pollingstationdetails/pollingstationdetails';
 // import {DuplicatepollingstationPage} from '../duplicatepollingstation/duplicatepollingstation';
-// import { UnregisteredsigninPage } from '../unregisteredsignin/unregisteredsignin';
-// Models
 import { PollingStation } from '../../models/pollingstation';
 import { Volunteer} from '../../models/volunteer';
-// Services
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
-// Globals
 import * as globals from '../../globals';
 
 @IonicPage()
@@ -21,11 +16,12 @@ import * as globals from '../../globals';
   templateUrl: 'add-polling-location.html',
   // inputs: ['pollingstation', 'volunteer'],
 })
+
 export class AddPollingLocationPage {
+
   pageTitle: string;
   pollingStationKey: string;
   newPollingStation: PollingStation;
-  // pollingStationService: Pollingstationservice;
   stations: PollingStation[];
   precinctNumber: string;
   streetAddress: string;
@@ -39,19 +35,14 @@ export class AddPollingLocationPage {
   totalNeededVolunteers: number;
   totalRemainingShiftsToFill: number;
   currentVolunteerHere: Volunteer;
-  // volunteerservice: Volunteerservice;
   addPollingLocationForm: FormGroup;
-  titlec: {page: any, title: string};
-      // loggedIn: boolean;
-      constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, 
-private pollingStationService: PollingStationServiceProvider, private volunteerservice: VolunteerServiceProvider, public fb: FormBuilder, private restSvc: RestServiceProvider) {
+  loggedIn: boolean;
+
+  constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, private pollingStationService: PollingStationServiceProvider, private volunteerservice: VolunteerServiceProvider, public fb: FormBuilder, private restSvc: RestServiceProvider) {
+
     this.pageTitle = "Add Polling Location";
-    this.navCtrl = navCtrl;
-    this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
-    this.restSvc = restSvc;
-    this.pollingStationService = pollingStationService;
     this.stations = pollingStationService.getStations();
-    this.pollingStationKey = this.pollingStationService.generatePollingStationKey();
+    // this.pollingStationKey = this.pollingStationService.generatePollingStationKey();
     this.precinctNumber = null;
     this.streetAddress = null;
     this.unitNumber = null;
@@ -63,12 +54,8 @@ private pollingStationService: PollingStationServiceProvider, private volunteers
     this.totalNeededVolunteers = null;
     this.totalRemainingShiftsToFill = null;
     this.volunteerservice = volunteerservice;
-          // this.loggedIn = false;
-          this.restSvc.getLoggedIn();
-  
-          this.currentVolunteerHere = this.volunteerservice.getNewVolunteer();
-  
-  
+    this.restSvc.getLoggedIn();
+    this.currentVolunteerHere = this.volunteerservice.getNewVolunteer();
   
   /* old way
      if(volunteerservice.currentVolunteer!==null){
@@ -96,46 +83,23 @@ private pollingStationService: PollingStationServiceProvider, private volunteers
   } */
   
   // instantiate blank station
-  this.newPollingStation = {
-            pollingStationKey: this.pollingStationKey,
-            precinctNumber: '',
-            streetAddress: '',
-            unitNumber: '',
-            roomNumber: '',
-            city: '',
-            state: '',
-            zip: null,
+    this.newPollingStation = this.pollingStationService.voidStation();
+
+    this.addPollingLocationForm = fb.group({  
+      'enterPrecinctNumber': ['', Validators.compose([Validators.required])],
+      'enterStreetAddress': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'enterUnitNumber': [''],
+      'enterRoomNumber': [''],
+      'enterCity': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterState': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterZip': ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(globals.REGEXZIP)])],
+    });
+
   }
   
-  
-  
-     
-          //form stuff
-          var regExEmail: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
-          var regExPhone: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';
-          var regExAge: string = '[1]*[0-9]?[0-9]';
-          var regExLettersOnly: string = '[a-ZA-Z]+';
-          var regExNumbersOnly: string = '[0-9]*';
-          var regExZip: string = '[0-9]{5}[-]?[0-9]?[0-9]?[0-9]?[0-9]?';
-  
-          this.addPollingLocationForm = fb.group({  
-              'enterPrecinctNumber': ['', Validators.compose([Validators.required])],
-              'enterStreetAddress': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-              'enterUnitNumber': [''],
-              'enterRoomNumber': [''],
-              'enterCity': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-              'enterState': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-              'enterZip': ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.pattern(regExZip)])],
-              
-  
-          });
-  
-    // constructor end
-    }
-  
-    toTitleCase(str){
-          return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-      }
+  toTitleCase(str){
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
   
   onChangePrecinctNumber(value){
     //this.precinctNumber = value;
@@ -189,22 +153,7 @@ private pollingStationService: PollingStationServiceProvider, private volunteers
   }
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
         onSubmit(value: any): void {
-  
-  
-  
           // instantiate new station
   //console.log('from value: ' + value.enterPrecinctNumber);
           this.newPollingStation = {

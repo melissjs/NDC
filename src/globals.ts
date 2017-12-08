@@ -18,3 +18,6 @@ export const OTHER: string = 'Other Party';
 export const REGEXPHONE: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';
 export const REGEXEMAIL: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
 export const REGEXAGE: string = '[1]*[0-9]?[0-9]';
+export const REGEXZIP: string = '[0-9]{5}[-]?[0-9]?[0-9]?[0-9]?[0-9]?';
+export const REGEXLETTERSONLY: string = '[a-ZA-Z]+';
+export const REGEXNUMBERSONLY: string = '[0-9]*';

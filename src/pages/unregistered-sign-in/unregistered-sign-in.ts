@@ -19,7 +19,7 @@ export class UnregisteredSignInPage {
 
   constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams) {
     this.pageTitle = "Register";
-    this.newUser = (this.navParams.get('user') || this.authSvc.voidUser);
+    this.newUser = (this.navParams.get('user') || this.authSvc.voidUser());
     console.log('user from unreg', this.newUser)
   }
 

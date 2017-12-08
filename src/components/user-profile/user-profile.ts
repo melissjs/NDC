@@ -22,6 +22,10 @@ export class UserProfileComponent implements OnInit {
   newUser: User;
   newVolunteer: Volunteer;
   volunteerKey: string;
+  errorTitle: string;
+  errorAlert: any;
+  errorMessage: string;
+  registerForm: FormGroup;
   enterUsername: string;
   enterFirstName: string;
   enterLastName: string;
@@ -41,12 +45,11 @@ export class UserProfileComponent implements OnInit {
   enterTotalAmendmentRecords: number;
   enterPartyAffiliationFromList: string;
   enterOtherPartyAffiliation: string;
-  party: string;
-  volunteers: Volunteer[];
-  registerForm: FormGroup;
-  dbSex: string;
-  dbPartyAffiliation: string;
-  properties: any;
+  // party: string;
+  // volunteers: Volunteer[];
+  // dbSex: string;
+  // dbPartyAffiliation: string;
+  // properties: any;
 
   constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
     this.newVolunteer = this.volunteerservice.voidVolunteer();
@@ -92,6 +95,14 @@ export class UserProfileComponent implements OnInit {
       var newval = !this.enterExposeEmail;
       console.log('checked in now:' + newval);
       this.enterExposeEmail = newval;
+  }
+
+  createErrorAlert(title: string, message: string) {
+    this.errorAlert = this.alertCtrl.create({
+      title: this.errorTitle,
+      subTitle: this.errorMessage,
+      buttons: ['Dismiss']
+    });
   }
 
   // presentVerificationInit() {
@@ -163,7 +174,8 @@ export class UserProfileComponent implements OnInit {
 
     // SET NEWUSER
     console.log('before', this.newUser);
-    this.newUser.username = this.registerForm.value.enterUsername;
+    // this.newUser.username = this.registerForm.value.enterUsername;
+    this.newUser.username = undefined;
     this.newUser.password = this.enterPasscode;
     console.log('after', this.newUser);
     // this.newUser.volunteerKey = null;
@@ -176,14 +188,34 @@ export class UserProfileComponent implements OnInit {
             localStorage.setItem('token', sData.token);
             localStorage.setItem('userId', sData.userId);
             this.newVolunteer.volunteerKey = sData.userId;
-            this.volunteerservice.saveVolunteer(this.newVolunteer);
+            this.volunteerservice.saveVolunteer(this.newVolunteer).subscribe(
+              vData => {
+                this.navCtrl.setRoot('HomePage');
+              },
+              error => {
+                console.log(error.error.error)
+                this.errorTitle = error.error.title;
+                this.errorMessage = error.error.error.message;
+                this.createErrorAlert(this.errorTitle, this.errorMessage);
+                this.errorAlert.present();
+              }
+            );
           },
-          error => {}
+          error => {
+            console.log(error.error.error)
+            this.errorTitle = error.error.title;
+            this.errorMessage = error.error.error.message;
+            this.createErrorAlert(this.errorTitle, this.errorMessage);
+            this.errorAlert.present();
+          }
         );
       },
       error => {
-        // console.log(error.error.title, error.error.message)
-        console.log(error)
+        console.log(error.error.error)
+        this.errorTitle = error.error.title;
+        this.errorMessage = error.error.error.message;
+        this.createErrorAlert(this.errorTitle, this.errorMessage);
+        this.errorAlert.present();
       }
     );
 

@@ -41,6 +41,19 @@ export class PollingStationServiceProvider {
       //this.volunteerservice = volunteerservice;
   }
 
+  voidStation() {
+    return {
+      pollingStationKey: '',
+      precinctNumber: '',
+      streetAddress: '',
+      unitNumber: '',
+      roomNumber: '',
+      city: '',
+      state: '',
+      zip: null,
+    }
+  }
+
   getStations() {
       if (!this.usingReal) {
           if (this.stationListInMemory == null) {
