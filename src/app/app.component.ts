@@ -3,16 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-// import { HomePage } from '../pages/home/home';
-// import { ListPage } from '../pages/list/list';
-// import { InstructionsPage } from '../pages/instructions/instructions';
-// import { FaqPage } from '../pages/faq/faq';
-// import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
-// import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
-// import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
-// import { ActivityRecordPage } from './../pages/activity-record/activity-record';
-// import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
-// import { LogInPage } from '../pages/log-in/log-in';
 
 @Component({
   templateUrl: 'app.html'
@@ -40,7 +30,8 @@ export class MyApp {
       { title: 'Audit Training', component: 'AuditTrainingPage' },
       { title: 'Audit Checklist', component: 'AuditCheckListPage' },
       { title: 'Promote', component: 'PromotePage' },
-      { title: 'Contact Us', component: 'ContactPage' }
+      { title: 'Contact Us', component: 'ContactPage' },
+      { title: 'Account Settings', component: 'AccountSettingsPage' }
     ];
 
     this.rightPages = [

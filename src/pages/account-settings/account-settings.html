@@ -159,7 +159,6 @@
             <ion-option value="Late Evening">Late Evening</ion-option>
           </ion-select> 
         </ion-item> 
-<!--
   <ion-item>
     <ion-label stacked>Passcode:</ion-label>
     <ion-input (click)="wasThisTouched()" type="password" formControlName="passcodeCtrl" [ngModel]="promptPWD"  (change)="onConfirmOldPasscode(promptPWD)"></ion-input>
@@ -173,13 +172,8 @@
 
 
 <!-- currentTempVolunteer.fullName!=null -->
-  <button *ngIf="restSvc.getLoggedIn()" type="submit" [disabled]="!changeForm.valid" (click)="onSubmit(changeForm.value)" block large>
+  <button *ngIf="authSvc.isLoggedIn()" type="submit" [disabled]="!changeForm.valid" (click)="onSubmit(changeForm.value)" block large>
     Submit
   </button>
 
-
-
- <!--  <p>Form: {{ changeForm.value | json }}</p> 
-<p>Form Status: {{ changeForm.status }}</p> -->
-
-      </ion-content>
+</ion-content>

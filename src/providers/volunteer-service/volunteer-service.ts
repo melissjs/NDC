@@ -4,22 +4,17 @@ import { HttpClient, HttpErrorResponse, HttpResponse, HttpHeaders } from '@angul
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
-// interfaces
 import { Volunteer} from '../../models/volunteer';
 import { PollingStation } from '../../models/pollingstation';
 import { ResponseObj } from '../../models/response-obj';
-// globals
 import * as globals from '../../globals';
-// config
 import * as config from '../../configuration/config';
-// services
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-
 let baseURL = config.NDCS_BASE_URL;
 
- 
+
 @Injectable()
 export class VolunteerServiceProvider {
 
@@ -42,18 +37,19 @@ export class VolunteerServiceProvider {
   activeVolunteers: number;
 
   constructor(private http: HttpClient, private authSvc: AuthServiceProvider) {
-      this.currentVolunteer = null;
-      // this.pollingstationservice = pollingstationservice;
-      // this.restSvc = restSvc;
-      this.volunteerListInMemory = null; // set VOLUNTEERS; later (if at all)
-      this.notRegistered = "None";
-      this.associatedVolunteerArray = [];
-      this.shiftsFilled = 0;
-      this.usingReal = false;
-      this.activeVolunteers = 1; // this volunteer for now..
+    this.currentVolunteer = null;
+    // this.pollingstationservice = pollingstationservice;
+    // this.restSvc = restSvc;
+    this.volunteerListInMemory = null; // set VOLUNTEERS; later (if at all)
+    this.notRegistered = "None";
+    this.associatedVolunteerArray = [];
+    this.shiftsFilled = 0;
+    this.usingReal = false;
+    this.activeVolunteers = 1; // this volunteer for now..
 
-      // if no one is logged in creat void volunteer 
-      // this.restSvc.checkLoggedIn(this.setLoginTrue, this.setLoginFalse,this);
+    // if no one is logged in creat void volunteer 
+    this.currentVolunteer = this.getNewVolunteer() || this.voidVolunteer();
+    // this.restSvc.checkLoggedIn(this.setLoginTrue, this.setLoginFalse,this);
   }
   
   /*

@@ -17,6 +17,7 @@ import { PollingstationComponent } from '../../components/pollingstation/polling
 import { ChangePasswordComponent } from '../../components/change-password/change-password';
 // Providers
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 
@@ -48,23 +49,18 @@ export class AccountSettingsPage {
   titlec: {page: any, title: string};
   loggingout :boolean;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
+  constructor(public authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
     this.pageTitle = "Account Settings"    
-      // this.navCtrl = navCtrl;
-      // this.titlec = { page: navParams.get("menupg"), title: navParams.get("title") };
-      // this.volunteerservice = volunteerservice; 
-      // this.pollingstationservice = pollingstationservice;
-      // this.restSvc = restSvc;
-      this.resetPasscode = false;
-      // this.loggedIn = false;
-      this.passChange = false;
-      this.volunteerservice.associatedVolunteerArray = [];
+    this.resetPasscode = false;
+    // this.loggedIn = false;
+    this.passChange = false;
+    this.volunteerservice.associatedVolunteerArray = [];
 
 
-      this.restSvc.getLoggedIn();
-      // this.loggedIn = false;
-      this.currentTempVolunteer = this.volunteerservice.getNewVolunteer();
-      this.loggingout = false;
+    this.restSvc.getLoggedIn();
+    // this.loggedIn = false;
+    this.currentTempVolunteer = this.volunteerservice.getNewVolunteer();
+    this.loggingout = false;
 
 //for Testing only
       /*
