@@ -4,9 +4,11 @@
   
 <ion-content class="backgroundColor" padding>  
   <ion-card padding>
-    <img style="max-width:830px;" src="../../img/quote2.jpg">
+    <ion-item text-wrap>
+      Join an audit by finding an existing polling location in our list or add one to the list yourself if you don't see a location in the area you wish to volunteer.
+    </ion-item>
     <button *ngIf="!authSvc.isLoggedIn()" ion-button (click)="onRegister()" block large>
-        Register to Volunteer  
+      Register to Volunteer  
     </button>
     <button ion-button (click)="onFindPolling()" block large>
       Find a Polling Location 

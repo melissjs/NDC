@@ -174,8 +174,7 @@ export class UserProfileComponent implements OnInit {
 
     // SET NEWUSER
     console.log('before', this.newUser);
-    // this.newUser.username = this.registerForm.value.enterUsername;
-    this.newUser.username = undefined;
+    this.newUser.username = this.registerForm.value.enterUsername.toLowerCase();
     this.newUser.password = this.enterPasscode;
     console.log('after', this.newUser);
     // this.newUser.volunteerKey = null;
