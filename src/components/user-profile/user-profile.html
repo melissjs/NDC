@@ -3,6 +3,7 @@
     <ion-item>
       <ion-label stacked>Username:</ion-label>
       <ion-input type="text" formControlName="enterUsername"></ion-input>
+      <p *ngIf="registerForm.controls['enterUsername'].errors && registerForm.controls['enterUsername'].dirty ">error shows</p>
     </ion-item>
 
 <ion-item>
@@ -38,7 +39,7 @@
     
         <ion-item>
         <ion-label stacked>Sex:</ion-label>
-             <ion-select text-wrap [(ngModel)]="enterSex" formControlName="sexCtrl">
+             <ion-select text-wrap [(ngModel)]="enterSex" formControlName="sexCtrl" (change)="onDirtySex(partyAffiliation)">
                 <ion-option value="Female">Female</ion-option>
                 <ion-option value="Male">Male</ion-option>
                 <ion-option value="No Answer">No Answer</ion-option>
@@ -47,7 +48,7 @@
     
        <ion-item>
         <ion-label stacked>Party Affiliation:</ion-label>
-             <ion-select text-wrap [(ngModel)]="enterPartyAffiliationFromList" formControlName="partyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(enterPartyAffiliationFromList,otherParty,passcode)">
+             <ion-select #partyAffiliation text-wrap [(ngModel)]="enterPartyAffiliationFromList" formControlName="partyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(enterPartyAffiliationFromList, otherParty, passcode)">
                 <ion-option value="No Party Preference">No Party Preference</ion-option>
                 <ion-option value="Independent">Independent</ion-option>
                 <ion-option value="Democratic Party">Democratic Party</ion-option>

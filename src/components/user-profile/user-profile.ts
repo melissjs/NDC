@@ -45,6 +45,7 @@ export class UserProfileComponent implements OnInit {
   enterTotalAmendmentRecords: number;
   enterPartyAffiliationFromList: string;
   enterOtherPartyAffiliation: string;
+  formErrorText: string;
   // party: string;
   // volunteers: Volunteer[];
   // dbSex: string;
@@ -60,11 +61,11 @@ export class UserProfileComponent implements OnInit {
     console.log('from init', this.newUser)
     // this.newUser = this.navParams.get('newUser') || (this.authSvc.voidUser());
     this.registerForm = this.fb.group({  
-      'enterUsername': [this.newUser.username, Validators.compose([Validators.required])],
+      'enterUsername': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
       'enterFirstName': ['', Validators.compose([Validators.required])],
       'enterLastName': ['', Validators.compose([Validators.required])],
       'enterEmailAddress': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
-      'enterExposeEmailCtrl': [null],// had '' then i put false? https://forum.ionicframework.com/t/checkbox-validation/55400/8
+      'enterExposeEmailCtrl': [null], //https://forum.ionicframework.com/t/checkbox-validation/55400/8
       'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
       'enterAge': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
       'sexCtrl': ['' , Validators.required],
@@ -80,6 +81,10 @@ export class UserProfileComponent implements OnInit {
   toTitleCase(str){
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
+
+  onDirtySex(partyAffiliation){
+    partyAffiliation.setFocus();
+}
 
   onChangePartyAffiliationFromList(value, otherParty, passcode){
       this.enterPartyAffiliationFromList = value;
@@ -104,6 +109,25 @@ export class UserProfileComponent implements OnInit {
       buttons: ['Dismiss']
     });
   }
+
+  // onDirtyUsername() {
+  //   if (this.registerForm.value.enterUsername.length < 3) {
+  //     this.formErrorText = 'ERROR: Username must be at least 3 characters';
+  //   } else {
+  //     this.formErrorText = null;
+  //     this.formErrorText += "Username must be at least three characters";
+  //     // this.enterUsername = this.registerForm.value.enterUsername.toLowerCase();
+  //   }
+  // }
+
+  // onDirtyPassword() {
+  //   if (this.registerForm.value.enterPassword.length < 8) {
+  //     this.errorMessage = 'ERROR: Password is less than 8 characters';
+  //   } else {
+  //     this.errorMessage = null;
+  //     this.enterPasscode1 = this.registerForm.value.enterPassword1;
+  //   }
+  // }
 
   // presentVerificationInit() {
   //     let alertpvi = this.alertCtrl.create({
@@ -210,11 +234,26 @@ export class UserProfileComponent implements OnInit {
         );
       },
       error => {
-        console.log(error.error.error)
-        this.errorTitle = error.error.title;
-        this.errorMessage = error.error.error.message;
-        this.createErrorAlert(this.errorTitle, this.errorMessage);
-        this.errorAlert.present();
+        console.log('whole error', error)
+        console.log('should be 11000', error.error.error.code)
+        if (error.error.error.code){
+          if (error.error.error.code == 11000) {
+            // this.errorTitle = error.error.title;
+            // this.errorMessage = error.error.error.errors.username.message;
+            this.errorTitle = 'Username is already in use';
+            this.errorMessage = 'Please select another username';
+            this.createErrorAlert(this.errorTitle, this.errorMessage);
+            this.errorAlert.present();
+          } else {
+            console.log('uncaught with multiple errors', error.error.error.errors);
+          }
+        } else {
+          console.log(error.error.error)
+          this.errorTitle = error.error.title;
+          this.errorMessage = error.error.error.message;
+          this.createErrorAlert(this.errorTitle, this.errorMessage);
+          this.errorAlert.present();
+        }
       }
     );
 
