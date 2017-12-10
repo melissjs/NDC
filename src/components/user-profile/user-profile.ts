@@ -62,8 +62,8 @@ export class UserProfileComponent implements OnInit {
     // this.newUser = this.navParams.get('newUser') || (this.authSvc.voidUser());
     this.registerForm = this.fb.group({  
       'enterUsername': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
-      'enterFirstName': ['', Validators.compose([Validators.required])],
-      'enterLastName': ['', Validators.compose([Validators.required])],
+      'enterFirstName': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterLastName': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       'enterEmailAddress': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
       'enterExposeEmailCtrl': [null], //https://forum.ionicframework.com/t/checkbox-validation/55400/8
       'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
@@ -82,6 +82,7 @@ export class UserProfileComponent implements OnInit {
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
 
+  // https://mhartington.io/post/setting-input-focus/
   onDirtySex(partyAffiliation){
     partyAffiliation.setFocus();
 }
@@ -235,7 +236,7 @@ export class UserProfileComponent implements OnInit {
       },
       error => {
         console.log('whole error', error)
-        console.log('should be 11000', error.error.error.code)
+        // console.log('should be 11000', error.error.error.code)
         if (error.error.error.code){
           if (error.error.error.code == 11000) {
             // this.errorTitle = error.error.title;
