@@ -217,7 +217,7 @@ export class UserProfileComponent implements OnInit {
                 this.navCtrl.setRoot('HomePage');
               },
               error => {
-                console.log(error.error.error)
+                console.log('whole error from createVolunteer', error)
                 this.errorTitle = error.error.title;
                 this.errorMessage = error.error.error.message;
                 this.createErrorAlert(this.errorTitle, this.errorMessage);
@@ -226,6 +226,7 @@ export class UserProfileComponent implements OnInit {
             );
           },
           error => {
+            console.log('whole error from userSignIn', error)
             console.log(error.error.error)
             this.errorTitle = error.error.title;
             this.errorMessage = error.error.error.message;
@@ -235,7 +236,7 @@ export class UserProfileComponent implements OnInit {
         );
       },
       error => {
-        console.log('whole error', error)
+        console.log('whole error from userRegister', error)
         // console.log('should be 11000', error.error.error.code)
         if (error.error.error.code){
           if (error.error.error.code == 11000) {
