@@ -56,7 +56,8 @@ export class AccountSettingsPage {
     this.volunteerservice.associatedVolunteerArray = [];
 
 
-    this.restSvc.getLoggedIn();
+    // this.restSvc.getLoggedIn();
+    console.log('authSvc.isLoggedIn()', this.authSvc.isLoggedIn())
     // this.loggedIn = false;
     this.currentTempVolunteer = this.volunteerservice.getNewVolunteer();
     this.loggingout = false;
