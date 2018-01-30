@@ -40,7 +40,7 @@
 
 <!-- note for unreg -->
 <ion-card padding *ngIf="!authSvc.isLoggedIn() && !resetPasscode">
- Login to your account or register <span style="color:#1c396d; cursor:pointer" (click)="onClickRegister()">here</span> if you don't have an account yet. If you have forgotten your password, reset it <span style="color:#1c396d; cursor:pointer" (click)="onClickReset()">here</span>.
+    <span class='links'>Login</span> to your account or <span class='links' (click)="onClickRegister()">register</span> if you don't have an account yet. If you have forgotten your password,  <span class='links' (click)="onClickReset()">reset</span> it.
 </ion-card>
 
 <!-- reset password -->
@@ -50,7 +50,7 @@
 
 
 <!--  <ion-card *ngIf="currentTempVolunteer && currentTempVolunteer.fullName"> -->
-<ion-card *ngIf="currentTempVolunteer && restSvc.getLoggedIn() && !resetPasscode">
+<ion-card *ngIf="currentTempVolunteer && authSvc.isLoggedIn() && !resetPasscode">
   <form [formGroup]="changeForm"  (ngSubmit)="onSubmit(changeForm.value)" novalidate>
     <ion-list text-wrap>
 
