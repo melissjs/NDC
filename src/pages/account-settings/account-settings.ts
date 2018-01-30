@@ -25,7 +25,7 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
 @Component({
   selector: 'page-account-settings',
   templateUrl: 'account-settings.html',
-  // //providers: [RestService],
+  // providers: [RestServiceProvider],
   // inputs: ['pollingstation', 'volunteer'],
   // directives: [PollingstationComponent /*, Logincomponent */, Changepasswordcomponent, Headerc],
 })
@@ -46,7 +46,6 @@ export class AccountSettingsPage {
   resetPasscode: boolean;
   // loggedIn: boolean;
   passChange: boolean;
-  titlec: {page: any, title: string};
   loggingout :boolean;
 
   constructor(public authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {

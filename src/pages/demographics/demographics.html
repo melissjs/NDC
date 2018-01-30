@@ -22,19 +22,19 @@
         <ion-item>
           <ion-label stacked>Age:</ion-label>
           <ion-select text-wrap [(ngModel)]="enterAge" #item (change)="onChangeAge(enterAge)">
-            <ion-option value="18">18 - 24</ion-option>
-            <ion-option value="25">25 - 35</ion-option>
-            <ion-option value="36">36 - 45</ion-option>
-            <ion-option value="46">46 - 55</ion-option>
-            <ion-option value="56">56 - 66</ion-option>
-            <ion-option value="67">67 +</ion-option>
+            <ion-option value="18-24">18 - 24</ion-option>
+            <ion-option value="25-34">25 - 35</ion-option>
+            <ion-option value="35-44">36 - 45</ion-option>
+            <ion-option value="45-54">46 - 55</ion-option>
+            <ion-option value="55-64">56 - 66</ion-option>
+            <ion-option value="65+">67 +</ion-option>
           </ion-select> 
         </ion-item>
   
         <ion-item>
           <ion-label stacked>Ethnicity:</ion-label>
           <ion-select text-wrap multiple="true" [(ngModel)]="enterEthnicity" #item (change)="onChangeEthnicity(enterEthnicity)">
-            <ion-option value="noAnswer">No Answer</ion-option>
+            <!-- <ion-option value="noAnswer">No Answer</ion-option> do other instead and write in option-->
             <ion-option value="americanIndian">American Indian or Alaska Native</ion-option>
             <ion-option value="asian">Asian</ion-option>
             <ion-option value="black">Black or African American</ion-option>
@@ -48,12 +48,12 @@
         <ion-item text-wrap>
           <ion-label stacked>Party Affiliation:</ion-label>
           <ion-select text-wrap [(ngModel)]="enterParty"  (change)="onChangeParty(enterParty)">
-            <ion-option value="Independent">Independent</ion-option>
-            <ion-option value="No Party Preference">No Party Preference</ion-option>
-            <ion-option value="Democratic Party">Democratic Party</ion-option>
-            <ion-option value="Green Party">Green Party</ion-option>
-            <ion-option value="Republican Party">Republican Party</ion-option>
-            <ion-option value="Other Party">Other Party</ion-option>
+            <ion-option value="independent">Independent</ion-option>
+            <ion-option value="noPartyPreference">No Party Preference</ion-option>
+            <ion-option value="democraticParty">Democratic Party</ion-option>
+            <ion-option value="greenParty">Green Party</ion-option>
+            <ion-option value="republicanParty">Republican Party</ion-option>
+            <ion-option value="otherParty">Other Party</ion-option>
           </ion-select> 
         </ion-item>
   
@@ -66,31 +66,31 @@
         <ion-item>
           <ion-label stacked>Annual Income:</ion-label>
           <ion-select text-wrap [(ngModel)]="enterIncome" #item (change)="onChangeIncome(enterIncome)">
-            <ion-option value="24">$24,000 or less</ion-option>
-            <ion-option value="25">$25,000 - $50,000</ion-option>
-            <ion-option value="51">$51,000 - $100,000</ion-option>
-            <ion-option value="100">$100,001 - $250,000</ion-option>
-            <ion-option value="200">$250,001 - $500,000</ion-option>
-            <ion-option value="500">$500,001 - $1,000,000</ion-option>
-            <ion-option value="1">$1,000,001 +</ion-option>
+            <ion-option value="25k-">$25,000 or less</ion-option>
+            <ion-option value="25k-50k">$25,000 - $50,000</ion-option>
+            <ion-option value="50k-100k">$50,000 - $100,000</ion-option>
+            <ion-option value="100k-250k">$100,000 - $250,000</ion-option>
+            <ion-option value="250k-500k">$250,000 - $500,000</ion-option>
+            <ion-option value="500k-1M">$500,000 - $1,000,000</ion-option>
+            <ion-option value="1M+">$1,000,000 +</ion-option>
           </ion-select> 
         </ion-item>
   
         <ion-item text-wrap>
           <ion-label stacked>Education:</ion-label>
           <ion-select text-wrap [(ngModel)]="enterEducation" #item (change)="onChangeEducation(enterEducation)">
-            <ion-option value="High School">High School</ion-option>
-            <ion-option value="Undergraduate School">Undergraduate School</ion-option>
-            <ion-option value="Graduate School">Graduate School</ion-option>
-            <ion-option value="Post Graduate School">Post Graduate School</ion-option>
+            <ion-option value="highSchool">High School</ion-option>
+            <ion-option value="undergraduateSchool">Undergraduate School</ion-option>
+            <ion-option value="graduateSchool">Graduate School</ion-option>
+            <ion-option value="postGraduateSchool">Post Graduate School</ion-option>
           </ion-select> 
         </ion-item>
   
         <ion-item text-wrap>
           <ion-label stacked>Marital Status:</ion-label>
           <ion-select text-wrap [(ngModel)]="enterMaritalStatus" #item (change)="onChangeMaritalStatus(enterMaritalStatus)">
-            <ion-option value="Unmarried">Unmarried</ion-option>
-            <ion-option value="Married">Married</ion-option>
+            <ion-option value="unmarried">Unmarried</ion-option>
+            <ion-option value="married">Married</ion-option>
           </ion-select> 
         </ion-item>
   
