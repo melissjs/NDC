@@ -4,16 +4,10 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angu
 // Models
 import { Volunteer} from '../../models/volunteer';
 import { PollingStation} from '../../models/pollingstation';
-// Pages
-//import {VotePage} from '../vote/vote';
-// import { PollingstationDetailsPage } from '../pollingstation-details/pollingstation-details';
-// import { ResetPasswordPage } from '../reset-password/reset-password';
-// import { UnregisteredSignInPage } from '../unregistered-sign-in/unregistered-sign-in';
 // Globals
 import * as globals from '../../globals';
 // Components
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
-//import { Logincomponent } from '../logincomponent/logincomponent';
 import { ChangePasswordComponent } from '../../components/change-password/change-password';
 // Providers
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
@@ -34,8 +28,6 @@ export class AccountSettingsPage {
   changeForm: FormGroup;
   currentVolunteer: Volunteer; 
   exposedYesOrNo: string;
-  // volunteerservice: Volunteerservice;
-  // pollingstationservice: Pollingstationservice;
   currentTempVolunteer: Volunteer;
   thisTempStation: PollingStation;
   thisTempStationPrecint: string;
@@ -44,42 +36,37 @@ export class AccountSettingsPage {
   fullVolunteerList: Volunteer[];
   wasTouched: boolean;
   resetPasscode: boolean;
-  // loggedIn: boolean;
+  loggedIn: boolean;
   passChange: boolean;
-  loggingout :boolean;
+  loggingout: boolean;
 
   constructor(public authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
-    this.pageTitle = "Account Settings"    
+    this.pageTitle = "Account Settings";
     this.resetPasscode = false;
-    // this.loggedIn = false;
+    this.loggedIn = authSvc.isLoggedIn();
     this.passChange = false;
     this.volunteerservice.associatedVolunteerArray = [];
-
-
-    // this.restSvc.getLoggedIn();
-    console.log('authSvc.isLoggedIn()', this.authSvc.isLoggedIn())
-    // this.loggedIn = false;
     this.currentTempVolunteer = this.volunteerservice.getNewVolunteer();
     this.loggingout = false;
 
 //for Testing only
-      /*
-      if (this.currentTempVolunteer == null) {
-          this.loggedIn = true;
-          this.currentTempVolunteer = {
-              volunteerKey: 'v5',
-              fullName: 'Raya Hammond',
-              emailAddress: 'email@email.com',
-              exposeEmail: true,
-              phoneNumber: '6024539544',
-              age: 23,
-              sex: 'Female',
-              partyAffiliation: "Other Party",
-              shifts:'Late Morning, Early Evening, Early Morning, Late Evening', //'Late Morning, Early Evening'
-              associatedPollingStationKey:'ps1'
-          } 
-      }
-      */
+/*
+if (this.currentTempVolunteer == null) {
+    this.loggedIn = true;
+    this.currentTempVolunteer = {
+        volunteerKey: 'v5',
+        fullName: 'Raya Hammond',
+        emailAddress: 'email@email.com',
+        exposeEmail: true,
+        phoneNumber: '6024539544',
+        age: 23,
+        sex: 'Female',
+        partyAffiliation: "Other Party",
+        shifts:'Late Morning, Early Evening, Early Morning, Late Evening', //'Late Morning, Early Evening'
+        associatedPollingStationKey:'ps1'
+    } 
+}
+*/
 
       //form stuff
       var regExEmail: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
@@ -127,31 +114,25 @@ onClickReset(){
   this.navCtrl.push('ResetPasswordPage');
 }
 
-  onLogout() {
-      // this.loggingout=true;
-      // this.restSvc.onLogout(this,this.displayError);
-  }
+onLogout() {
+  // this.loggingout=true;
+  // this.restSvc.onLogout(this,this.displayError);
+}
 
 // CHANGE EXPOSE EMAIL
-  onChangeExposeEmail(passedValue){
-      this.wasThisTouched();
-      if (this.currentTempVolunteer) {
-          this.currentTempVolunteer.exposeEmail = passedValue;
-      }
-  }
-
-
-
-
-
+onChangeExposeEmail(passedValue){
+    this.wasThisTouched();
+    if (this.currentTempVolunteer) {
+        this.currentTempVolunteer.exposeEmail = passedValue;
+    }
+}
 
 // CHANGE SEX
-  onChangeSex(passedValue){
-      if (this.currentTempVolunteer) {
-          this.currentTempVolunteer.sex = passedValue;
-      }
-  }
-
+onChangeSex(passedValue){
+    if (this.currentTempVolunteer) {
+        this.currentTempVolunteer.sex = passedValue;
+    }
+}
 
 // CHANGE SHIFTS
 /*onChangeShifts(shift){
