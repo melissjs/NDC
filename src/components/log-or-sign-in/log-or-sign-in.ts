@@ -58,12 +58,23 @@ export class LogOrSignInComponent {
     }
   }
 
-  onLogin(): void { 
+  onLogin(): void {
     this.newUser = {
       username: this.loginForm.value.enterUsername.toLowerCase(),
       password: this.loginForm.value.enterPassword,
-      // volunteerKey: null
+      userRoles: ['user'],
+      volunteerKey: '',
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      phoneNumber: '',
+      exposeEmail: false,
+      exposePhoneNumber: false,
+      age: null,
+      sex: '',
+      partyAffiliation: '',
     }
+
     this.authSvc.signin(this.newUser)
       .subscribe( 
         (data: ResponseObj) => {
@@ -81,7 +92,17 @@ export class LogOrSignInComponent {
     this.newUser = {
       username: this.loginForm.value.enterUsername.toLowerCase(),
       password: this.loginForm.value.enterPassword,
-      // volunteerKey: null
+      userRoles: ['user'],
+      volunteerKey: '',
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      phoneNumber: '',
+      exposeEmail: false,
+      exposePhoneNumber: false,
+      age: null,
+      sex: '',
+      partyAffiliation: '',
     }
     // this.authSvc.register(this.newUser)
     //   .subscribe( 
