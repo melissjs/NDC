@@ -14,8 +14,13 @@
       <ion-input [class.invalid]="!registerForm.controls['enterLastName'].valid && registerForm.controls['enterLastName'].touched" type="text" formControlName="enterLastName"></ion-input>
     </ion-item>
 
+    <ion-item text-wrap>
+      <ion-label style="margin-bottom: 15px; background-color: red" stacked>You can hide information from your profile by using the toggle switches to the right of each item. If you leave them toggled on, your audit location team will have access to that information on your profile. If you toggle off, only your team leaders will have access to that information. It is beneficial for team members to be able to communicate with each other, so allowing access to your phone number and/or email is recommended.</ion-label> 
+    </ion-item>
+
     <ion-item>
       <ion-label stacked>Email:</ion-label>
+      <ion-toggle value="foo" checked="true"></ion-toggle>
       <ion-input [class.invalid]="!registerForm.controls['enterEmailAddress'].valid && registerForm.controls['enterEmailAddress'].touched" type="email" formControlName="enterEmailAddress"></ion-input>
     </ion-item>
 

@@ -13,9 +13,9 @@ export class VolunteerListComponent {
   volunteers: Volunteer[];
 
   constructor(private volSvc: VolunteerServiceProvider) {
-    this.volSvc.getVolunteers().subscribe(volunteers => {
-      this.volunteers = volunteers;
-    });
+    // this.volSvc.getVolunteers().subscribe(volunteers => {
+    //   this.volunteers = volunteers;
+    // });
   }
 
 }

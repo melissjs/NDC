@@ -22,7 +22,7 @@ export class SignInSuccessPage {
 
     // this.volunteerHere = this.volunteerservice.getNewVolunteer();
     // testing
-    this.volunteerHere = this.volunteerservice.voidVolunteer();
+    // this.volunteerHere = this.volunteerservice.voidVolunteer();
     
     console.log(this.volunteerservice.getNewVolunteer());
   }

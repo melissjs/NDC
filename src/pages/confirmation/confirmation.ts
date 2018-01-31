@@ -38,13 +38,13 @@ export class ConfirmationPage {
         if(this.restSvc.getLoggedIn()){
             this.currentVolunteer = this.volunteerservice.getNewVolunteer();
   
-            if(this.currentVolunteer.associatedPollingStationKey!==null){
+            // if(this.currentVolunteer.associatedPollingStationKey!==null){
   
-                this.thisTempStation = this.pollingstationservice.getPollingStationbyKey(this.currentVolunteer.associatedPollingStationKey)
-                if (this.thisTempStation != null) {
-                    this.thisTempStationPrecint = this.thisTempStation.precinctNumber;
-                }
-            }
+            //     this.thisTempStation = this.pollingstationservice.getPollingStationbyKey(this.currentVolunteer.associatedPollingStationKey)
+            //     if (this.thisTempStation != null) {
+            //         this.thisTempStationPrecint = this.thisTempStation.precinctNumber;
+            //     }
+            // }
   
         }
     }

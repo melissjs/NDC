@@ -20,7 +20,7 @@ import * as globals from '../../globals';
 export class UserProfileComponent implements OnInit {
 
   newUser: User;
-  newVolunteer: Volunteer;
+  // newVolunteer: Volunteer;
   volunteerKey: string;
   errorTitle: string;
   errorAlert: any;
@@ -53,7 +53,7 @@ export class UserProfileComponent implements OnInit {
   // properties: any;
 
   constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
-    this.newVolunteer = this.volunteerservice.voidVolunteer();
+    // this.newUser = this.volunteerservice.voidVolunteer();
     this.enterExposeEmail = false;
   }
 
@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit {
       'sexCtrl': ['' , Validators.required],
       'partyAffiliationCtrl': ['' , Validators.required],
       // 'otherPartyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation],
-      //'shiftsCtrl': [this.newVolunteer.shifts],
+      //'shiftsCtrl': [this.newUser.shifts],
       'enterOtherPartyAffiliation':[''],
       'enterPasscode1': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPasscode2': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
@@ -181,21 +181,21 @@ export class UserProfileComponent implements OnInit {
 
     // CHECK PARTY
     if (this.enterPartyAffiliationFromList!="Other Party"){
-      this.newVolunteer.partyAffiliation = this.enterPartyAffiliationFromList;
+      this.newUser.partyAffiliation = this.enterPartyAffiliationFromList;
     } else if (this.enterPartyAffiliationFromList=="Other Party" && this.registerForm.value.enterOtherPartyAffiliation) {
-      this.newVolunteer.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliation);
+      this.newUser.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliation);
     }
 
-    // SET NEWVOLUNTEER
-    this.newVolunteer.firstName = this.toTitleCase(this.registerForm.value.enterFirstName);
-    this.newVolunteer.lastName = this.toTitleCase(this.registerForm.value.enterLastName);
-    this.newVolunteer.emailAddress = this.registerForm.value.enterEmailAddress.toLowerCase();
-    this.newVolunteer.exposeEmail = this.enterExposeEmail;
-    this.newVolunteer.phoneNumber = this.registerForm.value.enterPhoneNumber;
-    this.newVolunteer.age = this.registerForm.value.enterAge;
-    this.newVolunteer.sex = this.enterSex;
-    this.newVolunteer.shifts = [''];
-    this.newVolunteer.associatedPollingStationKey = null;
+    // SET newUser
+    this.newUser.firstName = this.toTitleCase(this.registerForm.value.enterFirstName);
+    this.newUser.lastName = this.toTitleCase(this.registerForm.value.enterLastName);
+    this.newUser.emailAddress = this.registerForm.value.enterEmailAddress.toLowerCase();
+    this.newUser.exposeEmail = this.enterExposeEmail;
+    this.newUser.phoneNumber = this.registerForm.value.enterPhoneNumber;
+    this.newUser.age = this.registerForm.value.enterAge;
+    this.newUser.sex = this.enterSex;
+    // this.newUser.shifts = [''];
+    // this.newUser.associatedPollingStationKey = null;
 
     // SET NEWUSER
     console.log('before', this.newUser);
@@ -211,8 +211,8 @@ export class UserProfileComponent implements OnInit {
           (sData: ResponseObj) => {
             localStorage.setItem('token', sData.token);
             localStorage.setItem('userId', sData.userId);
-            this.newVolunteer.volunteerKey = sData.userId;
-            this.volunteerservice.saveVolunteer(this.newVolunteer).subscribe(
+            this.newUser.volunteerKey = sData.userId;
+            this.volunteerservice.saveVolunteer(this.newUser).subscribe(
               vData => {
                 this.navCtrl.setRoot('HomePage');
               },
@@ -312,7 +312,7 @@ export class UserProfileComponent implements OnInit {
   verifyPhoneNumber(via: string) {
       // var that = this;
       // try {
-      //     that.restSvc.sendAuthyRequest(via,that.newVolunteer.phoneNumber)
+      //     that.restSvc.sendAuthyRequest(via,that.newUser.phoneNumber)
       //         .subscribe( data => {
       //             that.properties = data;
       //             console.log('successful call:' + that.properties);
@@ -381,7 +381,7 @@ export class UserProfileComponent implements OnInit {
   verifyCode(code: string) {
   //     var that = this;
   //     try {
-  //         that.restSvc.sendAuthyVerify(that.newVolunteer.phoneNumber, code)
+  //         that.restSvc.sendAuthyVerify(that.newUser.phoneNumber, code)
   //             .subscribe( data => {
   //                 that.properties = data;
   //                 console.log('successful call:' + that.properties);
@@ -439,8 +439,8 @@ export class UserProfileComponent implements OnInit {
           // use the key generated by the middle tier and emailed for
           // "activation" of the account.  In that case we proceed from the
           // "activate" page.
-          // this.newVolunteer.volunteerKey = this.volunteerservice.generateVolunteerKey();
-          this.volunteerservice.addCurrentVolunteerToList(this.newVolunteer);
+          // this.newUser.volunteerKey = this.volunteerservice.generateVolunteerKey();
+          // this.volunteerservice.addCurrentVolunteerToList(this.newUser);
       }
       let alert = that.alertCtrl.create({
           title: 'Verification Successful',
@@ -471,7 +471,7 @@ export class UserProfileComponent implements OnInit {
   sendVerificationEmail() {
   //     var that = this;
   //     try {
-  //         that.restSvc.registerUser(that.newVolunteer, that.enterPasscode)
+  //         that.restSvc.registerUser(that.newUser, that.enterPasscode)
   //             .subscribe( (data) => {
   //                 that.properties = data;
   //                 // Expect response created here...

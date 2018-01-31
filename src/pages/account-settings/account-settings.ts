@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -26,9 +27,9 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
 export class AccountSettingsPage {
   pageTitle: string;
   changeForm: FormGroup;
-  currentVolunteer: Volunteer; 
+  currentVolunteer: User; 
   exposedYesOrNo: string;
-  currentTempVolunteer: Volunteer;
+  currentTempVolunteer: User;
   thisTempStation: PollingStation;
   thisTempStationPrecint: string;
   printedShifts: string;
@@ -84,19 +85,19 @@ if (this.currentTempVolunteer == null) {
               'sexCtrl': [this.currentTempVolunteer.sex],
               'partyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation, Validators.required],
               // 'otherPartyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation],
-              'shiftsCtrl': [this.currentTempVolunteer.shifts],
+              // 'shiftsCtrl': [this.currentTempVolunteer.shifts],
               'passcodeCtrl': [Validators.required],
           });
 
-          if(this.currentTempVolunteer.associatedPollingStationKey!==null){
-              this.thisTempStation = this.pollingstationservice.getPollingStationbyKey(this.currentTempVolunteer.associatedPollingStationKey)
-              this.thisTempStationPrecint = this.thisTempStation.precinctNumber;
-          }
+          // if(this.currentTempVolunteer.associatedPollingStationKey!==null){
+          //     this.thisTempStation = this.pollingstationservice.getPollingStationbyKey(this.currentTempVolunteer.associatedPollingStationKey)
+          //     this.thisTempStationPrecint = this.thisTempStation.precinctNumber;
+          // }
 
-          //get associate volunteer keys
-          if(this.currentTempVolunteer.associatedPollingStationKey!==null){
-              this.fullVolunteerList = this.volunteerservice.getTeamVolunteersByPollKey(this.currentTempVolunteer.associatedPollingStationKey)
-          }
+          // //get associate volunteer keys
+          // if(this.currentTempVolunteer.associatedPollingStationKey!==null){
+          //     this.fullVolunteerList = this.volunteerservice.getTeamVolunteersByPollKey(this.currentTempVolunteer.associatedPollingStationKey)
+          // }
       }
 
       //end constructor
@@ -140,40 +141,40 @@ onChangeSex(passedValue){
 }*/
 
 
-  askShifts(){
-      let confirm = this.alertCtrl.create({
-          title: 'Would you like to cancel your shifts?',
-          message: 'If you want to change times or stations, head over to the polling station pages.',
-          buttons: [
-              {
-                  text: 'Cancel',
-                  handler: () => {
-                      if (this.currentTempVolunteer) {
-                          console.log('Disagree clicked' + this.currentTempVolunteer.shifts);
-                      } else {
-                          console.log('how did we get here?? account settings no volunteer!');
-                      }
-                  }
-              },
-              {
-                  text: 'Delete',
-                  handler: () => {
+  // askShifts(){
+  //     let confirm = this.alertCtrl.create({
+  //         title: 'Would you like to cancel your shifts?',
+  //         message: 'If you want to change times or stations, head over to the polling station pages.',
+  //         buttons: [
+  //             {
+  //                 text: 'Cancel',
+  //                 handler: () => {
+  //                     if (this.currentTempVolunteer) {
+  //                         console.log('Disagree clicked' + this.currentTempVolunteer.shifts);
+  //                     } else {
+  //                         console.log('how did we get here?? account settings no volunteer!');
+  //                     }
+  //                 }
+  //             },
+  //             {
+  //                 text: 'Delete',
+  //                 handler: () => {
                       
-                      //this.volunteerservice.clearShifts()
-                      if (this.currentTempVolunteer) {
-                          this.currentTempVolunteer.shifts = [''];
-                          this.printedShifts = "None";
-                          this.currentTempVolunteer.associatedPollingStationKey = null;
-                          this.volunteerservice.associatedVolunteerArray = [];
-                          console.log('Agree clicked' + this.currentTempVolunteer.shifts);
-                      }
-                      console.log('how did we get here either?? account settings no volunteer!');                       
-                  }
-              }
-          ]
-      });
-      confirm.present();
-  }
+  //                     //this.volunteerservice.clearShifts()
+  //                     if (this.currentTempVolunteer) {
+  //                         this.currentTempVolunteer.shifts = [''];
+  //                         this.printedShifts = "None";
+  //                         this.currentTempVolunteer.associatedPollingStationKey = null;
+  //                         this.volunteerservice.associatedVolunteerArray = [];
+  //                         console.log('Agree clicked' + this.currentTempVolunteer.shifts);
+  //                     }
+  //                     console.log('how did we get here either?? account settings no volunteer!');                       
+  //                 }
+  //             }
+  //         ]
+  //     });
+  //     confirm.present();
+  // }
 
 
 

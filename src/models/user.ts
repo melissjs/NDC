@@ -8,7 +8,7 @@ export interface User {
   emailAddress: string;
   phoneNumber: string;
   exposeEmail: boolean;
-  exposePhoneNumber
+  exposePhoneNumber: boolean;
   age: number;
   sex: string;
   partyAffiliation: string;

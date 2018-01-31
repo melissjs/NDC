@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { NDCS_BASE_URL } from './../../configuration/config';
 import { Http } from '@angular/http';
 import { HttpClient, HttpErrorResponse, HttpResponse, HttpHeaders } from '@angular/common/http';
@@ -18,7 +19,7 @@ let baseURL = config.NDCS_BASE_URL;
 @Injectable()
 export class VolunteerServiceProvider {
 
-  currentVolunteer: Volunteer;
+  currentVolunteer: User;
   exposedYesOrNo: string;
   oldStation: PollingStation;
   // pollingstationservice: Pollingstationservice;
@@ -48,7 +49,7 @@ export class VolunteerServiceProvider {
     this.activeVolunteers = 1; // this volunteer for now..
 
     // if no one is logged in creat void volunteer 
-    this.currentVolunteer = this.getNewVolunteer() || this.voidVolunteer();
+    // this.currentVolunteer = this.getNewVolunteer() || this.voidVolunteer();
     // this.restSvc.checkLoggedIn(this.setLoginTrue, this.setLoginFalse,this);
   }
   
@@ -75,36 +76,36 @@ export class VolunteerServiceProvider {
 }
 
   // GET ASSOCIATED VOLUNTEERS
-  getVolunteers(): Observable<Volunteer[]> {
-    return this.http.get(baseURL + '/volunteers', {headers: new HttpHeaders().set('Authorization', this.authSvc.getToken())}).map(
-      (data: ResponseObj) => {
-        this.associatedVolunteerArray = [];
-        for (let v of data.obj) {
-          let vol = {
-            volunteerKey: v._id,
-            firstName: v.firstName, 
-            lastName: v.lastName,
-            emailAddress: v.emailAddress,
-            exposeEmail: v.exposeEmail,
-            phoneNumber: v.phoneNumber,
-            age: v.age,
-            sex: v.sex,
-            partyAffiliation: v.partyAffiliation,
-            shifts: v.shifts,
-            associatedPollingStationKey: v.associatedPollingStationKey
-          }
-          this.associatedVolunteerArray.push(vol)
-        }
-        return this.associatedVolunteerArray;
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-            console.log("Client side error occured", err);
-        } else {
-          console.log("Server side error occured", err);
-        }
-    });
-  }
+  // getVolunteers(): Observable<Volunteer[]> {
+  //   return this.http.get(baseURL + '/volunteers', {headers: new HttpHeaders().set('Authorization', this.authSvc.getToken())}).map(
+  //     (data: ResponseObj) => {
+  //       this.associatedVolunteerArray = [];
+  //       for (let v of data.obj) {
+  //         let vol = {
+  //           volunteerKey: v._id,
+  //           firstName: v.firstName, 
+  //           lastName: v.lastName,
+  //           emailAddress: v.emailAddress,
+  //           exposeEmail: v.exposeEmail,
+  //           phoneNumber: v.phoneNumber,
+  //           age: v.age,
+  //           sex: v.sex,
+  //           partyAffiliation: v.partyAffiliation,
+  //           shifts: v.shifts,
+  //           associatedPollingStationKey: v.associatedPollingStationKey
+  //         }
+  //         this.associatedVolunteerArray.push(vol)
+  //       }
+  //       return this.associatedVolunteerArray;
+  //     },
+  //     (err: HttpErrorResponse) => {
+  //       if (err.error instanceof Error) {
+  //           console.log("Client side error occured", err);
+  //       } else {
+  //         console.log("Server side error occured", err);
+  //       }
+  //   });
+  // }
 
   // SAVE NEWLY REGISTERED VOLUNTEER
   saveVolunteer(body: Volunteer) {
@@ -130,15 +131,15 @@ export class VolunteerServiceProvider {
   }
 
   // ONLY CALLED IN FAKE test (see unregisteredsignin.ts)
-  generateVolunteerKey(){
-      var key = null;
-      if (this.checkUsingFake()) {
-          key = 'v'+(this.volunteerListInMemory.length+1); 
-      } else {
-          key = 'v' + Math.floor((Math.random() * 10000000));
-      }
-      return key;
-  }
+  // generateVolunteerKey(){
+  //     var key = null;
+  //     if (this.checkUsingFake()) {
+  //         key = 'v'+(this.volunteerListInMemory.length+1); 
+  //     } else {
+  //         key = 'v' + Math.floor((Math.random() * 10000000));
+  //     }
+  //     return key;
+  // }
   
   setNewVolunteer(value){
       this.currentVolunteer = value;
@@ -148,63 +149,63 @@ export class VolunteerServiceProvider {
       return this.currentVolunteer;
   }
 
-  setPollingStationForVolunteer(value){
-      if (value == null) {
-          this.currentVolunteer.associatedPollingStationKey = value;
-      } else {
-          this.currentVolunteer.associatedPollingStationKey = value.pollingStationKey
-      }
-  }
+  // setPollingStationForVolunteer(value){
+  //     if (value == null) {
+  //         this.currentVolunteer.associatedPollingStationKey = value;
+  //     } else {
+  //         this.currentVolunteer.associatedPollingStationKey = value.pollingStationKey
+  //     }
+  // }
 
-  hasPollingStation(passedVolunteer){
-      if(this.currentVolunteer.associatedPollingStationKey != null)
-          return true;
-  }
+  // hasPollingStation(passedVolunteer){
+  //     if(this.currentVolunteer.associatedPollingStationKey != null)
+  //         return true;
+  // }
 
-  clearShifts() {
-      this.currentVolunteer.shifts = [''];
-  }
+  // clearShifts() {
+  //     this.currentVolunteer.shifts = [''];
+  // }
 
-  setShifts(passedString: string){
-      //this.currentVolunteer.shifts = passedString;
-      if (!this.currentVolunteer.shifts.includes(passedString) && this.currentVolunteer.shifts != ['']) {
-              this.currentVolunteer.shifts.push(passedString);               
-      }
-  }
+  // setShifts(passedString: string){
+  //     //this.currentVolunteer.shifts = passedString;
+  //     if (!this.currentVolunteer.shifts.includes(passedString) && this.currentVolunteer.shifts != ['']) {
+  //             this.currentVolunteer.shifts.push(passedString);               
+  //     }
+  // }
 
   printVolunteer(passedVolunteer){
   console.log('Name: ' + passedVolunteer.firstName + ' ' + passedVolunteer.lastName + ' Email: ' + passedVolunteer.emailAddress + ' Exposed: ' + passedVolunteer.exposeEmail + ' Cell: ' + passedVolunteer.phoneNumber + ' Age: ' + passedVolunteer.age + ' Sex: ' + passedVolunteer.sex + ' Party: ' + passedVolunteer.partyAffiliation + ' Shifts: ' + passedVolunteer.shifts + ' Code: ' + passedVolunteer.passcode);
   }
 
 
-  printShifts(passedVolunteer){
-      if (this.currentVolunteer.shifts != ['']) {
-          return this.currentVolunteer.shifts;
-      } else {
-          console.log(this.notRegistered);
-          return this.notRegistered;
-      }
-  }
+  // printShifts(passedVolunteer){
+  //     if (this.currentVolunteer.shifts != ['']) {
+  //         return this.currentVolunteer.shifts;
+  //     } else {
+  //         console.log(this.notRegistered);
+  //         return this.notRegistered;
+  //     }
+  // }
   
 
-  checkUsingFake() {
-      if (this.volunteerListInMemory == null) {
-          if (this.usingReal) {
-              console.log('ERROR! shows using real but calling fake procedure!');
-              return false;
-          }
-          this.getVolunteers();
-      }
-      return true;
-  }
+  // checkUsingFake() {
+  //     if (this.volunteerListInMemory == null) {
+  //         if (this.usingReal) {
+  //             console.log('ERROR! shows using real but calling fake procedure!');
+  //             return false;
+  //         }
+  //         this.getVolunteers();
+  //     }
+  //     return true;
+  // }
 
 
   // ONLY CALLED IN FAKE test (see unregisteredsignin.ts)
-  addCurrentVolunteerToList(passedVolunteer){
-      if (this.checkUsingFake()) {
-          this.volunteerListInMemory.push(passedVolunteer);
-      }
-  }
+  // addCurrentVolunteerToList(passedVolunteer){
+  //     if (this.checkUsingFake()) {
+  //         this.volunteerListInMemory.push(passedVolunteer);
+  //     }
+  // }
 
   deleteCurrentVolunteerFromListXX(passedVolunteer){
       if (this.volunteerListInMemory) {
@@ -265,16 +266,16 @@ export class VolunteerServiceProvider {
   }
 
   // ONLY CALLED IN FAKE test (see rest-service.ts)
-  getVolunteerbyPhoneNumber(passedPhoneNumber:string){ 
-      if (this.checkUsingFake()) {
-          for (var i = 0; i < this.volunteerListInMemory.length; i++){
-              if (this.volunteerListInMemory[i].phoneNumber == passedPhoneNumber){
-                  return this.volunteerListInMemory[i]
-              }
-          }
-      }
-      return null;
-  }
+  // getVolunteerbyPhoneNumber(passedPhoneNumber:string){ 
+  //     if (this.checkUsingFake()) {
+  //         for (var i = 0; i < this.volunteerListInMemory.length; i++){
+  //             if (this.volunteerListInMemory[i].phoneNumber == passedPhoneNumber){
+  //                 return this.volunteerListInMemory[i]
+  //             }
+  //         }
+  //     }
+  //     return null;
+  // }
   
   getVolunteersByShift(passedShift){
       var volunteersByShift = [];
@@ -304,22 +305,22 @@ export class VolunteerServiceProvider {
        }
   }*/
 
-  getTeamKeyListXX(passedPollKey){
-      this.teamKeyList = []; // zero out to mitigate duplicates
-      if (this.volunteerListInMemory) {
-          for (var i = 0; i < this.volunteerListInMemory.length; i++){
-              if (this.volunteerListInMemory[i].associatedPollingStationKey == passedPollKey){
-                  this.teamKeyList.push(this.volunteerListInMemory[i].volunteerKey)
-              }
-          }
-      }
-      return this.teamKeyList;
-  }
+  // getTeamKeyListXX(passedPollKey){
+  //     this.teamKeyList = []; // zero out to mitigate duplicates
+  //     if (this.volunteerListInMemory) {
+  //         for (var i = 0; i < this.volunteerListInMemory.length; i++){
+  //             if (this.volunteerListInMemory[i].associatedPollingStationKey == passedPollKey){
+  //                 this.teamKeyList.push(this.volunteerListInMemory[i].volunteerKey)
+  //             }
+  //         }
+  //     }
+  //     return this.teamKeyList;
+  // }
 
-  getTeamVolunteersByPollKey(passedPollKey){
-      return this.getVolunteerArrayByKeyListXX(this.getTeamKeyListXX(passedPollKey));
+  // getTeamVolunteersByPollKey(passedPollKey){
+  //     return this.getVolunteerArrayByKeyListXX(this.getTeamKeyListXX(passedPollKey));
 
-  }
+  // }
 
   getShiftCountFromStringXX(shiftString) { 
   return shiftString.split(" ").length;
@@ -402,9 +403,9 @@ generateStationStats( /* passedStationKey */){
       }
   }
 
-  getNewVolunteerPollingStationKey(){
-      return this.currentVolunteer.associatedPollingStationKey;
-  }
+  // getNewVolunteerPollingStationKey(){
+  //     return this.currentVolunteer.associatedPollingStationKey;
+  // }
 
   // called by activity.ts
   getAssociatedVolunteers() {

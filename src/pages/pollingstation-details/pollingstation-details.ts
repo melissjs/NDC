@@ -85,27 +85,27 @@ export class PollingstationDetailsPage {
       this.shiftsToFill = 0;
       this.shiftsFilled = 0;
 
-      //ATTEMP TO FIX PROBLEM
-      if (!this.currentVolunteerHere){
+      // //ATTEMP TO FIX PROBLEM
+      // if (!this.currentVolunteerHere){
 
-          this.currentVolunteerHere = {
-              volunteerKey: null,
-              firstName: null,
-              lastName: null,
-              emailAddress: null,
-              exposeEmail: false,
-              phoneNumber: null,
-              age:null,
-              sex: null,
-              partyAffiliation: null,
-              shifts:[''], 
-              associatedPollingStationKey:null
-          }
-          volunteerservice.setNewVolunteer(this.currentVolunteerHere);
+      //     this.currentVolunteerHere = {
+      //         volunteerKey: null,
+      //         firstName: null,
+      //         lastName: null,
+      //         emailAddress: null,
+      //         exposeEmail: false,
+      //         phoneNumber: null,
+      //         age:null,
+      //         sex: null,
+      //         partyAffiliation: null,
+      //         shifts:[''], 
+      //         associatedPollingStationKey:null
+      //     }
+      //     volunteerservice.setNewVolunteer(this.currentVolunteerHere);
 
-      }
+      // }
 
-      this.setShifts();
+      // this.setShifts();
       
   } // end const
   setInternals(that: any) {
@@ -114,42 +114,42 @@ export class PollingstationDetailsPage {
       that.shiftsFilled = that.volunteerservice.getShiftsFilled();
   }
 
-  setShifts() {
-      if ((this.currentVolunteerHere.associatedPollingStationKey == 
-          this.currentStation.pollingStationKey) &&
-          (this.currentVolunteerHere.shifts)) {
-          if (this.currentVolunteerHere.shifts.includes(globals.EARLY_MORNING)) {
-              this.eM = true;
-              this.earlyM = true;
-              this.shiftSelected = true;
-          }
-          if (this.currentVolunteerHere.shifts.includes(globals.LATE_MORNING)) {
-              this.lM = true;
-              this.lateM = true;
-              this.shiftSelected = true;
-          }
-          if (this.currentVolunteerHere.shifts.includes(globals.EARLY_AFTERNOON)) {
-              this.eA = true;
-              this.earlyA = true;
-              this.shiftSelected = true;
-          }
-          if (this.currentVolunteerHere.shifts.includes(globals.LATE_AFTERNOON)) {
-              this.lA = true;
-              this.lateA = true;
-              this.shiftSelected = true;
-          }
-          if (this.currentVolunteerHere.shifts.includes(globals.EARLY_EVENING)) {
-              this.eE = true;
-              this.earlyE = true;
-              this.shiftSelected = true;
-          }
-          if (this.currentVolunteerHere.shifts.includes(globals.LATE_EVENING)) {
-              this.lE = true;
-              this.lateE = true;
-              this.shiftSelected = true;
-          }
-      }
-  }
+  // setShifts() {
+  //     if ((this.currentVolunteerHere.associatedPollingStationKey == 
+  //         this.currentStation.pollingStationKey) &&
+  //         (this.currentVolunteerHere.shifts)) {
+  //         if (this.currentVolunteerHere.shifts.includes(globals.EARLY_MORNING)) {
+  //             this.eM = true;
+  //             this.earlyM = true;
+  //             this.shiftSelected = true;
+  //         }
+  //         if (this.currentVolunteerHere.shifts.includes(globals.LATE_MORNING)) {
+  //             this.lM = true;
+  //             this.lateM = true;
+  //             this.shiftSelected = true;
+  //         }
+  //         if (this.currentVolunteerHere.shifts.includes(globals.EARLY_AFTERNOON)) {
+  //             this.eA = true;
+  //             this.earlyA = true;
+  //             this.shiftSelected = true;
+  //         }
+  //         if (this.currentVolunteerHere.shifts.includes(globals.LATE_AFTERNOON)) {
+  //             this.lA = true;
+  //             this.lateA = true;
+  //             this.shiftSelected = true;
+  //         }
+  //         if (this.currentVolunteerHere.shifts.includes(globals.EARLY_EVENING)) {
+  //             this.eE = true;
+  //             this.earlyE = true;
+  //             this.shiftSelected = true;
+  //         }
+  //         if (this.currentVolunteerHere.shifts.includes(globals.LATE_EVENING)) {
+  //             this.lE = true;
+  //             this.lateE = true;
+  //             this.shiftSelected = true;
+  //         }
+  //     }
+  // }
 
   onChangeEarlyM(value) {
       var earlyM = !value;
