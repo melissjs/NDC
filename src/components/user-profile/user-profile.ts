@@ -25,25 +25,29 @@ export class UserProfileComponent implements OnInit {
   errorAlert: any;
   errorMessage: string;
   registerForm: FormGroup;
-  enterUsername: string;
-  enterFirstName: string;
-  enterLastName: string;
-  enterEmailAddress: string;
-  enterExposeEmail: boolean;
-  enterPhoneNumber: string;
-  enterAge: number;
-  enterSex: string;
-  enterPartyAffiliation: string;
+  // enterUsernameCtrl: string;
+  // enterFirstNameCtrl: string;
+  // enterLastNameCtrl: string;
+  // enterEmailAddressCtrl: string;
+  // enterExposeEmailCtrl: boolean;
+  // enterPhoneNumberCtrl: string;
+  // enterExposePhoneNumberCtrl: boolean;
+  // enterAgeCtrl: number;
+  // enterExposeAgeCtrl: boolean;
+  // enterSexCtrl: string;
+  // enterExposeSexCtrl: boolean;
+  // enterPartyAffiliationCtrl: string;
+  // enterOtherPartyAffiliationCtrl: string;
+  // enterExposePartyAffiliationCtrl: boolean;
+  // enterPassword1Ctrl: string;
+  // enterPassword2Ctrl: string;
   enterShifts: string;
   enterPasscode: string;
-  enterPasscode1: string;
-  enterPasscode2: string;
   enterTotalRecords: number;
   enterTotalVoteRecords: number;
   enterTotalAnomalyRecords: number;
   enterTotalAmendmentRecords: number;
   enterPartyAffiliationFromList: string;
-  enterOtherPartyAffiliation: string;
   formErrorText: string;
   // party: string;
   // volunteers: Volunteer[];
@@ -51,29 +55,27 @@ export class UserProfileComponent implements OnInit {
   // dbPartyAffiliation: string;
   // properties: any;
 
-  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
-    // this.newUser = this.volunteerservice.voidVolunteer();
-    this.enterExposeEmail = false;
-  }
+  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {}
 
   ngOnInit() {
     console.log('from init', this.newUser)
-    // this.newUser = this.navParams.get('newUser') || (this.authSvc.voidUser());
     this.registerForm = this.fb.group({  
-      'enterUsername': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
-      'enterFirstName': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterLastName': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterEmailAddress': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
-      'enterExposeEmailCtrl': [null], //https://forum.ionicframework.com/t/checkbox-validation/55400/8
-      'enterPhoneNumber': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
-      'enterAge': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
-      'sexCtrl': ['' , Validators.required],
-      'partyAffiliationCtrl': ['' , Validators.required],
-      // 'otherPartyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation],
-      //'shiftsCtrl': [this.newUser.shifts],
-      'enterOtherPartyAffiliation':[''],
-      'enterPasscode1': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
-      'enterPasscode2': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      'enterUsernameCtrl': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'enterFirstNameCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterLastNameCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterEmailAddressCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
+      'enterExposeEmailCtrl': [null],
+      'enterPhoneNumberCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
+      'enterExposePhoneNumberCtrl': [null],
+      'enterAgeCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
+      'enterExposeAgeCtrl': [null],
+      'enterSexCtrl': ['' , Validators.required],
+      'enterExposeSexCtrl': [null],
+      'enterPartyAffiliationCtrl': ['' , Validators.required],
+      'enterExposePartyAffiliationCtrl': [null],
+      'enterOtherPartyAffiliationCtrl':[''],
+      'enterPassword1Ctrl': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
+      'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
 
@@ -95,12 +97,12 @@ export class UserProfileComponent implements OnInit {
       }
   }
 
-  onChangeExposeEmail(e){
-    console.log('value before:' + this.enterExposeEmail);
-      var newval = !this.enterExposeEmail;
-      console.log('checked in now:' + newval);
-      this.enterExposeEmail = newval;
-  }
+  // onChangeExposeEmail(e){ // AFTER TOGGLE REFACTOR AND CTRL NAME LEAVING FOR FYI
+  //   console.log('value before:' + this.registerForm.value.enterExposeEmail);
+  //     var newval = !this.registerForm.value.enterExposeEmail;
+  //     console.log('checked in now:' + newval);
+  //     this.enterExposeEmail = newval;
+  // }
 
   createErrorAlert(title: string, message: string) {
     this.errorAlert = this.alertCtrl.create({
@@ -111,12 +113,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   // onDirtyUsername() {
-  //   if (this.registerForm.value.enterUsername.length < 3) {
+  //   if (this.registerForm.value.enterUsernameCtrl.length < 3) {
   //     this.formErrorText = 'ERROR: Username must be at least 3 characters';
   //   } else {
   //     this.formErrorText = null;
   //     this.formErrorText += "Username must be at least three characters";
-  //     // this.enterUsername = this.registerForm.value.enterUsername.toLowerCase();
+  //     // this.enterUsernameCtrl = this.registerForm.value.enterUsernameCtrl.toLowerCase();
   //   }
   // }
 
@@ -125,7 +127,7 @@ export class UserProfileComponent implements OnInit {
   //     this.errorMessage = 'ERROR: Password is less than 8 characters';
   //   } else {
   //     this.errorMessage = null;
-  //     this.enterPasscode1 = this.registerForm.value.enterPassword1;
+  //     this.enterPassword1Ctrl = this.registerForm.value.enterPassword1;
   //   }
   // }
 
@@ -166,8 +168,8 @@ export class UserProfileComponent implements OnInit {
   onSubmit(): void {
 
     // CHECK PASSWORDS
-    if(this.registerForm.value.enterPasscode1 == this.registerForm.value.enterPasscode2){
-        this.enterPasscode = this.registerForm.value.enterPasscode1;
+    if(this.registerForm.value.enterPassword1Ctrl == this.registerForm.value.enterPassword2Ctrl){
+        this.enterPasscode = this.registerForm.value.enterPassword1Ctrl;
     } else {
         let passwordAlert = this.alertCtrl.create({
           title: 'Passwords do not match',
@@ -181,24 +183,24 @@ export class UserProfileComponent implements OnInit {
     // CHECK PARTY
     if (this.enterPartyAffiliationFromList!="Other Party"){
       this.newUser.partyAffiliation = this.enterPartyAffiliationFromList;
-    } else if (this.enterPartyAffiliationFromList=="Other Party" && this.registerForm.value.enterOtherPartyAffiliation) {
-      this.newUser.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliation);
+    } else if (this.enterPartyAffiliationFromList=="Other Party" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
+      this.newUser.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
     }
 
     // SET newUser
-    this.newUser.firstName = this.toTitleCase(this.registerForm.value.enterFirstName);
-    this.newUser.lastName = this.toTitleCase(this.registerForm.value.enterLastName);
-    this.newUser.emailAddress = this.registerForm.value.enterEmailAddress.toLowerCase();
-    this.newUser.exposeEmail = this.enterExposeEmail;
-    this.newUser.phoneNumber = this.registerForm.value.enterPhoneNumber;
-    this.newUser.age = this.registerForm.value.enterAge;
-    this.newUser.sex = this.enterSex;
+    this.newUser.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
+    this.newUser.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
+    this.newUser.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
+    this.newUser.exposeEmail = this.registerForm.value.enterExposeEmail;
+    this.newUser.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
+    this.newUser.age = this.registerForm.value.enterAgeCtrl;
+    this.newUser.sex = this.registerForm.value.enterSexCtrl;
     // this.newUser.shifts = [''];
     // this.newUser.associatedPollingStationKey = null;
 
     // SET NEWUSER
     console.log('before', this.newUser);
-    this.newUser.username = this.registerForm.value.enterUsername.toLowerCase();
+    this.newUser.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
     this.newUser.password = this.enterPasscode;
     console.log('after', this.newUser);
     // this.newUser.volunteerKey = null;

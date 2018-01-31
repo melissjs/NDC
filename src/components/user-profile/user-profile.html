@@ -1,17 +1,17 @@
 <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-label stacked>Username:</ion-label>
-      <ion-input [class.invalid]="!registerForm.controls['enterUsername'].valid && registerForm.controls['enterUsername'].touched" type="text" formControlName="enterUsername"></ion-input>
+      <ion-input [class.invalid]="!registerForm.controls['enterUsernameCtrl'].valid && registerForm.controls['enterUsernameCtrl'].touched" type="text" formControlName="enterUsernameCtrl"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>First Name:</ion-label>
-      <ion-input [class.invalid]="!registerForm.controls['enterFirstName'].valid && registerForm.controls['enterFirstName'].touched" type="text" formControlName="enterFirstName"></ion-input>
+      <ion-input [class.invalid]="!registerForm.controls['enterFirstNameCtrl'].valid && registerForm.controls['enterFirstNameCtrl'].touched" type="text" formControlName="enterFirstNameCtrl"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Last Name:</ion-label>
-      <ion-input [class.invalid]="!registerForm.controls['enterLastName'].valid && registerForm.controls['enterLastName'].touched" type="text" formControlName="enterLastName"></ion-input>
+      <ion-input [class.invalid]="!registerForm.controls['enterLastNameCtrl'].valid && registerForm.controls['enterLastNameCtrl'].touched" type="text" formControlName="enterLastNameCtrl"></ion-input>
     </ion-item>
 
     <ion-item text-wrap>
@@ -22,7 +22,7 @@
       <ion-label stacked>Email:</ion-label>
       <!-- // value="foo"  -->
       <ion-toggle checked="true" ngControl="enterExposeEmailCtrl"></ion-toggle>
-      <ion-input [class.invalid]="!registerForm.controls['enterEmailAddress'].valid && registerForm.controls['enterEmailAddress'].touched" type="email" formControlName="enterEmailAddress"></ion-input>
+      <ion-input [class.invalid]="!registerForm.controls['enterEmailAddressCtrl'].valid && registerForm.controls['enterEmailAddressCtrl'].touched" type="email" formControlName="enterEmailAddressCtrl"></ion-input>
     </ion-item>
 
     <!-- SAVE IN CASE NEED WHEN TESTING -->
@@ -37,19 +37,19 @@
       <ion-item>
         <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
         <ion-toggle checked="true" ngControl="enterExposePhoneNumberCtrl"></ion-toggle>
-        <ion-input [class.invalid]="!registerForm.controls['enterPhoneNumber'].valid && registerForm.controls['enterPhoneNumber'].touched" type="tel" formControlName="enterPhoneNumber"></ion-input>
+        <ion-input [class.invalid]="!registerForm.controls['enterPhoneNumberCtrl'].valid && registerForm.controls['enterPhoneNumberCtrl'].touched" type="tel" formControlName="enterPhoneNumberCtrl"></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label stacked>Age:</ion-label>
         <ion-toggle checked="true" ngControl="enterExposeAgeCtrl"></ion-toggle>
-        <ion-input type="text" formControlName="enterAge"></ion-input>
+        <ion-input type="text" formControlName="enterAgeCtrl"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label stacked>Sex:</ion-label>
         <ion-toggle checked="true" ngControl="enterExposeSexCtrl"></ion-toggle>
-        <ion-select text-wrap [(ngModel)]="enterSex" formControlName="sexCtrl" (change)="onDirtySex(partyAffiliation)">
+        <ion-select text-wrap [(ngModel)]="enterSexCtrl" formControlName="enterSexCtrl" (change)="onDirtySex(partyAffiliation)">
           <ion-option value="female">Female</ion-option>
           <ion-option value="male">Male</ion-option>
           <ion-option value="nonBinary">Non Binary</ion-option>
@@ -60,7 +60,7 @@
        <ion-item>
         <ion-label stacked>Party Affiliation:</ion-label>
         <ion-toggle checked="true" ngControl="enterExposePartyAffiliationCtrl"></ion-toggle>
-        <ion-select #partyAffiliation text-wrap [(ngModel)]="enterPartyAffiliationFromList" formControlName="partyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(enterPartyAffiliationFromList, otherParty, passcode)">
+        <ion-select #partyAffiliation text-wrap [(ngModel)]="enterPartyAffiliationFromList" formControlName="enterPartyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(enterPartyAffiliationFromList, otherParty, passcode)">
           <ion-option value="No Party Preference">No Party Preference</ion-option>
           <ion-option value="Independent">Independent</ion-option>
           <ion-option value="Democratic Party">Democratic Party</ion-option>
@@ -73,7 +73,7 @@
   <!-- Show line if they need to write in a party -->
         <ion-item *ngIf="enterPartyAffiliationFromList=='Other Party'">
         <ion-label stacked>Please Write in Party Name:</ion-label>
-        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliation" ></ion-input>
+        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" ></ion-input>
         </ion-item> 
   <!-- end-->   
     
@@ -94,12 +94,12 @@
     
       <ion-item>
         <ion-label stacked>Create Passcode (min 8 characters):</ion-label>
-        <ion-input [class.invalid]="!registerForm.controls['enterPasscode1'].valid && registerForm.controls['enterPasscode1'].touched" #passcode type="password" formControlName="enterPasscode1"></ion-input>
+        <ion-input [class.invalid]="!registerForm.controls['enterPassword1Ctrl'].valid && registerForm.controls['enterPassword1Ctrl'].touched" #passcode type="password" formControlName="enterPassword1Ctrl"></ion-input>
       </ion-item>
     
         <ion-item>
         <ion-label stacked>Confirm Passcode:</ion-label>
-        <ion-input [class.invalid]="!registerForm.controls['enterPasscode2'].valid && registerForm.controls['enterPasscode2'].touched" type="password" formControlName="enterPasscode2" ></ion-input>
+        <ion-input [class.invalid]="!registerForm.controls['enterPassword2Ctrl'].valid && registerForm.controls['enterPassword2Ctrl'].touched" type="password" formControlName="enterPassword2Ctrl" ></ion-input>
       </ion-item>
 
       <button ion-button type="submit" [disabled]="!registerForm.valid" block large>
