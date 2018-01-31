@@ -20,7 +20,6 @@ import * as globals from '../../globals';
 export class UserProfileComponent implements OnInit {
 
   newUser: User;
-  // newVolunteer: Volunteer;
   volunteerKey: string;
   errorTitle: string;
   errorAlert: any;
