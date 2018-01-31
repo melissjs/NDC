@@ -1,5 +1,20 @@
 export interface User {
   username: string;
   password: string;
-  // volunteerKey: string;
+  userRoles: string[];
+  volunteerKey: string;
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  phoneNumber: string;
+  exposeEmail: boolean;
+  exposePhoneNumber
+  age: number;
+  sex: string;
+  partyAffiliation: string;
+  activeSchedule
+  pollingstation:
+  election:
+  shifts:
+  team:
   }

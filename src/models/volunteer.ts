@@ -1,13 +1,11 @@
 export interface Volunteer {
-    volunteerKey: string;
-    firstName: string;
-    lastName: string;
-    emailAddress: string;
-    exposeEmail: boolean;
-    phoneNumber: string;
-    age: number;
-    sex: string;
-    partyAffiliation: string;
-    shifts?: string[];
-    associatedPollingStationKey?: string;
-    }
+  volunteerKey: string;
+  firstName: string;
+  lastName: string;
+  userRoles: string[];
+  emailAddress?: string;
+  phoneNumber?: string;
+  age?: number;
+  sex?: string;
+  shifts?: string[];
+}
