@@ -25,66 +25,72 @@
       <ion-input [class.invalid]="!registerForm.controls['enterEmailAddress'].valid && registerForm.controls['enterEmailAddress'].touched" type="email" formControlName="enterEmailAddress"></ion-input>
     </ion-item>
 
+    <!-- SAVE IN CASE NEED WHEN TESTING -->
     <!-- <ion-item text-wrap>
       <ion-label style="margin-bottom: 15px" stacked>Would you like to expose your email to your team members when you join an audit? This will help you organize with each other before and on election day. You can change this setting later in your account.</ion-label>
       <ion-checkbox ngControl="enterExposeEmailCtrl" (click)="onChangeExposeEmail($event)"></ion-checkbox>    
     </ion-item> -->
 
-         <!-- <ion-checkbox [(ngModel)]="exposeYesOrNo" formControlName="enterExposeEmailCtrl" (click)="onChangeExposeEmail(exposeYesOrNo)" ></ion-checkbox> -->
+      <!-- REMOVED FROM EMAIL BLOCK FIRST -->
+      <!-- <ion-checkbox [(ngModel)]="exposeYesOrNo" formControlName="enterExposeEmailCtrl" (click)="onChangeExposeEmail(exposeYesOrNo)" ></ion-checkbox> -->
   
       <ion-item>
         <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
+        <ion-toggle checked="true" ngControl="enterExposePhoneNumberCtrl"></ion-toggle>
         <ion-input [class.invalid]="!registerForm.controls['enterPhoneNumber'].valid && registerForm.controls['enterPhoneNumber'].touched" type="tel" formControlName="enterPhoneNumber"></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label stacked>Age:</ion-label>
+        <ion-toggle checked="true" ngControl="enterExposeAgeCtrl"></ion-toggle>
         <ion-input type="text" formControlName="enterAge"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label stacked>Sex:</ion-label>
-          <ion-select text-wrap [(ngModel)]="enterSex" formControlName="sexCtrl" (change)="onDirtySex(partyAffiliation)">
-            <ion-option value="Female">Female</ion-option>
-            <ion-option value="Male">Male</ion-option>
-            <ion-option value="No Answer">No Answer</ion-option>
-          </ion-select> 
+        <ion-toggle checked="true" ngControl="enterExposeSexCtrl"></ion-toggle>
+        <ion-select text-wrap [(ngModel)]="enterSex" formControlName="sexCtrl" (change)="onDirtySex(partyAffiliation)">
+          <ion-option value="female">Female</ion-option>
+          <ion-option value="male">Male</ion-option>
+          <ion-option value="nonBinary">Non Binary</ion-option>
+          <ion-option value="noAnswer">No Answer</ion-option>
+        </ion-select> 
       </ion-item>
     
        <ion-item>
         <ion-label stacked>Party Affiliation:</ion-label>
-            <ion-select #partyAffiliation text-wrap [(ngModel)]="enterPartyAffiliationFromList" formControlName="partyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(enterPartyAffiliationFromList, otherParty, passcode)">
-              <ion-option value="No Party Preference">No Party Preference</ion-option>
-              <ion-option value="Independent">Independent</ion-option>
-              <ion-option value="Democratic Party">Democratic Party</ion-option>
-              <ion-option value="Green Party">Green Party</ion-option>
-              <ion-option value="Republican Party">Republican Party</ion-option>
-              <ion-option value="Other Party">Other Party</ion-option>
-            </ion-select> 
+        <ion-toggle checked="true" ngControl="enterExposePartyAffiliationCtrl"></ion-toggle>
+        <ion-select #partyAffiliation text-wrap [(ngModel)]="enterPartyAffiliationFromList" formControlName="partyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(enterPartyAffiliationFromList, otherParty, passcode)">
+          <ion-option value="No Party Preference">No Party Preference</ion-option>
+          <ion-option value="Independent">Independent</ion-option>
+          <ion-option value="Democratic Party">Democratic Party</ion-option>
+          <ion-option value="Green Party">Green Party</ion-option>
+          <ion-option value="Republican Party">Republican Party</ion-option>
+          <ion-option value="Other Party">Other Party</ion-option>
+        </ion-select> 
         </ion-item>
     
-      <!-- Show line if they need to write in a party -->
-            <ion-item *ngIf="enterPartyAffiliationFromList=='Other Party'">
-            <ion-label stacked>Please Write in Party Name:</ion-label>
-            <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliation" ></ion-input>
-            </ion-item> 
-     <!-- end-->   
+  <!-- Show line if they need to write in a party -->
+        <ion-item *ngIf="enterPartyAffiliationFromList=='Other Party'">
+        <ion-label stacked>Please Write in Party Name:</ion-label>
+        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliation" ></ion-input>
+        </ion-item> 
+  <!-- end-->   
     
     
-     <!-- 
-        <ion-item>
-        <ion-label stacked>Shift(s):</ion-label>
-                 <ion-select text-wrap [(ngModel)]="enterShift" (change)="onChangeShift(enterShift)">
-                <ion-option value="earlyMorning">Early Morning (5:00 AM - 8:15 AM)</ion-option>
-                <ion-option value="lateMorning">Late Morning (8:00 AM - 11:15 AM)</ion-option>
-                <ion-option value="earlyAfternoon">Early Afternoon (11:00 AM - 2:15 PM)</ion-option>
-                <ion-option value="lateAfternoon">Late Afternoon (2:00 PM - 5:15 PM)</ion-option>
-                <ion-option value="earlyEvening">Early Evening (5:00 PM - 8:15 PM)</ion-option>
-                <ion-option value="lateEvening">Late Evening (8:00 PM - 10:30 PM)</ion-option>
-              </ion-select> 
-      </ion-item>
-      -->   
-    
+    <!-- 
+      <ion-item>
+      <ion-label stacked>Shift(s):</ion-label>
+        <ion-select text-wrap [(ngModel)]="enterShift" (change)="onChangeShift(enterShift)">
+          <ion-option value="earlyMorning">Early Morning (5:00 AM - 8:15 AM)</ion-option>
+          <ion-option value="lateMorning">Late Morning (8:00 AM - 11:15 AM)</ion-option>
+          <ion-option value="earlyAfternoon">Early Afternoon (11:00 AM - 2:15 PM)</ion-option>
+          <ion-option value="lateAfternoon">Late Afternoon (2:00 PM - 5:15 PM)</ion-option>
+          <ion-option value="earlyEvening">Early Evening (5:00 PM - 8:15 PM)</ion-option>
+          <ion-option value="lateEvening">Late Evening (8:00 PM - 10:30 PM)</ion-option>
+        </ion-select> 
+    </ion-item>
+    -->   
     
       <ion-item>
         <ion-label stacked>Create Passcode (min 8 characters):</ion-label>

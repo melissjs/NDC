@@ -67,12 +67,15 @@ export class LogOrSignInComponent {
       firstName: '',
       lastName: '',
       emailAddress: '',
+      exposeEmail: true,
       phoneNumber: '',
-      exposeEmail: false,
-      exposePhoneNumber: false,
+      exposePhoneNumber: true,
       age: null,
+      exposeAge: true,
       sex: '',
+      exposeSex: true,
       partyAffiliation: '',
+      exposePartyAffiliation: true
     }
 
     this.authSvc.signin(this.newUser)
