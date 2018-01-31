@@ -6,10 +6,13 @@ export interface User {
   firstName: string;
   lastName: string;
   emailAddress: string;
-  phoneNumber: string;
   exposeEmail: boolean;
+  phoneNumber: string;
   exposePhoneNumber: boolean;
   age: number;
+  exposeAge: boolean;
   sex: string;
+  exposeSex: boolean;
   partyAffiliation: string;
+  exposePartyAffiliation: boolean;
   }
