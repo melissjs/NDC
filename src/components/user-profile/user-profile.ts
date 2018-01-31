@@ -41,15 +41,15 @@ export class UserProfileComponent implements OnInit {
   // enterExposePartyAffiliationCtrl: boolean;
   // enterPassword1Ctrl: string;
   // enterPassword2Ctrl: string;
-  enterShifts: string;
-  enterPasscode: string;
-  enterTotalRecords: number;
-  enterTotalVoteRecords: number;
-  enterTotalAnomalyRecords: number;
-  enterTotalAmendmentRecords: number;
+  password: string;
   enterPartyAffiliationFromList: string;
   formErrorText: string;
-  // party: string;
+  party: string;
+  // FOR ANOTHER COMPONENT?
+  // enterTotalRecords: number;
+  // enterTotalVoteRecords: number;
+  // enterTotalAnomalyRecords: number;
+  // enterTotalAmendmentRecords: number;
   // volunteers: Volunteer[];
   // dbSex: string;
   // dbPartyAffiliation: string;
@@ -169,7 +169,7 @@ export class UserProfileComponent implements OnInit {
 
     // CHECK PASSWORDS
     if(this.registerForm.value.enterPassword1Ctrl == this.registerForm.value.enterPassword2Ctrl){
-        this.enterPasscode = this.registerForm.value.enterPassword1Ctrl;
+        this.password = this.registerForm.value.enterPassword1Ctrl;
     } else {
         let passwordAlert = this.alertCtrl.create({
           title: 'Passwords do not match',
@@ -201,7 +201,7 @@ export class UserProfileComponent implements OnInit {
     // SET NEWUSER
     console.log('before', this.newUser);
     this.newUser.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
-    this.newUser.password = this.enterPasscode;
+    this.newUser.password = this.password;
     console.log('after', this.newUser);
     // this.newUser.volunteerKey = null;
 
@@ -472,7 +472,7 @@ export class UserProfileComponent implements OnInit {
   sendVerificationEmail() {
   //     var that = this;
   //     try {
-  //         that.restSvc.registerUser(that.newUser, that.enterPasscode)
+  //         that.restSvc.registerUser(that.newUser, that.password)
   //             .subscribe( (data) => {
   //                 that.properties = data;
   //                 // Expect response created here...
