@@ -12,9 +12,4 @@ export interface User {
   age: number;
   sex: string;
   partyAffiliation: string;
-  activeSchedule
-  pollingstation:
-  election:
-  shifts:
-  team:
   }
