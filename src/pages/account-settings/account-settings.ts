@@ -115,28 +115,16 @@ export class AccountSettingsPage {
       //end constructor
   }
 
+onClickLogin() {
+  this.navCtrl.push('LogInPage');
+}
+
 onClickRegister(){
-      var that = this;
-      try {
-          
-          this.navCtrl.push('UnregisteredSignInPage');
-          
-      } catch (EE) {
-          console.log('error in Submitting, exc='+ EE.toString())
-          
-      }
+  this.navCtrl.push('UnregisteredSignInPage');
 }
 
 onClickReset(){
-//this.resetPasscode = true;
-      try {
-          
-          this.navCtrl.push('ResetPasswordPage');
-          
-      } catch (EE) {
-          console.log('error in Submitting, exc='+ EE.toString())
-          
-      }
+  this.navCtrl.push('ResetPasswordPage');
 }
 
   onLogout() {
