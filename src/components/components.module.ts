@@ -11,6 +11,7 @@ import { LogoutComponent } from './logout/logout';
 import { LogOrSignInComponent } from './log-or-sign-in/log-or-sign-in';
 import { UserProfileComponent } from './user-profile/user-profile';
 import { VolunteerListComponent } from './volunteer-list/volunteer-list';
+import { RecordsComponent } from './records/records';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -26,7 +27,8 @@ import { VolunteerListComponent } from './volunteer-list/volunteer-list';
     LogoutComponent,
     LogOrSignInComponent,
     UserProfileComponent,
-    VolunteerListComponent],
+    VolunteerListComponent,
+    RecordsComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
@@ -39,6 +41,7 @@ import { VolunteerListComponent } from './volunteer-list/volunteer-list';
     LogoutComponent,
     LogOrSignInComponent,
     UserProfileComponent,
-    VolunteerListComponent]
+    VolunteerListComponent,
+    RecordsComponent]
 })
 export class ComponentsModule {}
