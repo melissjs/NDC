@@ -60,7 +60,7 @@
        <ion-item>
         <ion-label stacked>Party Affiliation:</ion-label>
         <ion-toggle checked="true" ngControl="enterExposePartyAffiliationCtrl"></ion-toggle>
-        <ion-select #partyAffiliation text-wrap [(ngModel)]="party" formControlName="enterPartyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(party, otherParty, passcode)">
+        <ion-select #partyAffiliation text-wrap [(ngModel)]="party" formControlName="enterPartyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(party, otherParty, password)">
           <ion-option value="No Party Preference">No Party Preference</ion-option>
           <ion-option value="Independent">Independent</ion-option>
           <ion-option value="Democratic Party">Democratic Party</ion-option>
@@ -73,7 +73,7 @@
   <!-- Show line if they need to write in a party -->
         <ion-item *ngIf="party=='Other Party'">
         <ion-label stacked>Please Write in Party Name:</ion-label>
-        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" ></ion-input>
+        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party"'></ion-input>
         </ion-item> 
   <!-- end-->   
     
@@ -93,12 +93,12 @@
     -->   
     
       <ion-item>
-        <ion-label stacked>Create Passcode (min 8 characters):</ion-label>
-        <ion-input [class.invalid]="!registerForm.controls['enterPassword1Ctrl'].valid && registerForm.controls['enterPassword1Ctrl'].touched" #passcode type="password" formControlName="enterPassword1Ctrl"></ion-input>
+        <ion-label stacked>Create password (min 8 characters):</ion-label>
+        <ion-input [class.invalid]="!registerForm.controls['enterPassword1Ctrl'].valid && registerForm.controls['enterPassword1Ctrl'].touched" #password type="password" formControlName="enterPassword1Ctrl"></ion-input>
       </ion-item>
     
         <ion-item>
-        <ion-label stacked>Confirm Passcode:</ion-label>
+        <ion-label stacked>Confirm password:</ion-label>
         <ion-input [class.invalid]="!registerForm.controls['enterPassword2Ctrl'].valid && registerForm.controls['enterPassword2Ctrl'].touched" type="password" formControlName="enterPassword2Ctrl" ></ion-input>
       </ion-item>
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Volunteer} from '../../models/volunteer';
 import { User} from '../../models/user';
 import { ResponseObj} from '../../models/response-obj';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
@@ -14,7 +13,6 @@ import * as globals from '../../globals';
   selector: 'user-profile',
   templateUrl: 'user-profile.html',
   inputs: ['newUser'],
-  //providers: [RestService]
 })
 
 export class UserProfileComponent implements OnInit {
@@ -46,15 +44,6 @@ export class UserProfileComponent implements OnInit {
   // enterPassword1Ctrl: string;
   // enterPassword2Ctrl: string;
 
-  // FOR ANOTHER COMPONENT?
-  // enterTotalRecords: number;
-  // enterTotalVoteRecords: number;
-  // enterTotalAnomalyRecords: number;
-  // enterTotalAmendmentRecords: number;
-  // volunteers: Volunteer[];
-  // dbSex: string;
-  // dbPartyAffiliation: string;
-  // properties: any;
 
   constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {}
 
@@ -80,30 +69,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  // HELPER FUNCTIONS
+
   toTitleCase(str){
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
-
-  // https://mhartington.io/post/setting-input-focus/
-  onDirtySex(partyAffiliation){
-    partyAffiliation.setFocus();
-}
-
-  onChangePartyAffiliationFromList(value, otherParty, passcode){
-      this.party = value;
-      if (value == "Other Party") {
-          otherParty.setFocus();
-      } else {
-          passcode.setFocus();
-      }
-  }
-
-  // onChangeExposeEmail(e){ // AFTER TOGGLE REFACTOR AND CTRL NAME LEAVING FOR FYI
-  //   console.log('value before:' + this.registerForm.value.enterExposeEmail);
-  //     var newval = !this.registerForm.value.enterExposeEmail;
-  //     console.log('checked in now:' + newval);
-  //     this.enterExposeEmail = newval;
-  // }
 
   createErrorAlert(title: string, message: string) {
     this.errorAlert = this.alertCtrl.create({
@@ -112,6 +82,28 @@ export class UserProfileComponent implements OnInit {
       buttons: ['Dismiss']
     });
   }
+
+  // SETTING FOCUS NOT WORKING
+
+  onDirtySex(partyAffiliation){
+    partyAffiliation.setFocus();
+}
+
+  onChangePartyAffiliationFromList(value, otherParty, password){
+    this.party = value;
+    if (value == "Other Party") {
+        otherParty.setFocus();
+    } else {
+        password.setFocus();
+    }
+  }
+
+  // onChangeExposeEmail(e){ // AFTER TOGGLE REFACTOR AND CTRL NAME LEAVING FOR FYI
+  //   console.log('value before:' + this.registerForm.value.enterExposeEmail);
+  //     var newval = !this.registerForm.value.enterExposeEmail;
+  //     console.log('checked in now:' + newval);
+  //     this.enterExposeEmail = newval;
+  // }
 
   // onDirtyUsername() {
   //   if (this.registerForm.value.enterUsernameCtrl.length < 3) {
@@ -174,7 +166,7 @@ export class UserProfileComponent implements OnInit {
     } else {
         let passwordAlert = this.alertCtrl.create({
           title: 'Passwords do not match',
-          subTitle: 'Please re-enter your passcodes.',
+          subTitle: 'Please re-enter your passwords.',
           buttons: ['OK'] 
         });
         passwordAlert.present();
