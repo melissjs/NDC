@@ -8,7 +8,6 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import * as globals from '../../globals';
 
-
 @Component({
   selector: 'user-profile',
   templateUrl: 'user-profile.html',
@@ -28,27 +27,17 @@ export class UserProfileComponent implements OnInit {
   party: string;
   password: string;
   exposeEmail: boolean;
-  // enterUsernameCtrl: string;
-  // enterFirstNameCtrl: string;
-  // enterLastNameCtrl: string;
-  // enterEmailAddressCtrl: string;
-  // enterExposeEmailCtrl: boolean;
-  // enterPhoneNumberCtrl: string;
-  // enterExposePhoneNumberCtrl: boolean;
-  // enterAgeCtrl: number;
-  // enterExposeAgeCtrl: boolean;
-  // enterSexCtrl: string;
-  // enterExposeSexCtrl: boolean;
-  // enterPartyAffiliationCtrl: string;
-  // enterOtherPartyAffiliationCtrl: string;
-  // enterExposePartyAffiliationCtrl: boolean;
-  // enterPassword1Ctrl: string;
-  // enterPassword2Ctrl: string;
-
+  exposePhoneNumber: boolean;
+  exposeAge: boolean;
+  exposeSex: boolean;
+  exposePartyAffiliation: boolean;
 
   constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
     this.exposeEmail = true;
-
+    this.exposePhoneNumber = true;
+    this.exposeAge = true;
+    this.exposeSex = true;
+    this.exposePartyAffiliation = true;
   }
 
   ngOnInit() {
@@ -58,22 +47,20 @@ export class UserProfileComponent implements OnInit {
       'enterFirstNameCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       'enterLastNameCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       'enterEmailAddressCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
-      'enterExposeEmailCtrl': [null],
+      // 'enterExposeEmailCtrl': [null],
       'enterPhoneNumberCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
-      'enterExposePhoneNumberCtrl': [null],
+      // 'enterExposePhoneNumberCtrl': [null],
       'enterAgeCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
-      'enterExposeAgeCtrl': [null],
+      // 'enterExposeAgeCtrl': [null],
       'enterSexCtrl': ['' , Validators.required],
-      'enterExposeSexCtrl': [null],
+      // 'enterExposeSexCtrl': [null],
       'enterPartyAffiliationCtrl': ['' , Validators.required],
-      'enterExposePartyAffiliationCtrl': [null],
+      // 'enterExposePartyAffiliationCtrl': [null],
       'enterOtherPartyAffiliationCtrl':[''],
       'enterPassword1Ctrl': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
-
-
 
   // HELPER FUNCTIONS
 
@@ -97,7 +84,7 @@ export class UserProfileComponent implements OnInit {
 
   onChangePartyAffiliationFromList(value, otherParty, password){
     this.party = value;
-    if (value == "Other Party") {
+    if (value === "Other Party") {
         otherParty.setFocus();
     } else {
         otherParty = null;
@@ -105,12 +92,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  onChangeExposeEmail(){ // AFTER TOGGLE REFACTOR AND CTRL NAME LEAVING FOR FYI
-    // this.exposeEmail = !this.exposeEmail;
-    // console.log('value before (var):' + this.exposeEmail);
-    // this.exposeEmail = !this.exposeEmail;
-    console.log('checked in now (newval):' + this.exposeEmail);
-  }
+  // onChangeExposeEmail(){
+  //   console.log('checked is now: ' + this.exposeEmail);
+  // }
 
   // onDirtyUsername() {
   //   if (this.registerForm.value.enterUsernameCtrl.length < 3) {
@@ -168,7 +152,7 @@ export class UserProfileComponent implements OnInit {
   onSubmit(): void {
 
     // CHECK PASSWORDS
-    if(this.registerForm.value.enterPassword1Ctrl == this.registerForm.value.enterPassword2Ctrl){
+    if(this.registerForm.value.enterPassword1Ctrl === this.registerForm.value.enterPassword2Ctrl){
         this.password = this.registerForm.value.enterPassword1Ctrl;
     } else {
         let passwordAlert = this.alertCtrl.create({
@@ -187,23 +171,21 @@ export class UserProfileComponent implements OnInit {
       this.newUser.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
     }
 
-    // SET newUser
+    // SET NEWUSER
+    this.newUser.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
     this.newUser.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
     this.newUser.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
     this.newUser.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
-    this.newUser.exposeEmail = this.registerForm.value.enterExposeEmail;
+    this.newUser.exposeEmail = this.exposeEmail;
     this.newUser.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
+    this.newUser.exposePhoneNumber = this.exposePhoneNumber;
     this.newUser.age = this.registerForm.value.enterAgeCtrl;
+    this.newUser.exposeAge = this.exposeAge;
     this.newUser.sex = this.registerForm.value.enterSexCtrl;
-    // this.newUser.shifts = [''];
-    // this.newUser.associatedPollingStationKey = null;
-
-    // SET NEWUSER
-    console.log('before', this.newUser);
-    this.newUser.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
+    this.newUser.exposeSex = this.exposeSex;
+    this.newUser.exposePartyAffiliation = this.exposePartyAffiliation;
     this.newUser.password = this.password;
     console.log('after', this.newUser);
-    // this.newUser.volunteerKey = null;
 
     // CREATE USER AND VOLUNTEER THEN SIGNIN
     this.authSvc.register(this.newUser).subscribe(

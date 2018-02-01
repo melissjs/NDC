@@ -21,24 +21,27 @@
 
   <ion-item>
     <ion-label stacked>Email:</ion-label>
-    <ion-toggle [(ngModel)]="exposeEmail" formControlName="enterExposeEmailCtrl" (ionChange)="onChangeExposeEmail()"></ion-toggle>
+    <!-- <ion-toggle [(ngModel)]="exposeEmail" formControlName="enterExposeEmailCtrl" (ionChange)="onChangeExposeEmail()"></ion-toggle> -->
+    <ion-toggle [(ngModel)]="exposeEmail"></ion-toggle>
     <ion-input [class.invalid]="!registerForm.controls['enterEmailAddressCtrl'].valid && registerForm.controls['enterEmailAddressCtrl'].touched" type="email" formControlName="enterEmailAddressCtrl"></ion-input>
   </ion-item>
   
   <ion-item>
     <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
-    <ion-toggle checked="true" ngControl="enterExposePhoneNumberCtrl"></ion-toggle>
+    <ion-toggle [(ngModel)]="exposePhoneNumber"></ion-toggle>
     <ion-input [class.invalid]="!registerForm.controls['enterPhoneNumberCtrl'].valid && registerForm.controls['enterPhoneNumberCtrl'].touched" type="tel" formControlName="enterPhoneNumberCtrl"></ion-input>
   </ion-item>
   
   <ion-item>
     <ion-label stacked>Age:</ion-label>
+    <ion-toggle [(ngModel)]="exposeAge"></ion-toggle>
     <ion-toggle checked="true" ngControl="enterExposeAgeCtrl"></ion-toggle>
     <ion-input type="text" formControlName="enterAgeCtrl"></ion-input>
   </ion-item>
     
   <ion-item>
     <ion-label stacked>Sex:</ion-label>
+    <ion-toggle [(ngModel)]="exposeSex"></ion-toggle>
     <ion-toggle checked="true" ngControl="enterExposeSexCtrl"></ion-toggle>
     <ion-select text-wrap [(ngModel)]="sex" formControlName="enterSexCtrl" (change)="onDirtySex(partyAffiliation)">
       <ion-option value="female">Female</ion-option>
@@ -50,6 +53,7 @@
     
   <ion-item>
   <ion-label stacked>Party Affiliation:</ion-label>
+  <ion-toggle [(ngModel)]="exposePartyAffiliation"></ion-toggle>
   <ion-toggle checked="true" ngControl="enterExposePartyAffiliationCtrl"></ion-toggle>
   <ion-select #partyAffiliation text-wrap [(ngModel)]="party" formControlName="enterPartyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(party, otherParty, password)">
     <ion-option value="No Party Preference">No Party Preference</ion-option>
@@ -63,7 +67,7 @@
 
   <ion-item *ngIf="party=='Other Party'">
     <ion-label stacked>Please Write in Party Name:</ion-label>
-    <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party" '></ion-input>
+    <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party"'></ion-input>
   </ion-item>
 
   <ion-item>
