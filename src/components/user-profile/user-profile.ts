@@ -46,10 +46,13 @@ export class UserProfileComponent implements OnInit {
   // enterPassword2Ctrl: string;
 
 
-  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {}
+  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
+    this.exposeEmail = true;
+
+  }
 
   ngOnInit() {
-    console.log('from init', this.newUser)
+    // console.log('from init', this.newUser)
     this.registerForm = this.fb.group({  
       'enterUsernameCtrl': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
       'enterFirstNameCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -69,6 +72,8 @@ export class UserProfileComponent implements OnInit {
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
+
+
 
   // HELPER FUNCTIONS
 
@@ -101,11 +106,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   onChangeExposeEmail(){ // AFTER TOGGLE REFACTOR AND CTRL NAME LEAVING FOR FYI
-    console.log('value before:' + this.registerForm.value.enterExposeEmailCtrl);
-    console.log('value before:' + this.exposeEmail);
-      var newval = !this.registerForm.value.enterExposeEmailCtrl;
-      console.log('checked in now:' + newval);
-      this.exposeEmail = newval;
+    // this.exposeEmail = !this.exposeEmail;
+    // console.log('value before (var):' + this.exposeEmail);
+    // this.exposeEmail = !this.exposeEmail;
+    console.log('checked in now (newval):' + this.exposeEmail);
   }
 
   // onDirtyUsername() {
