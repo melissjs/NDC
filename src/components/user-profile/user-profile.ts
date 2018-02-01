@@ -24,7 +24,11 @@ export class UserProfileComponent implements OnInit {
   errorTitle: string;
   errorAlert: any;
   errorMessage: string;
+  formErrorText: string;
   registerForm: FormGroup;
+  sex: string;
+  party: string;
+  password: string;
   // enterUsernameCtrl: string;
   // enterFirstNameCtrl: string;
   // enterLastNameCtrl: string;
@@ -41,10 +45,7 @@ export class UserProfileComponent implements OnInit {
   // enterExposePartyAffiliationCtrl: boolean;
   // enterPassword1Ctrl: string;
   // enterPassword2Ctrl: string;
-  password: string;
-  enterPartyAffiliationFromList: string;
-  formErrorText: string;
-  party: string;
+
   // FOR ANOTHER COMPONENT?
   // enterTotalRecords: number;
   // enterTotalVoteRecords: number;
@@ -89,7 +90,7 @@ export class UserProfileComponent implements OnInit {
 }
 
   onChangePartyAffiliationFromList(value, otherParty, passcode){
-      this.enterPartyAffiliationFromList = value;
+      this.party = value;
       if (value == "Other Party") {
           otherParty.setFocus();
       } else {
@@ -181,9 +182,9 @@ export class UserProfileComponent implements OnInit {
     }
 
     // CHECK PARTY
-    if (this.enterPartyAffiliationFromList!="Other Party"){
-      this.newUser.partyAffiliation = this.enterPartyAffiliationFromList;
-    } else if (this.enterPartyAffiliationFromList=="Other Party" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
+    if (this.party!="Other Party"){
+      this.newUser.partyAffiliation = this.party;
+    } else if (this.party=="Other Party" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
       this.newUser.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
     }
 
