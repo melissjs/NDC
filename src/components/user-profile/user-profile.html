@@ -20,8 +20,8 @@
 
     <ion-item>
       <ion-label stacked>Email:</ion-label>
-      <!-- // value="foo"  -->
-      <ion-toggle checked="true" ngControl="enterExposeEmailCtrl"></ion-toggle>
+      <!-- <ion-toggle [(ngModel)]="item.completed" (ionChange)="updateItem(item)" checked="false"></ion-toggle> -->
+      <ion-toggle checked="true" [(ngModel)]="exposeEmail" [ngModelOptions]="{standalone: true}" (ionChange)="onChangeExposeEmail()"></ion-toggle>
       <ion-input [class.invalid]="!registerForm.controls['enterEmailAddressCtrl'].valid && registerForm.controls['enterEmailAddressCtrl'].touched" type="email" formControlName="enterEmailAddressCtrl"></ion-input>
     </ion-item>
 
@@ -73,7 +73,7 @@
   <!-- Show line if they need to write in a party -->
         <ion-item *ngIf="party=='Other Party'">
         <ion-label stacked>Please Write in Party Name:</ion-label>
-        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party"'></ion-input>
+        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party" '></ion-input>
         </ion-item> 
   <!-- end-->   
     

@@ -27,6 +27,7 @@ export class UserProfileComponent implements OnInit {
   sex: string;
   party: string;
   password: string;
+  exposeEmail: boolean;
   // enterUsernameCtrl: string;
   // enterFirstNameCtrl: string;
   // enterLastNameCtrl: string;
@@ -94,16 +95,18 @@ export class UserProfileComponent implements OnInit {
     if (value == "Other Party") {
         otherParty.setFocus();
     } else {
+        otherParty = null;
         password.setFocus();
     }
   }
 
-  // onChangeExposeEmail(e){ // AFTER TOGGLE REFACTOR AND CTRL NAME LEAVING FOR FYI
-  //   console.log('value before:' + this.registerForm.value.enterExposeEmail);
-  //     var newval = !this.registerForm.value.enterExposeEmail;
-  //     console.log('checked in now:' + newval);
-  //     this.enterExposeEmail = newval;
-  // }
+  onChangeExposeEmail(){ // AFTER TOGGLE REFACTOR AND CTRL NAME LEAVING FOR FYI
+    console.log('value before:' + this.registerForm.value.enterExposeEmailCtrl);
+    console.log('value before:' + this.exposeEmail);
+      var newval = !this.registerForm.value.enterExposeEmailCtrl;
+      console.log('checked in now:' + newval);
+      this.exposeEmail = newval;
+  }
 
   // onDirtyUsername() {
   //   if (this.registerForm.value.enterUsernameCtrl.length < 3) {
