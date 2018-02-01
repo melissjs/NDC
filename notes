@@ -14,7 +14,7 @@ USER PROFILE SETTING FOCUS
 // https://mhartington.io/post/setting-input-focus/
 
 
-saved old user-PROFILE
+saved old user-profile.ts
 
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
