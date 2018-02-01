@@ -1,3 +1,14 @@
+USER PROFILE CHECKBOX
 //https://forum.ionicframework.com/t/checkbox-validation/55400/8
 
+<!-- SAVE IN CASE NEED WHEN TESTING -->
+<!-- <ion-item text-wrap>
+<ion-label style="margin-bottom: 15px" stacked>Would you like to expose your email to your team members when you join an audit? This will help you organize with each other before and on election day. You can change this setting later in your account.</ion-label>
+<ion-checkbox ngControl="enterExposeEmailCtrl" (click)="onChangeExposeEmail($event)"></ion-checkbox>    
+</ion-item> -->
+
+<!-- REMOVED FROM EMAIL BLOCK FIRST -->
+<!-- <ion-checkbox [(ngModel)]="exposeYesOrNo" formControlName="enterExposeEmailCtrl" (click)="onChangeExposeEmail(exposeYesOrNo)" ></ion-checkbox> -->
+
+USER PROFILE SETTING FOCUS
 // https://mhartington.io/post/setting-input-focus/

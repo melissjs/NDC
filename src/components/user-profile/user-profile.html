@@ -1,108 +1,83 @@
 <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label stacked>Username:</ion-label>
-      <ion-input [class.invalid]="!registerForm.controls['enterUsernameCtrl'].valid && registerForm.controls['enterUsernameCtrl'].touched" type="text" formControlName="enterUsernameCtrl"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label stacked>First Name:</ion-label>
-      <ion-input [class.invalid]="!registerForm.controls['enterFirstNameCtrl'].valid && registerForm.controls['enterFirstNameCtrl'].touched" type="text" formControlName="enterFirstNameCtrl"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label stacked>Username:</ion-label>
+    <ion-input [class.invalid]="!registerForm.controls['enterUsernameCtrl'].valid && registerForm.controls['enterUsernameCtrl'].touched" type="text" formControlName="enterUsernameCtrl"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Last Name:</ion-label>
-      <ion-input [class.invalid]="!registerForm.controls['enterLastNameCtrl'].valid && registerForm.controls['enterLastNameCtrl'].touched" type="text" formControlName="enterLastNameCtrl"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label stacked>First Name:</ion-label>
+    <ion-input [class.invalid]="!registerForm.controls['enterFirstNameCtrl'].valid && registerForm.controls['enterFirstNameCtrl'].touched" type="text" formControlName="enterFirstNameCtrl"></ion-input>
+  </ion-item>
 
-    <ion-item text-wrap>
-      <ion-label class="smalltext" stacked>You can hide information from your profile by using the toggle switches to the right of each item. If you leave them toggled on, your audit team will have access to that information on your profile. If you toggle off, only your team leaders will have access to that information. It is beneficial for team members to be able to communicate with each other, so allowing access to your phone number and/or email is recommended.</ion-label> 
-    </ion-item>
+  <ion-item>
+    <ion-label stacked>Last Name:</ion-label>
+    <ion-input [class.invalid]="!registerForm.controls['enterLastNameCtrl'].valid && registerForm.controls['enterLastNameCtrl'].touched" type="text" formControlName="enterLastNameCtrl"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Email:</ion-label>
-      <ion-toggle [(ngModel)]="exposeEmail" formControlName="enterExposeEmailCtrl" (ionChange)="onChangeExposeEmail()"></ion-toggle>
-      <ion-input [class.invalid]="!registerForm.controls['enterEmailAddressCtrl'].valid && registerForm.controls['enterEmailAddressCtrl'].touched" type="email" formControlName="enterEmailAddressCtrl"></ion-input>
-    </ion-item>
+  <ion-item text-wrap>
+    <ion-label class="smalltext" stacked>You can hide information from your profile by using the toggle switches to the right of each item. If you leave them toggled on, your audit team will have access to that information on your profile. If you toggle off, only your team leaders will have access to that information. It is beneficial for team members to be able to communicate with each other, so allowing access to your phone number and/or email is recommended.</ion-label> 
+  </ion-item>
 
-    <!-- SAVE IN CASE NEED WHEN TESTING -->
-    <!-- <ion-item text-wrap>
-      <ion-label style="margin-bottom: 15px" stacked>Would you like to expose your email to your team members when you join an audit? This will help you organize with each other before and on election day. You can change this setting later in your account.</ion-label>
-      <ion-checkbox ngControl="enterExposeEmailCtrl" (click)="onChangeExposeEmail($event)"></ion-checkbox>    
-    </ion-item> -->
-
-      <!-- REMOVED FROM EMAIL BLOCK FIRST -->
-      <!-- <ion-checkbox [(ngModel)]="exposeYesOrNo" formControlName="enterExposeEmailCtrl" (click)="onChangeExposeEmail(exposeYesOrNo)" ></ion-checkbox> -->
+  <ion-item>
+    <ion-label stacked>Email:</ion-label>
+    <ion-toggle [(ngModel)]="exposeEmail" formControlName="enterExposeEmailCtrl" (ionChange)="onChangeExposeEmail()"></ion-toggle>
+    <ion-input [class.invalid]="!registerForm.controls['enterEmailAddressCtrl'].valid && registerForm.controls['enterEmailAddressCtrl'].touched" type="email" formControlName="enterEmailAddressCtrl"></ion-input>
+  </ion-item>
   
-      <ion-item>
-        <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
-        <ion-toggle checked="true" ngControl="enterExposePhoneNumberCtrl"></ion-toggle>
-        <ion-input [class.invalid]="!registerForm.controls['enterPhoneNumberCtrl'].valid && registerForm.controls['enterPhoneNumberCtrl'].touched" type="tel" formControlName="enterPhoneNumberCtrl"></ion-input>
-      </ion-item>
+  <ion-item>
+    <ion-label stacked>Cell Phone Number (numbers only):</ion-label>
+    <ion-toggle checked="true" ngControl="enterExposePhoneNumberCtrl"></ion-toggle>
+    <ion-input [class.invalid]="!registerForm.controls['enterPhoneNumberCtrl'].valid && registerForm.controls['enterPhoneNumberCtrl'].touched" type="tel" formControlName="enterPhoneNumberCtrl"></ion-input>
+  </ion-item>
   
-      <ion-item>
-        <ion-label stacked>Age:</ion-label>
-        <ion-toggle checked="true" ngControl="enterExposeAgeCtrl"></ion-toggle>
-        <ion-input type="text" formControlName="enterAgeCtrl"></ion-input>
-      </ion-item>
+  <ion-item>
+    <ion-label stacked>Age:</ion-label>
+    <ion-toggle checked="true" ngControl="enterExposeAgeCtrl"></ion-toggle>
+    <ion-input type="text" formControlName="enterAgeCtrl"></ion-input>
+  </ion-item>
     
-      <ion-item>
-        <ion-label stacked>Sex:</ion-label>
-        <ion-toggle checked="true" ngControl="enterExposeSexCtrl"></ion-toggle>
-        <ion-select text-wrap [(ngModel)]="sex" formControlName="enterSexCtrl" (change)="onDirtySex(partyAffiliation)">
-          <ion-option value="female">Female</ion-option>
-          <ion-option value="male">Male</ion-option>
-          <ion-option value="nonBinary">Non Binary</ion-option>
-          <ion-option value="noAnswer">No Answer</ion-option>
-        </ion-select> 
-      </ion-item>
+  <ion-item>
+    <ion-label stacked>Sex:</ion-label>
+    <ion-toggle checked="true" ngControl="enterExposeSexCtrl"></ion-toggle>
+    <ion-select text-wrap [(ngModel)]="sex" formControlName="enterSexCtrl" (change)="onDirtySex(partyAffiliation)">
+      <ion-option value="female">Female</ion-option>
+      <ion-option value="male">Male</ion-option>
+      <ion-option value="nonBinary">Non Binary</ion-option>
+      <ion-option value="noAnswer">No Answer</ion-option>
+    </ion-select> 
+  </ion-item>
     
-       <ion-item>
-        <ion-label stacked>Party Affiliation:</ion-label>
-        <ion-toggle checked="true" ngControl="enterExposePartyAffiliationCtrl"></ion-toggle>
-        <ion-select #partyAffiliation text-wrap [(ngModel)]="party" formControlName="enterPartyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(party, otherParty, password)">
-          <ion-option value="No Party Preference">No Party Preference</ion-option>
-          <ion-option value="Independent">Independent</ion-option>
-          <ion-option value="Democratic Party">Democratic Party</ion-option>
-          <ion-option value="Green Party">Green Party</ion-option>
-          <ion-option value="Republican Party">Republican Party</ion-option>
-          <ion-option value="Other Party">Other Party</ion-option>
-        </ion-select> 
-        </ion-item>
-    
-  <!-- Show line if they need to write in a party -->
-        <ion-item *ngIf="party=='Other Party'">
-        <ion-label stacked>Please Write in Party Name:</ion-label>
-        <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party" '></ion-input>
-        </ion-item> 
-  <!-- end-->   
-    
-    
-    <!-- 
-      <ion-item>
-      <ion-label stacked>Shift(s):</ion-label>
-        <ion-select text-wrap [(ngModel)]="enterShift" (change)="onChangeShift(enterShift)">
-          <ion-option value="earlyMorning">Early Morning (5:00 AM - 8:15 AM)</ion-option>
-          <ion-option value="lateMorning">Late Morning (8:00 AM - 11:15 AM)</ion-option>
-          <ion-option value="earlyAfternoon">Early Afternoon (11:00 AM - 2:15 PM)</ion-option>
-          <ion-option value="lateAfternoon">Late Afternoon (2:00 PM - 5:15 PM)</ion-option>
-          <ion-option value="earlyEvening">Early Evening (5:00 PM - 8:15 PM)</ion-option>
-          <ion-option value="lateEvening">Late Evening (8:00 PM - 10:30 PM)</ion-option>
-        </ion-select> 
-    </ion-item>
-    -->   
-    
-      <ion-item>
-        <ion-label stacked>Create password (min 8 characters):</ion-label>
-        <ion-input [class.invalid]="!registerForm.controls['enterPassword1Ctrl'].valid && registerForm.controls['enterPassword1Ctrl'].touched" #password type="password" formControlName="enterPassword1Ctrl"></ion-input>
-      </ion-item>
-    
-        <ion-item>
-        <ion-label stacked>Confirm password:</ion-label>
-        <ion-input [class.invalid]="!registerForm.controls['enterPassword2Ctrl'].valid && registerForm.controls['enterPassword2Ctrl'].touched" type="password" formControlName="enterPassword2Ctrl" ></ion-input>
-      </ion-item>
+  <ion-item>
+  <ion-label stacked>Party Affiliation:</ion-label>
+  <ion-toggle checked="true" ngControl="enterExposePartyAffiliationCtrl"></ion-toggle>
+  <ion-select #partyAffiliation text-wrap [(ngModel)]="party" formControlName="enterPartyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(party, otherParty, password)">
+    <ion-option value="No Party Preference">No Party Preference</ion-option>
+    <ion-option value="Independent">Independent</ion-option>
+    <ion-option value="Democratic Party">Democratic Party</ion-option>
+    <ion-option value="Green Party">Green Party</ion-option>
+    <ion-option value="Republican Party">Republican Party</ion-option>
+    <ion-option value="Other Party">Other Party</ion-option>
+  </ion-select> 
+  </ion-item>
 
-      <button ion-button type="submit" [disabled]="!registerForm.valid" block large>
-          Register
-        </button>
+  <ion-item *ngIf="party=='Other Party'">
+    <ion-label stacked>Please Write in Party Name:</ion-label>
+    <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party" '></ion-input>
+  </ion-item>
 
-    </form>
+  <ion-item>
+    <ion-label stacked>Create password (min 8 characters):</ion-label>
+    <ion-input [class.invalid]="!registerForm.controls['enterPassword1Ctrl'].valid && registerForm.controls['enterPassword1Ctrl'].touched" #password type="password" formControlName="enterPassword1Ctrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Confirm password:</ion-label>
+    <ion-input [class.invalid]="!registerForm.controls['enterPassword2Ctrl'].valid && registerForm.controls['enterPassword2Ctrl'].touched" type="password" formControlName="enterPassword2Ctrl" ></ion-input>
+  </ion-item>
+
+  <button ion-button type="submit" [disabled]="!registerForm.valid" block large>
+    Register
+  </button>
+
+</form>
