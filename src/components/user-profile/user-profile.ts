@@ -92,25 +92,6 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  // onDirtyUsername() {
-  //   if (this.registerForm.value.enterUsernameCtrl.length < 3) {
-  //     this.formErrorText = 'ERROR: Username must be at least 3 characters';
-  //   } else {
-  //     this.formErrorText = null;
-  //     this.formErrorText += "Username must be at least three characters";
-  //     // this.enterUsernameCtrl = this.registerForm.value.enterUsernameCtrl.toLowerCase();
-  //   }
-  // }
-
-  // onDirtyPassword() {
-  //   if (this.registerForm.value.enterPassword.length < 8) {
-  //     this.errorMessage = 'ERROR: Password is less than 8 characters';
-  //   } else {
-  //     this.errorMessage = null;
-  //     this.enterPassword1Ctrl = this.registerForm.value.enterPassword1;
-  //   }
-  // }
-
   onSubmit(): void {
     // CHECK PASSWORDS
     if(this.registerForm.value.enterPassword1Ctrl === this.registerForm.value.enterPassword2Ctrl){
