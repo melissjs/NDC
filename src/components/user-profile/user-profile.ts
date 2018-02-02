@@ -11,12 +11,13 @@ import * as globals from '../../globals';
 @Component({
   selector: 'user-profile',
   templateUrl: 'user-profile.html',
-  inputs: ['newUser'],
+  inputs: ['newUser', 'pageTitle'],
 })
 
 export class UserProfileComponent implements OnInit {
 
   newUser: User;
+  pageTitle: string;
   volunteerKey: string;
   errorTitle: string;
   errorAlert: any;
@@ -42,6 +43,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log('from init', this.newUser)
+    console.log('from init', this.pageTitle)
     this.registerForm = this.fb.group({  
       'enterUsernameCtrl': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
       'enterFirstNameCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
