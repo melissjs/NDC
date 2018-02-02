@@ -9,6 +9,8 @@ let baseURL = config.NDCS_BASE_URL;
 @Injectable()
 export class AuthServiceProvider {
 
+  user: User;
+
   constructor(public http: HttpClient) {}
 
   register(body: User) {
@@ -44,6 +46,14 @@ export class AuthServiceProvider {
       password: null
       // volunteerKey: null,
     }
+  }
+
+  setUser(passedUser: User) {
+    this.user = passedUser;
+  }
+
+  getUser() {
+    return this.user;
   }
 
 }
