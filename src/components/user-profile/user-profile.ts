@@ -1,3 +1,4 @@
+import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -33,7 +34,7 @@ export class UserProfileComponent implements OnInit {
   exposeSex: boolean;
   exposePartyAffiliation: boolean;
 
-  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
+  constructor(private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
     this.exposeEmail = true;
     this.exposePhoneNumber = true;
     this.exposeAge = true;
@@ -139,19 +140,8 @@ export class UserProfileComponent implements OnInit {
             localStorage.setItem('token', sData.token);
             localStorage.setItem('userId', sData.userId);
             this.newUser.volunteerKey = sData.userId;
+            this.userSvc.setUser(this.newUser);
             this.navCtrl.setRoot('HomePage');
-            // this.volunteerservice.saveVolunteer(this.newUser).subscribe(
-            //   vData => {
-            //     this.navCtrl.setRoot('HomePage');
-            //   },
-            //   error => {
-            //     console.log('whole error from createVolunteer', error)
-            //     this.errorTitle = error.error.title;
-            //     this.errorMessage = error.error.error.message;
-            //     this.createErrorAlert(this.errorTitle, this.errorMessage);
-            //     this.errorAlert.present();
-            //   }
-            // );
           },
           error => {
             console.log('whole error from userSignIn', error)

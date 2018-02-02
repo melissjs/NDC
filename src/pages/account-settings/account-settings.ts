@@ -1,5 +1,6 @@
+import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { User } from './../../models/user';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 // Models
@@ -24,7 +25,8 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
   // inputs: ['pollingstation', 'volunteer'],
   // directives: [PollingstationComponent /*, Logincomponent */, Changepasswordcomponent, Headerc],
 })
-export class AccountSettingsPage {
+export class AccountSettingsPage implements OnInit {
+  newUser: User;
   pageTitle: string;
   changeForm: FormGroup;
   currentVolunteer: User; 
@@ -41,14 +43,14 @@ export class AccountSettingsPage {
   passChange: boolean;
   loggingout: boolean;
 
-  constructor(public authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
+  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
     this.pageTitle = "Account Settings";
     this.resetPasscode = false;
-    this.loggedIn = authSvc.isLoggedIn();
     this.passChange = false;
     this.volunteerservice.associatedVolunteerArray = [];
-    this.currentTempVolunteer = this.volunteerservice.getNewVolunteer();
+    // this.currentTempVolunteer = this.volunteerservice.getNewVolunteer();
     this.loggingout = false;
+    // console.log('new user from userSvc: ', this.newUser);
 
 //for Testing only
 /*
@@ -102,6 +104,13 @@ if (this.currentTempVolunteer == null) {
 
       //end constructor
   }
+
+  ngOnInit(){
+    this.loggedIn = this.authSvc.isLoggedIn();
+    console.log('loggedIn from userSvc (INIT): ', this.loggedIn);
+    this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
+    console.log('newUser from userSvc (INIT): ', this.newUser);
+   }
 
 onClickLogin() {
   this.navCtrl.push('LogInPage');

@@ -25,12 +25,12 @@
   </ion-card> -->
 
 
-  <ion-card padding *ngIf="currentTempVolunteer && !resetPasscode">
+  <!-- <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <user-profile [newUser]="newUser" [pageTitle]="pageTitle"></user-profile>
-  </ion-card>
+  </ion-card> -->
 
   <!-- note for unreg -->
-  <ion-card padding *ngIf="!authSvc.isLoggedIn() && !resetPasscode">
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
     <span class='links'  (click)="onClickLogin()">Login</span> to your account or <span class='links' (click)="onClickRegister()">register</span> if you don't have an account yet. If you have forgotten your password,  <span class='links' (click)="onClickReset()">reset</span> it.
   </ion-card>
 </ion-content>

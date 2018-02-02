@@ -1,3 +1,4 @@
+import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -31,7 +32,7 @@ export class LogOrSignInComponent {
   authenticatingVolunteerPhone: string;
   authenticatingVolunteerPasscode: string;
     
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider ) {
+  constructor(private navCtrl: NavController, private userSvc: UserServiceProvider,  private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider ) {
     this.loginStatus = new EventEmitter<any>();
     this.loggedIn = false;
     this.loginForm = fb.group({  
@@ -83,6 +84,8 @@ export class LogOrSignInComponent {
         (data: ResponseObj) => {
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', data.userId);
+          this.newUser.volunteerKey = data.userId;
+          this.userSvc.setUser(this.newUser);
           this.loginStatus.emit(data);
         },
         error => {
