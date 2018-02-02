@@ -1,8 +1,8 @@
 export interface User {
+  volunteerKey?: string;
   username: string;
   password: string;
   userRoles: string[];
-  volunteerKey: string; //remove?
   firstName: string;
   lastName: string;
   emailAddress: string;
@@ -15,4 +15,5 @@ export interface User {
   exposeSex: boolean;
   partyAffiliation: string;
   exposePartyAffiliation: boolean;
+  shifts?: number[]
   }

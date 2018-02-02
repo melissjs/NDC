@@ -24,7 +24,10 @@
     </ion-list>
   </ion-card> -->
 
-  <user-profile></user-profile>
+
+  <ion-card padding *ngIf="currentTempVolunteer && !resetPasscode">
+    <user-profile [newUser]="newUser" [pageTitle]="pageTitle"></user-profile>
+  </ion-card>
 
   <!-- note for unreg -->
   <ion-card padding *ngIf="!authSvc.isLoggedIn() && !resetPasscode">

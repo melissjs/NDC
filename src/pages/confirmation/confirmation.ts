@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
@@ -20,7 +21,7 @@ import * as globals from '../../globals';
 })
 export class ConfirmationPage {
   pageTitle: string;
-  currentVolunteer: Volunteer; 
+  currentVolunteer: User; 
   // volunteerservice: Volunteerservice;
   // pollingstationservice: Pollingstationservice;
   thisTempStation: PollingStation;

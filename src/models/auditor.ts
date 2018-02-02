@@ -7,5 +7,7 @@ export interface Auditor {
   phoneNumber?: string;
   age?: number;
   sex?: string;
+  partyAffiliation?: string;
+  associatedPollingStationKey?: string;
   shifts?: string[];
 }

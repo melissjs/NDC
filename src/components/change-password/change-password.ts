@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
@@ -16,7 +17,7 @@ export class ChangePasswordComponent {
   changePasswordForm: FormGroup;
   regExPassword: string;
   // volunteerservice: VolunteerServiceProvider;
-  volunteerHere: Volunteer;
+  volunteerHere: User; // CHANGED FROM VOLUNTEER TO USER
   errorText: string;
   
     constructor(private navCtrl: NavController, private alertCtrl: AlertController, public fb: FormBuilder, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider) {

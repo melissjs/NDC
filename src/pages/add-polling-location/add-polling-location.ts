@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -34,7 +35,7 @@ export class AddPollingLocationPage {
   totalRegisteredVolunteers: number;
   totalNeededVolunteers: number;
   totalRemainingShiftsToFill: number;
-  currentVolunteerHere: Volunteer;
+  currentVolunteerHere: User;
   addPollingLocationForm: FormGroup;
   loggedIn: boolean;
 

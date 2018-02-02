@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 // to nav to
@@ -27,7 +28,7 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
 })
 export class PollingstationDetailsPage {
   pageTitle: string;
-  currentVolunteerHere: Volunteer; 
+  currentVolunteerHere: User; 
   //currentTeam: Team;
   stations: PollingStation[];
   // pollingStationService: Pollingstationservice;
