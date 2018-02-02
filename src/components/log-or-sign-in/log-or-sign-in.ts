@@ -62,7 +62,7 @@ export class LogOrSignInComponent {
     this.newUser = {
       username: this.loginForm.value.enterUsername.toLowerCase(),
       password: this.loginForm.value.enterPassword,
-      userRoles: ['user'],
+      userRoles: [],
       volunteerKey: '',
       firstName: '',
       lastName: '',
@@ -95,7 +95,7 @@ export class LogOrSignInComponent {
     this.newUser = {
       username: this.loginForm.value.enterUsername.toLowerCase(),
       password: this.loginForm.value.enterPassword,
-      userRoles: ['user'],
+      userRoles: [],
       volunteerKey: '',
       firstName: '',
       lastName: '',

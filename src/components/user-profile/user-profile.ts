@@ -41,7 +41,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log('from init', this.newUser)
+    console.log('from init', this.newUser)
     this.registerForm = this.fb.group({  
       'enterUsernameCtrl': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
       'enterFirstNameCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -92,10 +92,6 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  // onChangeExposeEmail(){
-  //   console.log('checked is now: ' + this.exposeEmail);
-  // }
-
   // onDirtyUsername() {
   //   if (this.registerForm.value.enterUsernameCtrl.length < 3) {
   //     this.formErrorText = 'ERROR: Username must be at least 3 characters';
@@ -115,45 +111,10 @@ export class UserProfileComponent implements OnInit {
   //   }
   // }
 
-  // presentVerificationInit() {
-  //     let alertpvi = this.alertCtrl.create({
-  //         title: 'Verify Phone Number',
-  //         subTitle: 'How would you like to be sent the code',
-  //         buttons: [
-  //             {
-  //                 text: 'Cancel',
-  //                 role: 'cancel',
-  //                 handler: data => {
-  //                     console.log('Cancel clicked.. nothing to do');
-  //                 }
-  //             },
-  //             {
-  //                 text: 'Voice Call',
-  //                 handler: data => {
-  //                     let navTransition = alertpvi.dismiss();
-  //                     this.verifyPhoneNumber('call');
-  //                 }
-  //             },
-  //             {
-  //                 text: 'SMS Text',
-  //                 handler: data => {
-  //                     let navTransition = alertpvi.dismiss();
-  //                     this.verifyPhoneNumber('sms');
-  //                 }
-  //             }
-  //         ]
-  //     });
-  //     //timeout the error to let other modals finish dismissing.
-  //     setTimeout(()=>{
-  //         alertpvi.present();
-  //     },500);
-  // }
-
   onSubmit(): void {
-
     // CHECK PASSWORDS
     if(this.registerForm.value.enterPassword1Ctrl === this.registerForm.value.enterPassword2Ctrl){
-        this.password = this.registerForm.value.enterPassword1Ctrl;
+      this.password = this.registerForm.value.enterPassword1Ctrl;
     } else {
         let passwordAlert = this.alertCtrl.create({
           title: 'Passwords do not match',
@@ -163,7 +124,6 @@ export class UserProfileComponent implements OnInit {
         passwordAlert.present();
         return;
     }
-
     // CHECK PARTY
     if (this.party!="Other Party"){
       this.newUser.partyAffiliation = this.party;
@@ -175,6 +135,7 @@ export class UserProfileComponent implements OnInit {
     this.newUser.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
     this.newUser.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
     this.newUser.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
+    // this.newUser.userRoles = 
     this.newUser.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
     this.newUser.exposeEmail = this.exposeEmail;
     this.newUser.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
@@ -195,18 +156,19 @@ export class UserProfileComponent implements OnInit {
             localStorage.setItem('token', sData.token);
             localStorage.setItem('userId', sData.userId);
             this.newUser.volunteerKey = sData.userId;
-            this.volunteerservice.saveVolunteer(this.newUser).subscribe(
-              vData => {
-                this.navCtrl.setRoot('HomePage');
-              },
-              error => {
-                console.log('whole error from createVolunteer', error)
-                this.errorTitle = error.error.title;
-                this.errorMessage = error.error.error.message;
-                this.createErrorAlert(this.errorTitle, this.errorMessage);
-                this.errorAlert.present();
-              }
-            );
+            this.navCtrl.setRoot('HomePage');
+            // this.volunteerservice.saveVolunteer(this.newUser).subscribe(
+            //   vData => {
+            //     this.navCtrl.setRoot('HomePage');
+            //   },
+            //   error => {
+            //     console.log('whole error from createVolunteer', error)
+            //     this.errorTitle = error.error.title;
+            //     this.errorMessage = error.error.error.message;
+            //     this.createErrorAlert(this.errorTitle, this.errorMessage);
+            //     this.errorAlert.present();
+            //   }
+            // );
           },
           error => {
             console.log('whole error from userSignIn', error)

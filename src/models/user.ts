@@ -2,7 +2,7 @@ export interface User {
   username: string;
   password: string;
   userRoles: string[];
-  volunteerKey: string;
+  volunteerKey: string; //remove?
   firstName: string;
   lastName: string;
   emailAddress: string;
