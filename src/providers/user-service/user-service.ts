@@ -12,12 +12,12 @@ export class UserServiceProvider {
 
   setUser(passedUser: User) {
     this.user = passedUser;
-    localStorage.setItem('user', JSON.stringify(passedUser));
+    localStorage.setItem('user', JSON.stringify(passedUser)); //needed for production?
     console.log('USERSERVICE', this.user)
   }
 
   getUser() {
-    return this.user;
+    return this.user != undefined ? this.user : JSON.parse(localStorage.getItem('user'))
   }
 
   setNewUser(passedNewUser: User) {
