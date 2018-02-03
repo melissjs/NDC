@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     if (this.pageTitle === 'Register') {
-      console.log('hiiiiiiii', this.userSvc.getNewUser())
+      // console.log('hiiiiiiii', this.userSvc.getNewUser())
       this.user = this.userSvc.getUser();
       this.exposeEmail = true;
       this.exposePhoneNumber = true;
@@ -55,8 +55,8 @@ export class UserProfileComponent implements OnInit {
       this.exposeSex = this.user.exposeSex;
       this.exposePartyAffiliation = this.user.exposePartyAffiliation;
     }
-    console.log('from init', this.user)
-    console.log('from init', this.pageTitle)
+    // console.log('from init', this.user)
+    // console.log('from init', this.pageTitle)
     this.registerForm = this.fb.group({  
       'enterUsernameCtrl': [this.user.username, Validators.compose([Validators.required, Validators.minLength(3)])],
       'enterFirstNameCtrl': [this.user.firstName, Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -75,6 +75,13 @@ export class UserProfileComponent implements OnInit {
       'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
+        console.log('this.registerForm.value', this.registerForm.valid)
+
+  }
+
+  isValid() {
+    console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.valid)
+    console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.value)
   }
 
   // HELPER FUNCTIONS
@@ -99,7 +106,7 @@ export class UserProfileComponent implements OnInit {
 
   onChangePartyAffiliationFromList(value, otherParty, password){
     this.party = value;
-    if (value === "Other Party") {
+    if (value === "other") {
         otherParty.setFocus();
     } else {
         otherParty = null;
@@ -121,9 +128,9 @@ export class UserProfileComponent implements OnInit {
         return;
     }
     // CHECK PARTY
-    if (this.party!="Other Party"){
+    if (this.party!="other"){
       this.user.partyAffiliation = this.party;
-    } else if (this.party=="Other Party" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
+    } else if (this.party=="other" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
       this.user.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
     }
 

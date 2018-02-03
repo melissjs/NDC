@@ -1,4 +1,5 @@
-<form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()"> -->
+    <form [formGroup]="registerForm" >
 
   <ion-item>
     <ion-label stacked>Username:</ion-label>
@@ -53,16 +54,16 @@
   <ion-label stacked>Party Affiliation:</ion-label>
   <ion-toggle [(ngModel)]="exposePartyAffiliation" [ngModelOptions]="{standalone: true}"></ion-toggle>
   <ion-select #partyAffiliation text-wrap [(ngModel)]="party" formControlName="enterPartyAffiliationCtrl" (change)="onChangePartyAffiliationFromList(party, otherParty, password)">
-    <ion-option value="No Party Preference">No Party Preference</ion-option>
-    <ion-option value="Independent">Independent</ion-option>
-    <ion-option value="Democratic Party">Democratic Party</ion-option>
-    <ion-option value="Green Party">Green Party</ion-option>
-    <ion-option value="Republican Party">Republican Party</ion-option>
-    <ion-option value="Other Party">Other Party</ion-option>
+    <ion-option value="noPartyPreference">No Party Preference</ion-option>
+    <ion-option value="independent">Independent</ion-option>
+    <ion-option value="democrat">Democratic Party</ion-option>
+    <ion-option value="republican">Republican Party</ion-option>
+    <ion-option value="green">Green Party</ion-option>
+    <ion-option value="other">Other Party</ion-option>
   </ion-select> 
   </ion-item>
 
-  <ion-item *ngIf="party === 'Other Party'">
+  <ion-item *ngIf="party === 'other'">
     <ion-label stacked>Please Write in Party Name:</ion-label>
     <ion-input #otherParty type="text" formControlName="enterOtherPartyAffiliationCtrl" [required]='party === "Other Party"'></ion-input>
   </ion-item>
@@ -78,8 +79,20 @@
   </ion-item>
 
   <ion-item *ngIf="pageTitle === 'Register'">
-    <button ion-button type="submit" [disabled]="!registerForm.valid" block large>
+    <button ion-button [disabled]="!registerForm.valid" block large  (click)="onSubmit()">
       Register
+    </button>
+  </ion-item>
+
+  <ion-item *ngIf="pageTitle === 'Account Settings'">
+    <button ion-button type="submit" [disabled]="!registerForm.valid" block large>
+      Save
+    </button>
+  </ion-item>
+
+  <ion-item>
+    <button ion-button block large (click)="isValid()">
+      Test
     </button>
   </ion-item>
 
