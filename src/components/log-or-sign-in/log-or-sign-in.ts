@@ -10,7 +10,7 @@ import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import * as globals from '../../globals';
-
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'log-or-sign-in',
@@ -61,10 +61,10 @@ export class LogOrSignInComponent {
 
   onLogin(): void {
     this.newUser = {
+      volunteerKey: '',
       username: this.loginForm.value.enterUsername.toLowerCase(),
       password: this.loginForm.value.enterPassword,
       userRoles: [],
-      volunteerKey: '',
       firstName: '',
       lastName: '',
       emailAddress: '',
@@ -76,7 +76,9 @@ export class LogOrSignInComponent {
       sex: '',
       exposeSex: true,
       partyAffiliation: '',
-      exposePartyAffiliation: true
+      exposePartyAffiliation: true,
+      auditKey: '',
+      shifts: []
     }
 
     this.authSvc.signin(this.newUser)
@@ -84,7 +86,25 @@ export class LogOrSignInComponent {
         (data: ResponseObj) => {
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', data.userId);
+          let decoded = jwt_decode(data.token);
+          console.log('decoded from login:', decoded.user)
           this.newUser.volunteerKey = data.userId;
+          this.newUser.userRoles = decoded.user.useRoles; // try activeRoles
+          this.newUser.firstName = decoded.user.firstName;
+          this.newUser.lastName = decoded.user.lastName;
+          this.newUser.emailAddress = decoded.user.emailAddress;
+          this.newUser.exposeEmail = decoded.user.exposeEmail;
+          this.newUser.phoneNumber = decoded.user.phoneNumber;
+          this.newUser.exposePhoneNumber = decoded.user.exposePhoneNumber;
+          this.newUser.age = decoded.user.age;
+          this.newUser.exposeAge = decoded.user.exposeAge;
+          this.newUser.sex = decoded.user.sex;
+          this.newUser.exposeSex = decoded.user.emailAddress;
+          this.newUser.partyAffiliation = decoded.user.partyAffiliation;
+          this.newUser.exposePartyAffiliation = decoded.user.exposePartyAffiliation;
+          // this.newUser.auditKey = decoded.user.auditKey;
+          // this.newUser.shifts = decoded.user.shifts;
+          console.log('newUser from login:', this.newUser)
           this.userSvc.setUser(this.newUser);
           this.loginStatus.emit(data);
         },
@@ -96,10 +116,10 @@ export class LogOrSignInComponent {
 
   onRegister(): void {
     this.newUser = {
+      volunteerKey: '',
       username: this.loginForm.value.enterUsername.toLowerCase(),
       password: this.loginForm.value.enterPassword,
       userRoles: [],
-      volunteerKey: '',
       firstName: '',
       lastName: '',
       emailAddress: '',
@@ -111,7 +131,9 @@ export class LogOrSignInComponent {
       sex: '',
       exposeSex: true,
       partyAffiliation: '',
-      exposePartyAffiliation: true
+      exposePartyAffiliation: true,
+      auditKey: '',
+      shifts: []
     }
     // this.authSvc.register(this.newUser)
     //   .subscribe( 
