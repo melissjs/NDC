@@ -1,3 +1,4 @@
+import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
@@ -17,9 +18,9 @@ export class UnregisteredSignInPage {
   pageTitle: string;
   newUser: User;
 
-  constructor(private authSvc: AuthServiceProvider, private navCtrl: NavController, private navParams: NavParams) {
+  constructor(private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private navCtrl: NavController, private navParams: NavParams) {
     this.pageTitle = "Register";
-    this.newUser = (this.navParams.get('user') || this.authSvc.voidUser());
+    // this.newUser = this.userSvc.getNewUser(); //(this.navParams.get('user') || this.authSvc.voidUser());
     console.log('user from unreg', this.newUser)
   }
 

@@ -12,12 +12,12 @@ import * as globals from '../../globals';
 @Component({
   selector: 'user-profile',
   templateUrl: 'user-profile.html',
-  inputs: ['newUser', 'pageTitle'],
+  inputs: ['pageTitle'],
 })
 
 export class UserProfileComponent implements OnInit {
 
-  newUser: User;
+  user: User;
   pageTitle: string;
   volunteerKey: string;
   errorTitle: string;
@@ -39,6 +39,8 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     if (this.pageTitle === 'Register') {
+      console.log('hiiiiiiii', this.userSvc.getNewUser())
+      this.user = this.userSvc.getUser();
       this.exposeEmail = true;
       this.exposePhoneNumber = true;
       this.exposeAge = true;
@@ -46,31 +48,31 @@ export class UserProfileComponent implements OnInit {
       this.exposePartyAffiliation = true;
     }
     else if (this.authSvc.isLoggedIn() && this.pageTitle === 'Account Settings') {
-      // this.newUser = this.userSvc.getUser(); D
-      this.exposeEmail = this.newUser.exposeEmail;
-      this.exposePhoneNumber = this.newUser.exposePhoneNumber;
-      this.exposeAge = this.newUser.exposeAge;
-      this.exposeSex = this.newUser.exposeSex;
-      this.exposePartyAffiliation = this.newUser.exposePartyAffiliation;
+      this.user = this.userSvc.getUser(); 
+      this.exposeEmail = this.user.exposeEmail;
+      this.exposePhoneNumber = this.user.exposePhoneNumber;
+      this.exposeAge = this.user.exposeAge;
+      this.exposeSex = this.user.exposeSex;
+      this.exposePartyAffiliation = this.user.exposePartyAffiliation;
     }
-    console.log('from init', this.newUser)
+    console.log('from init', this.user)
     console.log('from init', this.pageTitle)
     this.registerForm = this.fb.group({  
-      'enterUsernameCtrl': [this.newUser.username, Validators.compose([Validators.required, Validators.minLength(3)])],
-      'enterFirstNameCtrl': [this.newUser.firstName, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterLastNameCtrl': [this.newUser.lastName, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterEmailAddressCtrl': [this.newUser.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
+      'enterUsernameCtrl': [this.user.username, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'enterFirstNameCtrl': [this.user.firstName, Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterLastNameCtrl': [this.user.lastName, Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterEmailAddressCtrl': [this.user.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
       // 'enterExposeEmailCtrl': [null],
-      'enterPhoneNumberCtrl': [this.newUser.phoneNumber, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
+      'enterPhoneNumberCtrl': [this.user.phoneNumber, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
       // 'enterExposePhoneNumberCtrl': [null],
-      'enterAgeCtrl': [this.newUser.age, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
+      'enterAgeCtrl': [this.user.age, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
       // 'enterExposeAgeCtrl': [null],
-      'enterSexCtrl': [this.newUser.sex, Validators.required],
+      'enterSexCtrl': [this.user.sex, Validators.required],
       // 'enterExposeSexCtrl': [null],
-      'enterPartyAffiliationCtrl': [this.newUser.partyAffiliation, Validators.required],
+      'enterPartyAffiliationCtrl': [this.user.partyAffiliation, Validators.required],
       // 'enterExposePartyAffiliationCtrl': [null],
       'enterOtherPartyAffiliationCtrl':[''],
-      'enterPassword1Ctrl': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
+      'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
@@ -120,37 +122,37 @@ export class UserProfileComponent implements OnInit {
     }
     // CHECK PARTY
     if (this.party!="Other Party"){
-      this.newUser.partyAffiliation = this.party;
+      this.user.partyAffiliation = this.party;
     } else if (this.party=="Other Party" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
-      this.newUser.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
+      this.user.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
     }
 
-    // SET NEWUSER
-    this.newUser.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
-    this.newUser.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
-    this.newUser.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
-    // this.newUser.userRoles = 
-    this.newUser.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
-    this.newUser.exposeEmail = this.exposeEmail;
-    this.newUser.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
-    this.newUser.exposePhoneNumber = this.exposePhoneNumber;
-    this.newUser.age = this.registerForm.value.enterAgeCtrl;
-    this.newUser.exposeAge = this.exposeAge;
-    this.newUser.sex = this.registerForm.value.enterSexCtrl;
-    this.newUser.exposeSex = this.exposeSex;
-    this.newUser.exposePartyAffiliation = this.exposePartyAffiliation;
-    this.newUser.password = this.password;
-    console.log('after', this.newUser);
+    // SET user
+    this.user.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
+    this.user.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
+    this.user.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
+    // this.user.userRoles = 
+    this.user.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
+    this.user.exposeEmail = this.exposeEmail;
+    this.user.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
+    this.user.exposePhoneNumber = this.exposePhoneNumber;
+    this.user.age = this.registerForm.value.enterAgeCtrl;
+    this.user.exposeAge = this.exposeAge;
+    this.user.sex = this.registerForm.value.enterSexCtrl;
+    this.user.exposeSex = this.exposeSex;
+    this.user.exposePartyAffiliation = this.exposePartyAffiliation;
+    this.user.password = this.password;
+    console.log('after', this.user);
 
     // CREATE USER THEN SIGNIN
-    this.authSvc.register(this.newUser).subscribe(
+    this.authSvc.register(this.user).subscribe(
       (rData: ResponseObj) => {
-        this.authSvc.signin(this.newUser).subscribe(
+        this.authSvc.signin(this.user).subscribe(
           (sData: ResponseObj) => {
             localStorage.setItem('token', sData.token);
             localStorage.setItem('userId', sData.userId);
-            this.newUser.volunteerKey = sData.userId;
-            this.userSvc.setUser(this.newUser);
+            this.user.volunteerKey = sData.userId;
+            this.userSvc.setUser(this.user);
             this.navCtrl.setRoot('HomePage');
           },
           error => {

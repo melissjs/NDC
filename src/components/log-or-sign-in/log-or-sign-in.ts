@@ -115,26 +115,10 @@ export class LogOrSignInComponent {
   }
 
   onRegister(): void {
-    this.newUser = {
-      volunteerKey: '',
-      username: this.loginForm.value.enterUsername.toLowerCase(),
-      password: this.loginForm.value.enterPassword,
-      userRoles: [],
-      firstName: '',
-      lastName: '',
-      emailAddress: '',
-      exposeEmail: true,
-      phoneNumber: '',
-      exposePhoneNumber: true,
-      age: null,
-      exposeAge: true,
-      sex: '',
-      exposeSex: true,
-      partyAffiliation: '',
-      exposePartyAffiliation: true,
-      auditKey: '',
-      shifts: []
-    }
+    this.newUser = this.userSvc.getNewUser();
+    this.newUser.username = this.loginForm.value.enterUsername.toLowerCase();
+    this.newUser.password = this.loginForm.value.enterPassword;
+    this.userSvc.setNewUser(this.newUser);
     // this.authSvc.register(this.newUser)
     //   .subscribe( 
     //     data => {
@@ -143,7 +127,8 @@ export class LogOrSignInComponent {
     //     },
     //     error => console.log(error)
     //   );
-    this.navCtrl.push('UnregisteredSignInPage', { user: this.newUser });
+    // this.navCtrl.push('UnregisteredSignInPage', { user: this.newUser });
+    this.navCtrl.push('UnregisteredSignInPage');
   }
 
 }
