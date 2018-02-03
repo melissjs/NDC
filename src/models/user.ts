@@ -15,5 +15,6 @@ export interface User {
   exposeSex: boolean;
   partyAffiliation: string;
   exposePartyAffiliation: boolean;
+  auditKey?: string;
   shifts?: number[]
   }

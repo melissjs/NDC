@@ -38,6 +38,21 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.pageTitle === 'Register') {
+      this.exposeEmail = true;
+      this.exposePhoneNumber = true;
+      this.exposeAge = true;
+      this.exposeSex = true;
+      this.exposePartyAffiliation = true;
+    }
+    else if (this.authSvc.isLoggedIn() && this.pageTitle === 'Account Settings') {
+      // this.newUser = this.userSvc.getUser(); D
+      this.exposeEmail = this.newUser.exposeEmail;
+      this.exposePhoneNumber = this.newUser.exposePhoneNumber;
+      this.exposeAge = this.newUser.exposeAge;
+      this.exposeSex = this.newUser.exposeSex;
+      this.exposePartyAffiliation = this.newUser.exposePartyAffiliation;
+    }
     console.log('from init', this.newUser)
     console.log('from init', this.pageTitle)
     this.registerForm = this.fb.group({  
@@ -58,21 +73,6 @@ export class UserProfileComponent implements OnInit {
       'enterPassword1Ctrl': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
-
-    if (this.pageTitle === 'Register') {
-      this.exposeEmail = true;
-      this.exposePhoneNumber = true;
-      this.exposeAge = true;
-      this.exposeSex = true;
-      this.exposePartyAffiliation = true;
-    }
-    else if (this.pageTitle === 'Account Settings') {
-      this.exposeEmail = this.newUser.exposeEmail;
-      this.exposePhoneNumber = this.newUser.exposePhoneNumber;
-      this.exposeAge = this.newUser.exposeAge;
-      this.exposeSex = this.newUser.exposeSex;
-      this.exposePartyAffiliation = this.newUser.exposePartyAffiliation;
-    }
   }
 
   // HELPER FUNCTIONS
