@@ -12,6 +12,7 @@ export class UserServiceProvider {
 
   setUser(passedUser: User) {
     this.user = passedUser;
+    localStorage.setItem('user', JSON.stringify(passedUser));
     console.log('USERSERVICE', this.user)
   }
 
