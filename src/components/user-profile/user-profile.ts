@@ -35,11 +35,6 @@ export class UserProfileComponent implements OnInit {
   exposePartyAffiliation: boolean;
 
   constructor(private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private volunteerservice: VolunteerServiceProvider) {
-    this.exposeEmail = true;
-    this.exposePhoneNumber = true;
-    this.exposeAge = true;
-    this.exposeSex = true;
-    this.exposePartyAffiliation = true;
   }
 
   ngOnInit() {
@@ -57,12 +52,27 @@ export class UserProfileComponent implements OnInit {
       // 'enterExposeAgeCtrl': [null],
       'enterSexCtrl': [this.newUser.sex, Validators.required],
       // 'enterExposeSexCtrl': [null],
-      'enterPartyAffiliationCtrl': ['', Validators.required],
+      'enterPartyAffiliationCtrl': [this.newUser.partyAffiliation, Validators.required],
       // 'enterExposePartyAffiliationCtrl': [null],
       'enterOtherPartyAffiliationCtrl':[''],
       'enterPassword1Ctrl': [this.newUser.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
+
+    if (this.pageTitle === 'Register') {
+      this.exposeEmail = true;
+      this.exposePhoneNumber = true;
+      this.exposeAge = true;
+      this.exposeSex = true;
+      this.exposePartyAffiliation = true;
+    }
+    else if (this.pageTitle === 'Account Settings') {
+      this.exposeEmail = this.newUser.exposeEmail;
+      this.exposePhoneNumber = this.newUser.exposePhoneNumber;
+      this.exposeAge = this.newUser.exposeAge;
+      this.exposeSex = this.newUser.exposeSex;
+      this.exposePartyAffiliation = this.newUser.exposePartyAffiliation;
+    }
   }
 
   // HELPER FUNCTIONS
