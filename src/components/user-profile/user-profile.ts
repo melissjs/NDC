@@ -78,7 +78,7 @@ export class UserProfileComponent implements OnInit {
         console.log('this.registerForm.value', this.registerForm.valid)
 
   }
-
+ 
   isValid() {
     console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.valid)
     console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.value)
