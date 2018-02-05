@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserServiceProvider {
 
   user: User;
+  // newUser: User;
 
   constructor() {
   }
@@ -22,6 +23,7 @@ export class UserServiceProvider {
 
   setNewUser(passedNewUser: User) {
     this.user = passedNewUser;
+    console.log('USERSERVICE', passedNewUser)
     console.log('USERSERVICE', this.user)
   }
 

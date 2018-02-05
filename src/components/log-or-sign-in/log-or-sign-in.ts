@@ -118,6 +118,7 @@ export class LogOrSignInComponent {
     this.newUser = this.userSvc.getNewUser();
     this.newUser.username = this.loginForm.value.enterUsername.toLowerCase();
     this.newUser.password = this.loginForm.value.enterPassword;
+    console.log('fromlogin', this.newUser)
     this.userSvc.setNewUser(this.newUser);
     // this.authSvc.register(this.newUser)
     //   .subscribe( 

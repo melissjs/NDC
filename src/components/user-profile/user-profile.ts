@@ -41,7 +41,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     if (this.pageTitle === 'Register') {
       // console.log('hiiiiiiii', this.userSvc.getNewUser())
-      this.user = this.userSvc.getNewUser();
+      this.user = this.userSvc.getUser() || this.userSvc.getNewUser();
       this.exposeEmail = true;
       this.exposePhoneNumber = true;
       this.exposeAge = true;
