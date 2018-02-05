@@ -27,7 +27,7 @@ export class UserProfileComponent implements OnInit {
   formErrorText: string;
   registerForm: FormGroup;
   // sex: string;
-  party: string;
+  // party: string;
   password: string;
   exposeEmail: boolean;
   exposePhoneNumber: boolean;
@@ -72,7 +72,7 @@ export class UserProfileComponent implements OnInit {
       // 'enterExposeSexCtrl': [null],
       'enterPartyAffiliationCtrl': [this.user.partyAffiliation, Validators.required],
       // 'enterExposePartyAffiliationCtrl': [null],
-      'enterOtherPartyAffiliationCtrl':[''],
+      'enterOtherPartyAffiliationCtrl':[this.user.otherPartyAffiliation],
       'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
@@ -133,17 +133,17 @@ export class UserProfileComponent implements OnInit {
         return;
     }
     // CHECK PARTY
-    if (this.party!="other"){
-      this.user.partyAffiliation = this.party;
-    } else if (this.party=="other" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
-      this.user.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
-    }
+    // if (this.party!="other"){
+    //   this.user.partyAffiliation = this.party;
+    // } else if (this.party=="other" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
+    //   this.user.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
+    // }
 
     // SET user
     this.user.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
     this.user.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
     this.user.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
-    // this.user.userRoles = 
+    this.user.userRoles = this.registerForm.value.userRoles;
     this.user.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
     this.user.exposeEmail = this.exposeEmail;
     this.user.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
@@ -152,6 +152,8 @@ export class UserProfileComponent implements OnInit {
     this.user.exposeAge = this.exposeAge;
     this.user.sex = this.registerForm.value.enterSexCtrl;
     this.user.exposeSex = this.exposeSex;
+    this.user.partyAffiliation = this.registerForm.value.enterPartyAffiliationCtrl;
+    this.user.otherPartyAffiliation = this.registerForm.value.enterOtherPartyAffiliationCtrl;
     this.user.exposePartyAffiliation = this.exposePartyAffiliation;
     this.user.password = this.password;
     console.log('after', this.user);

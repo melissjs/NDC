@@ -30,7 +30,7 @@ export class UserServiceProvider {
       volunteerKey: '',
       username: '',
       password: '',
-      userRoles: [],
+      userRoles: ['user'],
       firstName: '',
       lastName: '',
       emailAddress: '',
@@ -42,6 +42,7 @@ export class UserServiceProvider {
       sex: '',
       exposeSex: true,
       partyAffiliation: '',
+      otherPartyAffiliation: '',
       exposePartyAffiliation: true,
       auditKey: '',
       shifts: []
