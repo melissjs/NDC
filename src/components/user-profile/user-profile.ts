@@ -80,6 +80,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   isValid() {
+    this.registerForm.value.enterSexCtrl = this.user.sex;
+    this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
     console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.valid)
     console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.value)
   }
