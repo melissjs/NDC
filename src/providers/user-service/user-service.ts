@@ -1,6 +1,10 @@
 import { User } from './../../models/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as config from '../../configuration/config';
+import * as jwt_decode from 'jwt-decode';
+let baseURL = config.NDCS_BASE_URL;
+
 
 @Injectable()
 export class UserServiceProvider {
@@ -8,7 +12,7 @@ export class UserServiceProvider {
   user: User;
   // newUser: User;
 
-  constructor() {
+  constructor(public http: HttpClient) {
   }
 
   setUser(passedUser: User) {
@@ -23,8 +27,6 @@ export class UserServiceProvider {
 
   setNewUser(passedNewUser: User) {
     this.user = passedNewUser;
-    console.log('USERSERVICE', passedNewUser)
-    console.log('USERSERVICE', this.user)
   }
 
   getNewUser() {
@@ -49,6 +51,10 @@ export class UserServiceProvider {
       auditKey: '',
       shifts: []
     }
+  }
+
+  saveUser(body: User) {
+    return this.http.put(baseURL + '/users/' + this.user.volunteerKey, body);
   }
 
 }

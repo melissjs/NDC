@@ -119,44 +119,42 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    // CHECK PASSWORDS
-    if(this.registerForm.value.enterPassword1Ctrl === this.registerForm.value.enterPassword2Ctrl){
-      this.password = this.registerForm.value.enterPassword1Ctrl;
-    } else {
-        let passwordAlert = this.alertCtrl.create({
-          title: 'Passwords do not match',
-          subTitle: 'Please re-enter your passwords.',
-          buttons: ['OK'] 
-        });
-        passwordAlert.present();
-        return;
-    }
-    // CHECK PARTY
-    // if (this.party!="other"){
-    //   this.user.partyAffiliation = this.party;
-    // } else if (this.party=="other" && this.registerForm.value.enterOtherPartyAffiliationCtrl) {
-    //   this.user.partyAffiliation = this.toTitleCase(this.registerForm.value.enterOtherPartyAffiliationCtrl);
-    // }
+  readyUser(): void {
+        // CHECK PASSWORDS
+        if(this.registerForm.value.enterPassword1Ctrl === this.registerForm.value.enterPassword2Ctrl){
+          this.password = this.registerForm.value.enterPassword1Ctrl;
+        } else {
+            let passwordAlert = this.alertCtrl.create({
+              title: 'Passwords do not match',
+              subTitle: 'Please re-enter your passwords.',
+              buttons: ['OK'] 
+            });
+            passwordAlert.present();
+            return;
+        }
 
-    // SET user
-    this.user.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
-    this.user.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
-    this.user.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
-    this.user.userRoles = this.registerForm.value.userRoles;
-    this.user.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
-    this.user.exposeEmail = this.exposeEmail;
-    this.user.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
-    this.user.exposePhoneNumber = this.exposePhoneNumber;
-    this.user.age = this.registerForm.value.enterAgeCtrl;
-    this.user.exposeAge = this.exposeAge;
-    this.user.sex = this.registerForm.value.enterSexCtrl;
-    this.user.exposeSex = this.exposeSex;
-    this.user.partyAffiliation = this.registerForm.value.enterPartyAffiliationCtrl;
-    this.user.otherPartyAffiliation = this.registerForm.value.enterOtherPartyAffiliationCtrl;
-    this.user.exposePartyAffiliation = this.exposePartyAffiliation;
-    this.user.password = this.password;
-    console.log('after', this.user);
+        // SET user
+        this.user.username = this.registerForm.value.enterUsernameCtrl.toLowerCase();
+        this.user.firstName = this.toTitleCase(this.registerForm.value.enterFirstNameCtrl);
+        this.user.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
+        this.user.userRoles = this.registerForm.value.userRoles;
+        this.user.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
+        this.user.exposeEmail = this.exposeEmail;
+        this.user.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
+        this.user.exposePhoneNumber = this.exposePhoneNumber;
+        this.user.age = this.registerForm.value.enterAgeCtrl;
+        this.user.exposeAge = this.exposeAge;
+        this.user.sex = this.registerForm.value.enterSexCtrl;
+        this.user.exposeSex = this.exposeSex;
+        this.user.partyAffiliation = this.registerForm.value.enterPartyAffiliationCtrl;
+        this.user.otherPartyAffiliation = this.registerForm.value.enterOtherPartyAffiliationCtrl;
+        this.user.exposePartyAffiliation = this.exposePartyAffiliation;
+        this.user.password = this.password;
+        console.log('after readyUser', this.user);
+  }
+
+  onSubmit(): void {
+    this.readyUser();
 
     // CREATE USER THEN SIGNIN
     this.authSvc.register(this.user).subscribe(
@@ -200,6 +198,20 @@ export class UserProfileComponent implements OnInit {
           this.createErrorAlert(this.errorTitle, this.errorMessage);
           this.errorAlert.present();
         }
+      }
+    );
+  }
+
+  onSave(): void {
+    this.readyUser();
+
+    // CREATE USER THEN SIGNIN
+    this.userSvc.saveUser(this.user).subscribe(
+      (uData: ResponseObj) => {
+        console.log('uData', uData)
+      },
+      error => {
+        console.log('whole error from userRegister', error)
       }
     );
   }
