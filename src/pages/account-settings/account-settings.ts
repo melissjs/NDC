@@ -70,37 +70,37 @@ if (this.currentTempVolunteer == null) {
     } 
 }
 */
+      // REMOVE BC USING USER-PROFILE
+      // //form stuff
+      // var regExEmail: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
+      // var regExPhone: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';
+      // var regExAge: string = '[1]*[0-9]?[0-9]';
 
-      //form stuff
-      var regExEmail: string = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
-      var regExPhone: string = '[2-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]';
-      var regExAge: string = '[1]*[0-9]?[0-9]';
+      // if (this.currentTempVolunteer) {
+      //     this.changeForm = fb.group({  
+      //         'firstNameCtrl': [this.currentTempVolunteer.firstName, Validators.compose([Validators.required])],
+      //         'lastNameCtrl': [this.currentTempVolunteer.lastName, Validators.compose([Validators.required])],
+      //         'emailAddressCtrl': [this.currentTempVolunteer.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExEmail)])],
+      //         'exposeEmailCtrl': [this.currentTempVolunteer.exposeEmail],
+      //         'phoneNumberCtrl': [this.currentTempVolunteer.phoneNumber, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExPhone)])],
+      //         'ageCtrl': [this.currentTempVolunteer.age, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(regExAge)])],
+      //         'sexCtrl': [this.currentTempVolunteer.sex],
+      //         'partyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation, Validators.required],
+      //         // 'otherPartyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation],
+      //         // 'shiftsCtrl': [this.currentTempVolunteer.shifts],
+      //         'passcodeCtrl': [Validators.required],
+      //     });
 
-      if (this.currentTempVolunteer) {
-          this.changeForm = fb.group({  
-              'firstNameCtrl': [this.currentTempVolunteer.firstName, Validators.compose([Validators.required])],
-              'lastNameCtrl': [this.currentTempVolunteer.lastName, Validators.compose([Validators.required])],
-              'emailAddressCtrl': [this.currentTempVolunteer.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExEmail)])],
-              'exposeEmailCtrl': [this.currentTempVolunteer.exposeEmail],
-              'phoneNumberCtrl': [this.currentTempVolunteer.phoneNumber, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(regExPhone)])],
-              'ageCtrl': [this.currentTempVolunteer.age, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(regExAge)])],
-              'sexCtrl': [this.currentTempVolunteer.sex],
-              'partyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation, Validators.required],
-              // 'otherPartyAffiliationCtrl': [this.currentTempVolunteer.partyAffiliation],
-              // 'shiftsCtrl': [this.currentTempVolunteer.shifts],
-              'passcodeCtrl': [Validators.required],
-          });
+      //     // if(this.currentTempVolunteer.associatedPollingStationKey!==null){
+      //     //     this.thisTempStation = this.pollingstationservice.getPollingStationbyKey(this.currentTempVolunteer.associatedPollingStationKey)
+      //     //     this.thisTempStationPrecint = this.thisTempStation.precinctNumber;
+      //     // }
 
-          // if(this.currentTempVolunteer.associatedPollingStationKey!==null){
-          //     this.thisTempStation = this.pollingstationservice.getPollingStationbyKey(this.currentTempVolunteer.associatedPollingStationKey)
-          //     this.thisTempStationPrecint = this.thisTempStation.precinctNumber;
-          // }
-
-          // //get associate volunteer keys
-          // if(this.currentTempVolunteer.associatedPollingStationKey!==null){
-          //     this.fullVolunteerList = this.volunteerservice.getTeamVolunteersByPollKey(this.currentTempVolunteer.associatedPollingStationKey)
-          // }
-      }
+      //     // //get associate volunteer keys
+      //     // if(this.currentTempVolunteer.associatedPollingStationKey!==null){
+      //     //     this.fullVolunteerList = this.volunteerservice.getTeamVolunteersByPollKey(this.currentTempVolunteer.associatedPollingStationKey)
+      //     // }
+      // }
 
       //end constructor
   }
