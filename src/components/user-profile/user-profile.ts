@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   errorMessage: string;
   formErrorText: string;
   registerForm: FormGroup;
-  sex: string;
+  // sex: string;
   party: string;
   password: string;
   exposeEmail: boolean;
@@ -41,7 +41,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     if (this.pageTitle === 'Register') {
       // console.log('hiiiiiiii', this.userSvc.getNewUser())
-      this.user = this.userSvc.getUser();
+      this.user = this.userSvc.getNewUser();
       this.exposeEmail = true;
       this.exposePhoneNumber = true;
       this.exposeAge = true;
@@ -68,9 +68,9 @@ export class UserProfileComponent implements OnInit {
       // 'enterExposePhoneNumberCtrl': [null],
       'enterAgeCtrl': [this.user.age, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
       // 'enterExposeAgeCtrl': [null],
-      'enterSexCtrl': [this.user.sex, RequireSelectValidator.isValid],
+      'enterSexCtrl': [this.user.sex, Validators.required],
       // 'enterExposeSexCtrl': [null],
-      'enterPartyAffiliationCtrl': [this.user.partyAffiliation, RequireSelectValidator.isValid],
+      'enterPartyAffiliationCtrl': [this.user.partyAffiliation, Validators.required],
       // 'enterExposePartyAffiliationCtrl': [null],
       'enterOtherPartyAffiliationCtrl':[''],
       'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
@@ -104,22 +104,6 @@ export class UserProfileComponent implements OnInit {
       subTitle: this.errorMessage,
       buttons: ['Dismiss']
     });
-  }
-
-  // SETTING FOCUS NOT WORKING
-
-  onDirtySex(partyAffiliation){
-    partyAffiliation.setFocus();
-}
-
-  onChangePartyAffiliationFromList(value, otherParty, password){
-    this.party = value;
-    if (value === "other") {
-        otherParty.setFocus();
-    } else {
-        otherParty = null;
-        password.setFocus();
-    }
   }
 
   onSubmit(): void {
