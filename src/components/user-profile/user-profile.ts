@@ -106,6 +106,19 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  onChangeParty() {
+    if (this.registerForm.value.enterPartyAffiliationCtrl === 'other') {
+      console.log('this.registerForm.value.enterPartyAffiliationCtrl', this.registerForm.value.enterPartyAffiliationCtrl)
+      this.registerForm.get('enterOtherPartyAffiliationCtrl').setValidators([Validators.required]);
+      this.registerForm.controls['enterOtherPartyAffiliationCtrl'].updateValueAndValidity();
+    } 
+    else if (this.registerForm.value.enterPartyAffiliationCtrl != 'other'){
+      console.log('this.registerForm.value.enterPartyAffiliationCtrl', this.registerForm.value.enterPartyAffiliationCtrl)
+      this.registerForm.controls['enterOtherPartyAffiliationCtrl'].clearValidators();
+      this.registerForm.controls['enterOtherPartyAffiliationCtrl'].updateValueAndValidity();
+    }
+  }
+
   onSubmit(): void {
     // CHECK PASSWORDS
     if(this.registerForm.value.enterPassword1Ctrl === this.registerForm.value.enterPassword2Ctrl){
