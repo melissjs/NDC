@@ -76,13 +76,18 @@ export class UserProfileComponent implements OnInit {
       'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
-        console.log('this.registerForm.value', this.registerForm.valid)
+    // console.log('this.registerForm.value BEFORE', this.registerForm.value.enterSexCtrl)
+    // this.registerForm.value.enterSexCtrl = this.user.sex;
+    // console.log('this.registerForm.value AFTER', this.registerForm.value.enterSexCtrl)
+
+    // this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
+    // console.log('this.registerForm.value', this.registerForm.valid)
 
   }
 
   isValid() {
-    this.registerForm.value.enterSexCtrl = this.user.sex;
-    this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
+    // this.registerForm.value.enterSexCtrl = this.user.sex;
+    // this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
     console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.valid)
     console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.value)
   }

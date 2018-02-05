@@ -4,7 +4,7 @@ export class RequireSelectValidator {
  
     static isValid(control: FormControl): any {
  
-        if (control.value == 'undefined'){
+        if (control.value === ''){
             return {
                 "no selection": true
             };
