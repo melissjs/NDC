@@ -42,19 +42,19 @@ export class UserProfileComponent implements OnInit {
     if (this.pageTitle === 'Register') {
       // console.log('hiiiiiiii', this.userSvc.getNewUser())
       this.user = this.userSvc.getUser() || this.userSvc.getNewUser();
-      this.exposeEmail = true;
-      this.exposePhoneNumber = true;
-      this.exposeAge = true;
-      this.exposeSex = true;
-      this.exposePartyAffiliation = true;
+      // this.exposeEmail = true;
+      // this.exposePhoneNumber = true;
+      // this.exposeAge = true;
+      // this.exposeSex = true;
+      // this.exposePartyAffiliation = true;
     }
     else if (this.authSvc.isLoggedIn() && this.pageTitle === 'Account Settings') {
       this.user = this.userSvc.getUser(); 
-      this.exposeEmail = this.user.exposeEmail;
-      this.exposePhoneNumber = this.user.exposePhoneNumber;
-      this.exposeAge = this.user.exposeAge;
-      this.exposeSex = this.user.exposeSex;
-      this.exposePartyAffiliation = this.user.exposePartyAffiliation;
+      // this.exposeEmail = this.user.exposeEmail;
+      // this.exposePhoneNumber = this.user.exposePhoneNumber;
+      // this.exposeAge = this.user.exposeAge;
+      // this.exposeSex = this.user.exposeSex;
+      // this.exposePartyAffiliation = this.user.exposePartyAffiliation;
     }
     // console.log('from init', this.user)
     // console.log('from init', this.pageTitle)
@@ -63,15 +63,15 @@ export class UserProfileComponent implements OnInit {
       'enterFirstNameCtrl': [this.user.firstName, Validators.compose([Validators.required, Validators.minLength(2)])],
       'enterLastNameCtrl': [this.user.lastName, Validators.compose([Validators.required, Validators.minLength(2)])],
       'enterEmailAddressCtrl': [this.user.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
-      // 'enterExposeEmailCtrl': [null],
+      'enterExposeEmailCtrl': [this.user.exposeEmail],
       'enterPhoneNumberCtrl': [this.user.phoneNumber, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
-      // 'enterExposePhoneNumberCtrl': [null],
+      'enterExposePhoneNumberCtrl': [this.user.exposePhoneNumber],
       'enterAgeCtrl': [this.user.age, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
-      // 'enterExposeAgeCtrl': [null],
+      'enterExposeAgeCtrl': [this.user.exposeAge],
       'enterSexCtrl': [this.user.sex, Validators.required],
-      // 'enterExposeSexCtrl': [null],
+      'enterExposeSexCtrl': [this.user.exposeSex],
       'enterPartyAffiliationCtrl': [this.user.partyAffiliation, Validators.required],
-      // 'enterExposePartyAffiliationCtrl': [null],
+      'enterExposePartyAffiliationCtrl': [this.user.exposePartyAffiliation],
       'enterOtherPartyAffiliationCtrl':[this.user.otherPartyAffiliation],
       'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
