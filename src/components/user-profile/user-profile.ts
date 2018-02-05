@@ -8,6 +8,7 @@ import { VolunteerServiceProvider } from '../../providers/volunteer-service/volu
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import * as globals from '../../globals';
+import { RequireSelectValidator } from  '../../validators/require-select';
 
 @Component({
   selector: 'user-profile',
@@ -67,9 +68,9 @@ export class UserProfileComponent implements OnInit {
       // 'enterExposePhoneNumberCtrl': [null],
       'enterAgeCtrl': [this.user.age, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
       // 'enterExposeAgeCtrl': [null],
-      'enterSexCtrl': [this.user.sex, Validators.required],
+      'enterSexCtrl': [this.user.sex, RequireSelectValidator.isValid],
       // 'enterExposeSexCtrl': [null],
-      'enterPartyAffiliationCtrl': [this.user.partyAffiliation, Validators.required],
+      'enterPartyAffiliationCtrl': [this.user.partyAffiliation, RequireSelectValidator.isValid],
       // 'enterExposePartyAffiliationCtrl': [null],
       'enterOtherPartyAffiliationCtrl':[''],
       'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
