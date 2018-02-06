@@ -1,5 +1,6 @@
+import { AuthServiceProvider } from './../auth-service/auth-service';
 import { User } from './../../models/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
@@ -12,7 +13,7 @@ export class UserServiceProvider {
   user: User;
   // newUser: User;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private authSvc: AuthServiceProvider) {
   }
 
   setUser(passedUser: User) {
@@ -54,7 +55,27 @@ export class UserServiceProvider {
   }
 
   saveUser(body: User) {
-    return this.http.put(baseURL + '/users/' + this.user.volunteerKey, body);
+    // const header = new Headers({'Authorization' : this.authSvc.getToken()})
+    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+    return this.http.put(baseURL + '/users/' + body.volunteerKey, body, {headers: header})
+     .subscribe(
+        res => {
+            console.log(res);
+        },
+        (err: HttpErrorResponse) => {
+            this.handleAngularJsonBug(err);
+        }
+      )
   }
+
+  private handleAngularJsonBug (error: HttpErrorResponse) {
+    const JsonParseError = 'Http failure during parsing for';
+    const matches = error.message.match(JsonParseError);
+    if (error.status === 200 && matches != null) {
+        return;
+    } else {
+        console.log('Error Occured', error)
+    }
+}
 
 }

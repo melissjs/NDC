@@ -84,7 +84,7 @@
   </ion-item>
 
   <ion-item *ngIf="pageTitle === 'Account Settings'">
-    <button ion-button type="submit" [disabled]="!registerForm.valid" block large>
+    <button ion-button type="submit" [disabled]="!registerForm.valid" block large (click)="onSave()">
       Save
     </button>
   </ion-item>

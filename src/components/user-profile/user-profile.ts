@@ -206,14 +206,16 @@ export class UserProfileComponent implements OnInit {
     this.readyUser();
 
     // CREATE USER THEN SIGNIN
-    this.userSvc.saveUser(this.user).subscribe(
-      (uData: ResponseObj) => {
-        console.log('uData', uData)
-      },
-      error => {
-        console.log('whole error from userRegister', error)
-      }
-    );
+    this.userSvc.saveUser(this.user)
+    
+    // .subscribe(
+    //   (uData: ResponseObj) => {
+    //     console.log('uData', uData)
+    //   },
+    //   error => {
+    //     console.log('whole error from userRegister', error)
+    //   }
+    // );
   }
 
 }
