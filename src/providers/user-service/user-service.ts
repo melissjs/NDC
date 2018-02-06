@@ -63,19 +63,20 @@ export class UserServiceProvider {
             console.log(res);
         },
         (err: HttpErrorResponse) => {
-            this.handleAngularJsonBug(err);
+            // this.handleAngularJsonBug(err);
+            console.log(err);
         }
       )
   }
 
-  private handleAngularJsonBug (error: HttpErrorResponse) {
-    const JsonParseError = 'Http failure during parsing for';
-    const matches = error.message.match(JsonParseError);
-    if (error.status === 200 && matches != null) {
-        return;
-    } else {
-        console.log('Error Occured', error)
-    }
-}
+//   private handleAngularJsonBug (error: HttpErrorResponse) {
+//     const JsonParseError = 'Http failure during parsing for';
+//     const matches = error.message.match(JsonParseError);
+//     if (error.status === 200 && matches != null) {
+//         return;
+//     } else {
+//         console.log('Error Occured', error)
+//     }
+// }
 
 }
