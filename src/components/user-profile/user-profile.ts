@@ -27,8 +27,6 @@ export class UserProfileComponent implements OnInit {
   errorMessage: string;
   formErrorText: string;
   registerForm: FormGroup;
-  // sex: string;
-  // party: string;
   password: string;
   exposeEmail: boolean;
   exposePhoneNumber: boolean;
@@ -41,24 +39,12 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     if (this.pageTitle === 'Register') {
-      // console.log('hiiiiiiii', this.userSvc.getNewUser())
       this.user = this.userSvc.getUser() || this.userSvc.getNewUser();
-      // this.exposeEmail = true;
-      // this.exposePhoneNumber = true;
-      // this.exposeAge = true;
-      // this.exposeSex = true;
-      // this.exposePartyAffiliation = true;
     }
     else if (this.authSvc.isLoggedIn() && this.pageTitle === 'Account Settings') {
       this.user = this.userSvc.getUser(); 
-      // this.exposeEmail = this.user.exposeEmail;
-      // this.exposePhoneNumber = this.user.exposePhoneNumber;
-      // this.exposeAge = this.user.exposeAge;
-      // this.exposeSex = this.user.exposeSex;
-      // this.exposePartyAffiliation = this.user.exposePartyAffiliation;
     }
-    // console.log('from init', this.user)
-    // console.log('from init', this.pageTitle)
+
     this.registerForm = this.fb.group({  
       'enterUsernameCtrl': [this.user.username, Validators.compose([Validators.required, Validators.minLength(3)])],
       'enterFirstNameCtrl': [this.user.firstName, Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -77,20 +63,6 @@ export class UserProfileComponent implements OnInit {
       'enterPassword1Ctrl': [this.user.password, Validators.compose([Validators.required, Validators.minLength(8)])],
       'enterPassword2Ctrl': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
-    // console.log('this.registerForm.value BEFORE', this.registerForm.value.enterSexCtrl)
-    // this.registerForm.value.enterSexCtrl = this.user.sex;
-    // console.log('this.registerForm.value AFTER', this.registerForm.value.enterSexCtrl)
-
-    // this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
-    // console.log('this.registerForm.value', this.registerForm.valid)
-
-  }
-
-  isValid() {
-    // this.registerForm.value.enterSexCtrl = this.user.sex;
-    // this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
-    console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.valid)
-    console.log('this.registerForm.valuekkkkkkkkkk', this.registerForm.value)
   }
 
   // HELPER FUNCTIONS
@@ -109,12 +81,10 @@ export class UserProfileComponent implements OnInit {
 
   onChangeParty() {
     if (this.registerForm.value.enterPartyAffiliationCtrl === 'other') {
-      console.log('this.registerForm.value.enterPartyAffiliationCtrl', this.registerForm.value.enterPartyAffiliationCtrl)
       this.registerForm.get('enterOtherPartyAffiliationCtrl').setValidators([Validators.required]);
       this.registerForm.controls['enterOtherPartyAffiliationCtrl'].updateValueAndValidity();
     } 
     else if (this.registerForm.value.enterPartyAffiliationCtrl != 'other'){
-      console.log('this.registerForm.value.enterPartyAffiliationCtrl', this.registerForm.value.enterPartyAffiliationCtrl)
       this.registerForm.controls['enterOtherPartyAffiliationCtrl'].clearValidators();
       this.registerForm.controls['enterOtherPartyAffiliationCtrl'].updateValueAndValidity();
     }
@@ -153,6 +123,8 @@ export class UserProfileComponent implements OnInit {
         this.user.password = this.password;
         console.log('after readyUser', this.user);
   }
+
+  // SUBMISSION FUNCTIONS
 
   onSubmit(): void {
     this.readyUser();
@@ -216,6 +188,13 @@ export class UserProfileComponent implements OnInit {
         console.log('whole error from userRegister', error)
       }
     );
+  }
+
+  onTest() {
+    // this.registerForm.value.enterSexCtrl = this.user.sex;
+    // this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
+    console.log('this.registerForm.valid: ', this.registerForm.valid)
+    console.log('this.registerForm.value: ', this.registerForm.value)
   }
 
 }
