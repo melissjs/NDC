@@ -57,8 +57,7 @@ export class UserServiceProvider {
   saveUser(body: User) {
     // const header = new Headers({'Authorization' : this.authSvc.getToken()})
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-    return this.http.put(baseURL + '/users/' + body.volunteerKey, body, {headers: header})
-     .subscribe(
+    return this.http.put(baseURL + '/users/' + body.volunteerKey, body, {headers: header}).subscribe(
         res => {
             console.log(res);
         },
