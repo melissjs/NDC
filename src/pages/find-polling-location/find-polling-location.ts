@@ -1,9 +1,7 @@
+import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// page to navigate to
-// import { PollingstationdetailsPage } from '../pollingstationdetails/pollingstationdetails';
-
-import { PollingStation } from '../../models/pollingstation';
+import { Pollingstation } from '../../models/pollingstation';
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
 //import { Pollingstationdetailscomponent } from '../pollingstationdetailscomponent/pollingstationdetailscomponent';
 // interfaces
@@ -13,7 +11,7 @@ import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 // pipes
 import { SearchPipe } from '../../pipes/search/search';
-// Gloablas
+// Globals
 import * as globals from '../../globals';
 
 @IonicPage()
@@ -27,9 +25,8 @@ import * as globals from '../../globals';
 })
 export class FindPollingLocationPage {
   currentVolunteer: Volunteer; 
-  stations: PollingStation[];
-  selectedStation: PollingStation;
-  // pollingStationService: PollingStationServiceProvider;
+  stations: Observable<Object>;
+  selectedStation: Pollingstation;
   searchpipe: SearchPipe;
   pageTitle: string;
 
@@ -52,7 +49,7 @@ export class FindPollingLocationPage {
   this.selectedStation = variablePassedFromItem;
   console.log('selectedStation'+ this.selectedStation);
   this.pollingStationService.setStation(this.selectedStation);
-  this.pollingStationService.printSelectedStation();
+  // this.pollingStationService.printSelectedStation();
       try {
           this.navCtrl.push('PollingStationDetailsPage');
       } catch (EE) {

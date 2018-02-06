@@ -1,4 +1,4 @@
-export interface PollingStation {
+export interface Pollingstation {
   pollingstationKey: string;
   locationName: string;
   precinctNumber: string;
