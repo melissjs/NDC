@@ -2,6 +2,7 @@ import { UserServiceProvider } from './../../providers/user-service/user-service
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { User} from '../../models/user';
 import { ResponseObj} from '../../models/response-obj';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
@@ -207,15 +208,14 @@ export class UserProfileComponent implements OnInit {
 
     // CREATE USER THEN SIGNIN
     this.userSvc.saveUser(this.user)
-    
-    // .subscribe(
-    //   (uData: ResponseObj) => {
-    //     console.log('uData', uData)
-    //   },
-    //   error => {
-    //     console.log('whole error from userRegister', error)
-    //   }
-    // );
+    .subscribe(
+      (uData: ResponseObj) => {
+        console.log('uData', uData)
+      },
+      (error: HttpErrorResponse) => {
+        console.log('whole error from userRegister', error)
+      }
+    );
   }
 
 }
