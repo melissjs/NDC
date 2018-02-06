@@ -1,29 +1,56 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+
 import { PollingStation } from '../../models/pollingstation';
-import { Volunteer } from '../../models/volunteer';
+import { Volunteer} from '../../models/volunteer';
+//import { Team } from '../../team.ts';
+
+// datalist
+// import { STATIONS } from '../../fakedata';
+
+import { VolunteerServiceProvider} from '../../providers/volunteer-service/volunteer-service';
+
+
+// pipes
+//import { Searchpipe } from '../../pipes/searchpipe.ts';
+
 
 @Injectable()
 export class PollingStationServiceProvider {
 
-  constructor(){
+  selectedStationXX: PollingStation;
+  oldStation: PollingStation;
+  stationListInMemory: PollingStation[];
+  associatedVolunteerKeyList: string[];
+  matchingPrecinctAndZipList: PollingStation[];
+  duplicateYesOrNo: boolean;
+  volunteerCount: number;
+  shiftsToFill: number;
+  shiftsFilled: number;
+  associatedVolunteerArray: Volunteer[];
+  usingReal: boolean;
+
+  //searchpipe: Searchpipe;
+
+  constructor(private volSvc: VolunteerServiceProvider){
+      this.usingReal = false;
+      this.stationListInMemory = this.getStations();
+      this.matchingPrecinctAndZipList = [];
+      this.duplicateYesOrNo = false;
+      //this.volunteerservice = volunteerservice;
   }
 
-  getNewStation() {
+  voidStation() {
     return {
-      pollingstationKey: '',
-      locationName: '',
+      pollingStationKey: '',
       precinctNumber: '',
       streetAddress: '',
-      line1: '',
-      line2: '',
-      line3: '',
+      unitNumber: '',
+      roomNumber: '',
       city: '',
       state: '',
       zip: null,
-      pollingHours: '',
-      notes: ''
     }
   }
 

@@ -1,11 +1,14 @@
 export interface PollingStation {
-pollingStationKey: string;
-precinctNumber: string;
-streetAddress: string;
-unitNumber?: string;
-roomNumber?: string;
-city: string;
-state: string;
-zip: number;
+  pollingstationKey: string;
+  locationName: string;
+  precinctNumber: string;
+  streetAddress: string;
+  line1?: string;
+  line2?: string;
+  line3?: string;
+  city: string;
+  state: string;
+  zip: number;
+  pollingHours: string;
+  notes: string
 }
-

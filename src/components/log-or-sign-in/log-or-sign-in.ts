@@ -78,7 +78,7 @@ export class LogOrSignInComponent {
       partyAffiliation: '',
       exposePartyAffiliation: true,
       auditKey: '',
-      shifts: []
+      // shifts: []
     }
 
     this.authSvc.signin(this.newUser)

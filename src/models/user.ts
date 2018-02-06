@@ -17,5 +17,5 @@ export interface User {
   otherPartyAffiliation?: string;
   exposePartyAffiliation: boolean;
   auditKey?: string;
-  shifts?: number[]
+  // shifts?: number[]
   }

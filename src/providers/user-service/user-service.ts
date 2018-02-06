@@ -49,13 +49,12 @@ export class UserServiceProvider {
       partyAffiliation: '',
       otherPartyAffiliation: '',
       exposePartyAffiliation: true,
-      auditKey: '',
-      shifts: []
+      auditKey: '', // really scheduleKey but audit is better name here
+      // shifts: []
     }
   }
 
   saveUser(body: User) {
-    // const header = new Headers({'Authorization' : this.authSvc.getToken()})
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
     return this.http.put(baseURL + '/users/' + body.volunteerKey, body, {headers: header})
     // .subscribe(
