@@ -57,25 +57,15 @@ export class UserServiceProvider {
   saveUser(body: User) {
     // const header = new Headers({'Authorization' : this.authSvc.getToken()})
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-    return this.http.put(baseURL + '/users/' + body.volunteerKey, body, {headers: header}).subscribe(
-        res => {
-            console.log(res);
-        },
-        (err: HttpErrorResponse) => {
-            // this.handleAngularJsonBug(err);
-            console.log(err);
-        }
-      )
+    return this.http.put(baseURL + '/users/' + body.volunteerKey, body, {headers: header})
+    // .subscribe(
+    //     res => {
+    //         console.log(res);
+    //     },
+    //     (err: HttpErrorResponse) => {
+    //         console.log(err);
+    //     }
+    //   )
   }
-
-//   private handleAngularJsonBug (error: HttpErrorResponse) {
-//     const JsonParseError = 'Http failure during parsing for';
-//     const matches = error.message.match(JsonParseError);
-//     if (error.status === 200 && matches != null) {
-//         return;
-//     } else {
-//         console.log('Error Occured', error)
-//     }
-// }
 
 }
