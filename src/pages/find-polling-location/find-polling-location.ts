@@ -3,16 +3,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Pollingstation } from '../../models/pollingstation';
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
-//import { Pollingstationdetailscomponent } from '../pollingstationdetailscomponent/pollingstationdetailscomponent';
-// interfaces
-import { Volunteer} from '../../models/volunteer'; 
-// Services
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
-// pipes
 import { SearchPipe } from '../../pipes/search/search';
-// Globals
 import * as globals from '../../globals';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ResponseObj } from '../../models/response-obj';
+
 
 @IonicPage()
 @Component({
@@ -24,28 +21,36 @@ import * as globals from '../../globals';
   // directives: [PollingstationComponent]
 })
 export class FindPollingLocationPage {
-  currentVolunteer: Volunteer; 
-  stations: Observable<Object>;
+  stations: Pollingstation[];
   selectedStation: Pollingstation;
   searchpipe: SearchPipe;
   pageTitle: string;
+  query: string;
 
     constructor(private navCtrl: NavController, navParams: NavParams, private pollingStationService: PollingStationServiceProvider, private restSvc: RestServiceProvider ) {
-  this.pageTitle = "Find Polling Location";
-  this.navCtrl = navCtrl;
-  this.stations = pollingStationService.getStations();
-  this.pollingStationService = pollingStationService;
-  this.restSvc.getLatestPollStations();
-  console.log('pollingstation=' + this.pollingStationService);
-  console.log('stations=' + this.stations);  
-  //this.searchpipe = searchpipe;
-  // console.log('searchpipe=' + this.searchpipe);  
+      this.pageTitle = "Find Polling Location";
+      this.navCtrl = navCtrl;
+      // this.stations = 
+      pollingStationService.getStations()
+          .subscribe(
+        (res: ResponseObj) => {
+            console.log(res.obj);
+            this.stations = res.obj;
+        },
+        (err: HttpErrorResponse) => {
+            console.log(err);
+        }
+      )
+      this.pollingStationService = pollingStationService;
+      this.restSvc.getLatestPollStations();
+      console.log('pollingstation=' + this.pollingStationService);
+      console.log('stations=' + this.stations);  
+      //this.searchpipe = searchpipe;
+      // console.log('searchpipe=' + this.searchpipe);  
   }
 
 
   showStationDetails(variablePassedFromItem){
-
-
   this.selectedStation = variablePassedFromItem;
   console.log('selectedStation'+ this.selectedStation);
   this.pollingStationService.setStation(this.selectedStation);
