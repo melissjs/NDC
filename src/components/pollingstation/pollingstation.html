@@ -2,4 +2,7 @@
 <b>{{passedStations.locationName}}</b>
 <br>Precinct Number: {{passedStations.precinctNumber}}
 <br>{{passedStations.streetAddress}}
+<span *ngIf="passedStations.line1"><br>{{passedStations.line1}}</span>
+<span *ngIf="passedStations.line2"><br>{{passedStations.line2}}</span>
+<span *ngIf="passedStations.line3"><br>{{passedStations.line3}}</span>
 <br>{{passedStations.city}}, {{passedStations.state}} {{passedStations.zip}}
