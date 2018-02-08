@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { PollingStation } from '../../models/pollingstation';
+import { Pollingstation } from '../../models/pollingstation';
 import { Volunteer} from '../../models/volunteer';
 //import { Team } from '../../team.ts';
 
@@ -19,11 +19,11 @@ import { VolunteerServiceProvider} from '../../providers/volunteer-service/volun
 @Injectable()
 export class PollingStationServiceProvider {
 
-  selectedStationXX: PollingStation;
-  oldStation: PollingStation;
-  stationListInMemory: PollingStation[];
+  selectedStationXX: Pollingstation;
+  oldStation: Pollingstation;
+  stationListInMemory: Pollingstation[];
   associatedVolunteerKeyList: string[];
-  matchingPrecinctAndZipList: PollingStation[];
+  matchingPrecinctAndZipList: Pollingstation[];
   duplicateYesOrNo: boolean;
   volunteerCount: number;
   shiftsToFill: number;
@@ -130,7 +130,7 @@ export class PollingStationServiceProvider {
 
   getPollingStationbyKey(passedKey){ 
       for (var i = 0; i < this.stationListInMemory.length; i++){
-          if (this.stationListInMemory[i].pollingStationKey == passedKey){
+          if (this.stationListInMemory[i].pollingstationKey == passedKey){
               return this.stationListInMemory[i]
           }
       }

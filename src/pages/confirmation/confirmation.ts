@@ -2,7 +2,7 @@ import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
-import { PollingStation} from '../../models/pollingstation';
+import { Pollingstation} from '../../models/pollingstation';
 //import {VotePage} from '../vote/vote';
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
 // import { PollingstationDetailsPage } from '../pollingstation-details/pollingstation-details';
@@ -24,7 +24,7 @@ export class ConfirmationPage {
   currentVolunteer: User; 
   // volunteerservice: Volunteerservice;
   // pollingstationservice: Pollingstationservice;
-  thisTempStation: PollingStation;
+  thisTempStation: Pollingstation;
   thisTempStationPrecint: string;
   printedShifts: string;
   

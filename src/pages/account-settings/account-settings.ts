@@ -5,7 +5,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 // Models
 import { Volunteer} from '../../models/volunteer';
-import { PollingStation} from '../../models/pollingstation';
+import { Pollingstation} from '../../models/pollingstation';
 // Globals
 import * as globals from '../../globals';
 // Components
@@ -32,7 +32,7 @@ export class AccountSettingsPage implements OnInit {
   currentVolunteer: User; 
   exposedYesOrNo: string;
   currentTempVolunteer: User;
-  thisTempStation: PollingStation;
+  thisTempStation: Pollingstation;
   thisTempStationPrecint: string;
   printedShifts: string;
   fullVolunteerKeyList: string[];

@@ -9,7 +9,7 @@ import { ConfirmationPage } from '../confirmation/confirmation';
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
 //import { Pollingstationdetailscomponent } from '../pollingstationdetailscomponent/pollingstationdetailscomponent';
 import { Volunteer} from '../../models/volunteer';
-import { PollingStation } from '../../models/pollingstation';
+import { Pollingstation } from '../../models/pollingstation';
 // Globals
 import * as globals from '../../globals';
 // Services
@@ -30,10 +30,10 @@ export class PollingstationDetailsPage {
   pageTitle: string;
   currentVolunteerHere: User; 
   //currentTeam: Team;
-  stations: PollingStation[];
+  stations: Pollingstation[];
   // pollingStationService: Pollingstationservice;
   // volunteerservice: Volunteerservice;
-  currentStation: PollingStation;
+  currentStation: Pollingstation;
   // loggedIn: boolean;
   eM: boolean = false;
   lM: boolean = false;
@@ -80,7 +80,7 @@ export class PollingstationDetailsPage {
 
       // populate using rest-service instead...
       // this.volunteerservice.generateStationStats(this.currentStation.pollingStationKey);
-      this.restSvc.getVolunteersByStation(this.currentStation.pollingStationKey,this.setInternals,this);
+      this.restSvc.getVolunteersByStation(this.currentStation.pollingstationKey,this.setInternals,this);
 
       this.volunteerCount = 0;
       this.shiftsToFill = 0;

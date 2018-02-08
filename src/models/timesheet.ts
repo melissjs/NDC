@@ -1,4 +1,4 @@
-import { PollingStation} from './pollingstation';
+import { Pollingstation} from './pollingstation';
 import { Volunteer} from './volunteer';
 
 export interface Timesheet {

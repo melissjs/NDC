@@ -10,7 +10,7 @@ import { AnomalyRecord } from '../../models/anomaly-record';
 import { DemographicsRecord } from '../../models/demographics-record';
 import { ElectOfficeGUI } from '../../models/elect-office-gui';
 import { OfficeVoteRecord } from '../../models/office-vote-record';
-import { PollingStation } from '../../models/pollingstation';
+import { Pollingstation } from '../../models/pollingstation';
 import { Timesheet } from '../../models/timesheet';
 import { Volunteer} from '../../models/volunteer';
 import { VoteRecord } from '../../models/vote-record';

@@ -80,9 +80,9 @@ export class VotePage {
       this.secondPresVoteWriteIn = null;
       this.thirdPresVoteWriteIn = null;
       // this.pollingstationservice = pollingstationservice;
-      this.inFlorida = this.pollingstationservice.isThisInState('FL');
-      console.log(this.inFlorida);
-      console.log(this.pollingstationservice.selectedStationXX.state);
+      // this.inFlorida = this.pollingstationservice.isThisInState('FL');
+      // console.log(this.inFlorida);
+      // console.log(this.pollingstationservice.selectedStationXX.state);
      
       this.restSvc.getObjectsByField('elect-offices','electOfficeKey','2016 General Election Presidential'
                                      ,this.successElectOfficePresCb, this.failureElectOfficePresCb, this);

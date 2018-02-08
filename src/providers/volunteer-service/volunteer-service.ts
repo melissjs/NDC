@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import { Volunteer} from '../../models/volunteer';
-import { PollingStation } from '../../models/pollingstation';
+import { Pollingstation } from '../../models/pollingstation';
 import { ResponseObj } from '../../models/response-obj';
 import * as globals from '../../globals';
 import * as config from '../../configuration/config';
@@ -21,7 +21,7 @@ export class VolunteerServiceProvider {
 
   currentVolunteer: User;
   exposedYesOrNo: string;
-  oldStation: PollingStation;
+  oldStation: Pollingstation;
   // pollingstationservice: Pollingstationservice;
   volunteerListInMemory: Volunteer[];
   volunteersByStation: Volunteer[];
