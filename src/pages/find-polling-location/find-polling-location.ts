@@ -15,14 +15,10 @@ import { ResponseObj } from '../../models/response-obj';
 @Component({
   selector: 'page-find-polling-location',
   templateUrl: 'find-polling-location.html',
-  // inputs: ['pollingstation', 'volunteer'],
-  // pipes: [Searchpipe],
-  // //providers: [Searchpipe],
-  // directives: [PollingstationComponent]
 })
+
 export class FindPollingLocationPage {
   stations: Pollingstation[];
-  selectedStation: Pollingstation;
   searchpipe: SearchPipe;
   pageTitle: string;
   query: string;
@@ -39,16 +35,10 @@ export class FindPollingLocationPage {
     )
   }
 
-  showStationDetails(variablePassedFromItem){
-  this.selectedStation = variablePassedFromItem;
-  console.log('selectedStation'+ this.selectedStation);
-  this.pollingStationService.setStation(this.selectedStation);
-  // this.pollingStationService.printSelectedStation();
-      try {
-          this.navCtrl.push('PollingStationDetailsPage');
-      } catch (EE) {
-          console.log('error in Submitting, exc='+ EE.toString())
-      }
+  showStationDetails(passedStation){
+  console.log('selectedStation: '+ passedStation);
+  // this.pollingStationService.setStation(passedStation);
+    this.navCtrl.push('PollingstationDetailsPage');
   }
   
 }

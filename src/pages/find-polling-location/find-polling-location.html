@@ -6,7 +6,7 @@
 </ion-header>
   
 <ion-content class="backgroundColor" padding>
-  <ion-card padding style="cursor:pointer" (click)="showStationDetails(item);" *ngFor="let item of (stations | search:query)">
-    <pollingstation [passedStations]=item> </pollingstation>
+  <ion-card padding (click)="showStationDetails(station)" *ngFor="let station of (stations | search:query)">
+    <pollingstation [passedStations]=station> </pollingstation>
   </ion-card>
 </ion-content>
