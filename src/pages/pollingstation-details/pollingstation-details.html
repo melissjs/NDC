@@ -5,7 +5,6 @@
 <ion-content class="backgroundColor" padding>          
   <ion-card padding>
     <pollingstation [passedStation]=pollingStationService.getStation() [pageTitle]=pageTitle> </pollingstation> 
-  </ion-card>
   
   
   
@@ -69,7 +68,6 @@
   
   <div *ngIf="authSvc.isLoggedIn()">
 
-  <ion-card padding text-wrap>
     <b>Station Stats</b>
     <br>
     There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks. 
@@ -79,39 +77,7 @@
     Total shifts filled so far: {{shiftsFilled}}
     <br>
     Total remaining shifts to fill: {{shiftsToFill}}
-  </ion-card>
-  
-  <ion-card padding>
-    <ion-list>
-      <ion-list-header>Select all shifts you want to volunteer for:</ion-list-header>
-      <ion-item>
-        <ion-label>Early Morning (5:00 AM - 8:15 AM)</ion-label>
-        <ion-checkbox [(ngModel)]="earlyM" (click)="onChangeEarlyM(earlyM)" ></ion-checkbox>
-      </ion-item>
-      <ion-item>
-          <ion-label>Late Morning (8:00 AM - 11:15 AM)</ion-label>
-        <ion-checkbox [(ngModel)]="lateM" (click)="onChangeLateM(lateM)" ></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Early Afternoon (11:00 AM - 2:15 PM)</ion-label>
-        <ion-checkbox [(ngModel)]="earlyA" (click)="onChangeEarlyA(earlyA)" ></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Late Afternoon (2:00 PM - 5:15 PM)</ion-label>
-        <ion-checkbox [(ngModel)]="lateA" (click)="onChangeLateA(lateA)" ></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Early Evening (5:00 PM - 8:15 PM)</ion-label>
-        <ion-checkbox [(ngModel)]="earlyE" (click)="onChangeEarlyE(earlyE)" ></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Late Evening (8:00 PM - 10:30 PM)</ion-label>
-        <ion-checkbox [(ngModel)]="lateE" (click)="onChangeLateE(lateE)" ></ion-checkbox>
-      </ion-item>
-    </ion-list>
-  </ion-card>
 
-  <ion-item>
     <ion-label stacked>Select shifts to join this audit:</ion-label>
     <ion-select text-wrap multiple="true" [(ngModel)]="enterShifts" #item (change)="onChangeShifts(enterShifts)">
       <!-- <ion-option value="noAnswer">No Answer</ion-option> do other instead and write in option-->
@@ -122,7 +88,6 @@
       <ion-option value="pacificIslander">Native Hawaiian or Other Pacific Islander</ion-option>
       <ion-option value="white">White</ion-option>
     </ion-select> 
-  </ion-item>
 
   <button ion-button type="submit" (click)="onSubmit()" block large *ngIf="authSvc.isLoggedIn()">
     Join Audit
@@ -133,9 +98,10 @@
   </button>
 
   </div>
+</ion-card>
 
   <ion-card *ngIf="!authSvc.isLoggedIn()">
-     <ion-label>Please Login to see Polling Station details.</ion-label>  
+    <ion-label>Please Login to see Polling Station details.</ion-label>  
     <button type="button" (click)="onLogin()" block large>
       Log in 
     </button>
