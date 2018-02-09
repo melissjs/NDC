@@ -10,37 +10,46 @@ import { VolunteerServiceProvider } from '../../providers/volunteer-service/volu
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 
-@IonicPage()
+
 @Component({
-  selector: 'page-pollingstation-details',
-  templateUrl: 'pollingstation-details.html',
+  selector: 'audit-details',
+  templateUrl: 'audit-details.html'
 })
 
-export class PollingstationDetailsPage {
+export class AuditDetailsComponent {
 
   pageTitle: string;
   currentVolunteerHere: User; 
+  //currentTeam: Team;
   stations: Pollingstation[];
+  // pollingStationService: Pollingstationservice;
+  // volunteerservice: Volunteerservice;
   currentStation: Pollingstation;
+  // loggedIn: boolean;
   eM: boolean = false;
   lM: boolean = false;
   eA: boolean = false;
   lA: boolean = false;
   eE: boolean = false;
   lE: boolean = false;
+
   earlyM: boolean = false;
   lateM: boolean = false;
   earlyA: boolean = false;
   lateA: boolean = false;
   earlyE: boolean = false;
   lateE: boolean = false;
+
   EARLY_MORNING: string = globals.EARLY_MORNING;
   LATE_MORNING: string = globals.LATE_MORNING;
   EARLY_AFTERNOON: string = globals.EARLY_AFTERNOON;
   LATE_AFTERNOON: string = globals.LATE_AFTERNOON;
   EARLY_EVENING: string = globals.EARLY_EVENING;
   LATE_EVENING: string = globals.LATE_EVENING;
+
+
   shiftSelected: boolean = false;
+
   volunteerCount: number;
   shiftsToFill: number;
   shiftsFilled: number;
@@ -320,3 +329,4 @@ onLoginClick(){
 }  
 
 }
+

@@ -36,7 +36,7 @@ export class FindPollingLocationPage {
   }
 
   showStationDetails(passedStation){
-  console.log('selectedStation: '+ passedStation);
+  console.log('selectedStation: ' + passedStation);
   // this.pollingStationService.setStation(passedStation);
     this.navCtrl.push('PollingstationDetailsPage');
   }
