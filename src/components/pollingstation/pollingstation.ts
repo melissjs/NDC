@@ -1,20 +1,23 @@
 import { Pollingstation } from './../../models/pollingstation';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Volunteer} from '../../models/volunteer';
 
 @Component({
   selector: 'pollingstation',
   templateUrl: 'pollingstation.html',
-  inputs: ['passedStations', 'Volunteer'],
+  inputs: ['passedStations', 'pageTitle'],
 })
 
-export class PollingstationComponent {
+export class PollingstationComponent implements OnInit {
 
   passedStations: Pollingstation[];
+  pageTitle: string;
 
   constructor() {
   }
 
+  ngOnInit() {
+    console.log('pageTitle', this.pageTitle)
+  }
 }
 
