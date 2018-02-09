@@ -27,28 +27,17 @@ export class FindPollingLocationPage {
   pageTitle: string;
   query: string;
 
-    constructor(private navCtrl: NavController, navParams: NavParams, private pollingStationService: PollingStationServiceProvider, private restSvc: RestServiceProvider ) {
-      this.pageTitle = "Find Polling Location";
-      this.navCtrl = navCtrl;
-      // this.stations = 
-      pollingStationService.getStations()
-          .subscribe(
-        (res: ResponseObj) => {
-            console.log(res.obj);
-            this.stations = res.obj;
-        },
-        (err: HttpErrorResponse) => {
-            console.log(err);
-        }
-      )
-      this.pollingStationService = pollingStationService;
-      this.restSvc.getLatestPollStations();
-      console.log('pollingstation=' + this.pollingStationService);
-      console.log('stations=' + this.stations);  
-      //this.searchpipe = searchpipe;
-      // console.log('searchpipe=' + this.searchpipe);  
+  constructor(private navCtrl: NavController, navParams: NavParams, private pollingStationService: PollingStationServiceProvider, private restSvc: RestServiceProvider ) {
+    this.pageTitle = "Find Polling Location";
+    pollingStationService.getStations()
+        .subscribe((res: ResponseObj) => {
+          this.stations = res.obj;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    )
   }
-
 
   showStationDetails(variablePassedFromItem){
   this.selectedStation = variablePassedFromItem;
