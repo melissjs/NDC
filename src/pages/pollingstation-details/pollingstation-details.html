@@ -69,19 +69,16 @@
   
   <div *ngIf="authSvc.isLoggedIn()">
 
-  <ion-card padding>
-     <ion-list>
-        <ion-list-header>Station Stats</ion-list-header>
-        <ion-item text-wrap>
-          There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks. 
-          <br><br>
-          Total registered volunteers so far: {{volunteerCount}}
-          <br>
-          Total shifts filled so far: {{shiftsFilled}}
-          <br>
-          Total remaining shifts to fill: {{shiftsToFill}}
-        </ion-item>
-     </ion-list>
+  <ion-card padding text-wrap>
+    <b>Station Stats</b>
+    <br>
+    There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks. 
+    <br><br>
+    Total registered volunteers so far: {{volunteerCount}}
+    <br>
+    Total shifts filled so far: {{shiftsFilled}}
+    <br>
+    Total remaining shifts to fill: {{shiftsToFill}}
   </ion-card>
   
   <ion-card padding>
@@ -114,8 +111,21 @@
     </ion-list>
   </ion-card>
 
-  <button type="submit" (click)="onSubmit()" block large *ngIf="authSvc.isLoggedIn()">
-    Submit
+  <ion-item>
+    <ion-label stacked>Select shifts to join this audit:</ion-label>
+    <ion-select text-wrap multiple="true" [(ngModel)]="enterShifts" #item (change)="onChangeShifts(enterShifts)">
+      <!-- <ion-option value="noAnswer">No Answer</ion-option> do other instead and write in option-->
+      <ion-option value="americanIndian">American Indian or Alaska Native</ion-option>
+      <ion-option value="asian">Asian</ion-option>
+      <ion-option value="black">Black or African American</ion-option>
+      <ion-option value="hispanic">Hispanic or Latino</ion-option>
+      <ion-option value="pacificIslander">Native Hawaiian or Other Pacific Islander</ion-option>
+      <ion-option value="white">White</ion-option>
+    </ion-select> 
+  </ion-item>
+
+  <button ion-button type="submit" (click)="onSubmit()" block large *ngIf="authSvc.isLoggedIn()">
+    Join Audit
   </button>
 
   <button (click)="onRegister()" block large *ngIf="!authSvc.isLoggedIn()" style="background-color:#959eb0; cursor:default">

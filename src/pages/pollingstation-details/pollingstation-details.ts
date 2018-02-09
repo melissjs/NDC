@@ -45,6 +45,7 @@ export class PollingstationDetailsPage {
   volunteerCount: number;
   shiftsToFill: number;
   shiftsFilled: number;
+  enterShifts: number[];
 
   constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, private userSvc: UserServiceProvider, public authSvc: AuthServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider ) {
     this.pageTitle = "Polling Station Details";
@@ -168,7 +169,11 @@ export class PollingstationDetailsPage {
       // console.log(this.volunteerservice.getVolunteersByStation(this.currentStation));
   }
 
-  onSubmit(){
+  onChangeShifts(shifts) {
+
+  }
+
+  onSubmit() {
 
   //     //clear shifts
   //     //console.log(this.volunteerservice.printVolunteerKeysFromList());
