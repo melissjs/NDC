@@ -66,7 +66,7 @@ export class AuditDetailsComponent {
       this.shiftsFilled = 0;
 
       //this.currentVolunteerHere = null;
-      this.currentVolunteerHere = this.volunteerservice.getNewVolunteer();
+      // this.currentVolunteerHere = this.volunteerservice.getNewVolunteer();
       this.currentStation = this.pollingStationService.getStation();
 
       // populate using rest-service instead...

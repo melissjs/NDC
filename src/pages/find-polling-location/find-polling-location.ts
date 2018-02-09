@@ -23,9 +23,9 @@ export class FindPollingLocationPage {
   pageTitle: string;
   query: string;
 
-  constructor(private navCtrl: NavController, navParams: NavParams, private pollingStationService: PollingStationServiceProvider, private restSvc: RestServiceProvider ) {
+  constructor(private navCtrl: NavController, navParams: NavParams, private pollingstationSvc: PollingStationServiceProvider, private restSvc: RestServiceProvider ) {
     this.pageTitle = "Find Polling Location";
-    pollingStationService.getStations()
+    pollingstationSvc.getStations()
         .subscribe((res: ResponseObj) => {
           this.stations = res.obj;
       },
@@ -36,8 +36,8 @@ export class FindPollingLocationPage {
   }
 
   showStationDetails(passedStation){
-  console.log('selectedStation: ' + passedStation);
-  // this.pollingStationService.setStation(passedStation);
+    console.log('selectedStation: ' + passedStation);
+    this.pollingstationSvc.setStation(passedStation);
     this.navCtrl.push('PollingstationDetailsPage');
   }
   

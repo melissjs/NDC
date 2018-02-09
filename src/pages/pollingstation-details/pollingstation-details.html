@@ -68,7 +68,7 @@
   </ion-card> -->
   
   <div *ngIf="authSvc.isLoggedIn()">
-    
+
   <ion-card padding>
      <ion-list>
         <ion-list-header>Station Stats</ion-list-header>
@@ -126,7 +126,7 @@
 
   <ion-card *ngIf="!authSvc.isLoggedIn()">
      <ion-label>Please Login to see Polling Station details.</ion-label>  
-    <button type="button" (click)="onLoginClick()" block large>
+    <button type="button" (click)="onLogin()" block large>
       Log in 
     </button>
   </ion-card>

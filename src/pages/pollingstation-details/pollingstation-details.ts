@@ -9,6 +9,7 @@ import * as globals from '../../globals';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
+import { UserServiceProvider } from '../../providers/user-service/user-service';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,7 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
 export class PollingstationDetailsPage {
 
   pageTitle: string;
-  currentVolunteerHere: User; 
+  user: User; 
   stations: Pollingstation[];
   currentStation: Pollingstation;
   eM: boolean = false;
@@ -45,88 +46,81 @@ export class PollingstationDetailsPage {
   shiftsToFill: number;
   shiftsFilled: number;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, public authSvc: AuthServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider ) {
-      this.pageTitle = "Polling Station Details";
-      // this.pollingStationService = pollingStationService;
-      // this.volunteerservice = volunteerservice;
-      // this.restSvc = restSvc;
-      // this.loggedIn = false;
-      this.restSvc.getLoggedIn();
-      this.volunteerCount = 0;
-      this.shiftsToFill = 0;
-      this.shiftsFilled = 0;
+  constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, private userSvc: UserServiceProvider, public authSvc: AuthServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider ) {
+    this.pageTitle = "Polling Station Details";
+    this.restSvc.getLoggedIn();
+    this.volunteerCount = 0;
+    this.shiftsToFill = 0;
+    this.shiftsFilled = 0;
+    this.user = this.userSvc.getUser();
+    this.currentStation = this.pollingStationService.getStation();
+    // populate using rest-service instead...
+    // this.volunteerservice.generateStationStats(this.currentStation.pollingStationKey);
+    // this.restSvc.getVolunteersByStation(this.currentStation.pollingstationKey,this.setInternals,this);
+    this.volunteerCount = 0;
+    this.shiftsToFill = 0;
+    this.shiftsFilled = 0;
 
-      //this.currentVolunteerHere = null;
-      this.currentVolunteerHere = this.volunteerservice.getNewVolunteer();
-      this.currentStation = this.pollingStationService.getStation();
+    // //ATTEMP TO FIX PROBLEM
+    // if (!this.user){
 
-      // populate using rest-service instead...
-      // this.volunteerservice.generateStationStats(this.currentStation.pollingStationKey);
-      this.restSvc.getVolunteersByStation(this.currentStation.pollingstationKey,this.setInternals,this);
+    //     this.user = {
+    //         volunteerKey: null,
+    //         firstName: null,
+    //         lastName: null,
+    //         emailAddress: null,
+    //         exposeEmail: false,
+    //         phoneNumber: null,
+    //         age:null,
+    //         sex: null,
+    //         partyAffiliation: null,
+    //         shifts:[''], 
+    //         associatedPollingStationKey:null
+    //     }
+    //     volunteerservice.setNewVolunteer(this.user);
 
-      this.volunteerCount = 0;
-      this.shiftsToFill = 0;
-      this.shiftsFilled = 0;
+    // }
 
-      // //ATTEMP TO FIX PROBLEM
-      // if (!this.currentVolunteerHere){
-
-      //     this.currentVolunteerHere = {
-      //         volunteerKey: null,
-      //         firstName: null,
-      //         lastName: null,
-      //         emailAddress: null,
-      //         exposeEmail: false,
-      //         phoneNumber: null,
-      //         age:null,
-      //         sex: null,
-      //         partyAffiliation: null,
-      //         shifts:[''], 
-      //         associatedPollingStationKey:null
-      //     }
-      //     volunteerservice.setNewVolunteer(this.currentVolunteerHere);
-
-      // }
-
-      // this.setShifts();
+    // this.setShifts();
       
-  } // end const
-  setInternals(that: any) {
-      that.volunteerCount = that.volunteerservice.getVolunteerCount();
-      that.shiftsToFill = that.volunteerservice.getShiftsToFill();
-      that.shiftsFilled = that.volunteerservice.getShiftsFilled();
   }
 
+  // setInternals(that: any) {
+  //     that.volunteerCount = that.volunteerservice.getVolunteerCount();
+  //     that.shiftsToFill = that.volunteerservice.getShiftsToFill();
+  //     that.shiftsFilled = that.volunteerservice.getShiftsFilled();
+  // }
+
   // setShifts() {
-  //     if ((this.currentVolunteerHere.associatedPollingStationKey == 
+  //     if ((this.user.associatedPollingStationKey == 
   //         this.currentStation.pollingStationKey) &&
-  //         (this.currentVolunteerHere.shifts)) {
-  //         if (this.currentVolunteerHere.shifts.includes(globals.EARLY_MORNING)) {
+  //         (this.user.shifts)) {
+  //         if (this.user.shifts.includes(globals.EARLY_MORNING)) {
   //             this.eM = true;
   //             this.earlyM = true;
   //             this.shiftSelected = true;
   //         }
-  //         if (this.currentVolunteerHere.shifts.includes(globals.LATE_MORNING)) {
+  //         if (this.user.shifts.includes(globals.LATE_MORNING)) {
   //             this.lM = true;
   //             this.lateM = true;
   //             this.shiftSelected = true;
   //         }
-  //         if (this.currentVolunteerHere.shifts.includes(globals.EARLY_AFTERNOON)) {
+  //         if (this.user.shifts.includes(globals.EARLY_AFTERNOON)) {
   //             this.eA = true;
   //             this.earlyA = true;
   //             this.shiftSelected = true;
   //         }
-  //         if (this.currentVolunteerHere.shifts.includes(globals.LATE_AFTERNOON)) {
+  //         if (this.user.shifts.includes(globals.LATE_AFTERNOON)) {
   //             this.lA = true;
   //             this.lateA = true;
   //             this.shiftSelected = true;
   //         }
-  //         if (this.currentVolunteerHere.shifts.includes(globals.EARLY_EVENING)) {
+  //         if (this.user.shifts.includes(globals.EARLY_EVENING)) {
   //             this.eE = true;
   //             this.earlyE = true;
   //             this.shiftSelected = true;
   //         }
-  //         if (this.currentVolunteerHere.shifts.includes(globals.LATE_EVENING)) {
+  //         if (this.user.shifts.includes(globals.LATE_EVENING)) {
   //             this.lE = true;
   //             this.lateE = true;
   //             this.shiftSelected = true;
@@ -174,16 +168,6 @@ export class PollingstationDetailsPage {
       // console.log(this.volunteerservice.getVolunteersByStation(this.currentStation));
   }
 
-  onRegister(){
-      var that = this;
-      try {
-          that.navCtrl.push('UnregisteredSignInPage');
-
-      } catch (EE) {
-          console.log('error in Submitting, exc='+ EE.toString())
-      } 
-  }
-
   onSubmit(){
 
   //     //clear shifts
@@ -224,7 +208,7 @@ export class PollingstationDetailsPage {
   //     if(this.lE){
   //         this.volunteerservice.setShifts(globals.LATE_EVENING);
   //         shiftNowSelected = true;
-  //         console.log(this.currentVolunteerHere);
+  //         console.log(this.user);
   //     }
 
   //     //check for selected station, remove volunteer from old station
@@ -233,7 +217,7 @@ export class PollingstationDetailsPage {
        
   //         //add polling station to volunteer object
   //         this.volunteerservice.setPollingStationForVolunteer(this.currentStation); 
-  //         console.log(this.currentVolunteerHere);
+  //         console.log(this.user);
 
         
   //     }
@@ -309,14 +293,12 @@ export class PollingstationDetailsPage {
   //     });
   }
 
-onLoginClick(){
-  var that = this;
-  try {
-      console.log('about to push login component...');
-      that.navCtrl.push('LogInPage');
-  } catch (EE) { 
-      console.log('error in Submitting, exc='+ EE.toString())
+  onRegister(){
+    this.navCtrl.push('UnregisteredSignInPage');
   }
-}  
+
+  onLogin(){
+  this.navCtrl.push('LogInPage');
+  }
 
 }

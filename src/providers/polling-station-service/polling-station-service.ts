@@ -35,8 +35,8 @@ export class PollingStationServiceProvider {
     }
   }
 
-  setStation(assedStation: Pollingstation){
-    return this.pollingstation;
+  setStation(passedStation: Pollingstation){
+    this.pollingstation = passedStation;
   }
 
   getStation(){
