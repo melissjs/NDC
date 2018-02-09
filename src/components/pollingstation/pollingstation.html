@@ -1,11 +1,11 @@
 
-<b>{{passedStations.locationName}}</b>
-<br>Precinct Number: {{passedStations.precinctNumber}}
-<br>{{passedStations.streetAddress}}
-<span *ngIf="passedStations.line1"><br>{{passedStations.line1}}</span>
-<span *ngIf="passedStations.line2"><br>{{passedStations.line2}}</span>
-<span *ngIf="passedStations.line3"><br>{{passedStations.line3}}</span>
-<br>{{passedStations.city}}, {{passedStations.state}} {{passedStations.zip}}
-<span *ngIf="pageTitle === 'Polling Station Details'"><br>Polling Hours: {{passedStations.pollingHours}}</span>
-<span *ngIf="pageTitle === 'Polling Station Details'"><br>Additional Information: {{passedStations.notes}}</span>
+<b>{{passedStation.locationName}}</b>
+<br>Precinct Number: {{passedStation.precinctNumber}}
+<br>{{passedStation.streetAddress}}
+<span *ngIf="passedStation.line1"><br>{{passedStation.line1}}</span>
+<span *ngIf="passedStation.line2"><br>{{passedStation.line2}}</span>
+<span *ngIf="passedStation.line3"><br>{{passedStation.line3}}</span>
+<br>{{passedStation.city}}, {{passedStation.state}} {{passedStation.zip}}
+<span *ngIf="pageTitle === 'Polling Station Details'"><br>Polling Hours: {{passedStation.pollingHours}}</span>
+<span *ngIf="pageTitle === 'Polling Station Details'"><br>Additional Information: {{passedStation.notes}}</span>
 

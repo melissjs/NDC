@@ -4,7 +4,7 @@
   
   <ion-content class="backgroundColor" padding>          
     <ion-card padding>
-      <pollingstation [passedStations]=pollingStationService.getStation()> </pollingstation> 
+      <!-- <pollingstation [passedStation]=pollingStationService.getStation()> </pollingstation>  -->
     </ion-card>
     
     
@@ -12,7 +12,7 @@
     
     <ion-card padding>
       
-    <div>
+    <!-- <div>
       <b>Early Morning (5:00 AM - 8:15 AM)</b>
           <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_MORNING))"> 
             {{item.firstName}} {{item.lastName}}
@@ -65,7 +65,7 @@
           <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_EVENING))"> 
             {{item.firstName}} {{item.lastName}}
           </p>
-    </div>
+    </div> -->
     </ion-card>
     
     <ion-card padding>

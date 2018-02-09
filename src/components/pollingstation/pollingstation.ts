@@ -5,12 +5,12 @@ import { NavController } from 'ionic-angular';
 @Component({
   selector: 'pollingstation',
   templateUrl: 'pollingstation.html',
-  inputs: ['passedStations', 'pageTitle'],
+  inputs: ['passedStation', 'pageTitle'],
 })
 
 export class PollingstationComponent implements OnInit {
 
-  passedStations: Pollingstation;
+  passedStation: Pollingstation;
   pageTitle: string;
 
   constructor() {
