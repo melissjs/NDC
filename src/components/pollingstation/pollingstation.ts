@@ -10,7 +10,7 @@ import { NavController } from 'ionic-angular';
 
 export class PollingstationComponent implements OnInit {
 
-  passedStations: Pollingstation[];
+  passedStations: Pollingstation;
   pageTitle: string;
 
   constructor() {
