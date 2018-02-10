@@ -5,98 +5,39 @@
 <ion-content class="backgroundColor" padding>          
   <ion-card padding>
     <pollingstation [passedStation]=pollingStationService.getStation() [pageTitle]=pageTitle> </pollingstation> 
-  
-  
-  
-  <!-- <ion-card padding>
-    
-  <div>
-    <b>Early Morning (5:00 AM - 8:15 AM)</b>
-        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_MORNING))"> 
-          {{item.firstName}} {{item.lastName}}
-        </p>
-  </div>
-  
-  
-  
-  
-  <div>
-    <b>Late Morning (8:00 AM - 11:15 AM)</b>
-        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_MORNING))"> 
-          {{item.firstName}} {{item.lastName}}
-        </p>
-  </div>
-  
-  
-  
-  
-  <div>
-    <b>Early Afternoon (11:00 AM - 2:15 PM)</b>
-        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_AFTERNOON))"> 
-          {{item.firstName}} {{item.lastName}}
-        </p>
-  </div>
-  
-  
-  
-  
-  <div>
-    <b>Late Afternoon (2:00 PM - 5:15 PM)</b>
-        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_AFTERNOON))"> 
-          {{item.firstName}} {{item.lastName}}
-        </p>
-  </div>
-  
-  
-  
-  <div>
-      <b>Early Evening (5:00 PM - 8:15 PM)</b>
-        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(EARLY_EVENING))"> 
-          {{item.firstName}} {{item.lastName}}
-        </p>
-  </div>
-  
-  
-  
-  <div>
-    <b>Late Evening (8:00 PM - 10:30 PM)</b>
-        <p *ngFor="let item of (volunteerservice.getVolunteersByShift(LATE_EVENING))"> 
-          {{item.firstName}} {{item.lastName}}
-        </p>
-  </div>
-  </ion-card> -->
-  
-  <div *ngIf="authSvc.isLoggedIn()">
 
-    <b>Station Stats</b>
-    <br>
-    There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks. 
-    <br><br>
-    Total registered volunteers so far: {{volunteerCount}}
-    <br>
-    Total shifts filled so far: {{shiftsFilled}}
-    <br>
-    Total remaining shifts to fill: {{shiftsToFill}}
+  
+    <div *ngIf="authSvc.isLoggedIn()">
+      <br>
+      <b>Station Stats</b>
+      <br>
+      There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks. 
+      <br><br>
+      Total registered volunteers so far: {{volunteerCount}}
+      <br>
+      Total shifts filled so far: {{shiftsFilled}}
+      <br>
+      Total remaining shifts to fill: {{shiftsToFill}}
+      <ion-item>Total remaining shifts to fill:<ion-badge item-end>{{shiftsToFill}}</ion-badge></ion-item>
 
-    <ion-label stacked>Select shifts to join this audit:</ion-label>
-    <ion-select text-wrap multiple="true" [(ngModel)]="enterShifts" #item (change)="onChangeShifts(enterShifts)">
-      <ion-option value="americanIndian">American Indian or Alaska Native</ion-option>
-      <ion-option value="asian">Asian</ion-option>
-      <ion-option value="black">Black or African American</ion-option>
-      <ion-option value="hispanic">Hispanic or Latino</ion-option>
-      <ion-option value="pacificIslander">Native Hawaiian or Other Pacific Islander</ion-option>
-      <ion-option value="white">White</ion-option>
-    </ion-select> 
+      <ion-label stacked>Select shifts to join this audit:</ion-label>
+      <ion-select text-wrap multiple="true" [(ngModel)]="enterShifts" #item (change)="onChangeShifts(enterShifts)">
+        <ion-option value="americanIndian">American Indian or Alaska Native</ion-option>
+        <ion-option value="asian">Asian</ion-option>
+        <ion-option value="black">Black or African American</ion-option>
+        <ion-option value="hispanic">Hispanic or Latino</ion-option>
+        <ion-option value="pacificIslander">Native Hawaiian or Other Pacific Islander</ion-option>
+        <ion-option value="white">White</ion-option>
+      </ion-select> 
 
-  <button ion-button type="submit" (click)="onSubmit()" block large *ngIf="authSvc.isLoggedIn()">
-    Join Audit
-  </button>
+    <button ion-button type="submit" (click)="onSubmit()" block large *ngIf="authSvc.isLoggedIn()">
+      Join Audit
+    </button>
 
-  <button (click)="onRegister()" block large *ngIf="!authSvc.isLoggedIn()" style="background-color:#959eb0; cursor:default">
-    Register to sign up for shifts
-  </button>
-
-  </div>
+    <button (click)="onRegister()" block large *ngIf="!authSvc.isLoggedIn()" style="background-color:#959eb0; cursor:default">
+      Register to sign up for shifts
+    </button>
+    </div>
 </ion-card>
 
   <ion-card *ngIf="!authSvc.isLoggedIn()">
