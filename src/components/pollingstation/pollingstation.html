@@ -1,3 +1,4 @@
+<ion-item text-wrap>
 <b>{{passedStation.locationName}}</b>
 <br>Precinct Number: {{passedStation.precinctNumber}}
 <br>{{passedStation.streetAddress}}
@@ -8,4 +9,4 @@
 <br>
 <span *ngIf="pageTitle === 'Polling Station Details'"><br>Polling Hours: {{passedStation.pollingHours}}</span>
 <span *ngIf="pageTitle === 'Polling Station Details'"><br>Additional Information: {{passedStation.notes}}</span>
-
+</ion-item>
