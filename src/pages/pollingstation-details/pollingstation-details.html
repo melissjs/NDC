@@ -2,10 +2,9 @@
   <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
 
-<ion-content class="backgroundColor" padding>          
-  <ion-card padding>
+<ion-content class="backgroundColor" padding> 
+  <ion-card padding *ngIf="authSvc.isLoggedIn()">
   <pollingstation [passedStation]=pollingStationService.getStation() [pageTitle]=pageTitle> </pollingstation> 
-
   <ion-item text-wrap>
     <b>Station Statistics:</b>
     <br>
@@ -19,30 +18,8 @@
     </span> -->
   </ion-item>
 
-    <!-- <ion-label stacked>Select shifts to join this audit:</ion-label>
-    <ion-select text-wrap multiple="true" [(ngModel)]="enterShifts" #item (change)="onChangeShifts(enterShifts)">
-      <ion-option value="americanIndian">American Indian or Alaska Native</ion-option>
-      <ion-option value="asian">Asian</ion-option>
-      <ion-option value="black">Black or African American</ion-option>
-      <ion-option value="hispanic">Hispanic or Latino</ion-option>
-      <ion-option value="pacificIslander">Native Hawaiian or Other Pacific Islander</ion-option>
-      <ion-option value="white">White</ion-option>
-    </ion-select>  -->
-
-  <button ion-button type="submit" (click)="onSubmit()" block large *ngIf="authSvc.isLoggedIn()">
+  <button ion-button (click)="onJoinAudit()" block large>
     Join Audit
   </button>
-
-  <button (click)="onRegister()" block large *ngIf="!authSvc.isLoggedIn()" style="background-color:#959eb0; cursor:default">
-    Register to sign up for shifts
-  </button>
-</ion-card>
-
-  <ion-card *ngIf="!authSvc.isLoggedIn()">
-    <ion-label>Please Login to see Polling Station details.</ion-label>  
-    <button type="button" (click)="onLogin()" block large>
-      Log in 
-    </button>
-  </ion-card>
 
 </ion-content>

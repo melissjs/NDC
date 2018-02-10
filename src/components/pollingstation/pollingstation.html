@@ -7,6 +7,6 @@
 <span *ngIf="passedStation.line3"><br>{{passedStation.line3}}</span>
 <br>{{passedStation.city}}, {{passedStation.state}} {{passedStation.zip}}
 <br>
-<span *ngIf="pageTitle === 'Polling Station Details'"><br><b>Polling Hours:</b><br> {{passedStation.pollingHours}}<br></span>
-<span *ngIf="pageTitle === 'Polling Station Details'"><br><b>Additional Information:</b><br> {{passedStation.notes}}</span>
+<span *ngIf="pageTitle === 'Polling Station Details' && passedStation.pollingHours"><br><b>Polling Hours:</b><br> {{passedStation.pollingHours}}<br></span>
+<span *ngIf="pageTitle === 'Polling Station Details' && passedStation.notes"><br><b>Additional Information:</b><br> {{passedStation.notes}}</span>
 </ion-item>

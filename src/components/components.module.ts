@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile';
 import { VolunteerListComponent } from './volunteer-list/volunteer-list';
 import { RecordsComponent } from './records/records';
 import { AuditDetailsComponent } from './audit-details/audit-details';
+import { JoinAuditComponent } from './join-audit/join-audit';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -30,7 +31,8 @@ import { AuditDetailsComponent } from './audit-details/audit-details';
     UserProfileComponent,
     VolunteerListComponent,
     RecordsComponent,
-    AuditDetailsComponent],
+    AuditDetailsComponent,
+    JoinAuditComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
@@ -45,6 +47,7 @@ import { AuditDetailsComponent } from './audit-details/audit-details';
     UserProfileComponent,
     VolunteerListComponent,
     RecordsComponent,
-    AuditDetailsComponent]
+    AuditDetailsComponent,
+    JoinAuditComponent]
 })
 export class ComponentsModule {}
