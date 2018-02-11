@@ -298,6 +298,15 @@ export class PollingstationDetailsPage {
   //     });
   }
 
+  onInfoAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'How are these numbers calculated?',
+      subTitle: 'There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks.',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
   onJoinAudit() {
     this.navCtrl.push('JoinAuditPage');
   }

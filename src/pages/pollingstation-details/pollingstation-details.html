@@ -6,7 +6,7 @@
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
   <pollingstation [passedStation]=pollingStationService.getStation() [pageTitle]=pageTitle> </pollingstation> 
   <ion-item text-wrap>
-    <b>Station Statistics<ion-icon name="information"></ion-icon>:</b>
+    <b>Station Statistics<ion-icon name="information" (click)="onInfoAlert()"></ion-icon>:</b>
     <br>
     Total registered volunteers so far: {{volunteerCount}}
     <br>
@@ -14,8 +14,6 @@
     <br>
     Total remaining shifts to fill: {{shiftsToFill}}
     <br><br>
-    <!-- <span class="smallText">There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks.
-    </span> -->
   </ion-item>
 
   <button ion-button (click)="onJoinAudit()" block large>
