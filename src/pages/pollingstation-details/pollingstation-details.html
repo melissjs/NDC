@@ -6,7 +6,7 @@
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
   <pollingstation [passedStation]=pollingStationService.getStation() [pageTitle]=pageTitle> </pollingstation> 
   <ion-item text-wrap>
-    <b>Station Statistics:</b>
+    <b>Station Statistics<ion-icon name="information"></ion-icon>:</b>
     <br>
     Total registered volunteers so far: {{volunteerCount}}
     <br>
