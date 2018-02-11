@@ -1,4 +1,3 @@
-import { PollingLocation } from './../../models/polling-location';
 import { Pollingstation } from './../../models/pollingstation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -52,10 +51,11 @@ export class PollingStationServiceProvider {
 
   setStationOfInterest(passedStation: Pollingstation) {
     this.pollingstationOfInterest = passedStation;
+    localStorage.setItem('pollingstationOfInterest', JSON.stringify(passedStation));
   }
 
   getStationOfInterest(){
-    return this.pollingstationOfInterest;
+    return this.pollingstationOfInterest || JSON.parse(localStorage.getItem('pollingstationOfInterest'))
   }
 
   addPollingstation(passedStation: Pollingstation) {
