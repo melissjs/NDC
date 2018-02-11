@@ -298,12 +298,8 @@ export class PollingstationDetailsPage {
   //     });
   }
 
-  onRegister(){
-    this.navCtrl.push('UnregisteredSignInPage');
+  onJoinAudit() {
+    this.navCtrl.push('JoinAuditPage');
   }
-
-  onLogin(){
-  this.navCtrl.push('LogInPage');
-  }
-
+  
 }
