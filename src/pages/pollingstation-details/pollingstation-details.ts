@@ -307,8 +307,48 @@ export class PollingstationDetailsPage {
     alert.present();
   }
 
+  // onJoinAudit() {
+  //   this.navCtrl.push('JoinAuditPage');
+  // }
+
   onJoinAudit() {
-    this.navCtrl.push('JoinAuditPage');
+    let alert = this.alertCtrl.create({
+      title: 'Select shifts',
+      inputs: [
+        {
+          type: 'checkbox',
+          label: 'Early Morning',
+          name: 'em',
+          id: 'em',
+          value: 'em',
+          checked: false
+        },
+        {
+          type: 'checkbox',
+          label: 'Mid Morning',
+          name: 'mm',
+          id: 'mm',
+          value: 'mm',
+          checked: false
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: data => {
+            console.log('alert data', data)
+          }
+        }
+      ]
+    });
+    alert.present();
   }
-  
+
 }
