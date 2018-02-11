@@ -1,3 +1,4 @@
+import { PollingLocation } from './../../models/polling-location';
 import { Pollingstation } from './../../models/pollingstation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,6 +14,7 @@ let baseURL = config.NDCS_BASE_URL;
 export class PollingStationServiceProvider {
 
   pollingstation: Pollingstation;
+  pollingstationOfInterest: Pollingstation;
   stationListInMemory: Pollingstation[];
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider){
@@ -46,6 +48,14 @@ export class PollingStationServiceProvider {
   getStations() : Observable<Object> {
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
     return this.http.get(baseURL + '/pollingstations/all', {headers: header})
+  }
+
+  setStationOfInterest(passedStation: Pollingstation) {
+    this.pollingstationOfInterest = passedStation;
+  }
+
+  getStationOfInterest(){
+    return this.pollingstationOfInterest;
   }
 
   addPollingstation(passedStation: Pollingstation) {
