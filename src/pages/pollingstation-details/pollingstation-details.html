@@ -3,7 +3,8 @@
 </ion-header>
 
 <ion-content class="backgroundColor" padding> 
-  <ion-card padding *ngIf="authSvc.isLoggedIn()">
+  <ion-card padding *ngIf="authSvc.isLoggedIn()"> 
+    <!-- rm user req? -->
   <pollingstation [passedStation]=pollingStationService.getStation() [pageTitle]=pageTitle> </pollingstation> 
   <ion-item text-wrap>
     <b>Station Statistics<ion-icon name="information" (click)="onInfoAlert()"></ion-icon>:</b>
