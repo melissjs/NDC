@@ -1,5 +1,6 @@
+import { ResponseObj } from './../../models/response-obj';
 import { Pollingstation } from './../../models/pollingstation';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
@@ -15,8 +16,10 @@ export class PollingStationServiceProvider {
   pollingstation: Pollingstation;
   pollingstationOfInterest: Pollingstation;
   stationListInMemory: Pollingstation[];
+  cachedDateTime: number;
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider){
+    this.cachedDateTime = 0;
   }
 
   getNewStation() {
@@ -44,9 +47,31 @@ export class PollingStationServiceProvider {
     return this.pollingstation;
   }
 
-  getStations() : Observable<Object> {
-    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-    return this.http.get(baseURL + '/pollingstations/all', {headers: header})
+  // getStations() : Observable<Object> {
+  //   let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+  //   return this.http.get(baseURL + '/pollingstations/all', {headers: header})
+  // }
+
+  getStations() {
+    if (this.cachedDateTime === 0 || this.cachedDateTime + 120000 < Date.now()) {
+      this.cachedDateTime = Date.now();
+      let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+      this.http.get(baseURL + '/pollingstations/all', {headers: header})
+      .subscribe((res: ResponseObj) => {
+        this.stationListInMemory = res.obj;
+        localStorage.setItem('stationListInMemory', JSON.stringify(res.obj));
+        console.log('this.stationListInMemory', this.stationListInMemory)
+        return this.stationListInMemory;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      })
+    }
+    else {
+      console.log('tripping else')
+      return this.stationListInMemory || JSON.parse(localStorage.getItem('stationListInMemory'));
+    }
+
   }
 
   setStationOfInterest(passedStation: Pollingstation) {

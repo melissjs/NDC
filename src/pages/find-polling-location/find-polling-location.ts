@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Pollingstation } from '../../models/pollingstation';
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
@@ -17,7 +17,7 @@ import { ResponseObj } from '../../models/response-obj';
   templateUrl: 'find-polling-location.html',
 })
 
-export class FindPollingLocationPage {
+export class FindPollingLocationPage implements OnInit {
   stations: Pollingstation[];
   searchpipe: SearchPipe;
   pageTitle: string;
@@ -25,14 +25,11 @@ export class FindPollingLocationPage {
 
   constructor(private navCtrl: NavController, navParams: NavParams, private pollingstationSvc: PollingStationServiceProvider, private restSvc: RestServiceProvider ) {
     this.pageTitle = "Find Polling Location";
-    pollingstationSvc.getStations()
-        .subscribe((res: ResponseObj) => {
-          this.stations = res.obj;
-      },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      }
-    )
+  }
+
+  ngOnInit() {
+    this.stations = this.pollingstationSvc.getStations()
+    console.log('stations from find', this.stations)
   }
 
   showStationDetails(passedStation){
