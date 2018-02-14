@@ -15,7 +15,7 @@ export class PollingStationServiceProvider {
 
   pollingstation: Pollingstation;
   pollingstationOfInterest: Pollingstation;
-  stationListInMemory: Pollingstation[];
+  stations: Pollingstation[];
   cachedDateTime: number;
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider){
@@ -63,7 +63,7 @@ export class PollingStationServiceProvider {
 
   getStations() {
     console.log('FROM GET')
-    return this.stationListInMemory || JSON.parse(localStorage.getItem('stationListInMemory'));
+    return this.stations || JSON.parse(localStorage.getItem('stations'));
   }
 
   setStations() {
@@ -72,8 +72,8 @@ export class PollingStationServiceProvider {
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + '/pollingstations/all', {headers: header})
       .map((res: ResponseObj) => {
-        this.stationListInMemory = res.obj;
-        localStorage.setItem('stationListInMemory', JSON.stringify(res.obj));
+        this.stations = res.obj;
+        localStorage.setItem('stations', JSON.stringify(res.obj));
         return res.obj;
       },
       (err: HttpErrorResponse) => {
@@ -94,7 +94,7 @@ export class PollingStationServiceProvider {
   }
 
   getPollingStationbyKey(passedKey){ 
-      return this.stationListInMemory.filter((station) => {
+      return this.stations.filter((station) => {
         station.pollingstationKey === passedKey;
       })
   }
