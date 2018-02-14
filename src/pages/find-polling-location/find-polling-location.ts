@@ -28,18 +28,19 @@ export class FindPollingLocationPage implements OnInit {
   }
 
   ngOnInit() {
-    // console.log('called')
-    // this.pollingstationSvc.setStations();
-    // this.stations = this.pollingstationSvc.getStations();
-    this.pollingstationSvc.setStations()
-    .subscribe((res: Pollingstation[]) => {
-      console.log('res', res)
-      this.stations = res;
-    },
-    (err: HttpErrorResponse) => {
-      console.log(err);
-    })
-
+    if (this.pollingstationSvc.activeCache()){
+      this.stations = this.pollingstationSvc.getStations();
+    }
+    else {
+      this.pollingstationSvc.setStations()
+      .subscribe((res: Pollingstation[]) => {
+        console.log('res', res)
+        this.stations = res;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      })
+    }
   }
 
   showStationDetails(passedStation){

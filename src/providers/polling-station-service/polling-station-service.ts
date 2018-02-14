@@ -51,39 +51,56 @@ export class PollingStationServiceProvider {
   //   let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
   //   return this.http.get(baseURL + '/pollingstations/all', {headers: header})
   // }
+  activeCache() {
+    console.log('this.cachedDateTime', this.cachedDateTime)
+    console.log('this.cachedDateTime + 6000', this.cachedDateTime+6000)
+    console.log(' Date.now()',  Date.now())
+    return (this.cachedDateTime > 0 || this.cachedDateTime + 60000 < Date.now()) ? true : false;
+  }
 
   getStations() {
-    // console.log('getStations from SVC  this.stationListInMemory ',  this.stationListInMemory)
-
-    // let LOCAL = JSON.parse(localStorage.getItem('stationListInMemory'));
-    // console.log('getStations from SVC  LOCAL ',  LOCAL)
-
+    console.log('FROM GET')
     return this.stationListInMemory || JSON.parse(localStorage.getItem('stationListInMemory'));
   }
 
+  // setStations() {
+  //   if (this.cachedDateTime === 0 || this.cachedDateTime + 60000 < Date.now()) {
+  //     console.log('tripping if')
+  //     this.cachedDateTime = Date.now();
+  //     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+  //     return this.http.get(baseURL + '/pollingstations/all', {headers: header})
+  //     .map((res: ResponseObj) => {
+  //       this.stationListInMemory = res.obj;
+  //       localStorage.setItem('stationListInMemory', JSON.stringify(res.obj));
+  //       console.log('this.stationListInMemorySVC', this.stationListInMemory)
+  //       // return this.getStations();
+  //       return res.obj;
+  //     },
+  //     (err: HttpErrorResponse) => {
+  //       console.log(err);
+  //     })
+  //   }
+  //   else {
+  //     console.log('tripping else')
+  //     // this.stationListInMemory = JSON.parse(localStorage.getItem('stationListInMemory'));
+  //     return this.getStations();
+  //   }
+
+  // }
+
   setStations() {
-    if (this.cachedDateTime === 0 || this.cachedDateTime + 60000 < Date.now()) {
-      console.log('tripping if')
+    console.log('FROM SET')
       this.cachedDateTime = Date.now();
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + '/pollingstations/all', {headers: header})
       .map((res: ResponseObj) => {
         this.stationListInMemory = res.obj;
         localStorage.setItem('stationListInMemory', JSON.stringify(res.obj));
-        console.log('this.stationListInMemorySVC', this.stationListInMemory)
-        // return this.getStations();
         return res.obj;
       },
       (err: HttpErrorResponse) => {
         console.log(err);
       })
-    }
-    else {
-      console.log('tripping else')
-      // this.stationListInMemory = JSON.parse(localStorage.getItem('stationListInMemory'));
-      return this.getStations();
-    }
-
   }
 
   setStationOfInterest(passedStation: Pollingstation) {
