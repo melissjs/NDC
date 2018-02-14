@@ -1,3 +1,4 @@
+import { ResponseObj } from './../../models/response-obj';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -8,7 +9,6 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
 import { SearchPipe } from '../../pipes/search/search';
 import * as globals from '../../globals';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ResponseObj } from '../../models/response-obj';
 
 
 @IonicPage()
@@ -28,8 +28,17 @@ export class FindPollingLocationPage implements OnInit {
   }
 
   ngOnInit() {
-    this.stations = this.pollingstationSvc.getStations()
-    console.log('stations from find', this.stations)
+    // console.log('called')
+    // this.pollingstationSvc.setStations();
+    // this.stations = this.pollingstationSvc.getStations();
+    this.getStations();
+
+  }
+
+  async getStations() {
+    // console.log('tripping init1', this.stations)
+    this.stations = await this.pollingstationSvc.setStations()
+    // console.log('tripping init2', this.stations)
   }
 
   showStationDetails(passedStation){

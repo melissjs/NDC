@@ -53,15 +53,25 @@ export class PollingStationServiceProvider {
   // }
 
   getStations() {
-    if (this.cachedDateTime === 0 || this.cachedDateTime + 120000 < Date.now()) {
+    // console.log('getStations from SVC  this.stationListInMemory ',  this.stationListInMemory)
+
+    // let LOCAL = JSON.parse(localStorage.getItem('stationListInMemory'));
+    // console.log('getStations from SVC  LOCAL ',  LOCAL)
+
+    return this.stationListInMemory || JSON.parse(localStorage.getItem('stationListInMemory'));
+  }
+
+  setStations() {
+    if (this.cachedDateTime === 0 || this.cachedDateTime + 60000 < Date.now()) {
+      console.log('tripping if')
       this.cachedDateTime = Date.now();
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-      this.http.get(baseURL + '/pollingstations/all', {headers: header})
-      .subscribe((res: ResponseObj) => {
+      return this.http.get(baseURL + '/pollingstations/all', {headers: header})
+      .map((res: ResponseObj) => {
         this.stationListInMemory = res.obj;
         localStorage.setItem('stationListInMemory', JSON.stringify(res.obj));
-        console.log('this.stationListInMemory', this.stationListInMemory)
-        return this.stationListInMemory;
+        console.log('this.stationListInMemorySVC', this.stationListInMemory)
+        return this.getStations();
       },
       (err: HttpErrorResponse) => {
         console.log(err);
@@ -69,7 +79,8 @@ export class PollingStationServiceProvider {
     }
     else {
       console.log('tripping else')
-      return this.stationListInMemory || JSON.parse(localStorage.getItem('stationListInMemory'));
+      // this.stationListInMemory = JSON.parse(localStorage.getItem('stationListInMemory'));
+      return this.getStations();
     }
 
   }
