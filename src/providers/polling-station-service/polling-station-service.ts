@@ -58,7 +58,7 @@ export class PollingStationServiceProvider {
     if (this.cachedDateTime === 0) {
       return false;
     }
-    return (this.cachedDateTime > 0 || this.cachedDateTime + 60000 < Date.now()) ? true : false;
+    return (this.cachedDateTime + 60000 < Date.now()) ? true : false;
   }
 
   getStations() {
