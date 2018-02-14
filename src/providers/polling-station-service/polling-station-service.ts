@@ -71,7 +71,8 @@ export class PollingStationServiceProvider {
         this.stationListInMemory = res.obj;
         localStorage.setItem('stationListInMemory', JSON.stringify(res.obj));
         console.log('this.stationListInMemorySVC', this.stationListInMemory)
-        return this.getStations();
+        // return this.getStations();
+        return res.obj;
       },
       (err: HttpErrorResponse) => {
         console.log(err);

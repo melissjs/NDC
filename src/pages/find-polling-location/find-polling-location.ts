@@ -31,14 +31,15 @@ export class FindPollingLocationPage implements OnInit {
     // console.log('called')
     // this.pollingstationSvc.setStations();
     // this.stations = this.pollingstationSvc.getStations();
-    this.getStations();
+    this.pollingstationSvc.setStations()
+    .subscribe((res: Pollingstation[]) => {
+      console.log('res', res)
+      this.stations = res;
+    },
+    (err: HttpErrorResponse) => {
+      console.log(err);
+    })
 
-  }
-
-  async getStations() {
-    // console.log('tripping init1', this.stations)
-    this.stations = await this.pollingstationSvc.setStations()
-    // console.log('tripping init2', this.stations)
   }
 
   showStationDetails(passedStation){
