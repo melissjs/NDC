@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
+import { Audit } from '../../models/audit';
 let baseURL = config.NDCS_BASE_URL;
 
 @Injectable()
@@ -13,6 +14,7 @@ export class AuditServiceProvider {
   numberAuditors: number;
   shiftsFilled: number;
   remainingShifts: number;
+  audits: Audit[];
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider) {
   }
@@ -24,10 +26,10 @@ export class AuditServiceProvider {
     return (this.cachedDateTime + 60000 > Date.now()) ? true : false;
   }
 
-  // getStations() {
-  //   console.log('FROM GET')
-  //   return this.stations || JSON.parse(localStorage.getItem('stations'));
-  // }
+  getAudits() {
+    console.log('FROM GET')
+    return this.audits || JSON.parse(localStorage.getItem('audits'));
+  }
 
   // getAuditStats() {
   //   console.log('FROM SET')
