@@ -14,6 +14,7 @@ import { VolunteerListComponent } from './volunteer-list/volunteer-list';
 import { RecordsComponent } from './records/records';
 import { AuditDetailsComponent } from './audit-details/audit-details';
 import { JoinAuditComponent } from './join-audit/join-audit';
+import { AuditStatsComponent } from './audit-stats/audit-stats';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -32,7 +33,8 @@ import { JoinAuditComponent } from './join-audit/join-audit';
     VolunteerListComponent,
     RecordsComponent,
     AuditDetailsComponent,
-    JoinAuditComponent],
+    JoinAuditComponent,
+    AuditStatsComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
@@ -48,6 +50,7 @@ import { JoinAuditComponent } from './join-audit/join-audit';
     VolunteerListComponent,
     RecordsComponent,
     AuditDetailsComponent,
-    JoinAuditComponent]
+    JoinAuditComponent,
+    AuditStatsComponent]
 })
 export class ComponentsModule {}
