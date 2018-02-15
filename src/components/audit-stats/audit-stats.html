@@ -1,0 +1,14 @@
+<ion-item text-wrap>
+  <b>Station Statistics<ion-icon name="information" (click)="onInfoAlert()"></ion-icon>:</b>
+  <br>
+  Total auditors: <span style="float: right">{{volunteerCount}}</span>
+  <br>
+  Total shifts filled: <span style="float: right">{{shiftsFilled}}</span>
+  <br>
+  Total shifts remaining: <span style="float: right">{{shiftsToFill}}</span>
+  <br><br>
+</ion-item>
+
+<button ion-button (click)="onJoinAudit()" block large>
+  Join Audit
+</button>

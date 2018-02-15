@@ -1,22 +1,80 @@
+import { Auditor } from './../../models/auditor';
+import { Audit } from './../../models/audit';
 import { Component } from '@angular/core';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
-/**
- * Generated class for the AuditStatsComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'audit-stats',
   templateUrl: 'audit-stats.html'
 })
 export class AuditStatsComponent {
 
-  text: string;
+  audit: Audit;
+  team: Auditor[];
+  shiftSelected: boolean = false;
+  volunteerCount: number;
+  shiftsToFill: number;
+  shiftsFilled: number;
+  enterShifts: number[];
 
-  constructor() {
-    console.log('Hello AuditStatsComponent Component');
-    this.text = 'Hello World';
+  constructor(private alertCtrl: AlertController) {
+    this.volunteerCount = 0;
+    this.shiftsToFill = 0;
+    this.shiftsFilled = 0;
+  }
+
+    // onJoinAudit() {
+  //   this.navCtrl.push('JoinAuditPage');
+  // }
+
+  onInfoAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'How are these numbers calculated?',
+      subTitle: 'There are 45 individual shifts to fill at every station. These totals are based on the recommended number of volunteers per shift: 5 in the morning when it is less busy and 8 in each of the five following time blocks.',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
+  onJoinAudit() {
+    let alert = this.alertCtrl.create({
+      title: 'Select shifts',
+      inputs: [
+        {
+          type: 'checkbox',
+          label: 'Early Morning',
+          name: 'em',
+          id: 'em',
+          value: 'em',
+          checked: false
+        },
+        {
+          type: 'checkbox',
+          label: 'Mid Morning',
+          name: 'mm',
+          id: 'mm',
+          value: 'mm',
+          checked: false
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: data => {
+            console.log('alert data', data)
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
