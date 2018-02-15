@@ -1,14 +1,14 @@
 import { Auditor } from './../../models/auditor';
 import { Audit } from './../../models/audit';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
-
 
 @Component({
   selector: 'audit-stats',
   templateUrl: 'audit-stats.html'
 })
-export class AuditStatsComponent {
+
+export class AuditStatsComponent implements OnInit{
 
   audit: Audit;
   team: Auditor[];
@@ -22,6 +22,10 @@ export class AuditStatsComponent {
     this.volunteerCount = 0;
     this.shiftsToFill = 0;
     this.shiftsFilled = 0;
+  }
+
+  ngOnInit() {
+    
   }
 
     // onJoinAudit() {
