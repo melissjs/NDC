@@ -1,5 +1,5 @@
 export class Election {
-  electionKey?: string;
+  _id?: string;
   cIId?: string;
   electionTitle: string;
   electionDay: string;

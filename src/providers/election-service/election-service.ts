@@ -16,16 +16,17 @@ export class ElectionServiceProvider {
   }
 
   getElections() {
-
+    return this.elections || JSON.parse(localStorage.getItem('elections'));
   }
 
   setElections() {
     if (!this.election) {
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-      return this.http.get(baseURL + '/pollingstations/all', {headers: header})
+      return this.http.get(baseURL + '/elections/all', {headers: header})
       .map((res: ResponseObj) => {
         this.elections = res.obj;
         localStorage.setItem('elections', JSON.stringify(res.obj));
+        console.log('elections', this.elections)
         return res.obj;
       },
       (err: HttpErrorResponse) => {
@@ -35,10 +36,12 @@ export class ElectionServiceProvider {
   }
 
   getElection() {
-
+    return this.election || JSON.parse(localStorage.getItem('election'));
   }
 
-  setElection() {
+  setElection(passedElectionId) {
+    this.election = passedElectionId;
+    localStorage.setItem('election', JSON.stringify(passedElectionId));
 
   }
 

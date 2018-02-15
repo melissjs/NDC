@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Election } from './../../models/election';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ResponseObj } from './../../models/response-obj';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {RestServiceProvider} from '../../providers/rest-service/rest-service';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service';
 import * as globals from '../../globals';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { ElectionServiceProvider } from '../../providers/election-service/election-service';
+import { alertCheckboxObj } from '../../models/alertCheckboxObj';
 
 
 @IonicPage()
@@ -12,36 +17,43 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
   templateUrl: 'volunteer.html',
 })
 
-export class VolunteerPage {
+export class VolunteerPage implements OnInit {
 
   pageTitle: string;
-  election: string;
+  election: Election;
+  elections: Election[];
+  chooseElectionObjArr: alertCheckboxObj[];
 
-  constructor(public authSvc: AuthServiceProvider, private navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider, private alertCtrl: AlertController) {
+  constructor(public authSvc: AuthServiceProvider, private navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider, private alertCtrl: AlertController, private electionSvc: ElectionServiceProvider) {
     this.pageTitle = "Volunteer";
   }
 
+  ngOnInit() {
+    this.electionSvc.setElections()
+    .subscribe((res: Election[]) => {
+      this.elections = res;
+    },
+    (err: HttpErrorResponse) => {
+      console.error(err);
+    })
+  }
+
   onChooseElection() {
+    this.chooseElectionObjArr = this.elections.map((election) => {
+      return {
+        type: 'checkbox',
+        label: election.electionTitle,
+        name: election.electionTitle,
+        id: election._id,
+        value: election._id,
+        checked: false
+      }
+    });
+    console.log('chooseElectionObjArr', this.chooseElectionObjArr)
+
     let alert = this.alertCtrl.create({
       title: 'Select Election',
-      inputs: [
-        {
-          type: 'checkbox',
-          label: 'Midterm 2018',
-          name: 'em',
-          id: 'em',
-          value: 'em',
-          checked: false
-        },
-        {
-          type: 'checkbox',
-          label: 'General 2018',
-          name: 'mm',
-          id: 'mm',
-          value: 'mm',
-          checked: false
-        }
-      ],
+      inputs: this.chooseElectionObjArr,
       buttons: [
         {
           text: 'Cancel',
@@ -54,6 +66,8 @@ export class VolunteerPage {
           text: 'Confirm',
           handler: data => {
             console.log('alert data', data)
+            this.electionSvc.setElection(data);
+            this.election = data;
           }
         }
       ]

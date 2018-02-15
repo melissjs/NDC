@@ -13,10 +13,10 @@
     <button ion-button (click)="onChooseElection()" block large>
       Choose Election
     </button>
-    <button ion-button (click)="onFindPolling()" block large>
+    <button [disabled]="!election" ion-button (click)="onFindPolling()" block large>
       Find a Polling Location 
     </button>
-    <button ion-button (click)="onAddPolling()" block large>
+    <button [disabled]="!election" ion-button (click)="onAddPolling()" block large>
       Add a Polling Location
     </button>
     <!-- <a href="https://www.usa.gov/election-office" target="_blank">

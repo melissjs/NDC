@@ -68,6 +68,7 @@ import { ElectionServiceProvider } from '../providers/election-service/election-
     UserServiceProvider,
     UserServiceProvider,
     AuditServiceProvider,
+    ElectionServiceProvider,
     ElectionServiceProvider
   ]
 })
