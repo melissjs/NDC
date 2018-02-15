@@ -52,9 +52,6 @@ export class PollingStationServiceProvider {
   //   return this.http.get(baseURL + '/pollingstations/all', {headers: header})
   // }
   activeCache() {
-    // console.log('this.cachedDateTime', this.cachedDateTime)
-    // console.log('this.cachedDateTime + 6000', this.cachedDateTime+6000)
-    // console.log(' Date.now()',  Date.now())
     if (this.cachedDateTime === 0) {
       return false;
     }
