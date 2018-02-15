@@ -35,11 +35,11 @@ export class ElectionServiceProvider {
     }
   }
 
-  getElection() {
+  getElectionId() {
     return this.election || JSON.parse(localStorage.getItem('election'));
   }
 
-  setElection(passedElectionId) {
+  setElectionId(passedElectionId) {
     this.election = passedElectionId;
     localStorage.setItem('election', JSON.stringify(passedElectionId));
 

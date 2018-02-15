@@ -66,7 +66,7 @@ export class VolunteerPage implements OnInit {
           text: 'Confirm',
           handler: data => {
             console.log('alert data', data)
-            this.electionSvc.setElection(data);
+            this.electionSvc.setElectionId(data);
             this.election = data;
           }
         }

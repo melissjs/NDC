@@ -1,3 +1,4 @@
+import { ElectionServiceProvider } from './../election-service/election-service';
 import { ResponseObj } from './../../models/response-obj';
 import { AuthServiceProvider } from './../auth-service/auth-service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -5,6 +6,7 @@ import { Injectable } from '@angular/core';
 import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
 import { Audit } from '../../models/audit';
+import { PollingStationServiceProvider } from '../polling-station-service/_polling-station-service';
 let baseURL = config.NDCS_BASE_URL;
 
 @Injectable()
@@ -15,8 +17,10 @@ export class AuditServiceProvider {
   shiftsFilled: number;
   remainingShifts: number;
   audits: Audit[];
+  electionId: string;
+  pollingstationId: string;
 
-  constructor(public http: HttpClient, private authSvc: AuthServiceProvider) {
+  constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider) {
   }
 
   activeCache() {
