@@ -10,7 +10,9 @@ let baseURL = config.NDCS_BASE_URL;
 export class ElectionServiceProvider {
 
   electionOfInterestId: string;
+  electionOfInterest: Election;
   elections: Election[];
+
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider) {
   }
@@ -42,7 +44,18 @@ export class ElectionServiceProvider {
   setElectionId(passedElectionId) {
     this.electionOfInterestId = passedElectionId;
     localStorage.setItem('electionOfInterestId', JSON.stringify(passedElectionId));
+  }
 
+  getElectionFromId(passedId): Election {
+    console.log('PASSED', passedId)
+    this.elections.forEach((election) => {
+      console.log('elID and passed', election._id, passedId)
+      election._id === passedId ? this.electionOfInterest = election : null;
+      console.log('this.electionOfInterestINSUDE;', this.electionOfInterest)
+      return this.electionOfInterest;
+    })
+    console.log('this.electionOfInterest;', this.electionOfInterest)
+    return this.electionOfInterest;
   }
 
 }

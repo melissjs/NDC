@@ -11,7 +11,7 @@
       Register to Volunteer  
     </button>
     <button ion-button (click)="onChooseElection()" block large>
-      Choose Election
+      {{chosenElectionTitle}}
     </button>
     <button [disabled]="!election" ion-button (click)="onFindPolling()" block large>
       Find a Polling Location 
