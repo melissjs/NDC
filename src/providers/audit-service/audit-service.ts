@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
 import { Audit } from '../../models/audit';
-import { PollingStationServiceProvider } from '../polling-station-service/_polling-station-service';
+import { PollingStationServiceProvider } from '../polling-station-service/polling-station-service';
 let baseURL = config.NDCS_BASE_URL;
 
 @Injectable()
@@ -21,6 +21,10 @@ export class AuditServiceProvider {
   pollingstationId: string;
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider) {
+  }
+
+  getUsersActiveAudit(passedUserAuditId) {
+
   }
 
   activeCache() {

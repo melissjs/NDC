@@ -1,3 +1,4 @@
+import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -31,8 +32,8 @@ export class LogOrSignInComponent {
   enterPassword: string;
   authenticatingVolunteerPhone: string;
   authenticatingVolunteerPasscode: string;
-    
-  constructor(private navCtrl: NavController, private userSvc: UserServiceProvider,  private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider ) {
+
+  constructor(private navCtrl: NavController, private userSvc: UserServiceProvider,  private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider, private auditSvc: AuditServiceProvider) {
     this.loginStatus = new EventEmitter<any>();
     this.loggedIn = false;
     this.loginForm = fb.group({  
@@ -85,7 +86,7 @@ export class LogOrSignInComponent {
       .subscribe( 
         (data: ResponseObj) => {
           localStorage.setItem('token', data.token);
-          localStorage.setItem('userId', data.userId);
+          // localStorage.setItem('userId', data.userId);
           let decoded = jwt_decode(data.token);
           console.log('decoded from login:', decoded.user)
           this.newUser.volunteerKey = data.userId;

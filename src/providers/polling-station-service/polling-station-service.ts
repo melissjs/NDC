@@ -45,8 +45,8 @@ export class PollingStationServiceProvider {
     }
   }
 
-  setStation(){
-    // users station so find stationId from auditID from server
+  setStation(passedStation){
+    this.pollingstation = passedStation;
   }
 
   getStation(){
