@@ -8,18 +8,24 @@ import { PollingLocation } from '../../models/polling-location';
 import { AuthServiceProvider } from '../auth-service/auth-service';
 import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
+import { UserServiceProvider } from '../user-service/user-service';
 let baseURL = config.NDCS_BASE_URL;
 
 @Injectable()
 export class PollingStationServiceProvider {
 
   pollingstation: Pollingstation;
+  pollingstationId: string;
   pollingstationOfInterest: Pollingstation;
   stations: Pollingstation[];
   cachedDateTime: number;
 
-  constructor(public http: HttpClient, private authSvc: AuthServiceProvider){
+  constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider){
     this.cachedDateTime = 0;
+  }
+
+  getPollingstationId() {
+    
   }
 
   getNewStation() {
@@ -39,8 +45,8 @@ export class PollingStationServiceProvider {
     }
   }
 
-  setStation(passedStation: Pollingstation){
-    this.pollingstation = passedStation;
+  setStation(){
+    // users station so find stationId from auditID from server
   }
 
   getStation(){
