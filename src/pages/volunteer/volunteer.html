@@ -10,7 +10,7 @@
     <button *ngIf="!authSvc.isLoggedIn()" ion-button (click)="onRegister()" block large>
       Register to Volunteer  
     </button>
-    <button ion-button (click)="onChooseElection()" block large>
+    <button [disabled]="!authSvc.isLoggedIn()" ion-button (click)="onChooseElection()" block large>
       {{chosenElectionTitle}}
     </button>
     <button [disabled]="!election" ion-button (click)="onFindPolling()" block large>
