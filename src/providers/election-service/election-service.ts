@@ -35,7 +35,7 @@ export class ElectionServiceProvider {
     }
   }
 
-  getElectionId() {
+  getElectionOfInterestId() {
     return this.electionOfInterestId || JSON.parse(localStorage.getItem('electionOfInterestId'));
   }
 

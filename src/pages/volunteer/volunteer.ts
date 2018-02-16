@@ -36,6 +36,8 @@ export class VolunteerPage implements OnInit {
     (err: HttpErrorResponse) => {
       console.error(err);
     })
+
+    this.election = this.electionSvc.getElectionOfInterestId() || undefined;
   }
 
   onChooseElection() {

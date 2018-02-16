@@ -6,6 +6,6 @@
   <ion-card padding *ngIf="authSvc.isLoggedIn()"> 
   <!-- rm user req?  -->
   <pollingstation [passedStation]=pollingStationService.getStation() [pageTitle]=pageTitle> </pollingstation> 
-  <!-- <audit-stats></audit-stats> -->
+  <audit-stats></audit-stats>
   </ion-card>
 </ion-content>
