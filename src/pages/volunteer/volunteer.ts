@@ -24,7 +24,6 @@ export class VolunteerPage implements OnInit {
   elections: Election[];
   chosenElectionTitle: string;
   chooseElectionObjArr: alertCheckboxObj[];
-  chosenElection: Election;
 
   constructor(public authSvc: AuthServiceProvider, private navCtrl: NavController, navParams: NavParams, public restSvc: RestServiceProvider, private alertCtrl: AlertController, private electionSvc: ElectionServiceProvider) {
     this.pageTitle = "Volunteer";
@@ -41,7 +40,11 @@ export class VolunteerPage implements OnInit {
 
     this.election = this.electionSvc.getElectionOfInterestId() || undefined;
 
-    this.chosenElectionTitle = this.chosenElectionTitle || "Choose Election";
+    if (this.election) {
+      this.chosenElectionTitle = this.electionSvc.getElectionFromId(this.election).electionTitle;
+     } else {
+      this.chosenElectionTitle = "Choose Election";
+     }
   }
 
   onChooseElection() {
@@ -74,9 +77,7 @@ export class VolunteerPage implements OnInit {
             console.log('alert data', data[0])
             this.electionSvc.setElectionId(data[0]);
             this.election = data;
-            this.chosenElection = this.electionSvc.getElectionFromId(data[0]);
-            console.log('chosen', this.chosenElection)
-            this.chosenElectionTitle = this.chosenElection.electionTitle
+            this.chosenElectionTitle = this.electionSvc.getElectionFromId(data[0]).electionTitle
           }
         }
       ]
