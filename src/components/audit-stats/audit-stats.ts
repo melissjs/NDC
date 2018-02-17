@@ -33,6 +33,9 @@ export class AuditStatsComponent implements OnInit{
     .subscribe((res: ResponseObj) => {
       this.audit = res.obj;
       console.log("AUDIT", this.audit)
+      this.volunteerCount = this.audit.teamLength;
+      this.shiftsToFill = 45 - this.audit.shifts;
+      this.shiftsFilled = this.audit.shifts;
     }, 
   (err: HttpErrorResponse) => {
     console.error(err);
