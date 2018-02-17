@@ -45,7 +45,7 @@ export class AuditServiceProvider {
       .map((res: ResponseObj) => {
         this.auditOfInterest = res.obj;
         localStorage.setItem('auditOfInterest', JSON.stringify(res.obj));
-        return res.obj;
+        return res;
       },
       (err: HttpErrorResponse) => {
         console.error(err);

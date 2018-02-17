@@ -32,7 +32,7 @@ export class AuditStatsComponent implements OnInit{
     this.auditSvc.getAuditOfInterstStats()
     .subscribe((res: ResponseObj) => {
       this.audit = res.obj;
-      console.log("AUDIT", res)
+      console.log("AUDIT", this.audit)
     }, 
   (err: HttpErrorResponse) => {
     console.error(err);
