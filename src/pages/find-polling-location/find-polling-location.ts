@@ -7,8 +7,10 @@ import { PollingstationComponent } from '../../components/pollingstation/polling
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { SearchPipe } from '../../pipes/search/search';
+import { SortPipe } from '../../pipes/sort/sort';
 import * as globals from '../../globals';
 import { HttpErrorResponse } from '@angular/common/http';
+// import { AsyncPipe } from '@angular/common';
 
 
 @IonicPage()
@@ -20,6 +22,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class FindPollingLocationPage implements OnInit {
   stations: Pollingstation[];
   searchpipe: SearchPipe;
+  sortpipe: SortPipe;
   pageTitle: string;
   query: string;
 

@@ -38,20 +38,20 @@ export class AuditServiceProvider {
     return this.audits || JSON.parse(localStorage.getItem('audits'));
   }
 
-  getAuditStats(passedElection, passedPollingStation) {
-    console.log('FROM SET')
-      this.cachedDateTime = Date.now();
-      let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-      return this.http.get(baseURL + `/audits/${this.electionSvc.getElectionOfInterestId}/${this.pollingstationSvc.getStationOfInterest().pollingstationKey}`, {headers: header})
-      .map((res: ResponseObj) => {
-        this.audit = res.obj;
-        localStorage.setItem('stations', JSON.stringify(res.obj));
-        return res.obj;
-      },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      })
-  }
+  // getAuditStats(passedElection, passedPollingStation) {
+  //   console.log('FROM SET')
+  //     this.cachedDateTime = Date.now();
+  //     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+  //     return this.http.get(baseURL + `/audits/${this.electionSvc.getElectionOfInterestId}/${this.pollingstationSvc.getStationOfInterest().pollingstationKey}`, {headers: header})
+  //     .map((res: ResponseObj) => {
+  //       this.audit = res.obj;
+  //       localStorage.setItem('stations', JSON.stringify(res.obj));
+  //       return res.obj;
+  //     },
+  //     (err: HttpErrorResponse) => {
+  //       console.log(err);
+  //     })
+  // }
 
 
 }
