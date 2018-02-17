@@ -9,7 +9,7 @@ let baseURL = config.NDCS_BASE_URL;
 @Injectable()
 export class ElectionServiceProvider {
 
-  // electionOfInterestId: string;
+  // electionOfInterest._id: string;
   electionOfInterest: Election;
   elections: Election[];
 
@@ -23,7 +23,7 @@ export class ElectionServiceProvider {
   }
 
   setElections() {
-    if (!this.electionOfInterestId) {
+    if (!this.electionOfInterest) {
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + '/elections/all', {headers: header})
       .map((res: ResponseObj) => {
@@ -38,13 +38,13 @@ export class ElectionServiceProvider {
     }
   }
 
-  getElectionOfInterestId() {
-    return this.electionOfInterestId || JSON.parse(localStorage.getItem('electionOfInterestId'));
+  getElectionOfInterest() {
+    return this.electionOfInterest || JSON.parse(localStorage.getItem('electionOfInterest'));
   }
 
-  setElectionId(passedElectionId) {
-    this.electionOfInterestId = passedElectionId;
-    localStorage.setItem('electionOfInterestId', JSON.stringify(passedElectionId));
+  setElectionOfInterest(passedElectionId) {
+    this.electionOfInterest = this.getElectionFromId(passedElectionId);
+    localStorage.setItem('electionOfInterest', JSON.stringify(this.electionOfInterest));
   }
 
   getElectionFromId(passedId): Election {

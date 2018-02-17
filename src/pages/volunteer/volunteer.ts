@@ -40,10 +40,10 @@ export class VolunteerPage implements OnInit {
       })
     }
     
-    this.election = this.electionSvc.getElectionOfInterestId() || undefined;
+    this.election = this.electionSvc.getElectionOfInterest() || undefined;
 
     if (this.election) {
-      this.chosenElectionTitle = this.electionSvc.getElectionFromId(this.election).electionTitle;
+      this.chosenElectionTitle = this.election.electionTitle;
     } else {
       this.chosenElectionTitle = "Choose Election";
     }
@@ -77,9 +77,9 @@ export class VolunteerPage implements OnInit {
           text: 'Confirm',
           handler: data => {
             console.log('alert data', data[0])
-            this.electionSvc.setElectionId(data[0]);
+            this.electionSvc.setElectionOfInterest(data[0]);
             this.election = data;
-            this.chosenElectionTitle = this.electionSvc.getElectionFromId(data[0]).electionTitle
+            this.chosenElectionTitle = this.electionSvc.getElectionOfInterest().electionTitle
           }
         }
       ]
