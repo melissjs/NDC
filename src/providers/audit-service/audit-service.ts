@@ -15,13 +15,9 @@ let baseURL = config.NDCS_BASE_URL;
 export class AuditServiceProvider {
 
   cachedDateTime: number;
-  numberAuditors: number;
-  shiftsFilled: number;
-  remainingShifts: number;
-  audits: Audit[];
+  auditOfInterest: Audit;
   audit: Audit;
-  electionId: string;
-  pollingstationId: string;
+  audits: Audit[];
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider, private userSvc: UserServiceProvider) {
   }
@@ -42,7 +38,7 @@ export class AuditServiceProvider {
     return this.audits || JSON.parse(localStorage.getItem('audits'));
   }
 
-  getAuditStats() {
+  getAuditStats(passedElection, passedPollingStation) {
     console.log('FROM SET')
       this.cachedDateTime = Date.now();
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())

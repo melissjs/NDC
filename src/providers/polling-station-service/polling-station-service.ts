@@ -15,7 +15,7 @@ let baseURL = config.NDCS_BASE_URL;
 export class PollingStationServiceProvider {
 
   pollingstation: Pollingstation;
-  pollingstationId: string;
+  // pollingstationId: string;
   pollingstationOfInterest: Pollingstation;
   stations: Pollingstation[];
   cachedDateTime: number;
@@ -24,9 +24,9 @@ export class PollingStationServiceProvider {
     this.cachedDateTime = 0;
   }
 
-  getPollingstationId() {
+  // getPollingstationId() {
     
-  }
+  // }
 
   getNewStation() {
     return {

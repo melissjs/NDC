@@ -9,7 +9,7 @@ let baseURL = config.NDCS_BASE_URL;
 @Injectable()
 export class ElectionServiceProvider {
 
-  electionOfInterestId: string;
+  // electionOfInterestId: string;
   electionOfInterest: Election;
   elections: Election[];
 
