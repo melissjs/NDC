@@ -1,3 +1,4 @@
+import { Election } from './../../models/election';
 import { ElectionServiceProvider } from './../election-service/election-service';
 import { ResponseObj } from './../../models/response-obj';
 import { AuthServiceProvider } from './../auth-service/auth-service';
@@ -7,6 +8,7 @@ import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
 import { Audit } from '../../models/audit';
 import { PollingStationServiceProvider } from '../polling-station-service/polling-station-service';
+import { UserServiceProvider } from '../user-service/user-service';
 let baseURL = config.NDCS_BASE_URL;
 
 @Injectable()
@@ -17,10 +19,11 @@ export class AuditServiceProvider {
   shiftsFilled: number;
   remainingShifts: number;
   audits: Audit[];
+  audit: Audit;
   electionId: string;
   pollingstationId: string;
 
-  constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider) {
+  constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider, private userSvc: UserServiceProvider) {
   }
 
   getUsersActiveAudit(passedUserAuditId) {
@@ -39,20 +42,20 @@ export class AuditServiceProvider {
     return this.audits || JSON.parse(localStorage.getItem('audits'));
   }
 
-  // getAuditStats() {
-  //   console.log('FROM SET')
-  //     this.cachedDateTime = Date.now();
-  //     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-  //     return this.http.get(baseURL + '/pollingstations/all', {headers: header})
-  //     .map((res: ResponseObj) => {
-  //       this.stations = res.obj;
-  //       localStorage.setItem('stations', JSON.stringify(res.obj));
-  //       return res.obj;
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       console.log(err);
-  //     })
-  // }
+  getAuditStats() {
+    console.log('FROM SET')
+      this.cachedDateTime = Date.now();
+      let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+      return this.http.get(baseURL + `/audits/${this.electionSvc.getElectionOfInterestId}/${this.pollingstationSvc.getStationOfInterest().pollingstationKey}`, {headers: header})
+      .map((res: ResponseObj) => {
+        this.audit = res.obj;
+        localStorage.setItem('stations', JSON.stringify(res.obj));
+        return res.obj;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      })
+  }
 
 
 }
