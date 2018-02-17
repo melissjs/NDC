@@ -1,8 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { ResponseObj } from './../../models/response-obj';
 import { Auditor } from './../../models/auditor';
 import { Audit } from './../../models/audit';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { NavController } from 'ionic-angular';
+import { AuditServiceProvider } from '../../providers/audit-service/audit-service';
 
 @Component({
   selector: 'audit-stats',
@@ -19,14 +22,21 @@ export class AuditStatsComponent implements OnInit{
   shiftsFilled: number;
   enterShifts: number[];
 
-  constructor(private alertCtrl: AlertController, private navCtrl: NavController) {
+  constructor(private alertCtrl: AlertController, private navCtrl: NavController, private auditSvc: AuditServiceProvider) {
     this.volunteerCount = 0;
     this.shiftsToFill = 0;
     this.shiftsFilled = 0;
   }
 
   ngOnInit() {
-
+    this.auditSvc.getAuditOfInterstStats()
+    .subscribe((res: ResponseObj) => {
+      this.audit = res.obj;
+      console.log("AUDIT", res)
+    }, 
+  (err: HttpErrorResponse) => {
+    console.error(err);
+  })
   }
 
   onInfoAlert() {

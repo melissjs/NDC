@@ -6,8 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
   transform(pipeData, field) {
-    console.log('PDDDDDDDD', pipeData)
-    console.log('FFFFFF', field)
     pipeData.sort((a, b) => {
       if (a[field] < b[field]) {
         return -1;
@@ -17,7 +15,6 @@ export class SortPipe implements PipeTransform {
         return 0;
       }
     });
-    console.log('PDDDDDDDD B$ RETURN', pipeData)
     return pipeData;
   }
 }
