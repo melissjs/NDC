@@ -89,7 +89,7 @@ export class LogOrSignInComponent {
           // localStorage.setItem('userId', data.userId);
           let decoded = jwt_decode(data.token);
           console.log('decoded from login:', decoded.user)
-          this.newUser.volunteerKey = data.userId;
+          this.newUser.volunteerKey = decoded.user._id;
           this.newUser.userRoles = decoded.user.activeRoles; 
           this.newUser.firstName = decoded.user.firstName;
           this.newUser.lastName = decoded.user.lastName;

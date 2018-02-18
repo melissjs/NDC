@@ -24,8 +24,12 @@ export class AuditServiceProvider {
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider, private userSvc: UserServiceProvider) {
   }
 
-  getUsersActiveAudit(passedUserAuditId) {
+  setAudit(passedUserAuditId) {
 
+  }
+
+  getAudit() {
+    return this.audit || JSON.parse(localStorage.getItem('audit'))
   }
 
   activeCache() {
@@ -35,12 +39,12 @@ export class AuditServiceProvider {
     return (this.cachedDateTime + 60000 > Date.now()) ? true : false;
   }
 
-  getAudits() {
-    console.log('FROM GET')
-    return this.audits || JSON.parse(localStorage.getItem('audits'));
-  }
+  // getAudits() {
+  //   console.log('FROM GET')
+  //   return this.audits || JSON.parse(localStorage.getItem('audits'));
+  // }
 
-  getAuditOfInterstStats() {
+  setAuditOfInterstStats() {
       this.cachedDateTime = Date.now();
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + `/audits/election/${this.electionSvc.getElectionOfInterest()._id}/pollingstation/${this.pollingstationSvc.getStationOfInterest()._id}`, {headers: header})
@@ -56,6 +60,10 @@ export class AuditServiceProvider {
       (err: HttpErrorResponse) => {
         console.error(err);
       })
+  }
+
+  getAuditOfInterest() {
+    return this.auditOfInterest || JSON.parse(localStorage.getItem('auditOfInterest'))
   }
 
   getAuditTeam() {
