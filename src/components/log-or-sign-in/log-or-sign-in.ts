@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component, EventEmitter, Output } from '@angular/core';
@@ -78,12 +79,12 @@ export class LogOrSignInComponent {
       exposeSex: true,
       partyAffiliation: '',
       exposePartyAffiliation: true,
-      auditKey: '',
+      // auditKey: '',
       // shifts: []
     }
 
     this.authSvc.signin(this.newUser)
-      .subscribe( 
+      .subscribe(
         (data: ResponseObj) => {
           localStorage.setItem('token', data.token);
           // localStorage.setItem('userId', data.userId);
@@ -106,6 +107,12 @@ export class LogOrSignInComponent {
           // this.newUser.auditKey = decoded.user.auditKey;
           // this.newUser.shifts = decoded.user.shifts;
           console.log('newUser from login:', this.newUser)
+          this.auditSvc.setAudit(this.newUser.volunteerKey)
+          .subscribe((res: ResponseObj) => {
+          }, 
+        (err: HttpErrorResponse) => {
+          console.error(err);
+        })
           this.userSvc.setUser(this.newUser);
           this.loginStatus.emit(data);
         },

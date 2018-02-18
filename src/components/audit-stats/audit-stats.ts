@@ -29,7 +29,7 @@ export class AuditStatsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.auditSvc.setAuditOfInterstStats()
+    this.auditSvc.setAuditOfInterestStats()
     .subscribe((res: ResponseObj) => {
       this.audit = res.obj;
       console.log("AUDIT", this.audit)

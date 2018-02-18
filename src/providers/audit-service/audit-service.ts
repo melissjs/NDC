@@ -20,12 +20,27 @@ export class AuditServiceProvider {
   audit: Audit;
   audits: Audit[];
   auditTeam: Auditor[];
+  auditOfInterestTeam: Auditor[];
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider, private userSvc: UserServiceProvider) {
   }
 
-  setAudit(passedUserAuditId) {
-
+  setAudit(passedUserId) {  //what if no audit??
+    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+      return this.http.get(baseURL + `/audits/user/${passedUserId}`, {headers: header})
+      .map((res: ResponseObj) => {
+        this.audit = res.obj;
+        console.log('fromSET AUDIT', this.audit)
+        localStorage.setItem('audit', JSON.stringify(res.obj));
+        if (this.audit.team){
+          this.auditTeam = this.audit.team;
+          localStorage.setItem('auditTeam', JSON.stringify(this.audit.team));
+        }
+        return res;
+      },
+      (err: HttpErrorResponse) => {
+        console.error(err);
+      })
   }
 
   getAudit() {
@@ -44,7 +59,7 @@ export class AuditServiceProvider {
   //   return this.audits || JSON.parse(localStorage.getItem('audits'));
   // }
 
-  setAuditOfInterstStats() {
+  setAuditOfInterestStats() {
       this.cachedDateTime = Date.now();
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + `/audits/election/${this.electionSvc.getElectionOfInterest()._id}/pollingstation/${this.pollingstationSvc.getStationOfInterest()._id}`, {headers: header})
@@ -52,8 +67,8 @@ export class AuditServiceProvider {
         this.auditOfInterest = res.obj;
         localStorage.setItem('auditOfInterest', JSON.stringify(res.obj));
         if (this.auditOfInterest.team){
-          this.auditTeam = this.auditOfInterest.team;
-          localStorage.setItem('auditTeam', JSON.stringify(this.auditOfInterest.team));
+          this.auditOfInterestTeam = this.auditOfInterest.team;
+          localStorage.setItem('auditOfInterestTeam', JSON.stringify(this.auditOfInterest.team));
         }
         return res;
       },
