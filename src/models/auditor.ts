@@ -1,5 +1,5 @@
 export interface Auditor {
-  volunteerKey: string;
+  _id: string;
   firstName: string;
   lastName: string;
   userRoles: string[];

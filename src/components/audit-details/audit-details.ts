@@ -1,3 +1,4 @@
+import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
@@ -54,28 +55,28 @@ export class AuditDetailsComponent {
   shiftsToFill: number;
   shiftsFilled: number;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, public authSvc: AuthServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider ) {
-      this.pageTitle = "Polling Station Details";
+  constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, public authSvc: AuthServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider ) {
+      // this.pageTitle = "Polling Station Details";
       // this.pollingStationService = pollingStationService;
       // this.volunteerservice = volunteerservice;
       // this.restSvc = restSvc;
       // this.loggedIn = false;
-      this.restSvc.getLoggedIn();
-      this.volunteerCount = 0;
-      this.shiftsToFill = 0;
-      this.shiftsFilled = 0;
+      // this.restSvc.getLoggedIn();
+      // this.volunteerCount = 0;
+      // this.shiftsToFill = 0;
+      // this.shiftsFilled = 0;
 
       //this.currentVolunteerHere = null;
       // this.currentVolunteerHere = this.volunteerservice.getNewVolunteer();
-      this.currentStation = this.pollingStationService.getStation();
+      // this.currentStation = this.pollingStationService.getStation();
 
       // populate using rest-service instead...
       // this.volunteerservice.generateStationStats(this.currentStation.pollingStationKey);
-      this.restSvc.getVolunteersByStation(this.currentStation.pollingstationKey,this.setInternals,this);
+      // this.restSvc.getVolunteersByStation(this.currentStation.pollingstationKey,this.setInternals,this);
 
-      this.volunteerCount = 0;
-      this.shiftsToFill = 0;
-      this.shiftsFilled = 0;
+      // this.volunteerCount = 0;
+      // this.shiftsToFill = 0;
+      // this.shiftsFilled = 0;
 
       // //ATTEMP TO FIX PROBLEM
       // if (!this.currentVolunteerHere){
@@ -100,11 +101,11 @@ export class AuditDetailsComponent {
       // this.setShifts();
       
   } // end const
-  setInternals(that: any) {
-      that.volunteerCount = that.volunteerservice.getVolunteerCount();
-      that.shiftsToFill = that.volunteerservice.getShiftsToFill();
-      that.shiftsFilled = that.volunteerservice.getShiftsFilled();
-  }
+  // setInternals(that: any) {
+  //     that.volunteerCount = that.volunteerservice.getVolunteerCount();
+  //     that.shiftsToFill = that.volunteerservice.getShiftsToFill();
+  //     that.shiftsFilled = that.volunteerservice.getShiftsFilled();
+  // }
 
   // setShifts() {
   //     if ((this.currentVolunteerHere.associatedPollingStationKey == 
@@ -317,16 +318,6 @@ export class AuditDetailsComponent {
   //         menupg: this.titlec.page
   //     });
   }
-
-onLoginClick(){
-  var that = this;
-  try {
-      console.log('about to push login component...');
-      that.navCtrl.push('LogInPage');
-  } catch (EE) { 
-      console.log('error in Submitting, exc='+ EE.toString())
-  }
-}  
 
 }
 

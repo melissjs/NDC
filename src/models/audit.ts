@@ -1,10 +1,10 @@
-import { Volunteer } from './volunteer';
-import { PollingLocation } from "./polling-location";
+import { Auditor } from './auditor';
 
 export interface Audit {
-  election: string;
-  pollingstation: PollingLocation;
-  team?: Volunteer[];
+  _id?: string;
+  electionId: string;
+  pollingstationId: string;
+  team?: Auditor[];
   teamLength: number;
   shifts: number;
 }

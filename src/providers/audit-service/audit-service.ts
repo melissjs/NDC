@@ -1,3 +1,4 @@
+import { Auditor } from './../../models/auditor';
 import { Election } from './../../models/election';
 import { ElectionServiceProvider } from './../election-service/election-service';
 import { ResponseObj } from './../../models/response-obj';
@@ -18,6 +19,7 @@ export class AuditServiceProvider {
   auditOfInterest: Audit;
   audit: Audit;
   audits: Audit[];
+  auditTeam: Auditor[];
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider, private userSvc: UserServiceProvider) {
   }
@@ -45,11 +47,25 @@ export class AuditServiceProvider {
       .map((res: ResponseObj) => {
         this.auditOfInterest = res.obj;
         localStorage.setItem('auditOfInterest', JSON.stringify(res.obj));
+        if (this.auditOfInterest.team){
+          this.auditTeam = this.auditOfInterest.team;
+          localStorage.setItem('auditTeam', JSON.stringify(this.auditOfInterest.team));
+        }
         return res;
       },
       (err: HttpErrorResponse) => {
         console.error(err);
       })
+  }
+
+  getAuditTeam() {
+    return this.auditTeam || JSON.parse(localStorage.getItem('auditTeam'))
+  }
+
+  getAuditorByShift(shiftNum) {
+    return this.getAuditTeam().filter((auditor) => {
+      return auditor.shifts.includes(shiftNum);
+    })
   }
 
 
