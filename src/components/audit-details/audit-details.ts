@@ -1,7 +1,7 @@
 import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { User } from './../../models/user';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { PollingstationComponent } from '../../components/pollingstation/pollingstation';
 import { Volunteer} from '../../models/volunteer';
@@ -18,7 +18,7 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
   inputs: ['pageTitle']
 })
 
-export class AuditDetailsComponent {
+export class AuditDetailsComponent implements OnInit {
 
   pageTitle: string;
   currentVolunteerHere: User; 
@@ -101,6 +101,9 @@ export class AuditDetailsComponent {
       // this.setShifts();
       
   } // end const
+
+  ngOnInit() {
+  }
   // setInternals(that: any) {
   //     that.volunteerCount = that.volunteerservice.getVolunteerCount();
   //     that.shiftsToFill = that.volunteerservice.getShiftsToFill();

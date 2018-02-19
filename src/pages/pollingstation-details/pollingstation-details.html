@@ -10,6 +10,6 @@
   </ion-card>
 
   <ion-card *ngIf="(auditSvc.getAuditOfInterest() && auditSvc.getAudit()) && (auditSvc.getAudit()._id === auditSvc.getAuditOfInterest()._id)" padding>
-    <audit-details></audit-details>
+    <audit-details [pageTitle]=pageTitle></audit-details>
   </ion-card>
 </ion-content>
