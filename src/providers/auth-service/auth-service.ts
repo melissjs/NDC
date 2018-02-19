@@ -28,8 +28,15 @@ export class AuthServiceProvider {
       let token =  localStorage.getItem('token');
       var decoded = jwt_decode(token);
       let datetime = Math.floor(Date.now() / 1000);
-      return (token && decoded.exp > datetime) ? true : false;
+      if (token && decoded.exp > datetime) {
+        return true;
+      }
+      else {
+        localStorage.clear();
+        return false;
+      }
     } else {
+      localStorage.clear();
       return false;
     }
   }
