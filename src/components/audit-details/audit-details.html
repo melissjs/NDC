@@ -1,7 +1,9 @@
 <ion-item>
   <div>
     <b>Early Morning (5:00 AM - 8:15 AM)</b>
-    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(1))"> 
+    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(1))">
+      <ion-icon icon-right name="text"></ion-icon>
+      <ion-icon icon-right name="mail"></ion-icon>
       {{auditor.firstName}} {{auditor.lastName}}
     </p>
   </div>

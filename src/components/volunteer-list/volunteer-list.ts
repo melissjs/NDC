@@ -1,21 +1,21 @@
-import { Component } from '@angular/core';
-// Models
-import { Volunteer} from '../../models/volunteer';
-import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
+import { Auditor } from './../../models/auditor';
+import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
   selector: 'volunteer-list',
   templateUrl: 'volunteer-list.html'
 })
-export class VolunteerListComponent {
+export class VolunteerListComponent implements OnInit{
 
-  volunteers: Volunteer[];
+  auditors: Auditor[];
 
-  constructor(private volSvc: VolunteerServiceProvider) {
-    // this.volSvc.getVolunteers().subscribe(volunteers => {
-    //   this.volunteers = volunteers;
-    // });
+  constructor(private auditSvc: AuditServiceProvider) {
+  }
+
+  ngOnInit() {
+    this.auditors = this.auditSvc.getAuditTeam();
   }
 
 }
