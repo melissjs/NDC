@@ -14,7 +14,8 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
 
 @Component({
   selector: 'audit-details',
-  templateUrl: 'audit-details.html'
+  templateUrl: 'audit-details.html',
+  inputs: ['pageTitle']
 })
 
 export class AuditDetailsComponent {
@@ -50,7 +51,6 @@ export class AuditDetailsComponent {
 
 
   shiftSelected: boolean = false;
-
   volunteerCount: number;
   shiftsToFill: number;
   shiftsFilled: number;

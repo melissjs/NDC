@@ -42,7 +42,7 @@
   </div>
 </ion-item>
 
-<button *ngIf="auditSvc.getAudit()._id === auditSvc.getAuditOfInterest()._id" ion-button (click)="onUnJoinAudit()" block large>
+<button *ngIf="(pageTitle === 'Account Settings' && auditSvc.getAudit()) || (pageTitle === 'Polling Station Details' && auditSvc.getAudit()._id === auditSvc.getAuditOfInterest()._id)" ion-button (click)="onUnJoinAudit()" block large>
   Leave Audit
 </button>
 

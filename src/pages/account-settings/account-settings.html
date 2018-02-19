@@ -4,26 +4,9 @@
 
 <ion-content class="backgroundColor" padding>
 
-  <!-- <ion-card *ngIf="currentTempVolunteer && currentTempVolunteer.associatedPollingStationKey && !resetPasscode">
-    <ion-list text-wrap>
-      <ion-list-header>
-        Polling Station Team Information
-        <button (click)="askShifts()" ion-button item-right >
-          Delete Shifts
-        </button>
-      </ion-list-header>
-      <ion-item style="cursor:pointer" (click)="goToStationDetails()"> -->
-        <!-- <pollingstationcomponent [passedStations]=thisTempStation> </pollingstationcomponent>  -->
-      <!-- </ion-item>
-      <div padding>
-        <h2 style="margin-bottom:10px">Volunteer List:</h2>
-        <p *ngFor="let item of (fullVolunteerList)"> 
-          <span>{{item.firstName}} {{item.lastName}}</span> <span style="float: right" *ngIf="item.exposeEmail">{{item.emailAddress}}</span>
-        </p>
-      </div>
-    </ion-list>
-  </ion-card> -->
-
+  <ion-card padding *ngIf="authSvc.isLoggedIn()">
+    <audit-details [pageTitle]="pageTitle"></audit-details>
+  </ion-card>
 
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <user-profile [pageTitle]="pageTitle"></user-profile>
