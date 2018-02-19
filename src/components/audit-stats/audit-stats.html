@@ -9,6 +9,6 @@
   <br><br>
 </ion-item>
 
-<button *ngIf="auditSvc.getAudit()._id != auditSvc.getAuditOfInterest()._id" ion-button (click)="onJoinAudit()" block large>
+<button *ngIf="usersAuditId != auditOfInterestId" ion-button (click)="onJoinAudit()" block large>
   Join Audit
 </button>

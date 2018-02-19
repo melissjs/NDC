@@ -15,6 +15,8 @@ import { AuditServiceProvider } from '../../providers/audit-service/audit-servic
 export class AuditStatsComponent implements OnInit{
 
   audit: Audit;
+  usersAuditId: string;
+  auditOfInterestId: string;
   team: Auditor[];
   shiftSelected: boolean = false;
   volunteerCount: number;
@@ -36,10 +38,14 @@ export class AuditStatsComponent implements OnInit{
       this.volunteerCount = this.audit.teamLength;
       this.shiftsToFill = 45 - this.audit.shifts;
       this.shiftsFilled = this.audit.shifts;
+      this.auditOfInterestId = this.audit._id;
     }, 
   (err: HttpErrorResponse) => {
     console.error(err);
   })
+  if (this.auditSvc.getAudit()) {
+    this.usersAuditId = this.auditSvc.getAudit()._id;
+  }
   }
 
   onInfoAlert() {
