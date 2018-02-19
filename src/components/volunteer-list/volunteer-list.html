@@ -3,8 +3,8 @@
     <ion-list-header>Volunteer List:</ion-list-header>
       <ion-item *ngFor="let auditor of auditors">
         <ion-label>{{auditor?.firstName}} {{auditor?.lastName}}
-          <span style=float:right *ngIf=auditor.phoneNumber><ion-icon name="text"></ion-icon>  </span>
-          <span style=float:right *ngIf=auditor.emailAddress><ion-icon name="mail"></ion-icon></span>
+          <span style=float:right *ngIf=auditor.phoneNumber><ion-icon name="text"></ion-icon></span>
+          <span style=float:right *ngIf=auditor.emailAddress><ion-icon padding-right name="mail"></ion-icon></span>
         </ion-label>
       </ion-item>
   </ion-list>
