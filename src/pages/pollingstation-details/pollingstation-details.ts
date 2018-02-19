@@ -1,3 +1,4 @@
+import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
@@ -24,7 +25,7 @@ export class PollingstationDetailsPage {
   stations: Pollingstation[];
   currentStation: Pollingstation;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, private userSvc: UserServiceProvider, public authSvc: AuthServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider ) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, public pollingStationService: PollingStationServiceProvider, private userSvc: UserServiceProvider, public authSvc: AuthServiceProvider, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
     this.pageTitle = "Polling Station Details";
     this.user = this.userSvc.getUser();
     this.currentStation = this.pollingStationService.getStation();

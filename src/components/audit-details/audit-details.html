@@ -42,6 +42,11 @@
   </div>
 </ion-item>
 
+<button *ngIf="auditSvc.getAudit()._id === auditSvc.getAuditOfInterest()._id" ion-button (click)="onUnJoinAudit()" block large>
+  Leave Audit
+</button>
+
+
 <!-- /////////
     <ion-card padding>
        <ion-list>

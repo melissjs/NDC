@@ -9,7 +9,7 @@
   <audit-stats></audit-stats>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="auditSvc.getAudit()._id === auditSvc.getAuditOfInterest()._id" padding>
     <audit-details></audit-details>
   </ion-card>
 </ion-content>

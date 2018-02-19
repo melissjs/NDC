@@ -184,7 +184,7 @@ export class AuditDetailsComponent {
       // console.log(this.volunteerservice.getVolunteersByStation(this.currentStation));
   }
 
-  onRegister(){
+  onRegister() {
       var that = this;
       try {
           that.navCtrl.push('UnregisteredSignInPage');
@@ -192,6 +192,10 @@ export class AuditDetailsComponent {
       } catch (EE) {
           console.log('error in Submitting, exc='+ EE.toString())
       } 
+  }
+
+  onUnJoinAudit() {
+
   }
 
   onSubmit(){
