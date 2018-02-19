@@ -22,7 +22,7 @@ export class AuditStatsComponent implements OnInit{
   shiftsFilled: number;
   enterShifts: number[];
 
-  constructor(private alertCtrl: AlertController, private navCtrl: NavController, private auditSvc: AuditServiceProvider) {
+  constructor(private alertCtrl: AlertController, private navCtrl: NavController, public auditSvc: AuditServiceProvider) {
     this.volunteerCount = 0;
     this.shiftsToFill = 0;
     this.shiftsFilled = 0;
