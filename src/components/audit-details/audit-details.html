@@ -1,52 +1,54 @@
 <ion-item>
-  <div>
+  
+  <ion-grid>
     <b>Early Morning (5:00 AM - 8:15 AM)</b>
-    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(1))">
-      <ion-icon icon-right name="text"></ion-icon>
-      <ion-icon icon-right name="mail"></ion-icon>
-      {{auditor.firstName}} {{auditor.lastName}}
-    </p>
-  </div>
+    <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(1)">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
 
-  <div>
     <b>Late Morning (8:00 AM - 11:15 AM)</b>
-    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(2))"> 
-      {{auditor.firstName}} {{auditor.lastName}}
-    </p>
-  </div>
+    <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(2)">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
 
-  <div>
     <b>Early Afternoon (11:00 AM - 2:15 PM)</b>
-    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(3))"> 
-      {{auditor.firstName}} {{auditor.lastName}}
-    </p>
-  </div>
+    <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(3)">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
 
-  <div>
     <b>Late Afternoon (2:00 PM - 5:15 PM)</b>
-    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(4))"> 
-      {{auditor.firstName}} {{auditor.lastName}}
-    </p>
-  </div>
+    <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(4)">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
 
-  <div>
     <b>Early Evening (5:00 PM - 8:15 PM)</b>
-    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(5))"> 
-      {{auditor.firstName}} {{auditor.lastName}}
-    </p>
-  </div>
+    <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(5)">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
 
-  <div>
     <b>Late Evening (8:00 PM - 10:30 PM)</b>
-    <p *ngFor="let auditor of (auditSvc.getAuditorByShift(6))"> 
-      {{auditor.firstName}} {{auditor.lastName}}
-    </p>
-  </div>
-</ion-item>
+    <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(6)">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
+  </ion-grid>
 
-<button *ngIf="(pageTitle === 'Account Settings' && auditSvc.getAudit()) || (pageTitle === 'Polling Station Details' && auditSvc.getAudit()._id === auditSvc.getAuditOfInterest()._id)" ion-button (click)="onUnJoinAudit()" block large>
-  Leave Audit
-</button>
+  <button *ngIf="(pageTitle === 'Account Settings' && auditSvc.getAudit()) || (pageTitle === 'Polling Station Details' && auditSvc.getAudit()._id === auditSvc.getAuditOfInterest()._id)" ion-button (click)="onUnJoinAudit()" block large>
+    Leave Audit
+  </button>
+
+</ion-item>
 
 <!-- /////////
     <ion-card padding>

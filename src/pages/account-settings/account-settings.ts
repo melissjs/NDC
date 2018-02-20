@@ -43,7 +43,7 @@ export class AccountSettingsPage implements OnInit {
   passChange: boolean;
   loggingout: boolean;
 
-  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, private pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
+  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
     this.pageTitle = "Account Settings";
     this.resetPasscode = false;
     this.passChange = false;
@@ -59,7 +59,7 @@ export class AccountSettingsPage implements OnInit {
    }
 
 onClickLogin() {
-  this.navCtrl.push('LogInPage');
+  this.navCtrl.setRoot('LogInPage');
 }
 
 onClickRegister(){
