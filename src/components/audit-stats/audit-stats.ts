@@ -98,4 +98,8 @@ export class AuditStatsComponent implements OnInit{
     alert.present();
   }
 
+  onLeaveAudit() {
+    
+  }
+
 }

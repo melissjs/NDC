@@ -96,9 +96,10 @@ export class PollingStationServiceProvider {
   addPollingstation(passedStation: Pollingstation) {
   }
 
-  getPollingStationbyKey(passedKey){ 
-      return this.getStations().find((station) => {
-        station.pollingstationKey === passedKey;
+  getPollingStationbyKey(passedKey) {
+    this.stations = this.getStations();
+      return this.stations.find((station) => {
+        return station.pollingstationKey === passedKey;
       })
   }
 

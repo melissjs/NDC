@@ -66,10 +66,10 @@ export class AuditServiceProvider {
       .map((res: ResponseObj) => {
         this.auditOfInterest = res.obj;
         localStorage.setItem('auditOfInterest', JSON.stringify(res.obj));
-        if (this.auditOfInterest.team){
-          this.auditOfInterestTeam = this.auditOfInterest.team;
-          localStorage.setItem('auditOfInterestTeam', JSON.stringify(this.auditOfInterest.team));
-        }
+        // if (this.auditOfInterest.team){
+        //   this.auditOfInterestTeam = this.auditOfInterest.team;
+        //   localStorage.setItem('auditOfInterestTeam', JSON.stringify(this.auditOfInterest.team));
+        // }
         return res;
       },
       (err: HttpErrorResponse) => {
@@ -88,6 +88,23 @@ export class AuditServiceProvider {
   getAuditorByShift(shiftNum) {
     return this.getAuditTeam().filter((auditor) => {
       return auditor.shifts.includes(shiftNum);
+    })
+  }
+
+  leaveAudit() {
+    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+    return this.http.get(baseURL + `/audits/audit/${this.audit._id}`, {headers: header})
+    .map((res: ResponseObj) => {
+      this.audit = undefined;
+      localStorage.removeItem('audit');
+      if (this.auditTeam){
+        this.auditTeam = undefined;
+        localStorage.removeItem('auditTeam');
+      }
+      return res;
+    },
+    (err: HttpErrorResponse) => {
+      console.error(err);
     })
   }
 

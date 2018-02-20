@@ -57,9 +57,9 @@ export class AccountSettingsPage implements OnInit {
     this.loggedIn = this.authSvc.isLoggedIn();
     this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
     // if user has audit but no station, get station
-    if (this.auditSvc.getAudit()) {
-      this.pollingstation = this.pollingstationservice.getPollingStationbyKey(this.auditSvc.getAudit().pollingstationId)
-    }
+    // if (this.auditSvc.getAudit()) {
+    //   this.pollingstation = this.pollingstationservice.getPollingStationbyKey(this.auditSvc.getAudit().pollingstationId)
+    // }
   }
 
 onClickLogin() {

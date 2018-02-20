@@ -11,11 +11,22 @@
     </ion-list>
   </ion-card>
 
-  <ion-card padding *ngIf="authSvc.isLoggedIn()">
+  <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit()">
     <ion-list>
       <ion-list-header>Audit Settings:</ion-list-header>
-      <pollingstation [passedStation]=pollingstationservice.getPollingStationbyKey(auditSvc.getAudit().pollingstationId) [pageTitle]=pageTitle></pollingstation>
-      <audit-details [pageTitle]="pageTitle"></audit-details>
+      <ion-item>
+        <ion-item-group>
+          <ion-item-divider color="secondary">Location</ion-item-divider>
+          <pollingstation [passedStation]=pollingstationservice.getPollingStationbyKey(auditSvc.getAudit().pollingstationId) [pageTitle]=pageTitle></pollingstation>
+          
+          <ion-item-divider color="secondary">Shifts</ion-item-divider>
+
+          <ion-item-divider color="secondary">Role(s)</ion-item-divider>
+
+          <ion-item-divider color="secondary">Team Schedule</ion-item-divider>
+          <audit-details [pageTitle]="pageTitle"></audit-details>
+        </ion-item-group>
+      </ion-item>
     </ion-list>
   </ion-card>
 
