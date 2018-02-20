@@ -14,7 +14,7 @@
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list>
       <ion-list-header>Audit Settings:</ion-list-header>
-      <pollingstation [passedStation]=pollingstationservice.getStation() [pageTitle]=pageTitle></pollingstation>
+      <pollingstation [passedStation]=pollingstationservice.getPollingStationbyKey(auditSvc.getAudit().pollingstationId) [pageTitle]=pageTitle></pollingstation>
       <audit-details [pageTitle]="pageTitle"></audit-details>
     </ion-list>
   </ion-card>

@@ -18,7 +18,7 @@ export class PollingstationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.passedStation = this.passedStation || this.pollingStationService.getStationOfInterest();
+    this.passedStation = this.passedStation || this.pollingStationService.getStationOfInterest() ||this.pollingStationService.getStation();
     console.log('this.pollingStationService.getStationOfInterest();', this.pollingStationService.getStationOfInterest())
     console.log('pageTitle', this.pageTitle)
   }

@@ -1,3 +1,4 @@
+import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
@@ -42,8 +43,9 @@ export class AccountSettingsPage implements OnInit {
   loggedIn: boolean;
   passChange: boolean;
   loggingout: boolean;
+  pollingstation: Pollingstation;
 
-  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider) {
+  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
     this.pageTitle = "Account Settings";
     this.resetPasscode = false;
     this.passChange = false;
@@ -53,10 +55,12 @@ export class AccountSettingsPage implements OnInit {
 
   ngOnInit(){
     this.loggedIn = this.authSvc.isLoggedIn();
-    console.log('loggedIn from userSvc (INIT): ', this.loggedIn);
     this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
-    console.log('newUser from userSvc (INIT): ', this.newUser);
-   }
+    // if user has audit but no station, get station
+    if (this.auditSvc.getAudit()) {
+      this.pollingstation = this.pollingstationservice.getPollingStationbyKey(this.auditSvc.getAudit().pollingstationId)
+    }
+  }
 
 onClickLogin() {
   this.navCtrl.setRoot('LogInPage');

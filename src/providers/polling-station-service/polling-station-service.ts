@@ -97,7 +97,7 @@ export class PollingStationServiceProvider {
   }
 
   getPollingStationbyKey(passedKey){ 
-      return this.stations.filter((station) => {
+      return this.getStations().find((station) => {
         station.pollingstationKey === passedKey;
       })
   }
