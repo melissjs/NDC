@@ -9,3 +9,16 @@
       </ion-item>
   </ion-list>
 </ion-card>
+
+<ion-card>
+  <ion-card-header>
+      Volunteer List:
+  </ion-card-header>
+  <ion-grid>
+    <ion-row  *ngFor="let auditor of auditors">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
