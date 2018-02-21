@@ -23,8 +23,8 @@ export class ElectionServiceProvider {
   }
 
   setElections() {
-    if (!this.electionOfInterest) {
-      let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+    if (!this.electionOfInterest && !this.elections) {
+    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + '/elections/all', {headers: header})
       .map((res: ResponseObj) => {
         this.elections = res.obj;

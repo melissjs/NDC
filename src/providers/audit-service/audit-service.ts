@@ -32,7 +32,7 @@ export class AuditServiceProvider {
         this.audit = res.obj;
         console.log('fromSET AUDIT', this.audit)
         localStorage.setItem('audit', JSON.stringify(res.obj));
-        if (this.audit.team){
+        if (this.audit){
           this.auditTeam = this.audit.team;
           localStorage.setItem('auditTeam', JSON.stringify(this.audit.team));
         }
