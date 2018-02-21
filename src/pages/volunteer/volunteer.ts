@@ -30,16 +30,21 @@ export class VolunteerPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authSvc.isLoggedIn()) {
-      // this.electionSvc.setElections()
-      // .subscribe((res: Election[]) => {
-      //   this.elections = res;
-      // },
-      // (err: HttpErrorResponse) => {
-      //   console.error(err);
-      // })
-      this.electionSvc.setElections();
+    if (this.authSvc.isLoggedIn() && !this.electionSvc.getElections()) {
+      this.electionSvc.setElections()
+      .subscribe((res: Election[]) => {
+        this.elections = res;
+        console.log('elections from observable', this.elections)
+      },
+      (err: HttpErrorResponse) => {
+        console.error(err);
+      })
+      // this.electionSvc.setElections();
+      // this.elections = this.electionSvc.getElections();
+    }
+    else {
       this.elections = this.electionSvc.getElections();
+      console.log('elections from else', this.elections)
     }
     
     this.election = this.electionSvc.getElectionOfInterest() || undefined;
