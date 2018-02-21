@@ -32,11 +32,11 @@ export class ElectionServiceProvider {
     if (!this.electionOfInterest && !this.elections) {
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + '/elections/all', {headers: header})
-      .map((res: ResponseObj) => {
+      .subscribe((res: ResponseObj) => {
         this.elections = res.obj;
         localStorage.setItem('elections', JSON.stringify(res.obj));
         console.log('elections', this.elections)
-        return res.obj;
+        // return res.obj;
       },
       (err: HttpErrorResponse) => {
         console.log(err);

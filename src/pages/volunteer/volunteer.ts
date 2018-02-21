@@ -31,13 +31,15 @@ export class VolunteerPage implements OnInit {
 
   ngOnInit() {
     if (this.authSvc.isLoggedIn()) {
-      this.electionSvc.setElections()
-      .subscribe((res: Election[]) => {
-        this.elections = res;
-      },
-      (err: HttpErrorResponse) => {
-        console.error(err);
-      })
+      // this.electionSvc.setElections()
+      // .subscribe((res: Election[]) => {
+      //   this.elections = res;
+      // },
+      // (err: HttpErrorResponse) => {
+      //   console.error(err);
+      // })
+      this.electionSvc.setElections();
+      this.elections = this.electionSvc.getElections();
     }
     
     this.election = this.electionSvc.getElectionOfInterest() || undefined;
