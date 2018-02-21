@@ -43,11 +43,17 @@ export class AuditStatsComponent implements OnInit{
     (err: HttpErrorResponse) => {
       console.error(err);
     })
+    this.setButtonVars();
+  }
+
+  setButtonVars() {
     if (this.auditSvc.getAudit()) {
       this.usersAuditId = this.auditSvc.getAudit()._id;
+      console.log('this.usersAuditId from if', this.usersAuditId)
     } 
     else {
       this.usersAuditId = undefined;
+      console.log('this.usersAuditId from else', this.usersAuditId)
     }
   }
 
@@ -104,6 +110,7 @@ export class AuditStatsComponent implements OnInit{
   onLeaveAudit() {
     this.auditSvc.leaveAudit()
     .subscribe();
+    this.setButtonVars();
   }
 
 }
