@@ -23,6 +23,12 @@ export class ElectionServiceProvider {
   }
 
   setElections() {
+    if (this.electionOfInterest) {
+      localStorage.setItem('electionOfInterest', JSON.stringify(this.electionOfInterest));
+    }
+    if (this.elections) {
+      localStorage.setItem('elections', JSON.stringify(this.elections));
+    }
     if (!this.electionOfInterest && !this.elections) {
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + '/elections/all', {headers: header})
