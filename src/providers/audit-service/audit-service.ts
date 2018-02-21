@@ -92,11 +92,13 @@ export class AuditServiceProvider {
   }
 
   leaveAudit() {
+    console.log('audddddd', this.audit)
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-    return this.http.get(baseURL + `/audits/audit/${this.audit._id}`, {headers: header})
+    return this.http.delete(baseURL + `/audits/user/${this.userSvc.getUser().volunteerKey}`, {headers: header})
     .map((res: ResponseObj) => {
       this.audit = undefined;
       localStorage.removeItem('audit');
+      console.log('audddddd', this.audit)
       if (this.auditTeam){
         this.auditTeam = undefined;
         localStorage.removeItem('auditTeam');

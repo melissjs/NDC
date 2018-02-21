@@ -40,12 +40,15 @@ export class AuditStatsComponent implements OnInit{
       this.shiftsFilled = this.audit.shifts;
       this.auditOfInterestId = this.audit._id;
     }, 
-  (err: HttpErrorResponse) => {
-    console.error(err);
-  })
-  if (this.auditSvc.getAudit()) {
-    this.usersAuditId = this.auditSvc.getAudit()._id;
-  }
+    (err: HttpErrorResponse) => {
+      console.error(err);
+    })
+    if (this.auditSvc.getAudit()) {
+      this.usersAuditId = this.auditSvc.getAudit()._id;
+    } 
+    else {
+      this.usersAuditId = undefined;
+    }
   }
 
   onInfoAlert() {
@@ -99,7 +102,8 @@ export class AuditStatsComponent implements OnInit{
   }
 
   onLeaveAudit() {
-    
+    this.auditSvc.leaveAudit()
+    .subscribe();
   }
 
 }
