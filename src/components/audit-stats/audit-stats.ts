@@ -23,6 +23,7 @@ export class AuditStatsComponent implements OnInit{
   shiftsToFill: number;
   shiftsFilled: number;
   enterShifts: number[];
+  buttonText: string;
 
   constructor(private alertCtrl: AlertController, private navCtrl: NavController, public auditSvc: AuditServiceProvider) {
     this.volunteerCount = 0;
@@ -49,11 +50,24 @@ export class AuditStatsComponent implements OnInit{
   setButtonVars() {
     if (this.auditSvc.getAudit()) {
       this.usersAuditId = this.auditSvc.getAudit()._id;
-      console.log('this.usersAuditId from if', this.usersAuditId)
+      // console.log('this.usersAuditId from if', this.usersAuditId)
+      if (this.usersAuditId === this.auditOfInterestId) {
+        this.buttonText = 'Leave Audit'
+      }
     } 
     else {
       this.usersAuditId = undefined;
-      console.log('this.usersAuditId from else', this.usersAuditId)
+      this.buttonText = 'Join Audit'
+      // console.log('this.usersAuditId from else', this.usersAuditId)
+    }
+  }
+
+  onAuditAction() {
+    if (this.buttonText === 'Join Audit') {
+      this.onJoinAudit();
+    }
+    else if (this.buttonText === "Leave Audit") {
+      this.onLeaveAudit();
     }
   }
 

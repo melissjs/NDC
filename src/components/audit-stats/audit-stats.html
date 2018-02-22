@@ -8,13 +8,19 @@
   Total shifts remaining: <span style="float: right">{{shiftsToFill}}</span>
   <br><br>
 </ion-item>
-<!-- usersAuditId === undefined -->
-<ion-item>
-<button *ngIf="usersAuditId != auditOfInterestId" ion-button (click)="onJoinAudit()" block large>
+
+<!-- <ion-item>
+<button *ngIf="!usersAuditId || usersAuditId != auditOfInterestId" ion-button (click)="onJoinAudit()" block large>
   Join Audit
 </button>
 
 <button *ngIf="auditSvc.getAudit() && usersAuditId === auditOfInterestId" ion-button (click)="onLeaveAudit()" block large>
   Leave Audit
 </button>
+</ion-item> -->
+
+<ion-item>
+  <button ion-button (click)="onAuditAction()" block large>
+    {{buttonText}}
+  </button>
 </ion-item>
