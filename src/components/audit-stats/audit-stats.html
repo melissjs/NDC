@@ -19,7 +19,7 @@
 </button>
 </ion-item> -->
 
-<ion-item>
+<ion-item *ngIf="buttonText">
   <button ion-button (click)="onAuditAction()" block large>
     {{buttonText}}
   </button>

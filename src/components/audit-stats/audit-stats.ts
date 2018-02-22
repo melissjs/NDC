@@ -40,11 +40,11 @@ export class AuditStatsComponent implements OnInit{
       this.shiftsToFill = 45 - this.audit.shifts;
       this.shiftsFilled = this.audit.shifts;
       this.auditOfInterestId = this.audit._id;
+      this.setButtonVars();
     }, 
     (err: HttpErrorResponse) => {
       console.error(err);
     })
-    this.setButtonVars();
   }
 
   setButtonVars() {
@@ -55,7 +55,7 @@ export class AuditStatsComponent implements OnInit{
         this.buttonText = 'Leave Audit'
       }
     } 
-    else {
+    else if (!this.auditSvc.getAudit) {
       this.usersAuditId = undefined;
       this.buttonText = 'Join Audit'
       // console.log('this.usersAuditId from else', this.usersAuditId)
