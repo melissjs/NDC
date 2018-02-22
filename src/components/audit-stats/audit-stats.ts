@@ -48,17 +48,14 @@ export class AuditStatsComponent implements OnInit{
   }
 
   setButtonVars() {
-    if (this.auditSvc.getAudit()) {
-      this.usersAuditId = this.auditSvc.getAudit()._id;
-      // console.log('this.usersAuditId from if', this.usersAuditId)
-      if (this.usersAuditId === this.auditOfInterestId) {
+    if (this.auditSvc.getAudit() &&  this.auditSvc.getAudit()._id === this.auditSvc.getAuditOfInterest()._id) {
         this.buttonText = 'Leave Audit'
-      }
+        console.log('this.usersAuditId from if', this.usersAuditId)
     } 
-    else if (!this.auditSvc.getAudit) {
+    else {
       this.usersAuditId = undefined;
       this.buttonText = 'Join Audit'
-      // console.log('this.usersAuditId from else', this.usersAuditId)
+      console.log('this.usersAuditId from else', this.usersAuditId)
     }
   }
 
