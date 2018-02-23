@@ -1,3 +1,4 @@
+import { StationCache } from './../../models/station-cache';
 import { ElectionServiceProvider } from './../election-service/election-service';
 import { ResponseObj } from './../../models/response-obj';
 import { Pollingstation } from './../../models/pollingstation';
@@ -16,7 +17,8 @@ let baseURL = config.NDCS_BASE_URL;
 export class PollingStationServiceProvider {
 
   pollingstation: Pollingstation;
-  // pollingstationId: string;
+  stationsCache: object;
+  stationCache: StationCache;
   pollingstationOfInterest: Pollingstation;
   stations: Pollingstation[];
   cachedDateTime: number;
@@ -72,17 +74,23 @@ export class PollingStationServiceProvider {
 
   setStations() {
     console.log('FROM SET')
-      this.cachedDateTime = Date.now();
-      let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-      return this.http.get(baseURL + `/pollingstations/election/${this.electionSvc.getElectionOfInterest()._id}/operative`, {headers: header})
-      .map((res: ResponseObj) => {
-        this.stations = res.obj;
-        localStorage.setItem('stations', JSON.stringify(res.obj));
-        return res.obj;
-      },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      })
+    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+    return this.http.get(baseURL + `/pollingstations/election/${this.electionSvc.getElectionOfInterest()._id}/operative`, {headers: header})
+    .map((res: ResponseObj) => {
+      this.stations = res.obj;
+      localStorage.setItem('stations', JSON.stringify(res.obj));
+      
+      // set cache in local memory
+      this.stationCache = {
+        cachedDateTime: Date.now(),
+        stations: []
+      }
+        this.stationsCache[this.electionSvc.getElectionOfInterest()._id] = this.stationCache;
+        return res.obj; // remove this - for get only
+    },
+    (err: HttpErrorResponse) => {
+      console.log(err);
+    })
   }
 
   setStationOfInterest(passedStation: Pollingstation) {
