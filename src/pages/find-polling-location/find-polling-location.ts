@@ -31,7 +31,7 @@ export class FindPollingLocationPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.pollingstationSvc.activeCache()){
+    if (false){ //this.pollingstationSvc.activeCache()
       this.stations = this.pollingstationSvc.getStations();
     }
     else {

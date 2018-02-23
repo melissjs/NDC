@@ -1,8 +1,10 @@
 import { Pollingstation } from "./pollingstation";
 
 export interface StationCache {
-cachedDateTime: number;
-stations: Pollingstation[];
+  electionId: {
+    cachedDateTime: number;
+    stations: Pollingstation[];
+  }
 } 
 
 

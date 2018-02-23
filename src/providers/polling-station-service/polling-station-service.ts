@@ -17,14 +17,15 @@ let baseURL = config.NDCS_BASE_URL;
 export class PollingStationServiceProvider {
 
   pollingstation: Pollingstation;
-  stationsCache: object;
+  stationsCache: any;
   stationCache: StationCache;
   pollingstationOfInterest: Pollingstation;
-  stations: Pollingstation[];
+  // stations: Pollingstation[];
   cachedDateTime: number;
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private electionSvc: ElectionServiceProvider){
     this.cachedDateTime = 0;
+    this.stationsCache = {};
   }
 
   // getPollingstationId() {
@@ -61,15 +62,26 @@ export class PollingStationServiceProvider {
   //   return this.http.get(baseURL + '/pollingstations/all', {headers: header})
   // }
   activeCache() {
-    if (this.cachedDateTime === 0) {
+    // if (this.cachedDateTime === 0) {
+    //   return false;
+    // }
+    // return (this.cachedDateTime + 60000 > Date.now()) ? true : false;
+    if (this.stationsCache[this.electionSvc.getElectionOfInterest()._id].cachedDateTime === 0 || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].cachedDateTime === 0) {
       return false;
     }
-    return (this.cachedDateTime + 60000 > Date.now()) ? true : false;
+    return (this.stationsCache[this.electionSvc.getElectionOfInterest()._id].cachedDateTime + 60000 > Date.now() || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].cachedDateTime + 60000 > Date.now()) ? true : false;
   }
 
   getStations() {
     console.log('FROM GET')
-    return this.stations || JSON.parse(localStorage.getItem('stations'));
+    // return this.stations || JSON.parse(localStorage.getItem('stations'));
+    if (this.activeCache) {
+      return this.stationsCache[this.electionSvc.getElectionOfInterest()._id] || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id];
+    }
+    else {
+      this.setStations();
+      this.getStations();
+    }
   }
 
   setStations() {
@@ -77,15 +89,17 @@ export class PollingStationServiceProvider {
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
     return this.http.get(baseURL + `/pollingstations/election/${this.electionSvc.getElectionOfInterest()._id}/operative`, {headers: header})
     .map((res: ResponseObj) => {
-      this.stations = res.obj;
-      localStorage.setItem('stations', JSON.stringify(res.obj));
+      // this.stations = res.obj;
+      // localStorage.setItem('stations', JSON.stringify(res.obj));
       
       // set cache in local memory
       this.stationCache = {
         cachedDateTime: Date.now(),
-        stations: []
+        stations: res.obj
       }
-        this.stationsCache[this.electionSvc.getElectionOfInterest()._id] = this.stationCache;
+      let elId = this.electionSvc.getElectionOfInterest()._id;
+      this.stationsCache[elId] = this.stationCache;
+      localStorage.setItem('stationsCacheLS', JSON.stringify(this.stationsCache));
         return res.obj; // remove this - for get only
     },
     (err: HttpErrorResponse) => {
@@ -106,10 +120,10 @@ export class PollingStationServiceProvider {
   }
 
   getPollingStationbyKey(passedKey) {
-    this.stations = this.getStations();
-      return this.stations.find((station) => {
-        return station.pollingstationKey === passedKey;
-      })
+    // this.stations = this.getStations();
+    //   return this.stations.find((station) => {
+    //     return station.pollingstationKey === passedKey;
+    //   })
   }
 
   // compare duplicates here? 
