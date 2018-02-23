@@ -100,6 +100,7 @@ export class PollingStationServiceProvider {
       let elId = this.electionSvc.getElectionOfInterest()._id;
       this.stationsCache[elId] = this.stationCache;
       localStorage.setItem('stationsCacheLS', JSON.stringify(this.stationsCache));
+      console.log('cacheddddddddd', this.stationsCache)
         return res.obj; // remove this - for get only
     },
     (err: HttpErrorResponse) => {
