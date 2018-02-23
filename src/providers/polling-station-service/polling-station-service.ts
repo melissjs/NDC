@@ -1,3 +1,4 @@
+import { ElectionServiceProvider } from './../election-service/election-service';
 import { ResponseObj } from './../../models/response-obj';
 import { Pollingstation } from './../../models/pollingstation';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -20,7 +21,7 @@ export class PollingStationServiceProvider {
   stations: Pollingstation[];
   cachedDateTime: number;
 
-  constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider){
+  constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private electionSvc: ElectionServiceProvider){
     this.cachedDateTime = 0;
   }
 
@@ -73,7 +74,7 @@ export class PollingStationServiceProvider {
     console.log('FROM SET')
       this.cachedDateTime = Date.now();
       let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-      return this.http.get(baseURL + '/pollingstations/all', {headers: header})
+      return this.http.get(baseURL + `/pollingstations/election/${this.electionSvc.getElectionOfInterest()._id}/operative`, {headers: header})
       .map((res: ResponseObj) => {
         this.stations = res.obj;
         localStorage.setItem('stations', JSON.stringify(res.obj));
