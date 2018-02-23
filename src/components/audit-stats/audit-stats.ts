@@ -15,7 +15,6 @@ import { AuditServiceProvider } from '../../providers/audit-service/audit-servic
 export class AuditStatsComponent implements OnInit{
 
   audit: Audit;
-  usersAuditId: string;
   auditOfInterestId: string;
   team: Auditor[];
   shiftSelected: boolean = false;
@@ -50,12 +49,9 @@ export class AuditStatsComponent implements OnInit{
   setButtonVars() {
     if (this.auditSvc.getAudit() &&  this.auditSvc.getAudit()._id === this.auditSvc.getAuditOfInterest()._id) {
         this.buttonText = 'Leave Audit'
-        console.log('this.usersAuditId from if', this.usersAuditId)
     } 
     else {
-      this.usersAuditId = undefined;
       this.buttonText = 'Join Audit'
-      console.log('this.usersAuditId from else', this.usersAuditId)
     }
   }
 

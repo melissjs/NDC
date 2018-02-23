@@ -59,7 +59,7 @@ export class VolunteerPage implements OnInit {
   onChooseElection() {
     this.chooseElectionObjArr = this.elections.map((election) => {
       return {
-        type: 'checkbox',
+        type: 'radio',
         label: election.electionTitle,
         name: election.electionTitle,
         id: election._id,
@@ -83,8 +83,8 @@ export class VolunteerPage implements OnInit {
         {
           text: 'Confirm',
           handler: data => {
-            console.log('alert data', data[0])
-            this.electionSvc.setElectionOfInterest(data[0]);
+            console.log('alert data', data)
+            this.electionSvc.setElectionOfInterest(data);
             this.election = data;
             this.chosenElectionTitle = this.electionSvc.getElectionOfInterest().electionTitle
           }
