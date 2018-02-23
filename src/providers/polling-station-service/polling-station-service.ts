@@ -57,26 +57,24 @@ export class PollingStationServiceProvider {
     return this.pollingstation;
   }
 
-  // getStations() : Observable<Object> {
-  //   let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-  //   return this.http.get(baseURL + '/pollingstations/all', {headers: header})
-  // }
   activeCache() {
     // if (this.cachedDateTime === 0) {
     //   return false;
     // }
     // return (this.cachedDateTime + 60000 > Date.now()) ? true : false;
-    if (this.stationsCache[this.electionSvc.getElectionOfInterest()._id].cachedDateTime === 0 || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].cachedDateTime === 0) {
+    if (!JSON.parse(localStorage.getItem('stationsCacheLS')) || !JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id]) {
       return false;
+    } 
+    else { // this.stationsCache[this.electionSvc.getElectionOfInterest()._id].cachedDateTime + 60000 > Date.now() ||
+      return (JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].cachedDateTime + 60000 > Date.now()) ? true : false;
     }
-    return (this.stationsCache[this.electionSvc.getElectionOfInterest()._id].cachedDateTime + 60000 > Date.now() || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].cachedDateTime + 60000 > Date.now()) ? true : false;
   }
 
   getStations() {
-    console.log('FROM GET')
     // return this.stations || JSON.parse(localStorage.getItem('stations'));
     if (this.activeCache) {
-      return this.stationsCache[this.electionSvc.getElectionOfInterest()._id] || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id];
+      console.log('FROM GET')
+      return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
     }
     else {
       this.setStations();
@@ -100,7 +98,6 @@ export class PollingStationServiceProvider {
       let elId = this.electionSvc.getElectionOfInterest()._id;
       this.stationsCache[elId] = this.stationCache;
       localStorage.setItem('stationsCacheLS', JSON.stringify(this.stationsCache));
-      console.log('cacheddddddddd', this.stationsCache)
         return res.obj; // remove this - for get only
     },
     (err: HttpErrorResponse) => {
