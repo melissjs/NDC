@@ -15,27 +15,27 @@
 
       <ion-item>
         <ion-label stacked>Email:</ion-label>
-        <ion-input type="text" formControlName="emailAddress"></ion-input>
+        <ion-input type="text" formControlName="enterEmailAddressCtrl"></ion-input>
       </ion-item>
 
       <ion-item>
+          <ion-label stacked>Subject:</ion-label>
+          <ion-select #subject text-wrap formControlName="enterSubjectCtrl" (ionChange)="onChangeSubject()">
+            <ion-option value="mediaInquiry">Media Inquiry</ion-option>
+            <ion-option value="technicalSupport">Technical Support</ion-option>
+            <ion-option value="other">Other</ion-option>
+          </ion-select> 
+        </ion-item>
+
+      <ion-item>
         <ion-label stacked>Message:</ion-label>
-        <ion-textarea formControlName="message"></ion-textarea>
+        <ion-textarea formControlName="enterMessageCtrl"></ion-textarea>
       </ion-item>
 
       <ion-item>
         <button ion-button type="submit" [disabled]="!contactForm.valid" (click)="onSubmit()" large block>
           Submit
         </button>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked>Subject:</ion-label>
-        <ion-select #subject text-wrap formControlName="enterSubjectCtrl" (ionChange)="onChangeSubject()">
-          <ion-option value="mediaInquiry">Media Inquiry</ion-option>
-          <ion-option value="technicalSupport">Technical Support</ion-option>
-          <ion-option value="other">Other</ion-option>
-        </ion-select> 
       </ion-item>
 
     </form>
