@@ -3,6 +3,7 @@
 </ion-header>
   
 <ion-content class="backgroundColor" padding>
+
   <ion-card padding>
     <ion-list> 
       <ion-list-header>How to Participate</ion-list-header>
@@ -52,31 +53,34 @@
   <ion-card padding>
     <ion-list text-wrap>
       <ion-list-header>Collaborator Form </ion-list-header>
-      <form [formGroup]="collaboratorForm" (ngSubmit)="onSubmit(collaboratorForm.value)" novalidate>
+      <form [formGroup]="collaboratorForm">
         <ion-item>
           <ion-label stacked>Full Name:</ion-label>
-          <ion-input type="text" [(ngModel)]=resetName name="name" formControlName="enterFullName"></ion-input>
+          <ion-input type="text" formControlName="enterFullNameCtrl"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Your Email Addess:</ion-label>
-          <ion-input type="text" [(ngModel)]=resetContact name="contact" formControlName="enterContact"></ion-input>
+          <ion-input type="text" formControlName="enterEmailAddressCtrl"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Area(s) of Expertise:</ion-label>
-          <ion-textarea [(ngModel)]=resetAreasOfExpertise name="areasOfExpertise" formControlName="enterAreasOfExpertise"></ion-textarea>
+          <ion-textarea formControlName="enterAreasOfExpertiseCtrl"></ion-textarea>
         </ion-item>
         <ion-item>
           <ion-label stacked>Ideal Way You Would Like to Contribute:</ion-label>
-          <ion-textarea [(ngModel)]=resetDesiredContribution name="desiredContribution" formControlName="enterDesiredContribution"></ion-textarea>
+          <ion-textarea formControlName="enterContributionCtrl"></ion-textarea>
         </ion-item>
         <ion-item>
           <ion-label stacked>Links to Resume(s), Profile(s) or Relavent Work(s):</ion-label>
-          <ion-textarea [(ngModel)]=resetRelevantLinks name="relevantLinks" formControlName="enterRelevantLinks"></ion-textarea>
+          <ion-textarea formControlName="enterRelevantLinksCtrl"></ion-textarea>
         </ion-item>
-        <button ion-button type="submit" block large [disabled]="!collaboratorForm.valid" (click)="onSubmit(collaboratorForm.value)">
-          Submit 
-        </button>
+        <ion-item>
+          <button ion-button type="submit" block large [disabled]="!collaboratorForm.valid" (click)="onSubmit()">
+            Submit 
+          </button>
+        </ion-item>
       </form>
     </ion-list>
   </ion-card>
+
 </ion-content>
