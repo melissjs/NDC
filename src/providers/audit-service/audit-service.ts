@@ -103,6 +103,7 @@ export class AuditServiceProvider {
         this.auditTeam = undefined;
         localStorage.removeItem('auditTeam'); // WHY NOT RM
       }
+      console.log('ressssssss', res)
       return res;
     },
     (err: HttpErrorResponse) => {

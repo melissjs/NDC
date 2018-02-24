@@ -116,8 +116,12 @@ export class AuditStatsComponent implements OnInit{
 
   onLeaveAudit() {
     this.auditSvc.leaveAudit()
-    .subscribe();
-    this.setButtonVars();
+    .subscribe((res: ResponseObj) => {
+      this.setButtonVars();
+    },
+    (err: HttpErrorResponse) => {
+      console.log(err);
+    })
   }
 
 }
