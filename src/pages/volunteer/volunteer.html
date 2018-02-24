@@ -7,22 +7,25 @@
     <ion-item text-wrap>
       Join an audit by finding an existing polling location in our list or add one to the list yourself if you don't see a location in the area you wish to volunteer.
     </ion-item>
-    <button *ngIf="!authSvc.isLoggedIn()" ion-button (click)="onRegister()" block large>
-      Register to Volunteer  
-    </button>
-    <button [disabled]="!authSvc.isLoggedIn()" ion-button (click)="onChooseElection()" block large>
-      {{chosenElectionTitle}}
-    </button>
-    <button [disabled]="!election" ion-button (click)="onFindPolling()" block large>
-      Find a Polling Location 
-    </button>
-    <button [disabled]="!election" ion-button (click)="onAddPolling()" block large>
-      Add a Polling Location
-    </button>
+    <ion-item>
+      <button *ngIf="!authSvc.isLoggedIn()" ion-button (click)="onRegister()" block large>
+        Register to Volunteer  
+      </button>
+      <button [disabled]="!authSvc.isLoggedIn()" ion-button (click)="onChooseElection()" block large>
+        {{chosenElectionTitle}}
+      </button>
+      <button [disabled]="!election" ion-button (click)="onFindPolling()" block large>
+        Find a Polling Location 
+      </button>
+      <button [disabled]="!election" ion-button (click)="onAddPolling()" block large>
+        Add a Polling Location
+      </button>
+   </ion-item>
+  </ion-card>
+</ion-content>
+
     <!-- <a href="https://www.usa.gov/election-office" target="_blank">
       <button block large>
         U.S. Polling Location Reference
       </button>
     </a> -->
-  </ion-card>
-</ion-content>
