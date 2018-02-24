@@ -55,50 +55,27 @@ ngOnInit() {
   });
 }
 
+  onSubmit(value: any): void {
 
-onSubmit(value: any): void {
+  this.collabFormObj = {
+    fullName: this.collaboratorForm.value.enterFullNameCtrl,
+    emailAddress: this.collaboratorForm.value.enterEmailAddressCtrl,
+    areasOfExpertise: this.collaboratorForm.value.enterAreasOfExpertiseCtrl,
+    desiredContribution: this.collaboratorForm.value.enterContributionCtrl,
+    links: this.collaboratorForm.value.enterRelevantLinksCtrl
+  }
 
+  console.log('collabFormObj', this.collabFormObj);
 
-this.collabFormObj = {
-fullName: value.enterFullName,
-emailAddress: value.enterContact,
-areasOfExpertise: value.enterAreasOfExpertise,
-desiredContribution: value.enterDesiredContribution,
-links: value.enterRelevantLinks
-}
+  // this.restSvc.sendCollab(this.collabFormObj);
 
-//console.log(this.collabFormObj);
-//console.log('hello');
-// ask Eric about emailing a form value
+  let alert = this.alertCtrl.create({
+    title: 'Successfully Submitted',
+    subTitle: 'Thank you for your submission; we greatly appreciate your interest in participating. Someone will respond to you as soon as possible. Our team is small right now; please expect it may take us some time to reply.',
+    buttons: [ 'OK' ]
+  });
+  alert.present(); 
+  this.navCtrl.setRoot('HomePage');
+  }
 
-// alert    
-this.restSvc.sendCollab(this.collabFormObj);
-        
-        let alert = this.alertCtrl.create({
-                    title: 'Successfully Submitted',
-                    subTitle: 'Thank you for your submission; we greatly appreciate your interest in participating. Someone will respond to you as soon as possible. Our team is small right now; please expect it may take us some time to reply.',
-buttons: [ 'OK' ]
-                });
-                alert.present(); 
-                  try {
-    this.navCtrl.setRoot('HomePage');
-} catch (EE) {
-    console.log('error in Submitting, exc='+ EE.toString())
-}
-        }
-
-/*
-this.resetName = null;
-this.resetAreasOfExpertise  = null;
-this.resetDesiredContribution  = null;
-this.resetRelevantLinks = null;
-this.resetContact = null;
-*/
-
-
-
-
-
-
-// End class
 }
