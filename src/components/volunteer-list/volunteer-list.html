@@ -1,12 +1,18 @@
-<ion-card>
-    <ion-list>
-        <ion-list-header>Volunteer List:</ion-list-header>
-          <ion-grid>
-            <ion-row  *ngFor="let auditor of auditors">
-              <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
-              <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
-              <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
-            </ion-row>
-          </ion-grid>
-  </ion-list>
-</ion-card>
+<!-- <ion-list>
+  <ion-list-header>Volunteer List:</ion-list-header>
+  <ion-grid>
+    <ion-row  *ngFor="let auditor of auditors">
+      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
+      <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-list> -->
+
+  <ion-card *ngFor="let auditor of auditors" padding>
+    <ion-list-header>{{auditor?.firstName}} {{auditor?.lastName}}</ion-list-header>
+    <ion-item>
+        <ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon>
+        <ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon>
+    </ion-item>
+  </ion-card>

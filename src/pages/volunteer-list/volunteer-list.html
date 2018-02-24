@@ -3,43 +3,11 @@
 </ion-header>
   
 <ion-content padding class="backgroundColor">
-  
   <volunteer-list *ngIf="authSvc.isLoggedIn()"></volunteer-list>
-
-  <!-- <ion-card *ngIf="initialized">
-    <ion-list>
-      <ion-list-header>Volunteer List: {{currentVolunteer.firstName}} {{currentVolunteer.lastName}}</ion-list-header>
-      <ion-item *ngFor="let item of currentTeam">
-        <ion-label>{{item.firstName}} {{item.lastName}} <span style=float:right *ngIf=item.exposeEmail>{{item.emailAddress}}</span></ion-label>
-        <ion-label *ngIf=item.exposeEmail>{{item.emailAddress}}</ion-label> OUT
-      </ion-item>
-    </ion-list>
-  </ion-card> -->
-
-<!--   
-  <ion-card *ngIf="initialized">
-    <ion-list>
-      <ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header> OUT
-      <ion-item>
-      </ion-item>
-    </ion-list>
-  </ion-card> -->
-  
-
-    <ion-card *ngIf="!authSvc.isLoggedIn()">
-        <ion-list-header text-wrap>Volunteer List:
-        </ion-list-header>
-        <ion-item text-wrap>
-    <ion-label text-wrap>
-      Must be logged in, authenticated and you must be at a polling station to see volunteer list.
-    </ion-label>
-        </ion-item>
-      </ion-card>
-  
-    <button ion-button type="button" (click)="onRefresh()" block large>
+    <!-- <button ion-button type="button" (click)="onRefresh()" block large>
       Refresh
-    </button>
-  
-    <!-- <check-login></check-login> -->
-
+    </button> -->
+  <ion-item text-wrap *ngIf="!authSvc.isLoggedIn()">
+    This function is only available for auditors on election day.
+  </ion-item>
 </ion-content>
