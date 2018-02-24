@@ -1,3 +1,4 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // import { VoteRecordPage } from '../vote-record/vote-record';
@@ -14,7 +15,7 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
 })
 export class AddNewRecordPage {
   pageTitle: string;
-  constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider) {
+  constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider) {
     this.pageTitle = "Add New Record";
   
   }

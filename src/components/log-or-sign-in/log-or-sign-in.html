@@ -1,27 +1,23 @@
 <form [formGroup]="loginForm">
-  
-  <ion-list>
-    <ion-item>
-      <ion-label stacked>Username:</ion-label>
-      <ion-input type="text" formControlName="enterUsername" (ionBlur)="onDirtyUsername()"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Password:</ion-label>
-      <ion-input type="password" formControlName="enterPassword" (ionBlur)="onDirtyPassword()"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <button ion-button block large [disabled]="!loginForm.valid"  (click)="onLogin()">
-    Log In
-  </button>
-
-  <button color="secondary" ion-button block large [disabled]="!loginForm.valid" (click)="onRegister()">
-    Register
-  </button>
-  
-  <P class="error-msg" *ngIf="errorMessage!=null">{{errorMessage}}</P>
-
+  <ion-item>
+    <ion-label stacked>Username:</ion-label>
+    <ion-input type="text" formControlName="enterUsername" (ionBlur)="onDirtyUsername()"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Password:</ion-label>
+    <ion-input type="password" formControlName="enterPassword" (ionBlur)="onDirtyPassword()"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button block large [disabled]="!loginForm.valid"  (click)="onLogin()">
+      Log In
+    </button>
+    <button color="secondary" ion-button block large [disabled]="!loginForm.valid" (click)="onRegister()">
+      Register
+    </button>
+  </ion-item>
+  <ion-item>
+    <P class="error-msg" *ngIf="errorMessage!=null">{{errorMessage}}</P>
+  </ion-item>
 </form> 
 
 

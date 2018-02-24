@@ -1,39 +1,34 @@
 <ion-header>
   <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
-  
-  <ion-content padding class="backgroundColor">
-  
-    <!-- <ion-card *ngIf="recordservice.getAuthenticatingVolunteerKey() != null"  padding> -->
-    <ion-card padding>
-          
+
+<ion-content padding class="backgroundColor">
+  <ion-card padding *ngIf="authSvc.isLoggedIn()">
+    <ion-item>
       <button ion-button type="button" (click)="onSubmitVoterRecord()" block large>
         Affidavit Record
       </button>
-
       <button ion-button type="button" (click)="onSubmitVoterRecord()" block large>
         Voter Record
       </button>
-  
       <button ion-button type="button" (click)="onSubmitNonVoterRecord()" block large>
         Non Voter Record
       </button>
-
       <button ion-button type="button" (click)="onSubmitNonVoterRecord()" block large>
         Outside Voter Record
       </button>
-      
       <button ion-button type="button" (click)="onSubmitAnomalyRecord()" block large>
         Anomaly Record
       </button>
-      
       <button ion-button type="button" (click)="onSubmitAmendmentRecord()" block large>
         Amendment Record
       </button>
-
-
-  
-    </ion-card>
-    
-  </ion-content>
-  
+    </ion-item>
+  </ion-card>
+  <!-- note for unreg -->
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+    <ion-item text-wrap>
+      This function is only available for auditors on election day.
+    </ion-item>
+  </ion-card>
+</ion-content>
