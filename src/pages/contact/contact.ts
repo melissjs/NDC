@@ -47,15 +47,16 @@ export class ContactPage implements OnInit{
 
   onSubmit(value: any): void { 
 
-    this.contactFormObj ={
-        fullName: value.fullName,
-        emailAddress: value.emailAddress,
-        message: value.message
+    this.contactFormObj = {
+      fullName: this.contactForm.value.enterFullNameCtrl,
+      emailAddress: this.contactForm.value.enterEmailAddressCtrl,
+      subject: this.contactForm.value.enterSubjectCtrl,
+      message: this.contactForm.value.enterMessageCtrl
     }
 
-    console.log(this.contactFormObj);
+    console.log('contactFormObj', this.contactFormObj);
 
-    this.restSvc.sendContact(this.contactFormObj);
+    // this.restSvc.sendContact(this.contactFormObj);
 
     let alert = this.alertCtrl.create({
       title: 'Submission Successful',
@@ -64,7 +65,7 @@ export class ContactPage implements OnInit{
     });
     alert.present();
 
-    this.navCtrl.setRoot(HomePage, {});
+    this.navCtrl.setRoot('HomePage');
   }
 
 }
