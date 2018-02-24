@@ -4,21 +4,25 @@
   
 <ion-content class="backgroundColor" padding>
   <ion-card padding>
-    <img style="max-width:830px;" src="assets/imgs/DC.jpg">
+    <ion-item>
+      <img style="max-width:830px;" src="assets/imgs/DC.jpg">
+    </ion-item>
     <ion-item class='front' text-wrap>
       Thank you for visiting the Democracy Counts 2018 Midterm Election Audit portal. The upcoming election is an important one and we are here to help people like you to collaborate with your friends and neighbors to establish community driven, independent audits of official election results on August 26th. Though audits are organized independently, our results will be standardized, fully aggregated, powerful tools for combating potential election fraud and voter suppression. 
     </ion-item>
-    <button ion-button type="button" (click)="onVolunteerClick()" block large>
-      Volunteer 
-    </button>
-    <button ion-button type="button" (click)="onDonateClick()" block large>
-      Donate 
-    </button>
-    <div *ngIf="!authSvc.isLoggedIn()">
-      <button color="secondary" ion-button type="button" (click)="onLoginOrRegisterClick()" block large>
-        Login or Register
+    <ion-item>
+      <button ion-button type="button" (click)="onVolunteerClick()" block large>
+        Volunteer 
       </button>
-    </div>
-    <logout *ngIf="authSvc.isLoggedIn()"></logout>
+      <button ion-button type="button" (click)="onDonateClick()" block large>
+        Donate 
+      </button>
+      <div *ngIf="!authSvc.isLoggedIn()">
+        <button color="secondary" ion-button type="button" (click)="onLoginOrRegisterClick()" block large>
+          Login or Register
+        </button>
+      </div>
+      <logout *ngIf="authSvc.isLoggedIn()"></logout>
+    </ion-item>
   </ion-card>
 </ion-content>
