@@ -4,36 +4,30 @@
 
 
 <ion-content class="backgroundColor" padding>
-    
-      <ion-card>
-    
-  <form novalidate [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
-  <ion-list>
-    <ion-item>
+
+  <ion-card padding>
+    <form novalidate [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
+      <ion-item>
         <ion-label stacked>Full Name:</ion-label>
         <ion-input type="text" value="" formControlName="fullName"></ion-input> 
-    </ion-item>
-  
-    <ion-item>    
-      <ion-label stacked>Email:</ion-label>
-      <ion-input type="text" value="" formControlName="emailAddress" ></ion-input>
-   </ion-item>
-  
-    <ion-item>
-      <ion-label stacked>Message:</ion-label>
-      <ion-textarea formControlName="message"></ion-textarea>
-    </ion-item>
-  </ion-list>
-      </form>
-  
+      </ion-item>
+      <ion-item>    
+        <ion-label stacked>Email:</ion-label>
+        <ion-input type="text" value="" formControlName="emailAddress" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Message:</ion-label>
+        <ion-textarea formControlName="message"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <button ion-button type="submit" [disabled]="!contactForm.valid" (click)="onSubmit(contactForm.value)" large block>
+          Submit
+        </button>
+      </ion-item>
+    </form>
   </ion-card>
-  
-     
-    
-  
-   <button ion-button type="submit" [disabled]="!contactForm.valid" (click)="onSubmit(contactForm.value)" large block>Submit</button>
-  
+
   <!-- <p>Form: {{ contactForm.value | json }}</p>
   <p>Form Status: {{ contactForm.status }}</p>
   <p>Name Status: {{ contactForm.get('fullName').status }}</p>-->
-  </ion-content>
+</ion-content>
