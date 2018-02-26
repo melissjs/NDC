@@ -7,7 +7,6 @@ import { SwipeVertical } from "../directives/swipe-vertical/swipe-vertical";
 
 @Component({
   templateUrl: 'app.html',
-  // directives: [ SwipeVertical ]
 })
 
 export class MyApp {

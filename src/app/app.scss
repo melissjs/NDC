@@ -39,3 +39,14 @@
 .toolbar-title-ios {
   margin-top: 15px;
 }
+
+.swipeZone {
+  z-index: 999;
+  height:50px;
+  width:250px;
+  margin: auto;
+  background-color: chartreuse;
+  margin-top:40px;
+  font-size: 28px;
+  font-weight: bold;
+}
