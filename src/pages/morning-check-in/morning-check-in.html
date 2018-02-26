@@ -4,35 +4,38 @@
 
 <ion-content padding class="backgroundColor">
   <ion-card padding>
+    <ion-list>
+      <ion-list-header>Authentication</ion-list-header>
+    </ion-list>
+
+    <ion-item text-wrap>
+      Complete this form before creating audit records. Please take at least one image for each section but different angles are helpful.
+    </ion-item>
 
     <ion-item>
-        <ion-label stacked >Comments: </ion-label>
-        <ion-textarea></ion-textarea>
-      </ion-item>
+      <ion-label stacked>Comments: </ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
 
     <ion-item>
       <ion-label stacked>Set Geolocation: </ion-label>
-      <ion-icon name="locate" item-left></ion-icon> 
+      <ion-icon name="locate" item-right></ion-icon> 
       <ion-input type="text"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Authenticating Volunteer: </ion-label>
+      <ion-icon name="qr-scanner" item-right></ion-icon> 
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  </ion-card>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-label stacked>Photos of Precinct Numbers:</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-        <ion-col>
-          <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-        <ion-col>
-          <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-      </ion-row>
-    </ion-grid>
-
+  <ion-card padding>
+    <ion-list>
+      <ion-list-header>
+        Images
+      </ion-list-header>
+    </ion-list>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -80,6 +83,29 @@
           <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
       </ion-row>
     </ion-grid>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label stacked>Other Photos of Note:</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+          <ion-col>
+            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+          <ion-col>
+            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    <ion-item>
+      <button ion-button (click)="onSubmit()" block large>
+        Submit
+      </button>
+    </ion-item>
+
   </ion-card>
 </ion-content>
 
