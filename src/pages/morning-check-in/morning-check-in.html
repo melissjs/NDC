@@ -13,11 +13,6 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Comments: </ion-label>
-      <ion-textarea></ion-textarea>
-    </ion-item>
-
-    <ion-item>
       <ion-label stacked>Set Geolocation: </ion-label>
       <ion-icon name="locate" item-right></ion-icon> 
       <ion-input type="text"></ion-input>
@@ -99,14 +94,29 @@
             <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
         </ion-row>
       </ion-grid>
+    </ion-card>
+
+  <ion-card padding>
+      <ion-list>
+        <ion-list-header>Comments</ion-list-header>
+      </ion-list>
+  
+      <ion-item text-wrap>
+        Please note any activity that may be suspicious or otherwise of note. Did any polling station personel illegally ask you to leave or treat you rudely?
+      </ion-item>
+  
+      <ion-item>
+        <ion-label stacked>Comments: </ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
 
     <ion-item>
       <button ion-button (click)="onSubmit()" block large>
         Submit
       </button>
     </ion-item>
-
   </ion-card>
+
 </ion-content>
 
     <!-- <form [formGroup]="affidavitForm"> -->
