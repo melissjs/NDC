@@ -2,10 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { SwipeVertical } from "../directives/swipe-vertical/swipe-vertical";
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  // directives: [ SwipeVertical ]
 })
 
 export class MyApp {
@@ -41,7 +43,8 @@ export class MyApp {
       { title: 'Morning Check In', component: 'MorningCheckInPage' },
       { title: 'Evening Check Out', component: 'EveningCheckOutPage' },
       { title: 'Volunteer List', component: 'VolunteerListPage' },
-      { title: 'Activity Record', component: 'ActivityRecordPage' }
+      { title: 'Activity Record', component: 'ActivityRecordPage' },
+      { title: 'Authentication', component: 'AuthenticationPage' }
     ];
   }
   // }
@@ -60,4 +63,12 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  onSwipeUp(e) {
+	  console.log('hiiiiii', e);
+	}
+	
+	onSwipeDown(e) {
+	  console.log('hiiiiiii', e);
+	}
 }

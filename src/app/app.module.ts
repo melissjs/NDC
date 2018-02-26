@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../directives/directives.module';
 import { ActivityRecordPage } from './../pages/activity-record/activity-record';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -25,7 +26,8 @@ import { ElectionServiceProvider } from '../providers/election-service/election-
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    DirectivesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
