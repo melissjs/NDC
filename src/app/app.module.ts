@@ -6,17 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
-// import { HomePage } from '../pages/home/home';
-// import { ListPage } from '../pages/list/list';
-// import { InstructionsPage } from '../pages/instructions/instructions';
-// import { FaqPage } from '../pages/faq/faq';
-// import { AddNewRecordPage } from '../pages/add-new-record/add-new-record';
-// import { MorningCheckInPage } from '../pages/morning-check-in/morning-check-in';
-// import { EveningCheckOutPage } from '../pages/evening-check-out/evening-check-out';
-// import { VolunteerListPage } from '../pages/volunteer-list/volunteer-list';
-// import { LogInPage } from '../pages/log-in/log-in';
-
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RecordServiceProvider } from '../providers/record-service/record-service';
@@ -31,13 +20,6 @@ import { ElectionServiceProvider } from '../providers/election-service/election-
 @NgModule({
   declarations: [
     MyApp,
-    // ListPage,
-    // InstructionsPage,
-    // AddNewRecordPage,
-    // MorningCheckInPage,
-    // EveningCheckOutPage,
-    // VolunteerListPage,
-    // ActivityRecordPage,
   ],
   imports: [
     BrowserModule,
@@ -48,13 +30,6 @@ import { ElectionServiceProvider } from '../providers/election-service/election-
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    // ListPage,
-    // InstructionsPage,
-    // AddNewRecordPage,
-    // MorningCheckInPage,
-    // EveningCheckOutPage,
-    // VolunteerListPage,
-    // ActivityRecordPage,
   ],
   providers: [
     StatusBar,
