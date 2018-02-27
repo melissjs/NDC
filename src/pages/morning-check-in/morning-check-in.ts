@@ -30,7 +30,6 @@ export class MorningCheckInPage implements OnInit {
   }
 
   onSubmit() {
-    console.log("no op for now");
   }
 
 }
