@@ -117,7 +117,35 @@ export class LogOrSignInComponent {
           this.loginStatus.emit(data);
         },
         error => {
+          // do reactivate here to keep it in component?
+          console.log('herererererere', error)
+          if (error.error.title === "Account inactive") {
+            let alert = this.alertCtrl.create({
+              title: error.error.title,
+              message: error.error.error.message,
+              buttons: [
+                {
+                  text: 'Cancel',
+                  role: 'cancel',
+                  handler: () => {
+                    console.log('Cancel clicked');
+                  }
+                },
+                {
+                  text: 'Reactivate',
+                  handler: () => {
+                    console.log('Buy clicked');
+                    this.authSvc.reactivateUser(this.newUser);
+                    this.navCtrl.setRoot('HomePage');
+                  }
+                }
+              ]
+            });
+            alert.present();
+        }
+        else {
           this.loginStatus.emit(error);
+        }
         }
       );
   }

@@ -53,4 +53,8 @@ export class AuthServiceProvider {
     }
   }
 
+  reactivateUser(body: User) {
+    return this.http.post(baseURL + '/users/reactivate', body);
+  }
+
 }
