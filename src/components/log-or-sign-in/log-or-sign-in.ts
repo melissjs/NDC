@@ -134,9 +134,17 @@ export class LogOrSignInComponent {
                 {
                   text: 'Reactivate',
                   handler: () => {
-                    console.log('Buy clicked');
-                    this.authSvc.reactivateUser(this.newUser);
-                    this.navCtrl.setRoot('HomePage');
+                    this.authSvc.reactivateUser(this.newUser)
+                    .subscribe(
+                      data => {
+                        console.log('DATA', data)
+                        this.onLogin();
+                      },
+                      error => {
+                        console.error(error);
+                      }
+                    );
+                    // this.navCtrl.setRoot('HomePage');
                   }
                 }
               ]
