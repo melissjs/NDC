@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RecordServiceProvider } from '../../providers/record-service/record-service';
-// import { EndPage } from '../end/end';
-// import {Recordservice} from '../../providers/recordservice/recordservice';
-// import {CheckLogin } from '../../components/check-login/check-login';
 
 @IonicPage()
 @Component({
@@ -11,32 +10,28 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
   templateUrl: 'evening-check-out.html',
   // directives: [CheckLogin],  
 })
+
 export class EveningCheckOutPage {
+
   pageTitle: string;
-  constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider) {
+  checkOutForm: FormGroup;
+
+  constructor(private navCtrl: NavController, private navParams: NavParams, private recordservice: RecordServiceProvider, private fb: FormBuilder, public authSvc: AuthServiceProvider) {
     this.pageTitle = "Evening Check Out";
   }
 
+  ngOnInit() {
+    this.checkOutForm = this.fb.group({  
+      // 'enterFullNameCtrl': [this.fullName, Validators.compose([Validators.required])],
+      // 'enterEmailAddressCtrl': [this.user.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(this.regExEmail)])],
+      // 'enterSubjectCtrl': ['', Validators.required],
+      // 'enterMessageCtrl': ['', Validators.required]
+    });
+  }
+
   onSubmit() {
-      var that = this;
-
-// that.recordservice.onLogout(this,this.displayError, this.successLogout);
-
+    this.navCtrl.setRoot('EndPage');
   }
-
-  displayError(that:any,text: string,subtitle: string) {
-      that.errorMessage = text + ':' + subtitle;
-  }
-
-  successLogout(that: any, real:boolean) {
-      try {
-          that.navCtrl.setRoot('EndPage', {
-          })
-      } catch (EE) {
-          console.log('error in Submitting, exc='+ EE.toString())
-      }
-  }
-
 
 }
 

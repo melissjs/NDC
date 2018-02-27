@@ -14,14 +14,14 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
 export class MorningCheckInPage implements OnInit {
 
   pageTitle: string;
-  affidavitForm: FormGroup;
+  checkInForm: FormGroup;
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private recordservice: RecordServiceProvider, private fb: FormBuilder, public authSvc: AuthServiceProvider) {
     this.pageTitle = "Morning Check In";
   }
 
   ngOnInit() {
-    this.affidavitForm = this.fb.group({  
+    this.checkInForm = this.fb.group({  
       // 'enterFullNameCtrl': [this.fullName, Validators.compose([Validators.required])],
       // 'enterEmailAddressCtrl': [this.user.emailAddress, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(this.regExEmail)])],
       // 'enterSubjectCtrl': ['', Validators.required],
