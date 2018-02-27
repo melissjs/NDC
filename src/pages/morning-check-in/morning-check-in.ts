@@ -1,3 +1,4 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
@@ -15,7 +16,7 @@ export class MorningCheckInPage implements OnInit {
   pageTitle: string;
   affidavitForm: FormGroup;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private recordservice: RecordServiceProvider, private fb: FormBuilder) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private recordservice: RecordServiceProvider, private fb: FormBuilder, public authSvc: AuthServiceProvider) {
     this.pageTitle = "Morning Check In";
   }
 

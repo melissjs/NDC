@@ -3,87 +3,40 @@
 </ion-header>
 
 <ion-content padding class="backgroundColor">
-  <form [formGroup]="affidavitForm">
-    <ion-card padding>
-      <ion-list>
-        <ion-list-header>Authentication</ion-list-header>
-      </ion-list>
+  <div *ngIf="authSvc.isLoggedIn()">
+    <form [formGroup]="affidavitForm">
+      <ion-card padding>
+        <ion-list>
+          <ion-list-header>Authentication</ion-list-header>
+        </ion-list>
 
-      <ion-item text-wrap>
-        Complete this form before your team may records. Please take at least one image for each section but different angles are helpful.
-      </ion-item>
+        <ion-item text-wrap>
+          Complete this form before your team may records. Please take at least one image for each section but different angles are helpful.
+        </ion-item>
 
-      <ion-item>
-        <ion-label stacked>Set Geolocation: </ion-label>
-        <ion-icon name="locate" item-right></ion-icon> 
-        <ion-input type="text"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label stacked>Set Geolocation: </ion-label>
+          <ion-icon name="locate" item-right></ion-icon> 
+          <ion-input type="text"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label stacked>Authenticating Volunteer: </ion-label>
-        <ion-icon name="qr-scanner" item-right></ion-icon> 
-        <ion-input type="text"></ion-input>
-      </ion-item>
-    </ion-card>
+        <ion-item>
+          <ion-label stacked>Authenticating Volunteer: </ion-label>
+          <ion-icon name="qr-scanner" item-right></ion-icon> 
+          <ion-input type="text"></ion-input>
+        </ion-item>
+      </ion-card>
 
-    <ion-card padding>
-      <ion-list>
-        <ion-list-header>
-          Images
-        </ion-list-header>
-      </ion-list>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-label stacked>Photos of Precinct Numbers:</ion-label>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-label stacked>Photos of Polling Address:</ion-label>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-label stacked>Photos of 50' Measurement:</ion-label>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-          <ion-col>
-            <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-grid>
+      <ion-card padding>
+        <ion-list>
+          <ion-list-header>
+            Images
+          </ion-list-header>
+        </ion-list>
+        <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-label stacked>Other Photos of Note:</ion-label>
+              <ion-label stacked>Photos of Precinct Numbers:</ion-label>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -95,28 +48,82 @@
               <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
           </ion-row>
         </ion-grid>
-      </ion-card>
 
-    <ion-card padding>
-        <ion-list>
-          <ion-list-header>Comments</ion-list-header>
-        </ion-list>
-    
-        <ion-item text-wrap>
-          Please note any activity that may be suspicious or otherwise of note.
-        </ion-item>
-    
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label stacked>Photos of Polling Address:</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+            <ion-col>
+              <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+            <ion-col>
+              <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label stacked>Photos of 50' Measurement:</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+            <ion-col>
+              <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+            <ion-col>
+              <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-label stacked>Other Photos of Note:</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+              <ion-col>
+                <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+              <ion-col>
+                <img style="max-width:100px; float:left" src="assets/imgs/placeholder.png">      </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+
+      <ion-card padding>
+          <ion-list>
+            <ion-list-header>Comments</ion-list-header>
+          </ion-list>
+      
+          <ion-item text-wrap>
+            Please note any activity that may be suspicious or otherwise of note.
+          </ion-item>
+      
+          <ion-item>
+            <ion-label stacked>Comments: </ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
+
         <ion-item>
-          <ion-label stacked>Comments: </ion-label>
-          <ion-textarea></ion-textarea>
+          <button ion-button (click)="onSubmit()" block large>
+            Submit
+          </button>
         </ion-item>
-
-      <ion-item>
-        <button ion-button (click)="onSubmit()" block large>
-          Submit
-        </button>
-      </ion-item>
-    </ion-card>
-  </form>
+      </ion-card>
+    </form>
+  </div>
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+    <ion-item text-wrap>
+      This function is only available for auditors on election day.
+    </ion-item>
+  </ion-card>
 </ion-content>
 
