@@ -18,14 +18,41 @@ export class LogInPage {
   }
   
   loggedIn(event) {
-    if (event.error) {
+    // display reactivation confirmation alert
+    if (event.error.title === "Account inactive") {
+        let alert = this.alertCtrl.create({
+          title: event.error.title,
+          message: event.error.error.message,
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Reactivate',
+              handler: () => {
+                console.log('Buy clicked');
+                this.navCtrl.setRoot('HomePage');
+              }
+            }
+          ]
+        });
+        alert.present();
+    }
+    // display error from server
+    else if (event.error) {
       let alert = this.alertCtrl.create({
         title: event.error.title,
         subTitle: event.error.error.message,
         buttons: ['Dismiss']
       });
       alert.present();
-    } else {
+    } 
+    // logged in successfully, move on
+    else {
       this.navCtrl.setRoot('HomePage');
     }
   }
