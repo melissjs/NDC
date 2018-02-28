@@ -30,11 +30,11 @@ export class AuditServiceProvider {
       return this.http.get(baseURL + `/audits/user/${passedUserId}`, {headers: header})
       .map((res: ResponseObj) => {
         this.audit = res.obj;
-        console.log('fromSET AUDIT', this.audit)
-        localStorage.setItem('audit', JSON.stringify(res.obj));
+        // console.log('fromSET AUDIT', this.audit)
+        localStorage.setItem('auditLS', JSON.stringify(res.obj));
         if (this.audit){
           this.auditTeam = this.audit.team;
-          localStorage.setItem('auditTeam', JSON.stringify(this.audit.team));
+          localStorage.setItem('auditTeamLS', JSON.stringify(this.audit.team));
         }
         return res;
       },
@@ -44,7 +44,7 @@ export class AuditServiceProvider {
   }
 
   getAudit() {
-    return this.audit || JSON.parse(localStorage.getItem('audit'))
+    return this.audit || JSON.parse(localStorage.getItem('auditLS'))
   }
 
   activeCache() {
@@ -65,7 +65,7 @@ export class AuditServiceProvider {
       return this.http.get(baseURL + `/audits/election/${this.electionSvc.getElectionOfInterest()._id}/pollingstation/${this.pollingstationSvc.getStationOfInterest()._id}`, {headers: header})
       .map((res: ResponseObj) => {
         this.auditOfInterest = res.obj;
-        localStorage.setItem('auditOfInterest', JSON.stringify(res.obj));
+        localStorage.setItem('auditOfInterestLS', JSON.stringify(res.obj));
         // if (this.auditOfInterest.team){
         //   this.auditOfInterestTeam = this.auditOfInterest.team;
         //   localStorage.setItem('auditOfInterestTeam', JSON.stringify(this.auditOfInterest.team));
@@ -78,11 +78,11 @@ export class AuditServiceProvider {
   }
 
   getAuditOfInterest() {
-    return this.auditOfInterest || JSON.parse(localStorage.getItem('auditOfInterest'))
+    return this.auditOfInterest || JSON.parse(localStorage.getItem('auditOfInterestLS'))
   }
 
   getAuditTeam() {
-    return this.auditTeam || JSON.parse(localStorage.getItem('auditTeam'))
+    return this.auditTeam || JSON.parse(localStorage.getItem('auditTeamLS'))
   }
 
   getAuditorByShift(shiftNum) {
@@ -92,16 +92,34 @@ export class AuditServiceProvider {
   }
 
   leaveAudit() {
-    console.log('audddddd', this.audit)
+    // console.log('audddddd', this.audit)
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
     return this.http.delete(baseURL + `/audits/user/${this.userSvc.getUser().volunteerKey}`, {headers: header})
     .map((res: ResponseObj) => {
       this.audit = undefined;
-      localStorage.removeItem('audit');
-      console.log('audddddd', this.audit)
+      localStorage.removeItem('auditLS');
+      // console.log('audddddd', this.audit)
       if (this.auditTeam){
         this.auditTeam = undefined;
-        localStorage.removeItem('auditTeam'); // WHY NOT RM
+        localStorage.removeItem('auditTeamLS'); // WHY NOT RM
+      }
+      return res;
+    },
+    (err: HttpErrorResponse) => {
+      console.error(err);
+    })
+  }
+
+  joinAudit() {
+    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+    return this.http.post(baseURL + `/audits/user/${this.userSvc.getUser().volunteerKey}`, {headers: header})
+    .map((res: ResponseObj) => {
+      this.audit = res.obj;
+      localStorage.setItem('auditLS', JSON.stringify(this.audit));
+      console.log('audddddd', this.audit)
+      if (this.audit.team){
+        this.auditTeam = this.audit.team;
+        localStorage.setItem('auditTeamLS', JSON.stringify(this.auditTeam));
       }
       return res;
     },

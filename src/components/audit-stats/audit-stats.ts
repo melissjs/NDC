@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { NavController } from 'ionic-angular';
 import { AuditServiceProvider } from '../../providers/audit-service/audit-service';
+import { ElectionServiceProvider } from '../../providers/election-service/election-service';
 
 @Component({
   selector: 'audit-stats',
@@ -24,7 +25,7 @@ export class AuditStatsComponent implements OnInit{
   enterShifts: number[];
   buttonText: string;
 
-  constructor(private alertCtrl: AlertController, private navCtrl: NavController, public auditSvc: AuditServiceProvider) {
+  constructor(private alertCtrl: AlertController, private navCtrl: NavController, public auditSvc: AuditServiceProvider, private electionSvc: ElectionServiceProvider) {
     this.volunteerCount = 0;
     this.shiftsToFill = 0;
     this.shiftsFilled = 0;
@@ -47,11 +48,16 @@ export class AuditStatsComponent implements OnInit{
   }
 
   setButtonVars() {
-    if (this.auditSvc.getAudit() &&  this.auditSvc.getAudit()._id === this.auditSvc.getAuditOfInterest()._id) {
-        this.buttonText = 'Leave Audit'
-    } 
+    if (this.electionSvc.getElectionOfInterest()){
+      if (this.auditSvc.getAudit() &&  this.auditSvc.getAudit()._id === this.auditSvc.getAuditOfInterest()._id) {
+          this.buttonText = 'Leave Audit'
+      } 
+      else {
+        this.buttonText = 'Join Audit'
+      }
+    }
     else {
-      this.buttonText = 'Join Audit'
+      this.buttonText = undefined;
     }
   }
 
@@ -74,44 +80,7 @@ export class AuditStatsComponent implements OnInit{
   }
 
   onJoinAudit() {
-    let alert = this.alertCtrl.create({
-      title: 'Select shifts',
-      inputs: [
-        {
-          type: 'checkbox',
-          label: 'Early Morning',
-          name: 'em',
-          id: 'em',
-          value: 'em',
-          checked: false
-        },
-        {
-          type: 'checkbox',
-          label: 'Mid Morning',
-          name: 'mm',
-          id: 'mm',
-          value: 'mm',
-          checked: false
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Confirm',
-          handler: data => {
-            console.log('alert data', data)
-            this.navCtrl.push('JoinAuditPage');
-          }
-        }
-      ]
-    });
-    alert.present();
+    this.navCtrl.setRoot('JoinAuditPage');
   }
 
   onLeaveAudit() {
