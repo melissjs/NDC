@@ -1,3 +1,4 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -33,7 +34,7 @@ export class AuthenticationPage {
   // restSvc: RestService;
   chkBoxLabelState: number;
 
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController, public pollingstationservice: PollingStationServiceProvider, public volunteerservice: VolunteerServiceProvider, public recordservice: RecordServiceProvider, public restSvc: RestServiceProvider, private geoloc: Geolocation) {
+  constructor(private navCtrl: NavController, private alertCtrl: AlertController, public pollingstationservice: PollingStationServiceProvider, public volunteerservice: VolunteerServiceProvider, public recordservice: RecordServiceProvider, public restSvc: RestServiceProvider, private geoloc: Geolocation, private authSvc: AuthServiceProvider) {
     this.pageTitle = "Authentication";
     // this.navCtrl = navCtrl;
     // this.pollingstationservice = pollingstationservice;

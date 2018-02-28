@@ -20,12 +20,7 @@ export class JoinAuditPage implements OnInit {
   auditor: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auditSvc: AuditServiceProvider) {
-    // this.em = false;
-    // this.lm = false;
-    // this.ea = false;
-    // this.la = false;
-    // this.ee = false;
-    // this.le = false;
+    this.pageTitle = 'Join Audit';
   }
 
   ngOnInit() {

@@ -4,10 +4,9 @@
   
 <ion-content padding class="backgroundColor">
   <volunteer-list *ngIf="authSvc.isLoggedIn()"></volunteer-list>
-    <!-- <button ion-button type="button" (click)="onRefresh()" block large>
-      Refresh
-    </button> -->
-  <ion-item text-wrap *ngIf="!authSvc.isLoggedIn()">
-    This function is only available for auditors on election day.
-  </ion-item>
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+    <ion-item text-wrap>
+      This function is only available for auditors on election day.
+    </ion-item>
+  </ion-card>
 </ion-content>

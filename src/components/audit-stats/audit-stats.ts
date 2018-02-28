@@ -80,7 +80,7 @@ export class AuditStatsComponent implements OnInit{
   }
 
   onJoinAudit() {
-    this.navCtrl.setRoot('JoinAuditPage');
+    this.navCtrl.push('JoinAuditPage');
   }
 
   onLeaveAudit() {

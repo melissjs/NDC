@@ -32,7 +32,9 @@
 
   <!-- note for unreg -->
   <ion-card padding *ngIf="!authSvc.isLoggedIn()">
-    <span class='links'  (click)="onClickLogin()">Login</span> to your account or <span class='links' (click)="onClickRegister()">register</span> if you don't have an account yet. If you have forgotten your password,  <span class='links' (click)="onClickReset()">reset</span> it.
+    <ion-item text-wrap>
+      <span class='links'  (click)="onClickLogin()">Login</span> to your account or <span class='links' (click)="onClickRegister()">register</span> if you don't have an account yet. If you have forgotten your password <span class='links' (click)="onClickReset()">reset</span> it.
+    </ion-item>
   </ion-card>
 
 </ion-content>

@@ -1,43 +1,43 @@
 <ion-header>
   <top-bar [passedTitle]="pageTitle"></top-bar>
 </ion-header>
-                 
-          <ion-content padding>
+
+<ion-content padding class="backgroundColor">
   
-              <ion-card *ngIf="initialized">
-                <ion-list>
-                  <ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header>
-  
-                  <ion-item>
-                  <ion-label>Total Individual Records: {{totalIndividualRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Individual Affidavit Records: {{totalIndividualAffidavitRecords}}</ion-label>
-                   </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Individual Non-Voter Records: {{totalIndividualNonVoteRecords}}</ion-label>
-                   </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Individual Vote Records: {{totalIndividualVoteRecords}}</ion-label>
-                   </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Individual Demographics Records: {{totalIndividualDemographicsRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Individual Anomaly Records: {{totalIndividualAnomalyRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Individual Amendment Records: {{totalIndividualAmendmentRecords}}</ion-label>
-                  </ion-item>
-  
-                </ion-list>
-              </ion-card>
+  <!-- <ion-card *ngIf="initialized">
+    <ion-list>
+      <ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header>
+
+      <ion-item>
+      <ion-label>Total Individual Records: {{totalIndividualRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Individual Affidavit Records: {{totalIndividualAffidavitRecords}}</ion-label>
+        </ion-item>
+
+      <ion-item>
+      <ion-label>Total Individual Non-Voter Records: {{totalIndividualNonVoteRecords}}</ion-label>
+        </ion-item>
+
+      <ion-item>
+      <ion-label>Total Individual Vote Records: {{totalIndividualVoteRecords}}</ion-label>
+        </ion-item>
+
+      <ion-item>
+      <ion-label>Total Individual Demographics Records: {{totalIndividualDemographicsRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Individual Anomaly Records: {{totalIndividualAnomalyRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Individual Amendment Records: {{totalIndividualAmendmentRecords}}</ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ion-card> -->
   
   
         <!--
@@ -77,7 +77,7 @@
               </ion-card>
         -->
   
-              <ion-card *ngIf="initialized">
+              <!-- <ion-card *ngIf="initialized">
                 <ion-list>
                   <ion-list-header>Team Stats</ion-list-header>
   
@@ -93,21 +93,14 @@
               </ion-card>
   
   
-        <ion-card *ngIf="!initialized">
-          <ion-list-header text-wrap>Team Stats
-          </ion-list-header>
-          <ion-item text-wrap>
-      <ion-label text-wrap>
-        You must login and authenticate and you must be at a polling station before this will show any data.
-      </ion-label>
-          </ion-item>
-        </ion-card>
-  
               <button ion-button type="button" (click)="onRefresh()" block large>
                 Refresh
-              </button>
+              </button> -->
   
         <!-- <check-login></check-login> -->
-  
-        </ion-content>
-  
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+    <ion-item text-wrap>
+      This function is only available for auditors on election day.
+    </ion-item>
+  </ion-card>
+</ion-content>

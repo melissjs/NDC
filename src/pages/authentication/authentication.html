@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content class="backgroundColor" padding>
-  <ion-card padding>
+  <ion-card padding  *ngIf="authSvc.isLoggedIn()">
     <ion-list>
       <ion-item>
         <ion-icon name="md-locate" item-right (click)="onChangegeoLocation(geoLocation)"></ion-icon> 
@@ -36,4 +36,11 @@
       </ion-item>
     </ion-list>
   </ion-card>
+
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+    <ion-item text-wrap>
+      This function is only available for auditors on election day.
+    </ion-item>
+  </ion-card>
+
 </ion-content>

@@ -7,6 +7,7 @@ import { VolunteerServiceProvider } from '../../providers/volunteer-service/volu
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { RecordServiceProvider } from '../../providers/record-service/record-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 // import {CheckLogin } from '../../components/check-login/check-login';
 
 @IonicPage()
@@ -43,7 +44,7 @@ export class ActivityRecordPage {
   precinctNumber: string;
   initialized: boolean;
 
-  constructor(private navCtrl: NavController, private pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider) {
+  constructor(private navCtrl: NavController, private pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider) {
 this.pageTitle = "Activity Record";
 this.navCtrl = navCtrl;
 this.totalIndividualAnomalyRecords = 0;
