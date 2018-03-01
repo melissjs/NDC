@@ -35,11 +35,11 @@
   </ion-card>
   <ion-card padding>
     <ion-list>
-      <ion-list-header>Roles:</ion-list-header>
+      <ion-list-header>Roles<ion-icon name="information" (click)="onInfoAlert()"></ion-icon>:</ion-list-header>
     </ion-list>
     <ion-item>
       <ion-label>Auditor</ion-label>
-      <ion-checkbox [(ngModel)]="auditor"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="auditor" disabled="true"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Team Lead</ion-label>
