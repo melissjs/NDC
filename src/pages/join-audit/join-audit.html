@@ -3,53 +3,58 @@
 </ion-header>
 
 
-<ion-content padding  class="backgroundColor">
-  <ion-card>
+<ion-content padding class="backgroundColor">
+  <ion-card padding>
     <ion-list>
       <ion-list-header>Shifts:</ion-list-header>
-        <ion-item>
-          <ion-label>Early Morning</ion-label>
-          <ion-checkbox [(ngModel)]="em"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label>Late Morning</ion-label>
-          <ion-checkbox [(ngModel)]="lm"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label>Early Afternoon</ion-label>
-          <ion-checkbox [(ngModel)]="ea"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label>Late Afternoon</ion-label>
-          <ion-checkbox [(ngModel)]="la"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label>Early Evening</ion-label>
-          <ion-checkbox [(ngModel)]="ee"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label>Late Evening</ion-label>
-          <ion-checkbox [(ngModel)]="le"></ion-checkbox>
-        </ion-item>
-      </ion-list>
+    </ion-list>
+    <ion-item>
+      <ion-label>Early Morning</ion-label>
+      <ion-checkbox [(ngModel)]="em"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Late Morning</ion-label>
+      <ion-checkbox [(ngModel)]="lm"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Early Afternoon</ion-label>
+      <ion-checkbox [(ngModel)]="ea"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Late Afternoon</ion-label>
+      <ion-checkbox [(ngModel)]="la"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Early Evening</ion-label>
+      <ion-checkbox [(ngModel)]="ee"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Late Evening</ion-label>
+      <ion-checkbox [(ngModel)]="le"></ion-checkbox>
+    </ion-item>
   </ion-card>
-  <ion-card>
+  <ion-card padding>
     <ion-list>
       <ion-list-header>Roles:</ion-list-header>
-      <ion-item>
-        <ion-label>Auditor</ion-label>
-        <ion-checkbox [(ngModel)]="auditor"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Team Lead</ion-label>
-        <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
-      </ion-item>
-      <div *ngIf="lead === true">
-          <ion-item>
-            <ion-label>Team Lead</ion-label>
-            <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
-          </ion-item>
-      </div>
     </ion-list>
+    <ion-item>
+      <ion-label>Auditor</ion-label>
+      <ion-checkbox [(ngModel)]="auditor"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Team Lead</ion-label>
+      <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
+    </ion-item>
+    <div *ngIf="lead === true">
+        <ion-item>
+          <ion-label>Team Lead</ion-label>
+          <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
+        </ion-item>
+    </div>
+    <ion-item>
+        <button ion-button block large>
+          button
+        </button>
+      </ion-item>
   </ion-card>
 </ion-content>
