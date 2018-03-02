@@ -45,16 +45,34 @@
       <ion-label>Team Lead</ion-label>
       <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
     </ion-item>
-    <div *ngIf="lead === true">
-        <ion-item>
-          <ion-label>Team Lead</ion-label>
-          <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
-        </ion-item>
-    </div>
-    <ion-item>
+    <ion-item *ngIf="lead === false || lead === undefined">
+      <button ion-button block large>
+        Submit
+      </button>
+    </ion-item>
+  </ion-card>
+  <ion-card padding *ngIf="lead === true">
+      <ion-list>
+        <ion-list-header>Lead Auditor Application<ion-icon name="information" (click)="onInfoAlert()"></ion-icon>:</ion-list-header>
+      </ion-list>
+      <ion-item>
+        <ion-label>Auditor</ion-label>
+        <ion-checkbox [(ngModel)]="auditor" disabled="true"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Team Lead</ion-label>
+        <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
+      </ion-item>
+      <div *ngIf="lead === true">
+          <ion-item>
+            <ion-label>Team Lead</ion-label>
+            <ion-checkbox [(ngModel)]="lead"></ion-checkbox>
+          </ion-item>
+      </div>
+      <ion-item>
         <button ion-button block large>
-          button
+          Submit
         </button>
       </ion-item>
-  </ion-card>
+    </ion-card>
 </ion-content>
