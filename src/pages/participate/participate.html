@@ -50,7 +50,7 @@
     </ion-list>
   </ion-card>
 
-  <ion-card padding>
+  <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list text-wrap>
       <ion-list-header>Collaborator Form </ion-list-header>
       <form [formGroup]="collaboratorForm">
@@ -82,5 +82,21 @@
       </form>
     </ion-list>
   </ion-card>
+
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+      <ion-list text-wrap>
+        <ion-list-header>Collaborator Form </ion-list-header>
+        <form [formGroup]="collaboratorForm">
+          <ion-item>
+            Please login in to use this form.
+          </ion-item>
+          <ion-item>
+            <button ion-button block large (click)="onLoginOrRegister()">
+              Login or Register 
+            </button>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-card>
 
 </ion-content>

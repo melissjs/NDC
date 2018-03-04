@@ -1,3 +1,4 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
@@ -32,7 +33,7 @@ regExZip: string;
 user: User;
 fullName: string;
 
-constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private userSvc: UserServiceProvider) {
+constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private restSvc: RestServiceProvider, private userSvc: UserServiceProvider, public authSvc: AuthServiceProvider) {
   this.collabFormObj = null;
   this.pageTitle = "Participate";
   this.regExEmail = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*';
@@ -57,25 +58,29 @@ ngOnInit() {
 
   onSubmit(value: any): void {
 
-  this.collabFormObj = {
-    fullName: this.collaboratorForm.value.enterFullNameCtrl,
-    emailAddress: this.collaboratorForm.value.enterEmailAddressCtrl,
-    areasOfExpertise: this.collaboratorForm.value.enterAreasOfExpertiseCtrl,
-    desiredContribution: this.collaboratorForm.value.enterContributionCtrl,
-    links: this.collaboratorForm.value.enterRelevantLinksCtrl
+    this.collabFormObj = {
+      fullName: this.collaboratorForm.value.enterFullNameCtrl,
+      emailAddress: this.collaboratorForm.value.enterEmailAddressCtrl,
+      areasOfExpertise: this.collaboratorForm.value.enterAreasOfExpertiseCtrl,
+      desiredContribution: this.collaboratorForm.value.enterContributionCtrl,
+      links: this.collaboratorForm.value.enterRelevantLinksCtrl
+    }
+
+    console.log('collabFormObj', this.collabFormObj);
+
+    // this.restSvc.sendCollab(this.collabFormObj);
+
+    let alert = this.alertCtrl.create({
+      title: 'Successfully Submitted',
+      subTitle: 'Thank you for your submission; we greatly appreciate your interest in participating. Someone will respond to you as soon as possible. Our team is small right now; please expect it may take us some time to reply.',
+      buttons: [ 'OK' ]
+    });
+    alert.present(); 
+    this.navCtrl.setRoot('HomePage');
   }
 
-  console.log('collabFormObj', this.collabFormObj);
-
-  // this.restSvc.sendCollab(this.collabFormObj);
-
-  let alert = this.alertCtrl.create({
-    title: 'Successfully Submitted',
-    subTitle: 'Thank you for your submission; we greatly appreciate your interest in participating. Someone will respond to you as soon as possible. Our team is small right now; please expect it may take us some time to reply.',
-    buttons: [ 'OK' ]
-  });
-  alert.present(); 
-  this.navCtrl.setRoot('HomePage');
+  onLoginOrRegister() {
+    this.navCtrl.setRoot('LogInPage');
   }
 
 }
