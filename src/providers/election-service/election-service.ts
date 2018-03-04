@@ -45,6 +45,8 @@ export class ElectionServiceProvider {
   }
 
   getElectionOfInterest() {
+    // console.log('GET ELECTION OF INTEREST')
+    // console.log('GET ELECTION OF INTEREST', JSON.parse(localStorage.getItem('electionOfInterestLS')))
     return this.electionOfInterest || JSON.parse(localStorage.getItem('electionOfInterestLS'));
   }
 

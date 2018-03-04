@@ -30,6 +30,15 @@
     </ion-list>
   </ion-card>
 
+  <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit()">
+    <ion-list>
+      <ion-list-header>Resume and Role Settings:</ion-list-header>
+      <ion-item>
+        Resume and role settings go here
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
   <!-- note for unreg -->
   <ion-card padding *ngIf="!authSvc.isLoggedIn()">
     <ion-item text-wrap>
