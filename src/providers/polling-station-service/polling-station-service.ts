@@ -20,7 +20,7 @@ export class PollingStationServiceProvider {
   stationsCache: any;
   stationCache: StationCache;
   pollingstationOfInterest: Pollingstation;
-  stations: Pollingstation[];
+  // stations: Pollingstation[];
   cachedDateTime: number;
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private electionSvc: ElectionServiceProvider){
@@ -123,11 +123,15 @@ export class PollingStationServiceProvider {
 
   getPollingStationbyKey(passedKey) {
     console.log('passedKey', passedKey)
-    // console.log('stations', this.stations)
-    this.stations = this.getStations();
-      return this.stations.find((station) => {
-        return station.pollingstationKey === passedKey;
-      })
+    console.log('stationCache', this.stationCache)
+    // if no stationsCache, fill with ls if ls, else hit server???
+    
+    // console.log('passedKey', passedKey)
+    // console.log('stationCache', this.stationCache[passedKey])
+    // this.stations = this.getStations();
+    //   return this.stations.find((station) => {
+    //     return station.pollingstationKey === passedKey;
+      // })
   }
 
   // compare duplicates here? 
