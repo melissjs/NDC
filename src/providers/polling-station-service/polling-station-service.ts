@@ -73,12 +73,17 @@ export class PollingStationServiceProvider {
   getStations() {
     if (this.activeCache()) {
       console.log('FROM GET')
-      console.log('this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations', this.stationsCache[this.electionSvc.getElectionOfInterest()._id])
-      return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
+      // return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
+
+      if (this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations) {
+        return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations
+      }
+      else if (JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations) {
+        this.stationsCache = JSON.parse(localStorage.getItem('stationsCacheLS'));
+        return JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
+      }
     }
     else {
-      // this.setStations();
-      // this.getStations();
       return undefined;
     }
   }
