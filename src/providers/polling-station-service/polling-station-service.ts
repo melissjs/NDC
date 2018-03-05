@@ -71,9 +71,13 @@ export class PollingStationServiceProvider {
   }
 
   getStations() {
-    // return this.stations || JSON.parse(localStorage.getItem('stations'));
     if (this.activeCache) {
+      // check var first
+      // then check ls
+        // if yes, fill var also
+      // if still no, set then get again
       console.log('FROM GET')
+      console.log('this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations', this.stationsCache[this.electionSvc.getElectionOfInterest()._id])
       return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
     }
     else {
@@ -118,10 +122,13 @@ export class PollingStationServiceProvider {
   }
 
   getPollingStationbyKey(passedKey) {
+    console.log('passedKey', passedKey)
+    // console.log('stations', this.stations)
     this.stations = this.getStations();
-      return this.stations.find((station) => {
-        return station.pollingstationKey === passedKey;
-      })
+
+      // return this.stations.find((station) => {
+      //   return station.pollingstationKey === passedKey;
+      // })
   }
 
   // compare duplicates here? 

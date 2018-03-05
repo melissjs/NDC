@@ -7,6 +7,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import { HomePage } from '../home/home';
 import { ContactForm } from '../../models/contact-form'
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -24,7 +25,7 @@ export class ContactPage implements OnInit{
   regExEmail: string;
   fullName: string;
 
-  constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private userSvc: UserServiceProvider) {
+  constructor(private navCtrl: NavController, navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private userSvc: UserServiceProvider, public authSvc: AuthServiceProvider) {
     this.pageTitle = "Contact";
     this.contactFormObj = null;
     this.regExEmail = '[A-Za-z0-9._-][A-Za-z0-9._-]*@[A-Za-z0-9._-][A-Za-z0-9._-]*\.[a-zA-Z][a-zA-Z]*'
@@ -66,6 +67,10 @@ export class ContactPage implements OnInit{
     alert.present();
 
     this.navCtrl.setRoot('HomePage');
+  }
+
+  onLoginOrRegister() {
+    this.navCtrl.setRoot('LogInPage');
   }
 
 }

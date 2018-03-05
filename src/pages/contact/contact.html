@@ -5,7 +5,7 @@
 
 <ion-content class="backgroundColor" padding>
 
-  <ion-card padding>
+  <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <form [formGroup]="contactForm">
 
       <ion-item>
@@ -39,6 +39,17 @@
       </ion-item>
 
     </form>
+  </ion-card>
+
+  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+    <ion-list text-wrap>
+      <ion-list-header>Contact Form </ion-list-header>
+        <ion-item>
+          <button ion-button block large (click)="onLoginOrRegister()">
+            Login to use this form
+          </button>
+        </ion-item>
+    </ion-list>
   </ion-card>
 
   <!-- <p>Form: {{ contactForm.value | json }}</p>
