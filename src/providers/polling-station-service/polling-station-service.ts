@@ -72,10 +72,6 @@ export class PollingStationServiceProvider {
 
   getStations() {
     if (this.activeCache()) {
-      // check var first
-      // then check ls
-        // if yes, fill var also
-      // if still no, set then get again
       console.log('FROM GET')
       console.log('this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations', this.stationsCache[this.electionSvc.getElectionOfInterest()._id])
       return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
