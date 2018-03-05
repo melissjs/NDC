@@ -16,6 +16,7 @@ let baseURL = config.NDCS_BASE_URL;
 @Injectable()
 export class PollingStationServiceProvider {
 
+  usersPollingstation: Pollingstation;
   pollingstation: Pollingstation;
   stationsCache: any;
   stationCache: StationCache;
@@ -73,8 +74,6 @@ export class PollingStationServiceProvider {
   getStations() {
     if (this.activeCache()) {
       console.log('FROM GET')
-      // return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
-
       if (this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations) {
         return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations
       }
@@ -123,7 +122,7 @@ export class PollingStationServiceProvider {
   addPollingstation(passedStation: Pollingstation) {
   }
 
-  getPollingStationbyKey(passedKey) {
+  getPollingStationByKey(passedKey) {
     if (this.getStations()) {
       console.log('getstations', this.getStations());
     this.stations = this.getStations();
@@ -133,15 +132,22 @@ export class PollingStationServiceProvider {
     }
     else {
       console.log('else') 
+      return undefined;
     }
-    // if no stationsCache, fill with ls if ls, else hit server???
+  }
 
-    // console.log('passedKey', passedKey)
-    // console.log('stationCache', this.stationCache[passedKey])
-    // this.stations = this.getStations();
-    //   return this.stations.find((station) => {
-    //     return station.pollingstationKey === passedKey;
-      // })
+  setPollingStationByKey(passedKey) {
+    console.log('FROM SET')
+    let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
+    return this.http.get(baseURL + `/pollingstations/${passedKey}`, {headers: header})
+    .map((res: ResponseObj) => {
+      this.usersPollingstation = res.obj;
+      localStorage.setItem('usersPollingstationLS', JSON.stringify(this.usersPollingstation));
+      return res.obj;
+    },
+    (err: HttpErrorResponse) => {
+      console.log(err);
+    })
   }
 
   // compare duplicates here? 
