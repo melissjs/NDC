@@ -9,7 +9,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 // Models
 import { Volunteer} from '../../models/volunteer';
-import { Pollingstation} from '../../models/pollingstation';
 // Globals
 import * as globals from '../../globals';
 // Components
@@ -60,10 +59,12 @@ export class AccountSettingsPage implements OnInit {
   ngOnInit(){
     this.loggedIn = this.authSvc.isLoggedIn();
     this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
+    console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
+    console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
     this.usersPollingstation = this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
     console.log('after getttttttt', this.usersPollingstation)
     if (!this.usersPollingstation) {
-      this.psSvc.setPollingStationByKey(this.auditSvc.getAudit().pollingstation)
+      this.psSvc.setPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
       .subscribe((res: any) => {
         this.usersPollingstation = res;
         console.log('after setttttttt', this.usersPollingstation)
