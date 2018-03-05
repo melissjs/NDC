@@ -50,5 +50,5 @@ export class FindPollingLocationPage implements OnInit {
     this.pollingstationSvc.setStationOfInterest(passedStation);
     this.navCtrl.push('PollingstationDetailsPage');
   }
-  
+
 }

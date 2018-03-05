@@ -130,7 +130,7 @@ export class PollingStationServiceProvider {
 
   getPollingStationbyKey(passedKey){ 
       for (var i = 0; i < this.stationListInMemory.length; i++){
-          if (this.stationListInMemory[i].pollingstationKey == passedKey){
+          if (this.stationListInMemory[i]._id == passedKey){
               return this.stationListInMemory[i]
           }
       }

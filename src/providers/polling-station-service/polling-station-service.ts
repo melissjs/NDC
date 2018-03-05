@@ -20,7 +20,7 @@ export class PollingStationServiceProvider {
   stationsCache: any;
   stationCache: StationCache;
   pollingstationOfInterest: Pollingstation;
-  // stations: Pollingstation[];
+  stations: Pollingstation[];
   cachedDateTime: number;
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private electionSvc: ElectionServiceProvider){
@@ -81,8 +81,9 @@ export class PollingStationServiceProvider {
       return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations || JSON.parse(localStorage.getItem('stationsCacheLS'))[this.electionSvc.getElectionOfInterest()._id].stations;
     }
     else {
-      this.setStations();
+      // this.setStations();
       // this.getStations();
+      return undefined;
     }
   }
 
@@ -102,7 +103,7 @@ export class PollingStationServiceProvider {
       let elId = this.electionSvc.getElectionOfInterest()._id;
       this.stationsCache[elId] = this.stationCache;
       localStorage.setItem('stationsCacheLS', JSON.stringify(this.stationsCache));
-        return res.obj; // remove this - for get only
+      return res.obj;
     },
     (err: HttpErrorResponse) => {
       console.log(err);
@@ -122,10 +123,18 @@ export class PollingStationServiceProvider {
   }
 
   getPollingStationbyKey(passedKey) {
-    console.log('passedKey', passedKey)
-    console.log('stationCache', this.stationCache)
+    if (this.getStations()) {
+      console.log('getstations', this.getStations());
+    this.stations = this.getStations();
+      return this.stations.find((station) => {
+        return station._id === passedKey;
+      })
+    }
+    else {
+      console.log('else') 
+    }
     // if no stationsCache, fill with ls if ls, else hit server???
-    
+
     // console.log('passedKey', passedKey)
     // console.log('stationCache', this.stationCache[passedKey])
     // this.stations = this.getStations();

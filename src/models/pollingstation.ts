@@ -1,5 +1,5 @@
 export interface Pollingstation {
-  pollingstationKey: string;
+  _id: string;
   locationName: string;
   precinctNumber: string;
   streetAddress: string;
