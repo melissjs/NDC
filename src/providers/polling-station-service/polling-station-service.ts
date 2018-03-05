@@ -71,7 +71,7 @@ export class PollingStationServiceProvider {
   }
 
   getStations() {
-    if (this.activeCache) {
+    if (this.activeCache()) {
       // check var first
       // then check ls
         // if yes, fill var also
@@ -82,7 +82,7 @@ export class PollingStationServiceProvider {
     }
     else {
       this.setStations();
-      this.getStations();
+      // this.getStations();
     }
   }
 
@@ -125,10 +125,9 @@ export class PollingStationServiceProvider {
     console.log('passedKey', passedKey)
     // console.log('stations', this.stations)
     this.stations = this.getStations();
-
-      // return this.stations.find((station) => {
-      //   return station.pollingstationKey === passedKey;
-      // })
+      return this.stations.find((station) => {
+        return station.pollingstationKey === passedKey;
+      })
   }
 
   // compare duplicates here? 
