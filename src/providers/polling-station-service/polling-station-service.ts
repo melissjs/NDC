@@ -125,7 +125,7 @@ export class PollingStationServiceProvider {
   getPollingStationByKey(passedKey) {
     if (this.getStations()) {
       console.log('getstations', this.getStations());
-    this.stations = this.getStations();
+      this.stations = this.getStations();
       return this.stations.find((station) => {
         return station._id === passedKey;
       })

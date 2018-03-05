@@ -1,3 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { ResponseObj } from './../../models/response-obj';
+import { Pollingstation } from './../../models/pollingstation';
 import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { User } from './../../models/user';
@@ -44,8 +47,9 @@ export class AccountSettingsPage implements OnInit {
   passChange: boolean;
   loggingout: boolean;
   pollingstation: Pollingstation;
+  usersPollingstation: Pollingstation;
 
-  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public pollingstationservice: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
+  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
     this.pageTitle = "Account Settings";
     this.resetPasscode = false;
     this.passChange = false;
@@ -56,9 +60,22 @@ export class AccountSettingsPage implements OnInit {
   ngOnInit(){
     this.loggedIn = this.authSvc.isLoggedIn();
     this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
+    this.usersPollingstation = this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
+    console.log('after getttttttt', this.usersPollingstation)
+    if (!this.usersPollingstation) {
+      this.psSvc.setPollingStationByKey(this.auditSvc.getAudit().pollingstation)
+      .subscribe((res: any) => {
+        this.usersPollingstation = res;
+        console.log('after setttttttt', this.usersPollingstation)
+
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      })
+    }
     // if user has audit but no station, get station
     // if (this.auditSvc.getAudit()) {
-    //   this.pollingstation = this.pollingstationservice.getPollingStationbyKey(this.auditSvc.getAudit().pollingstationId)
+    //   this.pollingstation = this.psSvc.getPollingStationbyKey(this.auditSvc.getAudit().pollingstationId)
     // }
   }
 
@@ -212,7 +229,7 @@ onChangePartyAffiliationFromList(passedValue){
 // CLICK FOR STATION
   goToStationDetails() {
       console.log('thisTempStation'+ this.thisTempStation);
-      this.pollingstationservice.setStation(this.thisTempStation);
+      this.psSvc.setStation(this.thisTempStation);
       var that = this;
       try {
           

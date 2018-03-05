@@ -11,13 +11,13 @@
     </ion-list>
   </ion-card>
 
-  <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit()">
+  <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit() && usersPollingstation">
     <ion-list>
       <ion-list-header>Audit Settings:</ion-list-header>
       <ion-item>
         <ion-item-group>
           <ion-item-divider color="secondary">Location</ion-item-divider>
-          <pollingstation [passedStation]=pollingstationservice.getPollingStationbyKey(auditSvc.getAudit().pollingstation) [pageTitle]=pageTitle></pollingstation>
+          <pollingstation [passedStation]="usersPollingstation") [pageTitle]=pageTitle></pollingstation>
           
           <ion-item-divider color="secondary">Shifts</ion-item-divider>
 
