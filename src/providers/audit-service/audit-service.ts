@@ -98,6 +98,8 @@ export class AuditServiceProvider {
     .map((res: ResponseObj) => {
       this.audit = undefined;
       localStorage.removeItem('auditLS');
+      // remove refs to users ps
+      
       // console.log('audddddd', this.audit)
       if (this.auditTeam){
         this.auditTeam = undefined;
