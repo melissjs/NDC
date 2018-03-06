@@ -107,6 +107,7 @@ export class LogOrSignInComponent {
           // this.newUser.auditKey = decoded.user.auditKey;
           // this.newUser.shifts = decoded.user.shifts;
           console.log('newUser from login:', this.newUser)
+          // if auditor role??????
           this.auditSvc.setAudit(this.newUser.volunteerKey)
           .subscribe((res: ResponseObj) => {
           }, 

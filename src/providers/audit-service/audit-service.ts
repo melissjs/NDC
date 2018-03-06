@@ -40,6 +40,7 @@ export class AuditServiceProvider {
       },
       (err: HttpErrorResponse) => {
         console.error(err);
+        return undefined;
       })
   }
 
