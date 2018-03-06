@@ -154,6 +154,11 @@ export class PollingStationServiceProvider {
     return this.usersPollingstation;
   }
 
+  rmUsersPollingstation() {
+    this.usersPollingstation = undefined;
+    localStorage.removeItem('usersPollingstationLS');
+  }
+
   // compare duplicates here? 
   // download all stations to memory?
   // normalize station data 

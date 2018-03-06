@@ -99,7 +99,7 @@ export class AuditServiceProvider {
       this.audit = undefined;
       localStorage.removeItem('auditLS');
       // remove refs to users ps
-      
+      this.pollingstationSvc.rmUsersPollingstation();
       // console.log('audddddd', this.audit)
       if (this.auditTeam){
         this.auditTeam = undefined;

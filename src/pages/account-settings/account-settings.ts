@@ -59,21 +59,26 @@ export class AccountSettingsPage implements OnInit {
   ngOnInit(){
     this.loggedIn = this.authSvc.isLoggedIn();
     this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
-    console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
-    console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
-    this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
-    console.log('after getttttttt', this.usersPollingstation)
-    if (!this.usersPollingstation) {
-      this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
-      .subscribe((res: any) => {
-        this.usersPollingstation = res;
-        console.log('after setttttttt', this.usersPollingstation)
+    if (this.auditSvc.getAudit()) {
+      console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
+      console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
+      this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
+      console.log('after getttttttt', this.usersPollingstation)
+      if (!this.usersPollingstation) {
+        this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
+        .subscribe((res: any) => {
+          this.usersPollingstation = res;
+          console.log('after setttttttt', this.usersPollingstation)
 
-      },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      })
-    }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+        })
+      }
+      else {
+        this.usersPollingstation = undefined;
+      }
+  }
     // if user has audit but no station, get station
     // if (this.auditSvc.getAudit()) {
     //   this.pollingstation = this.psSvc.getPollingStationbyKey(this.auditSvc.getAudit().pollingstationId)
