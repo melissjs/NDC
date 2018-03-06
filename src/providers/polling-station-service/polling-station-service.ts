@@ -136,7 +136,7 @@ export class PollingStationServiceProvider {
     }
   }
 
-  setPollingStationByKey(passedKey) {
+  sgetUsersPollingStationByKey(passedKey) {
     console.log('FROM SET')
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
     return this.http.get(baseURL + `/pollingstations/pollingstation/${passedKey}`, {headers: header})
@@ -148,6 +148,10 @@ export class PollingStationServiceProvider {
     (err: HttpErrorResponse) => {
       console.log(err);
     })
+  }
+
+  getUsersPollingstation() {
+    return this.usersPollingstation;
   }
 
   // compare duplicates here? 

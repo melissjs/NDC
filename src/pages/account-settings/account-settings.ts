@@ -61,10 +61,10 @@ export class AccountSettingsPage implements OnInit {
     this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
     console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
     console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
-    this.usersPollingstation = this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
+    this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
     console.log('after getttttttt', this.usersPollingstation)
     if (!this.usersPollingstation) {
-      this.psSvc.setPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
+      this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
       .subscribe((res: any) => {
         this.usersPollingstation = res;
         console.log('after setttttttt', this.usersPollingstation)
