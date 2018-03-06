@@ -11,7 +11,7 @@
     </ion-list>
   </ion-card>
 
-  <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit() && usersPollingstation">
+  <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit()">
     <ion-list>
       <ion-list-header>Audit Settings:</ion-list-header>
       <ion-item>
