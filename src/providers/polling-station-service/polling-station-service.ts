@@ -76,14 +76,10 @@ export class PollingStationServiceProvider {
 
   getAllCachedStations() {
     if (this.stationsCache = /*this.stationsCache ||*/  JSON.parse(localStorage.getItem('stationsCacheLS'))) {
-      console.log('HEYYYY', this.stationsCache);
-      // console.log('should be returning', this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations);
       Object.keys(this.stationsCache).forEach(key => {
-        console.log('this.stationsCache[key].stations', this.stationsCache[key].stations)
         this.allCachedStations.push(...this.stationsCache[key].stations);
       })
-      console.log('How did we do??', this.allCachedStations)
-      return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations;
+      return this.allCachedStations;
     }
     else {
       return undefined;
@@ -145,8 +141,7 @@ export class PollingStationServiceProvider {
   // check from all in stations cache//////////////////
   getPollingStationByKey(passedKey) {
     if (this.tempStations = this.getAllCachedStations()) {
-      // console.log('getstations', this.getStations());
-      // this.stations = this.getStations();
+      console.log('all cached from get by key', this.tempStations);
       return this.tempStations.find((station) => {
         return station._id === passedKey;
       })
