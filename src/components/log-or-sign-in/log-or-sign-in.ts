@@ -108,12 +108,14 @@ export class LogOrSignInComponent {
           // this.newUser.shifts = decoded.user.shifts;
           console.log('newUser from login:', this.newUser)
           // if auditor role??????
-          this.auditSvc.setAudit(this.newUser.volunteerKey)
-          .subscribe((res: ResponseObj) => {
-          }, 
-        (err: HttpErrorResponse) => {
-          console.error(err);
-        })
+          if (this.newUser.userRoles.includes('auditor')) {
+            this.auditSvc.setAudit(this.newUser.volunteerKey)
+            .subscribe((res: ResponseObj) => {
+            }, 
+            (err: HttpErrorResponse) => {
+              console.error(err);
+            })
+          }
           this.userSvc.setUser(this.newUser);
           this.loginStatus.emit(data);
         },
