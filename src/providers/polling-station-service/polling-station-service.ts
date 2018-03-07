@@ -23,10 +23,13 @@ export class PollingStationServiceProvider {
   pollingstationOfInterest: Pollingstation;
   stations: Pollingstation[];
   cachedDateTime: number;
+  tempStations: Pollingstation[];
+  allCachedStations: Pollingstation[];
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private electionSvc: ElectionServiceProvider){
     this.cachedDateTime = 0;
     this.stationsCache = {};
+    this.allCachedStations = [];
   }
 
   // getPollingstationId() {
@@ -71,6 +74,23 @@ export class PollingStationServiceProvider {
     }
   }
 
+  getAllCachedStations() {
+    if (this.stationsCache = /*this.stationsCache ||*/  JSON.parse(localStorage.getItem('stationsCacheLS'))) {
+      console.log('HEYYYY', this.stationsCache);
+      // console.log('should be returning', this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations);
+      Object.keys(this.stationsCache).forEach(key => {
+        console.log('this.stationsCache[key].stations', this.stationsCache[key].stations)
+        this.allCachedStations.push(...this.stationsCache[key].stations);
+      })
+      console.log('How did we do??', this.allCachedStations)
+      return this.stationsCache[this.electionSvc.getElectionOfInterest()._id].stations;
+    }
+    else {
+      return undefined;
+    }
+  }
+
+  // get stations pertaining to electionOfInterest
   getStations() {
     if (this.activeCache()) {
       console.log('FROM GET')
@@ -122,11 +142,12 @@ export class PollingStationServiceProvider {
   addPollingstation(passedStation: Pollingstation) {
   }
 
+  // check from all in stations cache//////////////////
   getPollingStationByKey(passedKey) {
-    if (this.getStations()) {
-      console.log('getstations', this.getStations());
-      this.stations = this.getStations();
-      return this.stations.find((station) => {
+    if (this.tempStations = this.getAllCachedStations()) {
+      // console.log('getstations', this.getStations());
+      // this.stations = this.getStations();
+      return this.tempStations.find((station) => {
         return station._id === passedKey;
       })
     }
