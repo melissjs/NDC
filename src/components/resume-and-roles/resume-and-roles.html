@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm">
+<form [formGroup]="resumeRoleForm">
 
   <ion-item>
     <ion-label stacked>Preferred Contact:</ion-label>
@@ -57,8 +57,7 @@
 
     <ion-item>
       <ion-label stacked>Roles:</ion-label>
-      <ion-toggle formControlName="enterExposeSexCtrl"></ion-toggle>
-      <ion-select text-wrap formControlName="enterSexCtrl">
+      <ion-select text-wrap formControlName="enterRolesCtrl">
         <ion-option value="user">User</ion-option>
         <ion-option value="volunteer">Volunteer</ion-option>
         <ion-option value="auditor">Auditor</ion-option>
