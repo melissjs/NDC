@@ -63,25 +63,18 @@ export class AccountSettingsPage implements OnInit {
       // console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
       // console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
       this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
-      console.log('after getttttttt', this.usersPollingstation)
-      console.log('usersPollingstation:', this.usersPollingstation)
-
+      // console.log('after getttttttt', this.usersPollingstation)
       if (!this.usersPollingstation) {
         this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
         .subscribe((res: any) => {
           this.usersPollingstation = res;
-          console.log('after setttttttt', this.usersPollingstation)
-
+          // console.log('after setttttttt', this.usersPollingstation)
         },
         (err: HttpErrorResponse) => {
           console.log(err);
         })
       }
-      else {
-        this.usersPollingstation = undefined;
-      }
     }
-    console.log('usersPollingstation:', this.usersPollingstation)
   }
 
 onClickLogin() {

@@ -75,7 +75,7 @@ export class PollingStationServiceProvider {
   }
 
   getAllCachedStations() {
-    if (this.stationsCache != {} || localStorage.getItem('stationsCacheLS')) {
+    if (Object.keys(this.stationsCache).length>1 || localStorage.getItem('stationsCacheLS')) {
       this.allCachedStations = [];
       this.stationsCache != {} ? this.stationsCache = JSON.parse(localStorage.getItem('stationsCacheLS')) : null;
       Object.keys(this.stationsCache).forEach(key => {
