@@ -75,10 +75,13 @@ export class PollingStationServiceProvider {
   }
 
   getAllCachedStations() {
-    if (this.stationsCache = /*this.stationsCache ||*/  JSON.parse(localStorage.getItem('stationsCacheLS'))) {
+    if (this.stationsCache != {} || localStorage.getItem('stationsCacheLS')) {
+      this.allCachedStations = [];
+      this.stationsCache != {} ? this.stationsCache = JSON.parse(localStorage.getItem('stationsCacheLS')) : null;
       Object.keys(this.stationsCache).forEach(key => {
         this.allCachedStations.push(...this.stationsCache[key].stations);
       })
+      console.log('allllllll', this.allCachedStations)
       return this.allCachedStations;
     }
     else {
