@@ -19,7 +19,8 @@ export class ResumeAndRolesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resumeRoleForm = this.fb.group({  
+    this.resumeRoleForm = this.fb.group({
+      'enterShortBioCtrl':  [''],
       'enterFacebookCtrl': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'enterTwitterCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       'enterInstagramCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],

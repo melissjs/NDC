@@ -1,6 +1,11 @@
 <form [formGroup]="resumeRoleForm">
 
   <ion-item>
+    <ion-label stacked>Short Bio:</ion-label>
+    <ion-textarea class="textArea100" type="text" formControlName="enterShortBioCtrl"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
     <ion-label stacked>Facebook:</ion-label>
     <ion-input type="text" formControlName="enterFacebookCtrl" placeholder="www.facebook.com/"></ion-input>
   </ion-item>
@@ -22,17 +27,26 @@
 
   <ion-item>
     <ion-label stacked>Website:</ion-label>
-    <ion-input type="text" formControlName="enterWebsiteCtrl"></ion-input>
+    <ion-input type="text" formControlName="enterWebsiteCtrl" placeholder="Link to your website"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Resume:</ion-label>
-    <ion-input type="text" formControlName="enterResumeCtrl"></ion-input>
+    <ion-input type="text" formControlName="enterResumeCtrl" placeholder="Link to your resume"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Areas of Expertise:</ion-label>
-    <ion-input type="text" formControlName="enterAreasOfExpertiseCtrl"></ion-input>
+    <ion-select multiple="true" text-wrap formControlName="enterAreasOfExpertiseCtrl">
+      <ion-option value="user">Activism, Community Organizing</ion-option>
+      <ion-option value="auditor">Advertising, Promoting, Public Relations</ion-option>
+      <ion-option value="volunteer">Business</ion-option>
+      <ion-option value="lead">Legal</ion-option>
+      <ion-option value="watcher">Software Engineering, IT</ion-option>
+      <ion-option value="legalObserver">Language and Translation</ion-option>
+      <ion-option value="translator">Professor, Teacher, Educator</ion-option>
+      <ion-option value="promoter">Mulitmedia, Film, Television</ion-option>
+    </ion-select> 
   </ion-item>
 
   <ion-item>
@@ -59,7 +73,7 @@
         <ion-option value="admin">Administrator</ion-option>
       </ion-select> 
     </ion-item>
-    
+
     <ion-item>
       <ion-label stacked>References:</ion-label>
       <ion-input text-wrap type="text" formControlName="enterReferencesCtrl"></ion-input>
