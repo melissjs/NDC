@@ -11,13 +11,21 @@
     </ion-list>
   </ion-card>
 
+  <ion-card padding *ngIf="authSvc.isLoggedIn()">
+    <ion-list>
+      <ion-list-header>Resume and Role Settings:</ion-list-header>
+      <resume-and-roles></resume-and-roles>
+    </ion-list>
+  </ion-card>
+
+
   <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit() && usersPollingstation">
     <ion-list>
       <ion-list-header>Audit Settings:</ion-list-header>
       <ion-item>
         <ion-item-group>
           <ion-item-divider color="secondary">Location</ion-item-divider>
-          <pollingstation [passedStation]="usersPollingstation" [pageTitle]=pageTitle></pollingstation>
+          <pollingstation [passedStation]="usersPollingstation" [pageTitle]=pageTitle></pollingstation> 
           
           <ion-item-divider color="secondary">Shifts</ion-item-divider>
 
@@ -26,15 +34,6 @@
           <ion-item-divider color="secondary">Team Schedule</ion-item-divider>
           <audit-details [pageTitle]="pageTitle"></audit-details>
         </ion-item-group>
-      </ion-item>
-    </ion-list>
-  </ion-card>
-
-  <ion-card padding *ngIf="authSvc.isLoggedIn()">
-    <ion-list>
-      <ion-list-header>Resume and Role Settings:</ion-list-header>
-      <ion-item>
-        Resume and role settings go here
       </ion-item>
     </ion-list>
   </ion-card>
