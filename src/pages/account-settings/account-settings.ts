@@ -60,10 +60,12 @@ export class AccountSettingsPage implements OnInit {
     this.loggedIn = this.authSvc.isLoggedIn();
     this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
     if (this.auditSvc.getAudit()) {
-      console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
-      console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
+      // console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
+      // console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
       this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
       console.log('after getttttttt', this.usersPollingstation)
+      console.log('usersPollingstation:', this.usersPollingstation)
+
       if (!this.usersPollingstation) {
         this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
         .subscribe((res: any) => {
@@ -78,11 +80,8 @@ export class AccountSettingsPage implements OnInit {
       else {
         this.usersPollingstation = undefined;
       }
-  }
-    // if user has audit but no station, get station
-    // if (this.auditSvc.getAudit()) {
-    //   this.pollingstation = this.psSvc.getPollingStationbyKey(this.auditSvc.getAudit().pollingstationId)
-    // }
+    }
+    console.log('usersPollingstation:', this.usersPollingstation)
   }
 
 onClickLogin() {

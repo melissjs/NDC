@@ -81,7 +81,7 @@ export class PollingStationServiceProvider {
       Object.keys(this.stationsCache).forEach(key => {
         this.allCachedStations.push(...this.stationsCache[key].stations);
       })
-      console.log('allllllll', this.allCachedStations)
+      // console.log('allllllll', this.allCachedStations)
       return this.allCachedStations;
     }
     else {
@@ -144,7 +144,7 @@ export class PollingStationServiceProvider {
   // check from all in stations cache//////////////////
   getPollingStationByKey(passedKey) {
     if (this.tempStations = this.getAllCachedStations()) {
-      console.log('all cached from get by key', this.tempStations);
+      // console.log('all cached from get by key', this.tempStations);
       return this.tempStations.find((station) => {
         return station._id === passedKey;
       })
