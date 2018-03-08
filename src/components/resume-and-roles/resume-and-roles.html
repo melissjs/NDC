@@ -1,3 +1,86 @@
-<ion-item text-wrap>
-  hi
-</ion-item>
+<form [formGroup]="registerForm">
+
+  <ion-item>
+    <ion-label stacked>Preferred Contact:</ion-label>
+    <ion-input type="text" formControlName="enterPreferredContactCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>References:</ion-label>
+    <ion-input type="text" formControlName="enterReferencesCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Facebook:</ion-label>
+    <ion-input type="text" formControlName="enterFacebookCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Twitter:</ion-label>
+    <ion-input type="text" formControlName="enterTwitterCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Instagram:</ion-label>
+    <ion-input type="text" formControlName="enterInstagramCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>LinkedIn:</ion-label>
+    <ion-input type="text" formControlName="enterLinkedInCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Website:</ion-label>
+    <ion-input type="text" formControlName="enterWebsiteCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Resume:</ion-label>
+    <ion-input type="text" formControlName="enterResumeCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Areas of Expertise:</ion-label>
+    <ion-input type="text" formControlName="enterAreasOfExpertiseCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Related Experience:</ion-label>
+    <ion-input type="text" formControlName="enterRelatedExperienceCtrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Other Links:</ion-label>
+    <ion-input type="text" formControlName="enterOtherLinksCtrl"></ion-input>
+  </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Roles:</ion-label>
+      <ion-toggle formControlName="enterExposeSexCtrl"></ion-toggle>
+      <ion-select text-wrap formControlName="enterSexCtrl">
+        <ion-option value="user">User</ion-option>
+        <ion-option value="volunteer">Volunteer</ion-option>
+        <ion-option value="auditor">Auditor</ion-option>
+        <ion-option value="lead">Lead</ion-option>
+        <ion-option value="watcher">Watcher</ion-option>
+        <ion-option value="legalObserver">Legal Observer</ion-option>
+        <ion-option value="translator">Translator</ion-option>
+        <ion-option value="promoter">Promoter</ion-option>
+        <ion-option value="admin">Administrator</ion-option>
+      </ion-select> 
+    </ion-item>
+
+    <ion-item *ngIf="pageTitle === 'Register'">
+      <button ion-button [disabled]="!registerForm.valid" block large  (click)="onSubmit()">
+        Register
+      </button>
+    </ion-item>
+  
+    <ion-item *ngIf="pageTitle === 'Account Settings'">
+      <button ion-button type="submit" [disabled]="!registerForm.valid" block large (click)="onSave()">
+        Save
+      </button>
+    </ion-item>
+  
+  </form>
