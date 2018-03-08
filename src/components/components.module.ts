@@ -15,6 +15,7 @@ import { RecordsComponent } from './records/records';
 import { AuditDetailsComponent } from './audit-details/audit-details';
 import { JoinAuditComponent } from './join-audit/join-audit';
 import { AuditStatsComponent } from './audit-stats/audit-stats';
+import { ResumeAndRolesComponent } from './resume-and-roles/resume-and-roles';
 // import { RecordServiceProvider } from '../providers/record-service/record-service';
 
 
@@ -34,7 +35,8 @@ import { AuditStatsComponent } from './audit-stats/audit-stats';
     RecordsComponent,
     AuditDetailsComponent,
     JoinAuditComponent,
-    AuditStatsComponent],
+    AuditStatsComponent,
+    ResumeAndRolesComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
@@ -51,6 +53,7 @@ import { AuditStatsComponent } from './audit-stats/audit-stats';
     RecordsComponent,
     AuditDetailsComponent,
     JoinAuditComponent,
-    AuditStatsComponent]
+    AuditStatsComponent,
+    ResumeAndRolesComponent]
 })
 export class ComponentsModule {}
