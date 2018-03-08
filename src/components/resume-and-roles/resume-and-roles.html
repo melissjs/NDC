@@ -1,16 +1,6 @@
 <form [formGroup]="resumeRoleForm">
 
   <ion-item>
-    <ion-label stacked>Preferred Contact:</ion-label>
-    <ion-input type="text" formControlName="enterPreferredContactCtrl"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>References:</ion-label>
-    <ion-input type="text" formControlName="enterReferencesCtrl"></ion-input>
-  </ion-item>
-
-  <ion-item>
     <ion-label stacked>Facebook:</ion-label>
     <ion-input type="text" formControlName="enterFacebookCtrl"></ion-input>
   </ion-item>
@@ -69,12 +59,22 @@
         <ion-option value="admin">Administrator</ion-option>
       </ion-select> 
     </ion-item>
+    
+    <ion-item>
+      <ion-label stacked>References:</ion-label>
+      <ion-input type="text" formControlName="enterReferencesCtrl"></ion-input>
+    </ion-item>
 
-    <ion-item *ngIf="pageTitle === 'Register'">
+    <ion-item>
+      <ion-label stacked>Preferred Contact:</ion-label>
+      <ion-input type="text" formControlName="enterPreferredContactCtrl"></ion-input>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="pageTitle === 'Register'">
       <button ion-button [disabled]="!registerForm.valid" block large  (click)="onSubmit()">
         Register
       </button>
-    </ion-item>
+    </ion-item> -->
   
     <ion-item *ngIf="pageTitle === 'Account Settings'">
       <button ion-button type="submit" [disabled]="!registerForm.valid" block large (click)="onSave()">
