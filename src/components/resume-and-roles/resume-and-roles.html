@@ -47,7 +47,7 @@
 
     <ion-item>
       <ion-label stacked>Roles:</ion-label>
-      <ion-select text-wrap formControlName="enterRolesCtrl">
+      <ion-select multiple="true" text-wrap formControlName="enterRolesCtrl">
         <ion-option value="user">User</ion-option>
         <ion-option value="volunteer">Volunteer</ion-option>
         <ion-option value="auditor">Auditor</ion-option>
@@ -62,12 +62,15 @@
     
     <ion-item>
       <ion-label stacked>References:</ion-label>
-      <ion-input type="text" formControlName="enterReferencesCtrl"></ion-input>
+      <ion-input text-wrap type="text" formControlName="enterReferencesCtrl"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Preferred Contact:</ion-label>
-      <ion-input type="text" formControlName="enterPreferredContactCtrl"></ion-input>
+      <ion-select multiple="true" text-wrap formControlName="enterPreferredContactCtrl">
+          <ion-option value="email">Email</ion-option>
+          <ion-option value="phone">Phone</ion-option>
+      </ion-select>
     </ion-item>
 
     <!-- <ion-item *ngIf="pageTitle === 'Register'">
