@@ -38,14 +38,14 @@
   <ion-item>
     <ion-label stacked>Areas of Expertise:</ion-label>
     <ion-select multiple="true" text-wrap formControlName="enterAreasOfExpertiseCtrl">
-      <ion-option value="user">Activism, Community Organizing</ion-option>
-      <ion-option value="auditor">Advertising, Promoting, Public Relations</ion-option>
-      <ion-option value="volunteer">Business</ion-option>
-      <ion-option value="lead">Legal</ion-option>
-      <ion-option value="watcher">Software Engineering, IT</ion-option>
-      <ion-option value="legalObserver">Language and Translation</ion-option>
-      <ion-option value="translator">Professor, Teacher, Educator</ion-option>
-      <ion-option value="promoter">Mulitmedia, Film, Television</ion-option>
+      <ion-option value="activism">Activism, Community Organizing</ion-option>
+      <ion-option value="pr">Advertising, Promoting, Public Relations</ion-option>
+      <ion-option value="business">Business</ion-option>
+      <ion-option value="legal">Legal</ion-option>
+      <ion-option value="software">Software Engineering, IT</ion-option>
+      <ion-option value="language">Language and Translation</ion-option>
+      <ion-option value="educator">Professor, Teacher, Educator</ion-option>
+      <ion-option value="media">Mulitmedia, Film, Television</ion-option>
     </ion-select> 
   </ion-item>
 
@@ -97,6 +97,6 @@
       <button ion-button type="submit" [disabled]="!registerForm.valid" block large (click)="onSave()">
         Save
       </button>
-    </ion-item>
-  
+    </ion-item> 
+    <!-- How do roles fit in here? -->
   </form>
