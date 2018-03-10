@@ -1,4 +1,102 @@
-<!-- Generated template for the ResumeComponent component -->
-<div>
-  {{text}}
-</div>
+<form [formGroup]="resumeRoleForm">
+
+    <ion-item>
+      <ion-label stacked>Short Bio:</ion-label>
+      <ion-textarea class="textArea100" type="text" formControlName="enterShortBioCtrl"></ion-textarea>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Facebook:</ion-label>
+      <ion-input type="text" formControlName="enterFacebookCtrl" placeholder="www.facebook.com/"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Twitter:</ion-label>
+      <ion-input type="text" formControlName="enterTwitterCtrl" placeholder="www.twitter.com/"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Instagram:</ion-label>
+      <ion-input type="text" formControlName="enterInstagramCtrl" placeholder="www.instagram.com/"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>LinkedIn:</ion-label>
+      <ion-input type="text" formControlName="enterLinkedInCtrl" placeholder="www.linkedin.com/in/"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Website:</ion-label>
+      <ion-input type="text" formControlName="enterWebsiteCtrl" placeholder="Link to your website"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Resume:</ion-label>
+      <ion-input type="text" formControlName="enterResumeCtrl" placeholder="Link to your resume"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Areas of Expertise:</ion-label>
+      <ion-select multiple="true" text-wrap formControlName="enterAreasOfExpertiseCtrl">
+        <ion-option value="activism">Activism, Community Organizing</ion-option>
+        <ion-option value="pr">Advertising, Promoting, Public Relations</ion-option>
+        <ion-option value="business">Business</ion-option>
+        <ion-option value="legal">Legal</ion-option>
+        <ion-option value="software">Software Engineering, IT</ion-option>
+        <ion-option value="language">Language and Translation</ion-option>
+        <ion-option value="educator">Professor, Teacher, Educator</ion-option>
+        <ion-option value="media">Mulitmedia, Film, Television</ion-option>
+      </ion-select> 
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Related Experience:</ion-label>
+      <ion-input type="text" formControlName="enterRelatedExperienceCtrl"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Other Links:</ion-label>
+      <ion-input type="text" formControlName="enterOtherLinksCtrl"></ion-input>
+    </ion-item>
+  
+      <ion-item>
+        <ion-label stacked>Roles:</ion-label>
+        <ion-select multiple="true" text-wrap formControlName="enterRolesCtrl">
+          <ion-option value="user">User</ion-option>
+          <ion-option value="volunteer">Volunteer</ion-option>
+          <ion-option value="auditor">Auditor</ion-option>
+          <ion-option value="lead">Lead</ion-option>
+          <ion-option value="watcher">Watcher</ion-option>
+          <ion-option value="legalObserver">Legal Observer</ion-option>
+          <ion-option value="translator">Translator</ion-option>
+          <ion-option value="promoter">Promoter</ion-option>
+          <ion-option value="admin">Administrator</ion-option>
+        </ion-select> 
+      </ion-item>
+  
+      <ion-item>
+        <ion-label stacked>References:</ion-label>
+        <ion-input text-wrap type="text" formControlName="enterReferencesCtrl"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label stacked>Preferred Contact:</ion-label>
+        <ion-select multiple="true" text-wrap formControlName="enterPreferredContactCtrl">
+            <ion-option value="email">Email</ion-option>
+            <ion-option value="phone">Phone</ion-option>
+        </ion-select>
+      </ion-item>
+  
+      <!-- <ion-item *ngIf="pageTitle === 'Register'">
+        <button ion-button [disabled]="!registerForm.valid" block large  (click)="onSubmit()">
+          Register
+        </button>
+      </ion-item> -->
+    
+      <ion-item *ngIf="pageTitle === 'Account Settings'">
+        <button ion-button type="submit" [disabled]="!registerForm.valid" block large (click)="onSave()">
+          Save
+        </button>
+      </ion-item> 
+      <!-- How do roles fit in here? -->
+    </form>

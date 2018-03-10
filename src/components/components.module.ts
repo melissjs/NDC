@@ -15,11 +15,8 @@ import { RecordsComponent } from './records/records';
 import { AuditDetailsComponent } from './audit-details/audit-details';
 import { JoinAuditComponent } from './join-audit/join-audit';
 import { AuditStatsComponent } from './audit-stats/audit-stats';
-import { ResumeAndRolesComponent } from './resume-and-roles/resume-and-roles';
 import { ResumeComponent } from './resume/resume';
 import { RolesComponent } from './roles/roles';
-// import { RecordServiceProvider } from '../providers/record-service/record-service';
-
 
 @NgModule({
 	declarations: [
@@ -38,8 +35,8 @@ import { RolesComponent } from './roles/roles';
     AuditDetailsComponent,
     JoinAuditComponent,
     AuditStatsComponent,
-    ResumeAndRolesComponent,
     ResumeComponent,
+    RolesComponent,
     RolesComponent],
 	imports: [IonicModule],
 	exports: [
@@ -58,8 +55,8 @@ import { RolesComponent } from './roles/roles';
     AuditDetailsComponent,
     JoinAuditComponent,
     AuditStatsComponent,
-    ResumeAndRolesComponent,
     ResumeComponent,
+    RolesComponent,
     RolesComponent]
 })
 export class ComponentsModule {}

@@ -1,22 +1,43 @@
-import { Component } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { NavController, NavParams } from 'ionic-angular';
+import { UserServiceProvider } from './../../providers/user-service/user-service';
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
+import { Component, OnInit } from '@angular/core';
+import * as globals from '../../globals';
 
-/**
- * Generated class for the ResumeComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'resume',
   templateUrl: 'resume.html'
 })
-export class ResumeComponent {
+export class ResumeComponent implements OnInit {
 
-  text: string;
+  pageTitle: string;
+  resumeRoleForm: FormGroup;
 
-  constructor() {
-    console.log('Hello ResumeComponent Component');
-    this.text = 'Hello World';
+  constructor(private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.resumeRoleForm = this.fb.group({
+      'enterShortBioCtrl':  [''],
+      'enterFacebookCtrl': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'enterTwitterCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterInstagramCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterLinkedInCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
+      'enterWebsiteCtrl': [''],
+      'enterResumeCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
+      'enterAreasOfExpertiseCtrl': [''],
+      'enterRelatedExperienceCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
+      'enterOtherLinksCtrl': [''],
+      'enterRolesCtrl': ['', Validators.required],
+      'enterReferencesCtrl': [''],
+      'enterPreferredContactCtrl': ['', Validators.required]
+    });
+  }
+
+  onSave() {
+    console.log('SAVE');
   }
 
 }
