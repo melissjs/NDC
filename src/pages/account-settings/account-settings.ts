@@ -47,8 +47,9 @@ export class AccountSettingsPage implements OnInit {
   loggingout: boolean;
   pollingstation: Pollingstation;
   usersPollingstation: Pollingstation;
-  shownGroup: boolean;
+  auditToggle: boolean;
   roleToggle: boolean;
+  resumeToggle: boolean;
 
   constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
     this.pageTitle = "Account Settings";
@@ -56,8 +57,9 @@ export class AccountSettingsPage implements OnInit {
     this.passChange = false;
     this.volunteerservice.associatedVolunteerArray = [];
     this.loggingout = false;
-    this.shownGroup = false;
+    this.auditToggle = false;
     this.roleToggle = false;
+    this.resumeToggle = false;
   }
 
   ngOnInit(){
@@ -100,6 +102,14 @@ onLogout() {
 
 toggleRole() {
   this.roleToggle = !this.roleToggle;
+}
+
+toggleAudit() {
+  this.auditToggle = !this.auditToggle;
+}
+
+toggleResume() {
+  this.resumeToggle = !this.resumeToggle;
 }
 
   // askShifts(){

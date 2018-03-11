@@ -20,16 +20,19 @@
 
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list>
-      <ion-list-header>Resume Settings:</ion-list-header>
-      <resume></resume>
+      <ion-list-header>Resume Settings:
+        <ion-icon *ngIf="!resumeToggle" name="arrow-back" item-right (click)="toggleResume()"></ion-icon>
+        <ion-icon  *ngIf="resumeToggle" name="arrow-down" item-right (click)="toggleResume()"></ion-icon>
+      </ion-list-header>
+      <resume *ngIf="resumeToggle"></resume>
     </ion-list>
   </ion-card>
 
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list>
       <ion-list-header>Role Settings:
-          <ion-icon *ngIf="!roleToggle" name="arrow-back" item-right (click)="toggleRole()"></ion-icon>
-          <ion-icon  *ngIf="roleToggle" name="arrow-down" item-right (click)="toggleRole()"></ion-icon>
+        <ion-icon *ngIf="!roleToggle" name="arrow-back" item-right (click)="toggleRole()"></ion-icon>
+        <ion-icon  *ngIf="roleToggle" name="arrow-down" item-right (click)="toggleRole()"></ion-icon>
       </ion-list-header>
       <roles *ngIf="roleToggle"></roles>
     </ion-list>
@@ -38,8 +41,11 @@
 
   <ion-card padding *ngIf="authSvc.isLoggedIn() && auditSvc.getAudit() && usersPollingstation">
     <ion-list>
-      <ion-list-header>Audit Settings:</ion-list-header>
-      <ion-item>
+      <ion-list-header>Audit Settings:
+        <ion-icon *ngIf="!auditToggle" name="arrow-back" item-right (click)="toggleAudit()"></ion-icon>
+        <ion-icon  *ngIf="auditToggle" name="arrow-down" item-right (click)="toggleAudit()"></ion-icon>
+      </ion-list-header>
+      <ion-item *ngIf="auditToggle">
         <ion-item-group>
           <ion-item-divider color="secondary">Location</ion-item-divider>
           <pollingstation [passedStation]="usersPollingstation" [pageTitle]=pageTitle></pollingstation> 
