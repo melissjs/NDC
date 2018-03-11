@@ -27,8 +27,11 @@
 
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list>
-      <ion-list-header>Role Settings:</ion-list-header>
-      <roles *ngIf="false"></roles>
+      <ion-list-header>Role Settings:
+          <ion-icon *ngIf="!roleToggle" name="arrow-back" item-right (click)="toggleRole()"></ion-icon>
+          <ion-icon  *ngIf="roleToggle" name="arrow-down" item-right (click)="toggleRole()"></ion-icon>
+      </ion-list-header>
+      <roles *ngIf="roleToggle"></roles>
     </ion-list>
   </ion-card>
 

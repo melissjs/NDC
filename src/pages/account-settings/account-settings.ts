@@ -47,6 +47,8 @@ export class AccountSettingsPage implements OnInit {
   loggingout: boolean;
   pollingstation: Pollingstation;
   usersPollingstation: Pollingstation;
+  shownGroup: boolean;
+  roleToggle: boolean;
 
   constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
     this.pageTitle = "Account Settings";
@@ -54,6 +56,8 @@ export class AccountSettingsPage implements OnInit {
     this.passChange = false;
     this.volunteerservice.associatedVolunteerArray = [];
     this.loggingout = false;
+    this.shownGroup = false;
+    this.roleToggle = false;
   }
 
   ngOnInit(){
@@ -90,30 +94,13 @@ onClickReset(){
 }
 
 onLogout() {
-  // this.loggingout=true;
-  // this.restSvc.onLogout(this,this.displayError);
 }
 
-// CHANGE EXPOSE EMAIL
-onChangeExposeEmail(passedValue){
-    this.wasThisTouched();
-    if (this.currentTempVolunteer) {
-        this.currentTempVolunteer.exposeEmail = passedValue;
-    }
+// toggle accordian functionality
+
+toggleRole() {
+  this.roleToggle = !this.roleToggle;
 }
-
-// CHANGE SEX
-onChangeSex(passedValue){
-    if (this.currentTempVolunteer) {
-        this.currentTempVolunteer.sex = passedValue;
-    }
-}
-
-// CHANGE SHIFTS
-/*onChangeShifts(shift){
-  this.currentTempVolunteer.shifts = shift;
-}*/
-
 
   // askShifts(){
   //     let confirm = this.alertCtrl.create({
