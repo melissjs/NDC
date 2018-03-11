@@ -3,3 +3,8 @@
   {{role}}
   <ion-icon *ngIf="role != 'user' && role != 'volunteer'" name="close" item-right></ion-icon>
 </ion-item>
+
+<ion-item>
+  Request New Role
+  <ion-icon name="add" (click)="addRole()" item-right></ion-icon>
+</ion-item>

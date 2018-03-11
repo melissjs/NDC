@@ -13,4 +13,7 @@ export class RolesComponent {
     this.roles = this.userSvc.getUser().userRoles;
   }
 
+  addRole() {
+    
+  }
 }
