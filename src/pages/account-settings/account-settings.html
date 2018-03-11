@@ -6,17 +6,13 @@
 
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list>
-      <ion-list-header>Profile Settings:</ion-list-header>
-      <user-profile [pageTitle]="pageTitle"></user-profile>
+      <ion-list-header>Profile Settings:
+          <ion-icon *ngIf="!profileToggle" name="arrow-back" item-right (click)="toggleProfile()"></ion-icon>
+          <ion-icon  *ngIf="profileToggle" name="arrow-down" item-right (click)="toggleProfile()"></ion-icon>
+      </ion-list-header>
+      <user-profile *ngIf="profileToggle" [pageTitle]="pageTitle"></user-profile>
     </ion-list>
   </ion-card>
-
-  <!-- <ion-card padding *ngIf="authSvc.isLoggedIn()">
-    <ion-list>
-      <ion-list-header>Resume and Role Settings:</ion-list-header>
-      <resume-and-roles></resume-and-roles>
-    </ion-list>
-  </ion-card> -->
 
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list>
