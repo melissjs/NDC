@@ -1,22 +1,16 @@
+import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component } from '@angular/core';
 
-/**
- * Generated class for the RolesComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'roles',
   templateUrl: 'roles.html'
 })
 export class RolesComponent {
 
-  text: string;
+  roles: string[];
 
-  constructor() {
-    console.log('Hello RolesComponent Component');
-    this.text = 'Hello World';
+  constructor(private userSvc: UserServiceProvider) {
+    this.roles = this.userSvc.getUser().userRoles;
   }
 
 }

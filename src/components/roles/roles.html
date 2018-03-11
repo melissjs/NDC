@@ -1,4 +1,5 @@
-<!-- Generated template for the RolesComponent component -->
-<div>
-  {{text}}
-</div>
+
+<ion-item *ngFor="let role of roles">
+  {{role}}
+  <ion-icon *ngIf="role != 'user' && role != 'volunteer'" name="close" item-right></ion-icon>
+</ion-item>
