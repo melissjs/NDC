@@ -17,6 +17,7 @@ import { JoinAuditComponent } from './join-audit/join-audit';
 import { AuditStatsComponent } from './audit-stats/audit-stats';
 import { ResumeComponent } from './resume/resume';
 import { RolesComponent } from './roles/roles';
+import { ProfileViewComponent } from './profile-view/profile-view';
 
 @NgModule({
 	declarations: [
@@ -37,7 +38,8 @@ import { RolesComponent } from './roles/roles';
     AuditStatsComponent,
     ResumeComponent,
     RolesComponent,
-    RolesComponent],
+    RolesComponent,
+    ProfileViewComponent],
 	imports: [IonicModule],
 	exports: [
     OvrComponent,
@@ -57,6 +59,7 @@ import { RolesComponent } from './roles/roles';
     AuditStatsComponent,
     ResumeComponent,
     RolesComponent,
-    RolesComponent]
+    RolesComponent,
+    ProfileViewComponent]
 })
 export class ComponentsModule {}
