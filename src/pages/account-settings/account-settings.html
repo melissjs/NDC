@@ -7,6 +7,7 @@
   <ion-card padding *ngIf="authSvc.isLoggedIn()">
     <ion-list>
       <ion-list-header>Profile Settings:
+          <ion-icon *ngIf="!profileToggle" name="person" item-left (click)="viewProfile(userSvc.getUser())"></ion-icon>
           <ion-icon *ngIf="!profileToggle" name="arrow-back" item-right (click)="toggleProfile()"></ion-icon>
           <ion-icon  *ngIf="profileToggle" name="arrow-down" item-right (click)="toggleProfile()"></ion-icon>
       </ion-list-header>

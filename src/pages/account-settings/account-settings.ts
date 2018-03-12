@@ -52,7 +52,7 @@ export class AccountSettingsPage implements OnInit {
   resumeToggle: boolean;
   profileToggle: boolean;
 
-  constructor(public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
+  constructor(public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
     this.pageTitle = "Account Settings";
     this.resetPasscode = false;
     this.passChange = false;
@@ -116,6 +116,11 @@ toggleResume() {
 
 toggleProfile() {
   this.profileToggle = !this.profileToggle;
+}
+
+viewProfile(passedUser) {
+  console.log('passedUser from as', passedUser)
+  this.navCtrl.push('ProfilePage', { passedUser: passedUser });
 }
 
   // askShifts(){
