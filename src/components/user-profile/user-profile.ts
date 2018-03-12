@@ -140,9 +140,10 @@ export class UserProfileComponent implements OnInit {
         this.authSvc.signin(this.user).subscribe(
           (sData: ResponseObj) => {
             localStorage.setItem('token', sData.token);
-            localStorage.setItem('userId', sData.userId);
-            this.user.volunteerKey = sData.userId;
-            this.userSvc.setUser(this.user);
+            // localStorage.setItem('userId', sData.userId);
+            // this.user.volunteerKey = sData.userId;
+            // this.userSvc.setUser(this.user);
+            this.userSvc.setUserFromToken(sData.token);
             this.navCtrl.setRoot('HomePage');
           },
           error => {

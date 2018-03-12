@@ -22,6 +22,14 @@ export class UserServiceProvider {
     console.log('USERSERVICE', this.user)
   }
 
+  setUserFromToken(passedToken) {
+    var decoded = jwt_decode(passedToken);
+    this.user = decoded.user;
+    // this.user.volunteerKey = decoded.user._id
+    localStorage.setItem('user', JSON.stringify(decoded.user));
+    console.log('USERSERVICE FFROM TOKEN', this.user)
+  }
+
   getUser() {
     return this.user != undefined ? this.user : JSON.parse(localStorage.getItem('user'))
   }
