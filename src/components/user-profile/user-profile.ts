@@ -110,16 +110,21 @@ export class UserProfileComponent implements OnInit {
         this.user.lastName = this.toTitleCase(this.registerForm.value.enterLastNameCtrl);
         this.user.userRoles = this.registerForm.value.userRoles;
         this.user.emailAddress = this.registerForm.value.enterEmailAddressCtrl.toLowerCase();
-        this.user.exposeEmail = this.exposeEmail;
+        // this.user.exposeEmail = this.exposeEmail;
+        this.user.exposeEmail = this.registerForm.value.enterExposeEmailCtrl;
         this.user.phoneNumber = this.registerForm.value.enterPhoneNumberCtrl;
-        this.user.exposePhoneNumber = this.exposePhoneNumber;
+        // this.user.exposePhoneNumber = this.exposePhoneNumber;
+        this.user.exposePhoneNumber = this.registerForm.value.enterExposePhoneNumberCtrl;
         this.user.age = this.registerForm.value.enterAgeCtrl;
-        this.user.exposeAge = this.exposeAge;
+        // this.user.exposeAge = this.exposeAge;
+        this.user.exposeAge = this.registerForm.value.enterExposeAgeCtrl;
         this.user.sex = this.registerForm.value.enterSexCtrl;
-        this.user.exposeSex = this.exposeSex;
+        // this.user.exposeSex = this.exposeSex;
+        this.user.exposeSex = this.registerForm.value.enterExposeSexCtrl;
         this.user.partyAffiliation = this.registerForm.value.enterPartyAffiliationCtrl;
         this.user.otherPartyAffiliation = this.registerForm.value.enterOtherPartyAffiliationCtrl;
-        this.user.exposePartyAffiliation = this.exposePartyAffiliation;
+        // this.user.exposePartyAffiliation = this.exposePartyAffiliation;
+        this.user.exposePartyAffiliation = this.registerForm.value.enterExposePartyAffiliationCtrl;
         this.user.password = this.password;
         console.log('after readyUser', this.user);
   }
