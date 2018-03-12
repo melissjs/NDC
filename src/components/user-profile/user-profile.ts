@@ -177,8 +177,6 @@ export class UserProfileComponent implements OnInit {
 
   onSave(): void {
     this.readyUser();
-
-    // CREATE USER THEN SIGNIN
     this.userSvc.saveUser(this.user)
     .subscribe(
       (uData: ResponseObj) => {
