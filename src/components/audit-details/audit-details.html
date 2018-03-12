@@ -3,14 +3,14 @@
   <ion-grid>
     <b>Early Morning (5:00 AM - 8:15 AM)</b>
     <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(1)">
-      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-10 (click)="viewProfile(auditor)">{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
     </ion-row>
 
     <b>Late Morning (8:00 AM - 11:15 AM)</b>
     <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(2)">
-      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-10 (click)="viewProfile(auditor)">{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
     </ion-row>
@@ -24,21 +24,21 @@
 
     <b>Late Afternoon (2:00 PM - 5:15 PM)</b>
     <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(4)">
-      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-10 (click)="viewProfile(auditor)">{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
     </ion-row>
 
     <b>Early Evening (5:00 PM - 8:15 PM)</b>
     <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(5)">
-      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-10 (click)="viewProfile(auditor)">{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
     </ion-row>
 
     <b>Late Evening (8:00 PM - 10:30 PM)</b>
     <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(6)">
-      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-10 (click)="viewProfile(auditor)">{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
     </ion-row>
