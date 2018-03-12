@@ -1,22 +1,21 @@
-import { Component } from '@angular/core';
+import { User } from './../../models/user';
+import { Component, Input, OnInit } from '@angular/core';
 
-/**
- * Generated class for the ProfileViewComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'profile-view',
-  templateUrl: 'profile-view.html'
+  templateUrl: 'profile-view.html',
+  inputs: ['user']
 })
-export class ProfileViewComponent {
+export class ProfileViewComponent implements OnInit {
 
-  text: string;
+  user: User;
 
   constructor() {
-    console.log('Hello ProfileViewComponent Component');
-    this.text = 'Hello World';
+    // console.log('user from view comp', this.user)
+  }
+
+  ngOnInit() {
+    console.log('user from view comp', this.user)
   }
 
 }

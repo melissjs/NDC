@@ -1,4 +1,23 @@
-<!-- Generated template for the ProfileViewComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-item>
+  {{user.firstName}} {{user.lastName}}
+</ion-item>
+
+<ion-item *ngIf="user.emailAddress">
+  {{user.emailAddress}}
+</ion-item>
+
+<ion-item *ngIf="user.phoneNumber">
+  {{user.phoneNumber}}
+</ion-item>
+
+<ion-item *ngIf="user.age">
+  {{user.age}}
+</ion-item>
+
+<ion-item *ngIf="user.sex">
+  {{user.sex}}
+</ion-item>
+
+<ion-item *ngIf="user.partyAffiliation">
+  {{user.partyAffiliation}}
+</ion-item>

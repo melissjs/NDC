@@ -17,7 +17,7 @@
 
     <b>Early Afternoon (11:00 AM - 2:15 PM)</b>
     <ion-row  *ngFor="let auditor of auditSvc.getAuditorByShift(3)">
-      <ion-col col-10>{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
+      <ion-col col-10 (click)="viewProfile(auditor)">{{auditor?.firstName}} {{auditor?.lastName}}</ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.phoneNumber name="text"></ion-icon></ion-col>
       <ion-col col-1><ion-icon *ngIf=auditor.emailAddress name="mail"></ion-icon></ion-col>
     </ion-row>

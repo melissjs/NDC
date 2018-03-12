@@ -201,6 +201,10 @@ export class AuditDetailsComponent implements OnInit {
 
   }
 
+  viewProfile(passedUser) {
+    this.navCtrl.push('ProfilePage', { passedUser: passedUser });
+  }
+
   onSubmit(){
 
   //     //clear shifts

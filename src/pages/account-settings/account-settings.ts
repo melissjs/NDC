@@ -119,7 +119,6 @@ toggleProfile() {
 }
 
 viewProfile(passedUser) {
-  console.log('passedUser from as', passedUser)
   this.navCtrl.push('ProfilePage', { passedUser: passedUser });
 }
 

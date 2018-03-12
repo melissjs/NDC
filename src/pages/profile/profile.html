@@ -1,7 +1,9 @@
 <ion-header>
-    <top-bar [passedTitle]="pageTitle"></top-bar>
-  </ion-header>
-  
-  <ion-content class="backgroundColor" padding>
+  <top-bar [passedTitle]="pageTitle"></top-bar>
+</ion-header>
 
+<ion-content class="backgroundColor" padding>
+  <ion-card>
+    <profile-view [user]="user"></profile-view>
+  </ion-card>
 </ion-content>

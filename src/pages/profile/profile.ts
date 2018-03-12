@@ -16,7 +16,6 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.pageTitle = "Profile";
     this.user = this.navParams.get('passedUser');
-    console.log('user', this.user)
   }
 
 }
