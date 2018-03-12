@@ -69,7 +69,7 @@ export class UserServiceProvider {
       partyAffiliation: '',
       otherPartyAffiliation: '',
       exposePartyAffiliation: true,
-      auditKey: '', // really scheduleKey but audit is better name here
+      // auditKey: '', // really scheduleKey but audit is better name here
     }
   }
 
