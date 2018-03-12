@@ -157,26 +157,26 @@ export class UserProfileComponent implements OnInit {
         );
       },
       error => {
-        console.log('whole error from userRegister', error)
-        // console.log('should be 11000', error.error.error.code)
-        if (error.error.error.code){
-          if (error.error.error.code == 11000) {
-            // this.errorTitle = error.error.title;
-            // this.errorMessage = error.error.error.errors.username.message;
-            this.errorTitle = 'Username is already in use';
-            this.errorMessage = 'Please select another username';
-            this.createErrorAlert(this.errorTitle, this.errorMessage);
-            this.errorAlert.present();
-          } else {
-            console.log('uncaught with multiple errors', error.error.error.errors);
-          }
-        } else {
+        // console.log('whole error from userRegister', error)
+        // // console.log('should be 11000', error.error.error.code)
+        // if (error.error.error.code){
+        //   if (error.error.error.code == 11000) {
+        //     // this.errorTitle = error.error.title;
+        //     // this.errorMessage = error.error.error.errors.username.message;
+        //     this.errorTitle = 'Username is already in use';
+        //     this.errorMessage = 'Please select another username';
+        //     this.createErrorAlert(this.errorTitle, this.errorMessage);
+        //     this.errorAlert.present();
+        //   } else {
+        //     console.log('uncaught with multiple errors', error.error.error.errors);
+        //   }
+        // } else {
           console.log(error.error.error)
           this.errorTitle = error.error.title;
           this.errorMessage = error.error.error.message;
           this.createErrorAlert(this.errorTitle, this.errorMessage);
           this.errorAlert.present();
-        }
+        // }
       }
     );
   }
@@ -189,7 +189,12 @@ export class UserProfileComponent implements OnInit {
         console.log('uData', uData)
       },
       (error: HttpErrorResponse) => {
-        console.log('whole error from userRegister', error)
+        console.log('whole error from userRegister', error);
+        console.log(error.error.error)
+        this.errorTitle = error.error.title;
+        this.errorMessage = error.error.error.message;
+        this.createErrorAlert(this.errorTitle, this.errorMessage);
+        this.errorAlert.present();
       }
     );
   }
