@@ -34,7 +34,6 @@ export class AuditServiceProvider {
         localStorage.setItem('auditLS', JSON.stringify(res.obj));
         if (this.audit){
           this.auditTeam = this.audit.team;
-          console.log('AUDIT TEAM FROM AUD SVC', this.auditTeam)
           localStorage.setItem('auditTeamLS', JSON.stringify(this.audit.team));
         }
         return res;
