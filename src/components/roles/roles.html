@@ -5,12 +5,7 @@
 </ion-item>
 
 <ion-item>
-  Request New Role
-  <ion-icon name="add" (click)="addRole()" item-right></ion-icon>
+  <button ion-button block large (click)="addRole()">
+    Request New Role
+  </button>
 </ion-item>
-
-<ion-item *ngIf="showRoleForm">
-  Role Request Form
-  <!-- <ion-icon name="add" (click)="addRole()" item-right></ion-icon> -->
-</ion-item>
-  

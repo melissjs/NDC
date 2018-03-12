@@ -190,11 +190,11 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  onTest() {
-    // this.registerForm.value.enterSexCtrl = this.user.sex;
-    // this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
-    console.log('this.registerForm.valid: ', this.registerForm.valid)
-    console.log('this.registerForm.value: ', this.registerForm.value)
-  }
+  // onTest() {
+  //   // this.registerForm.value.enterSexCtrl = this.user.sex;
+  //   // this.registerForm.value.enterPartyAffiliationCtrl = this.user.partyAffiliation;
+  //   console.log('this.registerForm.valid: ', this.registerForm.valid)
+  //   console.log('this.registerForm.value: ', this.registerForm.value)
+  // }
 
 }
