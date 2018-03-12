@@ -8,12 +8,14 @@ import { Component } from '@angular/core';
 export class RolesComponent {
 
   roles: string[];
+  showRoleForm: boolean;
 
   constructor(private userSvc: UserServiceProvider) {
     this.roles = this.userSvc.getUser().userRoles;
+    this.showRoleForm = false;
   }
 
   addRole() {
-    
+    this.showRoleForm = !this.showRoleForm;
   }
 }
