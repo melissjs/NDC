@@ -24,10 +24,22 @@ export class UserServiceProvider {
 
   setUserFromToken(passedToken) {
     var decoded = jwt_decode(passedToken);
-    this.user = decoded.user;
-    // this.user.volunteerKey = decoded.user._id
-    localStorage.setItem('user', JSON.stringify(decoded.user));
-    console.log('USERSERVICE FFROM TOKEN', this.user)
+    this.user.volunteerKey = decoded.user._id;
+    this.user.userRoles = decoded.user.activeRoles; 
+    this.user.firstName = decoded.user.firstName;
+    this.user.lastName = decoded.user.lastName;
+    this.user.emailAddress = decoded.user.emailAddress;
+    this.user.exposeEmail = decoded.user.exposeEmail;
+    this.user.phoneNumber = decoded.user.phoneNumber;
+    this.user.exposePhoneNumber = decoded.user.exposePhoneNumber;
+    this.user.age = decoded.user.age;
+    this.user.exposeAge = decoded.user.exposeAge;
+    this.user.sex = decoded.user.sex;
+    this.user.exposeSex = decoded.user.emailAddress;
+    this.user.partyAffiliation = decoded.user.partyAffiliation;
+    this.user.exposePartyAffiliation = decoded.user.exposePartyAffiliation;
+    localStorage.setItem('user', JSON.stringify(this.user));
+    console.log('USERSERVICE FROM TOKEN', this.user)
   }
 
   getUser() {
