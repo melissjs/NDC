@@ -17,6 +17,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserServiceProvider } from '../providers/user-service/user-service';
 import { AuditServiceProvider } from '../providers/audit-service/audit-service';
 import { ElectionServiceProvider } from '../providers/election-service/election-service';
+import { ResumeRoleServiceProvider } from '../providers/resume-role-service/resume-role-service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ElectionServiceProvider } from '../providers/election-service/election-
     UserServiceProvider,
     AuditServiceProvider,
     ElectionServiceProvider,
-    ElectionServiceProvider
+    ElectionServiceProvider,
+    ResumeRoleServiceProvider
   ]
 })
 export class AppModule {}

@@ -24,12 +24,9 @@ import { PollingStationServiceProvider } from '../../providers/polling-station-s
 @Component({
   selector: 'page-account-settings',
   templateUrl: 'account-settings.html',
-  // providers: [RestServiceProvider],
-  // inputs: ['pollingstation', 'volunteer'],
-  // directives: [PollingstationComponent /*, Logincomponent */, Changepasswordcomponent, Headerc],
 })
+
 export class AccountSettingsPage implements OnInit {
-  newUser: User;
   pageTitle: string;
   changeForm: FormGroup;
   currentVolunteer: User; 
@@ -65,18 +62,12 @@ export class AccountSettingsPage implements OnInit {
   }
 
   ngOnInit(){
-    this.loggedIn = this.authSvc.isLoggedIn();
-    this.loggedIn ? this.newUser = this.userSvc.getUser() : null;
     if (this.auditSvc.getAudit()) {
-      // console.log('this.auditSvc.getAudit().pollingstationId', this.auditSvc.getAudit().pollingstationId)
-      // console.log('this.auditSvc.getAudit()', this.auditSvc.getAudit())
       this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
-      // console.log('after getttttttt', this.usersPollingstation)
       if (!this.usersPollingstation) {
         this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
         .subscribe((res: any) => {
           this.usersPollingstation = res;
-          // console.log('after setttttttt', this.usersPollingstation)
         },
         (err: HttpErrorResponse) => {
           console.log(err);
