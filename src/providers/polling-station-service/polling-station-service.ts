@@ -166,6 +166,7 @@ export class PollingStationServiceProvider {
     },
     (err: HttpErrorResponse) => {
       console.log(err);
+      // return err??
     })
   }
 
