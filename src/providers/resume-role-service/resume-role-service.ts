@@ -31,7 +31,7 @@ export class ResumeRoleServiceProvider {
 
   sgetResume() {
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
-    return this.http.get(baseURL + '/resumes/' + this.userSvc.getUser().volunteerKey, {headers: header})
+    return this.http.get(baseURL + '/resumes/user/' + this.userSvc.getUser().volunteerKey, {headers: header})
     .map((res: ResponseObj)  => {
         console.log(res);
         this.resume = res.obj;
