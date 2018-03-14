@@ -45,9 +45,7 @@ import { ClearServiceProvider } from '../providers/clear-service/clear-service';
     PollingStationServiceProvider,
     AuthServiceProvider,
     UserServiceProvider,
-    UserServiceProvider,
     AuditServiceProvider,
-    ElectionServiceProvider,
     ElectionServiceProvider,
     ResumeRoleServiceProvider,
     ClearServiceProvider
