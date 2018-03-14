@@ -25,6 +25,15 @@ export class AuditServiceProvider {
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private pollingstationSvc: PollingStationServiceProvider, private electionSvc: ElectionServiceProvider, private userSvc: UserServiceProvider) {
   }
 
+  clearAllVars() {
+    this.cachedDateTime = 0;
+    this.auditOfInterest = undefined;
+    this.audit = undefined;
+    this.audits = [];
+    this.auditTeam = [];
+    this.auditOfInterestTeam = [];
+  }
+
   setAudit(passedUserId) {  //what if no audit??
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + `/audits/user/${passedUserId}`, {headers: header})

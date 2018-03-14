@@ -15,6 +15,10 @@ export class UserServiceProvider {
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider) {
   }
 
+  clearAllVars() {
+    this.user = undefined;
+  }
+
   setUser(passedUser: User) {
     this.user = passedUser;
     localStorage.setItem('user', JSON.stringify(passedUser));
