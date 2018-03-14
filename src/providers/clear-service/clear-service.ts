@@ -1,3 +1,4 @@
+import { PollingStationServiceProvider } from './../polling-station-service/polling-station-service';
 import { ElectionServiceProvider } from './../election-service/election-service';
 import { AuditServiceProvider } from './../audit-service/audit-service';
 import { UserServiceProvider } from './../user-service/user-service';
@@ -8,7 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ClearServiceProvider {
 
-  constructor(public http: HttpClient, private rrSvc: ResumeRoleServiceProvider, private userSvc: UserServiceProvider, private auditSvc: AuditServiceProvider, private electionSvc: ElectionServiceProvider) {
+  constructor(public http: HttpClient, private rrSvc: ResumeRoleServiceProvider, private userSvc: UserServiceProvider, private auditSvc: AuditServiceProvider, private electionSvc: ElectionServiceProvider, private psSvc: PollingStationServiceProvider) {
   }
 
   clearAllVars() {
@@ -16,6 +17,7 @@ export class ClearServiceProvider {
     this.userSvc.clearAllVars();
     this.auditSvc.clearAllVars();
     this.electionSvc.clearAllVars();
+    this.psSvc.clearAllVars();
   }
 
 }

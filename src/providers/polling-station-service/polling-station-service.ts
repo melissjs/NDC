@@ -32,6 +32,18 @@ export class PollingStationServiceProvider {
     this.allCachedStations = [];
   }
 
+  clearAllVars() {
+    this.usersPollingstation = undefined;
+    this.pollingstation = undefined;
+    this.stationCache = undefined;
+    this.pollingstationOfInterest = undefined;
+    this.stations = undefined;
+    this.tempStations = undefined;
+    this.cachedDateTime = 0;
+    this.stationsCache = {};
+    this.allCachedStations = [];
+  }
+
   // getPollingstationId() {
     
   // }
