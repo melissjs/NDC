@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, forwardRef } from '@angular/core';
 import { User } from '../../models/user';
 import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
+// import { ClearServiceProvider } from '../clear-service/clear-service';
 let baseURL = config.NDCS_BASE_URL;
 
 
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient, @Inject(forwardRef(() => ClearServiceProvider)) private clearSvc: ClearServiceProvider) {
+    this.clearSvc = clearSvc;
+  }
 
   register(body: User) {
     return this.http.post(baseURL + '/users/add', body);
@@ -21,7 +24,7 @@ export class AuthServiceProvider {
 
   logout() {
     localStorage.clear();
-    // clear local vars with functions that reach into other service providers
+    this.clearSvc.clearAllVars();
   }
 
   isLoggedIn() {
@@ -59,3 +62,5 @@ export class AuthServiceProvider {
   }
 
 }
+
+import { ClearServiceProvider } from '../clear-service/clear-service';

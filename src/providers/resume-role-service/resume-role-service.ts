@@ -17,6 +17,12 @@ export class ResumeRoleServiceProvider {
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider) {
   }
 
+  clearAllVars() {
+    this.resume = undefined;
+    this.newResume = undefined;
+    console.log('this.resume  after clear', this.resume )
+  }
+
   getNewResume() {
     return this.newResume = {
       userId: '',
