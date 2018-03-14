@@ -21,6 +21,7 @@ export class AuthServiceProvider {
 
   logout() {
     localStorage.clear();
+    // clear local vars with functions that reach into other service providers
   }
 
   isLoggedIn() {
