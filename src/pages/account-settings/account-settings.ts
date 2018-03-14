@@ -1,3 +1,5 @@
+import { Resume } from './../../models/resume';
+import { ResumeRoleServiceProvider } from './../../providers/resume-role-service/resume-role-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ResponseObj } from './../../models/response-obj';
 import { Pollingstation } from './../../models/pollingstation';
@@ -48,8 +50,9 @@ export class AccountSettingsPage implements OnInit {
   roleToggle: boolean;
   resumeToggle: boolean;
   profileToggle: boolean;
+  resume: Resume;
 
-  constructor(public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider) {
+  constructor(public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider, private rrSvc: ResumeRoleServiceProvider) {
     this.pageTitle = "Account Settings";
     this.resetPasscode = false;
     this.passChange = false;
@@ -62,6 +65,7 @@ export class AccountSettingsPage implements OnInit {
   }
 
   ngOnInit(){
+    //POLLINGSTATION
     if (this.auditSvc.getAudit()) {
       this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
       if (!this.usersPollingstation) {
@@ -73,6 +77,23 @@ export class AccountSettingsPage implements OnInit {
           console.log(err);
         })
       }
+    }
+
+    // RESUME
+    // this.resume = this.rrSvc.getNewResume();
+    if (this.rrSvc.getResume()) {
+      this.resume = this.rrSvc.getResume();
+      console.log('from gettttttttt', this.resume);
+    }
+    else {
+      this.rrSvc.sgetResume()
+      .subscribe((res) => {
+        this.resume = res;
+        console.log('from sgetttttttttt', res);
+      },
+      (err: HttpErrorResponse) => {
+        console.error('Error', err)
+      })
     }
   }
 

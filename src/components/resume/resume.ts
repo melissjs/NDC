@@ -4,15 +4,15 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
 import { NavController, NavParams } from 'ionic-angular';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as globals from '../../globals';
 import { Resume } from '../../models/resume';
-import { ResumeRoleServiceProvider } from '../../providers/resume-role-service/resume-role-service';
 import { ResponseObj } from '../../models/response-obj';
 
 @Component({
   selector: 'resume',
-  templateUrl: 'resume.html'
+  templateUrl: 'resume.html',
+  inputs: ['resume']
 })
 export class ResumeComponent implements OnInit {
 
@@ -20,26 +20,10 @@ export class ResumeComponent implements OnInit {
   resumeRoleForm: FormGroup;
   resume: Resume;
 
-  constructor(private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder, private rrSvc: ResumeRoleServiceProvider) {
+  constructor(private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, public fb: FormBuilder) {
   }
 
   ngOnInit() {
-    // this.resume = this.rrSvc.getNewResume();
-    if (this.rrSvc.getResume()) {
-      this.resume = this.rrSvc.getResume();
-      console.log('from gettttttttt', this.resume);
-    }
-    else {
-      this.rrSvc.sgetResume()
-      .subscribe((res) => {
-        this.resume = res;
-        console.log('from sgetttttttttt', res);
-      },
-      (err: HttpErrorResponse) => {
-        console.error('Error', err)
-      })
-    }
-    
     this.resumeRoleForm = this.fb.group({
       'enterShortBioCtrl':  [this.resume.shortBio],
       'enterFacebookCtrl': [this.resume.facebook, Validators.compose([Validators.required, Validators.minLength(3)])],
