@@ -24,7 +24,7 @@ export class ResumeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resume = this.rrSvc.getNewResume();
+    // this.resume = this.rrSvc.getNewResume();
     if (this.rrSvc.getResume()) {
       this.resume = this.rrSvc.getResume();
       console.log('from gettttttttt', this.resume);
