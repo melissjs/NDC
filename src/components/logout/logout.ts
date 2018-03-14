@@ -1,3 +1,4 @@
+import { ClearServiceProvider } from './../../providers/clear-service/clear-service';
 import { Component } from '@angular/core';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
@@ -9,10 +10,11 @@ export class LogoutComponent {
 
   text: string;
 
-  constructor(private authSvc: AuthServiceProvider) {}
+  constructor(private authSvc: AuthServiceProvider, private clearSvc: ClearServiceProvider) {}
 
   onLogout() {
     this.authSvc.logout();
+    this.clearSvc.clearAllVars();
   }
 
 }
