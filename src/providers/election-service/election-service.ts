@@ -9,13 +9,16 @@ let baseURL = config.NDCS_BASE_URL;
 @Injectable()
 export class ElectionServiceProvider {
 
-  // electionOfInterest._id: string;
   electionOfInterest: Election;
   elections: Election[];
 
-
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider) {
     this.elections = this.getElections();
+  }
+
+  clearAllVars() {
+    this.electionOfInterest = undefined;
+    this.elections = undefined;
   }
 
   getElections() {
