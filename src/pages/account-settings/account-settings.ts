@@ -80,7 +80,6 @@ export class AccountSettingsPage implements OnInit {
     }
 
     // RESUME
-    // this.resume = this.rrSvc.getNewResume();
     if (this.rrSvc.getResume()) {
       this.resume = this.rrSvc.getResume();
       console.log('from gettttttttt', this.resume);
@@ -90,6 +89,7 @@ export class AccountSettingsPage implements OnInit {
       .subscribe((res) => {
         this.resume = res;
         console.log('from sgetttttttttt', res);
+        this.resume ? null : this.resume = this.rrSvc.getNewResume();
       },
       (err: HttpErrorResponse) => {
         console.error('Error', err)
