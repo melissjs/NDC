@@ -29,29 +29,28 @@ export class ResumeComponent implements OnInit {
     }
     else {
       this.rrSvc.sgetResume()
-      .subscribe((res: ResponseObj) => {
-        this.resume = res.obj;
+      .subscribe((res) => {
+        this.resume = res;
         console.log('from sget', res.obj)
       },
       (err: HttpErrorResponse) => {
         console.error('Error', err)
       })
     }
-
     this.resumeRoleForm = this.fb.group({
-      'enterShortBioCtrl':  [''],
-      'enterFacebookCtrl': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      'enterTwitterCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterInstagramCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterLinkedInCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
-      'enterWebsiteCtrl': [''],
-      'enterResumeCtrl': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
-      'enterAreasOfExpertiseCtrl': [''],
-      'enterRelatedExperienceCtrl': ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
-      'enterOtherLinksCtrl': [''],
+      'enterShortBioCtrl':  [this.resume.shortBio],
+      'enterFacebookCtrl': [this.resume.facebook, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'enterTwitterCtrl': [this.resume.twitter, Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterInstagramCtrl': [this.resume.instagram, Validators.compose([Validators.required, Validators.minLength(2)])],
+      'enterLinkedInCtrl': [this.resume.linkedin, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
+      'enterWebsiteCtrl': [this.resume.website],
+      'enterResumeCtrl': [this.resume.resume, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
+      'enterAreasOfExpertiseCtrl': [this.resume.areasOfExpertise],
+      'enterRelatedExperienceCtrl': [this.resume.relatedExperience, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
+      'enterOtherLinksCtrl': [this.resume.otherLinks],
       'enterRolesCtrl': ['', Validators.required],
-      'enterReferencesCtrl': [''],
-      'enterPreferredContactCtrl': ['', Validators.required]
+      'enterReferencesCtrl': [this.resume.references],
+      'enterPreferredContactCtrl': [this.resume.preferredContact, Validators.required]
     });
   }
 
