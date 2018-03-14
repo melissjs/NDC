@@ -20,7 +20,6 @@ export class ResumeRoleServiceProvider {
   clearAllVars() {
     this.resume = undefined;
     this.newResume = undefined;
-    console.log('this.resume  after clear', this.resume )
   }
 
   getNewResume() {
