@@ -12,8 +12,27 @@ let baseURL = config.NDCS_BASE_URL;
 export class ResumeRoleServiceProvider {
 
   resume: Resume;
+  newResume: Resume;
 
   constructor(public http: HttpClient, private authSvc: AuthServiceProvider, private userSvc: UserServiceProvider) {
+  }
+
+  getNewResume() {
+    return this.newResume = {
+      userId: '',
+      shortBio: '',
+      preferredContact: [''],
+      references: '',
+      facebook: '',
+      twitter: '',
+      instagram: '',
+      linkedin: '',
+      website: '',
+      resume: '',
+      areasOfExpertise: [''],
+      relatedExperience: '',
+      otherLinks: '',
+    }
   }
 
   getResume() {

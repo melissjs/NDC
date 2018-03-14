@@ -2,7 +2,7 @@ export class Resume {
   userId: string;
   // roleRequests: { type: [RoleRequestSchema] },
   shortBio?: string;
-  preferredContact?: string;
+  preferredContact?: string[];
   references?: string;
   facebook?: string;
   twitter?: string;

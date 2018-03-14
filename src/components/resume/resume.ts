@@ -24,19 +24,22 @@ export class ResumeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.resume = this.rrSvc.getNewResume();
     if (this.rrSvc.getResume()) {
       this.resume = this.rrSvc.getResume();
+      console.log('from gettttttttt', this.resume);
     }
     else {
       this.rrSvc.sgetResume()
       .subscribe((res) => {
         this.resume = res;
-        console.log('from sget', res.obj)
+        console.log('from sgetttttttttt', res);
       },
       (err: HttpErrorResponse) => {
         console.error('Error', err)
       })
     }
+    
     this.resumeRoleForm = this.fb.group({
       'enterShortBioCtrl':  [this.resume.shortBio],
       'enterFacebookCtrl': [this.resume.facebook, Validators.compose([Validators.required, Validators.minLength(3)])],
