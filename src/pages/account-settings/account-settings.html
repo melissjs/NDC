@@ -21,7 +21,7 @@
         <ion-icon *ngIf="!resumeToggle" name="arrow-back" item-right (click)="toggleResume()"></ion-icon>
         <ion-icon  *ngIf="resumeToggle" name="arrow-down" item-right (click)="toggleResume()"></ion-icon>
       </ion-list-header>
-      <resume *ngIf="resumeToggle" [resume]="resume"></resume>
+      <resume *ngIf="resumeToggle" [resume]="resume" [pageTitle]="pageTitle"></resume>
     </ion-list>
   </ion-card>
 

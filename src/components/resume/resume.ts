@@ -12,7 +12,7 @@ import { ResponseObj } from '../../models/response-obj';
 @Component({
   selector: 'resume',
   templateUrl: 'resume.html',
-  inputs: ['resume']
+  inputs: ['resume', 'pageTitle']
 })
 export class ResumeComponent implements OnInit {
 
@@ -26,18 +26,18 @@ export class ResumeComponent implements OnInit {
   ngOnInit() {
     this.resumeRoleForm = this.fb.group({
       'enterShortBioCtrl':  [this.resume.shortBio],
-      'enterFacebookCtrl': [this.resume.facebook, Validators.compose([Validators.required, Validators.minLength(3)])],
-      'enterTwitterCtrl': [this.resume.twitter, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterInstagramCtrl': [this.resume.instagram, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'enterLinkedInCtrl': [this.resume.linkedin, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXEMAIL)])],
+      'enterFacebookCtrl': [this.resume.facebook],
+      'enterTwitterCtrl': [this.resume.twitter],
+      'enterInstagramCtrl': [this.resume.instagram],
+      'enterLinkedInCtrl': [this.resume.linkedin],
       'enterWebsiteCtrl': [this.resume.website],
-      'enterResumeCtrl': [this.resume.resume, Validators.compose([Validators.required, Validators.minLength(4), Validators.pattern(globals.REGEXPHONE)])],
+      'enterResumeCtrl': [this.resume.resume],
       'enterAreasOfExpertiseCtrl': [this.resume.areasOfExpertise],
-      'enterRelatedExperienceCtrl': [this.resume.relatedExperience, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
+      'enterRelatedExperienceCtrl': [this.resume.relatedExperience],
       'enterOtherLinksCtrl': [this.resume.otherLinks],
       // 'enterRolesCtrl': ['', Validators.required],
       'enterReferencesCtrl': [this.resume.references],
-      'enterPreferredContactCtrl': [this.resume.preferredContact, Validators.required]
+      'enterPreferredContactCtrl': [this.resume.preferredContact]
     });
   }
 
