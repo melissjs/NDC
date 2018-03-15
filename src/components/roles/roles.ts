@@ -28,4 +28,8 @@ export class RolesComponent {
     alert.present();
   }
 
+  readableRole(passedRole) {
+    return passedRole[0].toUpperCase() + passedRole.slice(1);
+  }
+
 }

@@ -1,6 +1,6 @@
 
 <ion-item *ngFor="let role of roles">
-  {{role}}<ion-icon *ngIf="role === 'volunteer'" name="information" (click)="onInfoAlert()"></ion-icon>
+  {{readableRole(role)}}<ion-icon *ngIf="role === 'volunteer'" name="information" (click)="onInfoAlert()"></ion-icon>
   <ion-icon *ngIf="role != 'user' && role != 'volunteer'" name="close" item-right></ion-icon>
 </ion-item>
 
