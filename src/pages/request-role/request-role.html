@@ -4,4 +4,40 @@
 
 <ion-content class="backgroundColor" padding>
 
+  <ion-card>
+
+  <form [formGroup]="roleRequestForm">
+
+    <ion-item>
+      <ion-label stacked>Role:</ion-label>
+      <ion-select text-wrap formControlName="enterRoleCtrl">
+        <ion-option value="user">User</ion-option>
+        <ion-option value="volunteer">Volunteer</ion-option>
+        <ion-option value="auditor">Auditor</ion-option>
+        <ion-option value="lead">Lead</ion-option>
+        <ion-option value="watcher">Watcher</ion-option>
+        <ion-option value="legalObserver">Legal Observer</ion-option>
+        <ion-option value="translator">Translator</ion-option>
+        <ion-option value="promoter">Promoter</ion-option>
+        <ion-option value="admin">Administrator</ion-option>
+      </ion-select> 
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Reasons for wanting this role:</ion-label>
+      <ion-textarea class="textArea100" type="text" formControlName="enterReasonsCtrl"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Questions about this role:</ion-label>
+      <ion-textarea class="textArea100" type="text" formControlName="enterQuestionsCtrl"></ion-textarea>
+    </ion-item>
+
+      <ion-item text-wrap>
+        Please make sure to fill out the resume section to be considered for a lead role.
+      </ion-item>
+    
+    </form>
+  </ion-card>
+
 </ion-content>

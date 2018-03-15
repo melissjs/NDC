@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -10,9 +11,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class RequestRolePage {
 
   pageTitle: string;
+  roleRequest: any;
+  roleRequestForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fb: FormBuilder) {
     this.pageTitle = 'Request Role';
+  }
+
+  ngOnInit() {
+    this.roleRequestForm = this.fb.group({
+      'enterRoleCtrl':  [''],
+      'enterReasonsCtrl': [''],
+      'enterQuestionsCtrl': [''],
+    });
+  }
+
+  onSave() {
+    console.log('SAVE');
   }
 
 }
