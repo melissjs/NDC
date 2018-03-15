@@ -5,7 +5,6 @@ import * as config from '../../configuration/config';
 import * as jwt_decode from 'jwt-decode';
 let baseURL = config.NDCS_BASE_URL;
 
-
 @Injectable()
 export class AuthServiceProvider {
 
