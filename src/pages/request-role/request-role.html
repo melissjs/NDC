@@ -36,6 +36,13 @@
       <ion-item text-wrap>
         Please make sure to fill out the resume section to be considered for a lead role.
       </ion-item>
+
+      <ion-item *ngIf="pageTitle === 'Account Settings'">
+        <button ion-button type="submit" [disabled]="!roleRequestForm.valid" block large (click)="onSave()">
+          Save
+        </button>
+      </ion-item>
+
     
     </form>
   </ion-card>

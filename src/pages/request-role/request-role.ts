@@ -20,9 +20,9 @@ export class RequestRolePage {
 
   ngOnInit() {
     this.roleRequestForm = this.fb.group({
-      'enterRoleCtrl':  [''],
-      'enterReasonsCtrl': [''],
-      'enterQuestionsCtrl': [''],
+      'enterRoleCtrl':  ['', Validators.required],
+      'enterReasonsCtrl': ['', Validators.required],
+      'enterQuestionsCtrl': ['', Validators.required],
     });
   }
 
