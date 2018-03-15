@@ -35,7 +35,7 @@ export class ResumeComponent implements OnInit {
       'enterAreasOfExpertiseCtrl': [this.resume.areasOfExpertise],
       'enterRelatedExperienceCtrl': [this.resume.relatedExperience, Validators.compose([Validators.required, Validators.minLength(2), Validators.pattern(globals.REGEXAGE)])],
       'enterOtherLinksCtrl': [this.resume.otherLinks],
-      'enterRolesCtrl': ['', Validators.required],
+      // 'enterRolesCtrl': ['', Validators.required],
       'enterReferencesCtrl': [this.resume.references],
       'enterPreferredContactCtrl': [this.resume.preferredContact, Validators.required]
     });
