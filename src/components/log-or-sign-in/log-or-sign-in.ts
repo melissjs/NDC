@@ -1,3 +1,4 @@
+import { ClearServiceProvider } from './../../providers/clear-service/clear-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuditServiceProvider } from './../../providers/audit-service/audit-service';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
@@ -34,7 +35,7 @@ export class LogOrSignInComponent {
   authenticatingVolunteerPhone: string;
   authenticatingVolunteerPasscode: string;
 
-  constructor(private navCtrl: NavController, private userSvc: UserServiceProvider,  private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider, private auditSvc: AuditServiceProvider) {
+  constructor(private navCtrl: NavController, private userSvc: UserServiceProvider,  private alertCtrl: AlertController, public fb: FormBuilder, private pollingstationservice: PollingStationServiceProvider, private volSvc: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider, private auditSvc: AuditServiceProvider, private clearSvc: ClearServiceProvider) {
     this.loginStatus = new EventEmitter<any>();
     this.loggedIn = false;
     this.loginForm = fb.group({  
@@ -62,6 +63,7 @@ export class LogOrSignInComponent {
   }
 
   onLogin(): void {
+    this.clearSvc.clearAllVars();
     this.newUser = {
       volunteerKey: '',
       username: this.loginForm.value.enterUsername.toLowerCase(),
@@ -162,6 +164,7 @@ export class LogOrSignInComponent {
   }
 
   onRegister(): void {
+    this.clearSvc.clearAllVars();
     this.newUser = this.userSvc.getNewUser();
     this.newUser.username = this.loginForm.value.enterUsername.toLowerCase();
     this.newUser.password = this.loginForm.value.enterPassword;
