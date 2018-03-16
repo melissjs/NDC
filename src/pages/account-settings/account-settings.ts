@@ -50,6 +50,7 @@ export class AccountSettingsPage implements OnInit {
   roleToggle: boolean;
   resumeToggle: boolean;
   profileToggle: boolean;
+  accountToggle: boolean;
   resume: Resume;
 
   constructor(public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider, private rrSvc: ResumeRoleServiceProvider) {
@@ -62,6 +63,7 @@ export class AccountSettingsPage implements OnInit {
     this.roleToggle = false;
     this.profileToggle = false;
     this.resumeToggle = false;
+    this.accountToggle = false;
   }
 
   ngOnInit(){
@@ -130,8 +132,20 @@ toggleProfile() {
   this.profileToggle = !this.profileToggle;
 }
 
+toggleAccount() {
+  this.accountToggle = !this.accountToggle;
+}
+
 viewProfile(passedUser) {
   this.navCtrl.push('ProfilePage', { passedUser: passedUser });
+}
+
+deactivateAccount() {
+  console.log('deactivate')
+}
+
+deleteAccount() {
+  console.log('delete')
 }
 
   // askShifts(){
