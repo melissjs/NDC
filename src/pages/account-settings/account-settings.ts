@@ -156,10 +156,11 @@ deleteAccount() {
 
 changeStatus() {
   if (this.status === 'inactive') {
-    console.log('change status inactive')
+    this.presentPrompt('Are you sure you want to inactivate your account?', 'You will be removed from any audit team(s) you are a member of but you can easily reactivate your account by logging in again and choosing to reactivate; the rest of your data will remain the same. <br><br> Enter your password to confirm.')
   }
-  else if (this.status === 'deleted')
-  console.log('change status deleted')
+  else if (this.status === 'deleted') {
+    this.presentPrompt('Are you sure you want to delete your account?', 'You will be removed from any audit team(s) you are a member of and all of your data will be reset should you choose to make another account later. If you intend to be active again in the future, deactivating your account may be a better option. <br><br> Enter your password to confirm.')
+  }
 }
 
 presentPrompt(passedTitle, passedMessage) {
