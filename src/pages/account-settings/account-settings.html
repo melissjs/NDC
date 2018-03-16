@@ -66,12 +66,12 @@
         <ion-icon  *ngIf="accountToggle" name="arrow-down" item-right (click)="toggleAccount()"></ion-icon>
       </ion-list-header>
       <ion-item *ngIf="accountToggle">
-        <button ion-button block large outline (click)="deactivateAccount()">
+        <button ion-button block large (click)="deactivateAccount()">
           Deactivate Account
         </button>
       </ion-item>
       <ion-item *ngIf="accountToggle">
-        <button ion-button block large outline (click)="deleteAccount()">
+        <button ion-button block large (click)="deleteAccount()">
           Delete Account
         </button>
       </ion-item>
