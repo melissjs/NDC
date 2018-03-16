@@ -52,9 +52,9 @@ export class AccountSettingsPage implements OnInit {
   profileToggle: boolean;
   accountToggle: boolean;
   resume: Resume;
-  active: boolean;
-  inactive: boolean;
-  deleted: boolean;
+  // active: boolean;
+  // inactive: boolean;
+  // deleted: boolean;
   status: string;
 
 
@@ -69,9 +69,9 @@ export class AccountSettingsPage implements OnInit {
     this.profileToggle = false;
     this.resumeToggle = false;
     this.accountToggle = false;
-    this.active = true;
-    this.inactive = false;
-    this.deleted = false;
+    // this.active = true;
+    // this.inactive = false;
+    // this.deleted = false;
   }
 
   ngOnInit(){
@@ -120,9 +120,6 @@ onClickReset(){
   this.navCtrl.push('ResetPasswordPage');
 }
 
-onLogout() {
-}
-
 // toggle accordian functionality
 
 toggleRole() {
@@ -158,7 +155,11 @@ deleteAccount() {
 }
 
 changeStatus() {
-  console.log('change status')
+  if (this.status = 'inactive') {
+    console.log('change status inactive')
+  }
+  else if (this.status = 'deleted')
+  console.log('change status deleted')
 }
 
   // askShifts(){
