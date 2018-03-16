@@ -4,9 +4,9 @@
 
 <ion-content padding class="backgroundColor">
   
-  <!-- <ion-card *ngIf="initialized">
+  <ion-card *ngIf="authSvc.isLoggedIn()">
     <ion-list>
-      <ion-list-header>Activity Record: {{currentVolunteer.fullName}}</ion-list-header>
+      <ion-list-header>{{userSvc.getUser().firstName}} {{userSvc.getUser().lastName}}'s Records:</ion-list-header>
 
       <ion-item>
       <ion-label>Total Individual Records: {{totalIndividualRecords}}</ion-label>
@@ -37,45 +37,45 @@
       </ion-item>
 
     </ion-list>
-  </ion-card> -->
+  </ion-card>
   
   
-        <!--
-              <ion-card>
-                <ion-list>
-                  <ion-list-header>Activity Record: Team {{precinctNumber}} </ion-list-header>
-  
-                  <ion-item>
-                  <ion-label>Total Team Records: {{totalTeamRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Team Affidavit Records: {{totalTeamAffidavitRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Team Non-Voter Records: {{totalTeamNonVoterRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Team Vote Records: {{totalTeamVoterRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Team Demographics Records: {{totalTeamDemographicsRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Team Anomaly Records: {{totalTeamAnomalyRecords}}</ion-label>
-                  </ion-item>
-  
-                  <ion-item>
-                  <ion-label>Total Team Amendment Records: {{totalTeamAmendmentRecords}}</ion-label>
-                  </ion-item>
-  
-                </ion-list>
-              </ion-card>
-        -->
+
+  <ion-card *ngIf="authSvc.isLoggedIn()">
+    <ion-list>
+      <ion-list-header>Activity Record: Team {{pollingstationservice.getUsersPollingstation().precinctNumber}} </ion-list-header>
+
+      <!-- <ion-item>
+      <ion-label>Total Team Records: {{totalTeamRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Team Affidavit Records: {{totalTeamAffidavitRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Team Non-Voter Records: {{totalTeamNonVoterRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Team Vote Records: {{totalTeamVoterRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Team Demographics Records: {{totalTeamDemographicsRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Team Anomaly Records: {{totalTeamAnomalyRecords}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+      <ion-label>Total Team Amendment Records: {{totalTeamAmendmentRecords}}</ion-label>
+      </ion-item> -->
+
+    </ion-list>
+  </ion-card>
+
   
               <!-- <ion-card *ngIf="initialized">
                 <ion-list>

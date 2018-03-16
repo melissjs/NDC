@@ -1,3 +1,4 @@
+import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
@@ -8,6 +9,7 @@ import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 import { RecordServiceProvider } from '../../providers/record-service/record-service';
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { User } from '../../models/user';
 // import {CheckLogin } from '../../components/check-login/check-login';
 
 @IonicPage()
@@ -16,9 +18,11 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'activity-record.html',
   // directives: [CheckLogin],
 })
+
 export class ActivityRecordPage {
+
   pageTitle: string;
-  currentVolunteer: Volunteer; 
+  currentVolunteer: User; 
   currentTeam: Volunteer[];
   totalRegisteredVolunteers: number;
   totalActiveVolunteers: number;
@@ -44,7 +48,7 @@ export class ActivityRecordPage {
   precinctNumber: string;
   initialized: boolean;
 
-  constructor(private navCtrl: NavController, private pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider, private authSvc: AuthServiceProvider) {
+  constructor(private navCtrl: NavController, public pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider, public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider) {
 this.pageTitle = "Activity Record";
 this.navCtrl = navCtrl;
 this.totalIndividualAnomalyRecords = 0;
