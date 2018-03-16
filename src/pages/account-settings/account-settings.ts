@@ -52,6 +52,11 @@ export class AccountSettingsPage implements OnInit {
   profileToggle: boolean;
   accountToggle: boolean;
   resume: Resume;
+  active: boolean;
+  inactive: boolean;
+  deleted: boolean;
+  status: string;
+
 
   constructor(public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider,  private navCtrl: NavController, private navParams: NavParams, private volunteerservice: VolunteerServiceProvider, public psSvc: PollingStationServiceProvider, public fb: FormBuilder, private alertCtrl: AlertController, public restSvc: RestServiceProvider, public auditSvc: AuditServiceProvider, private rrSvc: ResumeRoleServiceProvider) {
     this.pageTitle = "Account Settings";
@@ -64,9 +69,13 @@ export class AccountSettingsPage implements OnInit {
     this.profileToggle = false;
     this.resumeToggle = false;
     this.accountToggle = false;
+    this.active = true;
+    this.inactive = false;
+    this.deleted = false;
   }
 
   ngOnInit(){
+    this.status = 'active';
     //POLLINGSTATION
     if (this.auditSvc.getAudit()) {
       this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
@@ -146,6 +155,10 @@ deactivateAccount() {
 
 deleteAccount() {
   console.log('delete')
+}
+
+changeStatus() {
+  console.log('change status')
 }
 
   // askShifts(){
