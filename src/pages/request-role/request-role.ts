@@ -22,7 +22,7 @@ export class RequestRolePage {
     this.roleRequestForm = this.fb.group({
       'enterRoleCtrl':  ['', Validators.required],
       'enterReasonsCtrl': ['', Validators.required],
-      'enterQuestionsCtrl': ['', Validators.required],
+      'enterQuestionsCtrl': [''],
     });
   }
 
