@@ -155,11 +155,46 @@ deleteAccount() {
 }
 
 changeStatus() {
-  if (this.status = 'inactive') {
+  if (this.status === 'inactive') {
     console.log('change status inactive')
   }
-  else if (this.status = 'deleted')
+  else if (this.status === 'deleted')
   console.log('change status deleted')
+}
+
+presentPrompt(passedTitle, passedMessage) {
+  let alert = this.alertCtrl.create({
+    title: passedTitle,
+    message: passedMessage,
+    inputs: [
+      {
+        name: 'password',
+        placeholder: 'Password',
+        type: 'password'
+      }
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Confirm',
+        handler: data => {
+          if (data.password) {
+            // logged in!
+          } else {
+            // invalid login
+            return false;
+          }
+        }
+      }
+    ]
+  });
+  alert.present();
 }
 
   // askShifts(){
