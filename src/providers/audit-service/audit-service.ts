@@ -115,6 +115,7 @@ export class AuditServiceProvider {
         this.auditTeam = undefined;
         localStorage.removeItem('auditTeamLS'); // WHY NOT RM
       }
+      this.userSvc.rmRole('auditor');
       return res;
     },
     (err: HttpErrorResponse) => {

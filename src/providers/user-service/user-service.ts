@@ -90,4 +90,12 @@ export class UserServiceProvider {
     //   )
   }
 
+  rmRole(passedRole) {
+    let i = this.user.userRoles.indexOf(passedRole);
+    if(i != -1) {
+      this.user.userRoles.splice(i, 1);
+      this.setUser(this.user);
+    }
+  }
+
 }
