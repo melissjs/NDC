@@ -1,5 +1,7 @@
+import { UserServiceProvider } from './../../providers/user-service/user-service';
+import { User } from './../../models/user';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // import { VoteRecordPage } from '../vote-record/vote-record';
 // import { AmendmentRecordPage } from '../amendment-record/amendment-record';
@@ -11,13 +13,19 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
 @Component({
   selector: 'page-add-new-record',
   templateUrl: 'add-new-record.html',
-  // directives: [CheckLogin],
 })
-export class AddNewRecordPage {
+
+export class AddNewRecordPage implements OnInit {
+
   pageTitle: string;
-  constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider) {
+  currentVolunteer: User;
+
+  constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider) {
     this.pageTitle = "Add New Record";
-  
+  }
+
+  ngOnInit() {
+    this.currentVolunteer = this.userSvc.getUser();
   }
 
       onSubmitVoterRecord() {
