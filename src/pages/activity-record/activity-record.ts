@@ -202,14 +202,5 @@ this.initializeStuff();
     this.initializeStuff();
   }
 
-  onSubmit() {
-      var that = this;
-      try {
-          //that.navCtrl.push(VotePage, {
-          //});
-      } catch (EE) {
-          console.log('error in Submitting, exc='+ EE.toString())
-      }
-  }
 }
 
