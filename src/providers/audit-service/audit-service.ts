@@ -34,7 +34,7 @@ export class AuditServiceProvider {
     this.auditOfInterestTeam = [];
   }
 
-  setAudit(passedUserId) {  //what if no audit??
+  sgetAudit(passedUserId) {  //what if no audit??
     let header = new HttpHeaders().set('Authorization','Bearer ' + this.authSvc.getToken())
       return this.http.get(baseURL + `/audits/user/${passedUserId}`, {headers: header})
       .map((res: ResponseObj) => {

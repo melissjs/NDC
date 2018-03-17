@@ -1,3 +1,7 @@
+import { Auditor } from './../../models/auditor';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Audit } from './../../models/audit';
+import { Pollingstation } from './../../models/pollingstation';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
@@ -10,6 +14,7 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
 import { PollingStationServiceProvider } from '../../providers/polling-station-service/polling-station-service';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { User } from '../../models/user';
+import { AuditServiceProvider } from '../../providers/audit-service/audit-service';
 // import {CheckLogin } from '../../components/check-login/check-login';
 
 @IonicPage()
@@ -23,7 +28,9 @@ export class ActivityRecordPage implements OnInit {
 
   pageTitle: string;
   currentVolunteer: User; 
-  currentTeam: Volunteer[];
+  pollingstation: Pollingstation;
+  audit: Audit;
+  currentTeam: Auditor[];
   totalRegisteredVolunteers: number;
   totalActiveVolunteers: number;
 
@@ -47,7 +54,7 @@ export class ActivityRecordPage implements OnInit {
   // precinctNumber: string;
   // initialized: boolean;
 
-  constructor(private navCtrl: NavController, public pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider, public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider) {
+  constructor(private navCtrl: NavController, public pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider, public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider, private auditSvc: AuditServiceProvider) {
     this.pageTitle = "Activity Record";
     this.navCtrl = navCtrl;
     this.totalIndividualAnomalyRecords = 0;
@@ -149,11 +156,50 @@ this.initializeStuff();
   }
 
   ngOnInit() {
+    // user
     this.currentVolunteer = this.userSvc.getUser();
+    //audit and team
+    this.audit = this.auditSvc.getAudit();
+    if (this.audit) {
+      //station
+      this.pollingstation = this.pollingstationservice.getUsersPollingstation();
+      if (!this.pollingstation) {
+        this.pollingstationservice.sgetUsersPollingStationByKey(this.audit.pollingstationId)
+        .subscribe(res => {
+          this.pollingstation = res.obj;
+        },
+        (err: HttpErrorResponse) => {
+          console.error(err);
+        })
+      }
+    }
+    else if (!this.audit) {
+      this.auditSvc.sgetAudit(this.currentVolunteer.volunteerKey)
+      .subscribe(res => {
+        this.audit = res.obj;
+        if (this.audit){
+          this.currentTeam = this.audit.team;
+        };
+        //station
+        this.pollingstation = this.pollingstationservice.getUsersPollingstation();
+        if (!this.pollingstation) {
+          this.pollingstationservice.sgetUsersPollingStationByKey(this.audit.pollingstationId)
+          .subscribe(res => {
+            this.pollingstation = res.obj;
+          },
+          (err: HttpErrorResponse) => {
+            console.error(err);
+          })
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.error(err);
+      })
+    }
   }
 
   onRefresh() {
-this.initializeStuff();
+    this.initializeStuff();
   }
 
   onSubmit() {

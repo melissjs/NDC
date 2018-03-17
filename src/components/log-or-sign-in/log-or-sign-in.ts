@@ -111,7 +111,7 @@ export class LogOrSignInComponent {
           console.log('newUser from login:', this.newUser)
           // if auditor role??????
           if (this.newUser.userRoles.includes('auditor')) {
-            this.auditSvc.setAudit(this.newUser.volunteerKey)
+            this.auditSvc.sgetAudit(this.newUser.volunteerKey)
             .subscribe((res: ResponseObj) => {
             }, 
             (err: HttpErrorResponse) => {
