@@ -41,9 +41,9 @@
   
   
 
-  <ion-card *ngIf="authSvc.isLoggedIn()">
+  <ion-card *ngIf="authSvc.isLoggedIn() && pollingstation">
     <ion-list>
-      <ion-list-header>Activity Record: Team {{pollingstationservice.getUsersPollingstation().precinctNumber}} </ion-list-header>
+      <ion-list-header>Activity Record: Team {{pollingstation.precinctNumber}} </ion-list-header>
 
       <!-- <ion-item>
       <ion-label>Total Team Records: {{totalTeamRecords}}</ion-label>

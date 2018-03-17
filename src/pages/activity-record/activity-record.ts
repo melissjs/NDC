@@ -166,7 +166,7 @@ this.initializeStuff();
       if (!this.pollingstation) {
         this.pollingstationservice.sgetUsersPollingStationByKey(this.audit.pollingstationId)
         .subscribe(res => {
-          this.pollingstation = res.obj;
+          this.pollingstation = res;
         },
         (err: HttpErrorResponse) => {
           console.error(err);
@@ -185,7 +185,7 @@ this.initializeStuff();
         if (!this.pollingstation) {
           this.pollingstationservice.sgetUsersPollingStationByKey(this.audit.pollingstationId)
           .subscribe(res => {
-            this.pollingstation = res.obj;
+            this.pollingstation = res;
           },
           (err: HttpErrorResponse) => {
             console.error(err);
