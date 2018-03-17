@@ -1,5 +1,5 @@
 import { UserServiceProvider } from './../../providers/user-service/user-service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
 //import { Team } from '../../team';
@@ -19,7 +19,7 @@ import { User } from '../../models/user';
   // directives: [CheckLogin],
 })
 
-export class ActivityRecordPage {
+export class ActivityRecordPage implements OnInit {
 
   pageTitle: string;
   currentVolunteer: User; 
@@ -27,15 +27,14 @@ export class ActivityRecordPage {
   totalRegisteredVolunteers: number;
   totalActiveVolunteers: number;
 
-  /* not using team stuff now
-     totalTeamAffidavitRecords: number
-     totalTeamVoterRecords: number;
-     totalTeamAnomalyRecords: number;
-     totalTeamAmendmentRecords: number;
-     totalTeamNonVoterRecords: number;
-     totalTeamRecords: number;
-     totalTeamDemographicsRecords: number;
-  */
+  totalTeamAffidavitRecords: number
+  totalTeamVoterRecords: number;
+  totalTeamAnomalyRecords: number;
+  totalTeamAmendmentRecords: number;
+  totalTeamNonVoterRecords: number;
+  totalTeamRecords: number;
+  totalTeamDemographicsRecords: number;
+
 
   totalIndividualAnomalyRecords: number;
   totalIndividualRecords: number;
@@ -45,27 +44,26 @@ export class ActivityRecordPage {
   totalIndividualAmendmentRecords: number;
   totalIndividualDemographicsRecords: number;
 
-  precinctNumber: string;
-  initialized: boolean;
+  // precinctNumber: string;
+  // initialized: boolean;
 
   constructor(private navCtrl: NavController, public pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider, public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider) {
-this.pageTitle = "Activity Record";
-this.navCtrl = navCtrl;
-this.totalIndividualAnomalyRecords = 0;
-this.totalIndividualDemographicsRecords = 0;
-this.totalIndividualVoteRecords = 0;
-this.totalIndividualNonVoteRecords = 0;
-this.totalIndividualRecords = 0;
+    this.pageTitle = "Activity Record";
+    this.navCtrl = navCtrl;
+    this.totalIndividualAnomalyRecords = 0;
+    this.totalIndividualDemographicsRecords = 0;
+    this.totalIndividualVoteRecords = 0;
+    this.totalIndividualNonVoteRecords = 0;
+    this.totalIndividualRecords = 0;
 
-/* Not using team stuff for now 
-   this.totalTeamAnomalyRecords = 0;
-   this.totalTeamDemographicsRecords = 0;
-   this.totalTeamVoterRecords = 0;
-   this.totalTeamNonVoterRecords = 0;
-   this.totalTeamRecords = 0;
-*/
+    this.totalTeamAnomalyRecords = 0;
+    this.totalTeamDemographicsRecords = 0;
+    this.totalTeamVoterRecords = 0;
+    this.totalTeamNonVoterRecords = 0;
+    this.totalTeamRecords = 0;
 
-this.initialized = false;
+
+// this.initialized = false;
 
 /*
   this.currentVolunteer = 
@@ -148,6 +146,10 @@ this.initializeStuff();
 //          this.totalTeamRecords = this.recordservice.getTotalTeamRecords(this.currentTeam);
 // */
 // this.initialized = true;
+  }
+
+  ngOnInit() {
+    this.currentVolunteer = this.userSvc.getUser();
   }
 
   onRefresh() {
