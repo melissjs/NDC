@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { UserServiceProvider } from './../../providers/user-service/user-service';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Volunteer} from '../../models/volunteer';
 import { VolunteerServiceProvider } from '../../providers/volunteer-service/volunteer-service';
@@ -14,39 +15,19 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'volunteer-list.html',
   // directives: [CheckLogin],
 })
-export class VolunteerListPage {
+
+export class VolunteerListPage implements OnInit {
+  
   pageTitle: string;
   currentVolunteer: Volunteer; 
-  currentTeam: Volunteer[]; 
-  initialized: boolean;
 
   constructor(private navCtrl: NavController, private volunteerservice: VolunteerServiceProvider, 
-  private restSvc: RestServiceProvider, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider) {
+  private restSvc: RestServiceProvider, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider) {
     this.pageTitle = "Volunteer List";
-    // this.navCtrl = navCtrl;
-    // true for testing
-    this.initialized = false;
-    this.initializeStuff();
   }
 
-initializeStuff() {
-//   if (this.recordservice.getAuthenticatingVolunteerKey() == null) {
-//     return;
-// }
-
-// this.currentVolunteer = this.volunteerservice.getNewVolunteer();
-
-// if (this.currentVolunteer == null) {
-//     // obviously not yet logged in..  exit.
-//     return;
-// }
-
-// this.currentTeam = this.volunteerservice.getAssociatedVolunteers();
-// this.initialized = true;
-  }
-
-  onRefresh() {
-    this.initializeStuff();
+  ngOnInit() {
+    this.currentVolunteer = this.userSvc.getUser();
   }
 
 }

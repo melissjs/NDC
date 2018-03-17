@@ -4,7 +4,7 @@
   
 <ion-content padding class="backgroundColor">
   <volunteer-list *ngIf="authSvc.isLoggedIn()"></volunteer-list>
-  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+  <ion-card padding *ngIf="!authSvc.isLoggedIn() || !currentVolunteer.userRoles.includes('auditor')">
     <ion-item text-wrap>
       This function is only available for auditors on election day.
     </ion-item>
