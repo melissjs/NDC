@@ -4,7 +4,7 @@
 
 <ion-content padding class="backgroundColor">
   
-  <ion-card *ngIf="authSvc.isLoggedIn()">
+  <ion-card *ngIf="authSvc.isLoggedIn() && currentVolunteer.userRoles.includes('auditor')">
     <ion-list>
       <ion-list-header>{{currentVolunteer.firstName}} {{currentVolunteer.lastName}}'s Records:</ion-list-header>
 
@@ -41,7 +41,7 @@
   
   
 
-  <ion-card *ngIf="authSvc.isLoggedIn() && pollingstation">
+  <ion-card *ngIf="authSvc.isLoggedIn() && currentVolunteer.userRoles.includes('auditor') && pollingstation">
     <ion-list>
       <ion-list-header>Activity Record: Team {{pollingstation.precinctNumber}} </ion-list-header>
 
@@ -98,10 +98,11 @@
                 Refresh
               </button> -->
   
-        <!-- <check-login></check-login> -->
-  <ion-card padding *ngIf="!authSvc.isLoggedIn()">
+  <!-- <check-login></check-login> -->
+  <ion-card padding *ngIf="!authSvc.isLoggedIn() || !currentVolunteer.userRoles.includes('auditor')">
     <ion-item text-wrap>
       This function is only available for auditors on election day.
     </ion-item>
   </ion-card>
+
 </ion-content>
