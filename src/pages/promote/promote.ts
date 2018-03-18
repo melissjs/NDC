@@ -11,9 +11,4 @@ export class PromotePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.pageTitle = "Promote";
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PromotePage');
-  }
-
 }

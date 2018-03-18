@@ -7,14 +7,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'audit-training.html',
 })
 export class AuditTrainingPage {
-
   pageTitle: string;
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.pageTitle = "Audit Training"
   }
-
-  ionViewDidLoad() {
-  }
-
 }

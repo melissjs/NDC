@@ -11,10 +11,5 @@ export class AuditCheckListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.pageTitle = "Audit Checklist"
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AuditCheckListPage');
-  }
-
 }
 
