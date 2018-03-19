@@ -3,11 +3,6 @@ import { User } from './../../models/user';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// import { VoteRecordPage } from '../vote-record/vote-record';
-// import { AmendmentRecordPage } from '../amendment-record/amendment-record';
-// import { AnomalyRecordPage } from '../anomaly-record/anomaly-record';
-import { RecordServiceProvider } from '../../providers/record-service/record-service';
-// import {CheckLogin } from '../../components/check-login/check-login';
 
 @IonicPage()
 @Component({
@@ -18,9 +13,11 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
 export class AddNewRecordPage {
 
   pageTitle: string;
+  currentVolunteer: User;
 
-  constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider) {
+  constructor(private navCtrl: NavController, public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider) {
     this.pageTitle = "Add New Record";
+    this.currentVolunteer = this.userSvc.getUser();
   }
 
   onSubmitVoterRecord() {
