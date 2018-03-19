@@ -43,7 +43,6 @@ export class ActivityRecordPage implements OnInit {
   totalTeamRecords: number;
   totalTeamDemographicsRecords: number;
 
-
   totalIndividualAnomalyRecords: number;
   totalIndividualRecords: number;
   totalIndividualVoteRecords: number;
@@ -52,12 +51,9 @@ export class ActivityRecordPage implements OnInit {
   totalIndividualAmendmentRecords: number;
   totalIndividualDemographicsRecords: number;
 
-  // precinctNumber: string;
-  // initialized: boolean;
-
   constructor(private navCtrl: NavController, public pollingstationservice: PollingStationServiceProvider, private recordservice: RecordServiceProvider, private volunteerservice: VolunteerServiceProvider, private restSvc: RestServiceProvider, public authSvc: AuthServiceProvider, public userSvc: UserServiceProvider, private auditSvc: AuditServiceProvider) {
     this.pageTitle = "Activity Record";
-    this.navCtrl = navCtrl;
+
     this.totalIndividualAnomalyRecords = 0;
     this.totalIndividualDemographicsRecords = 0;
     this.totalIndividualVoteRecords = 0;
@@ -71,90 +67,8 @@ export class ActivityRecordPage implements OnInit {
     this.totalTeamOutsideVoterRecords = 0;
     this.totalTeamRecords = 0;
 
-
-// this.initialized = false;
-
-/*
-  this.currentVolunteer = 
-  {
-        "volunteerKey": "v1",
-        "fullName":"Janice Row",
-        "emailAddress":"janice@gmail.com",
-        "exposeEmail": false,
-        "phoneNumber":"6025245453",
-        "age": 35,
-        "sex": "Female",
-        "partyAffiliation": "No Party Preference",    
-        "shifts": "Early Evening, Late Evening",
-        "associatedPollingStationKey": "ps2",
-        }
-*/
-
-this.initializeStuff();
-
-  }
-
-  initializeStuff() {
-
-// if (this.recordservice.getAuthenticatingVolunteerKey() == null) {
-//     return;
-// }
-
-// this.currentVolunteer = this.volunteerservice.getNewVolunteer();
-
-// if (this.currentVolunteer == null) {
-//     // obviously not yet logged in..  exit.
-//     return;
-// }
-// //individual
-
-// var pollingStationKey = this.currentVolunteer.associatedPollingStationKey;
-// if (pollingStationKey == null) {
-//     return;
-// }
-// var pollingStation = this.pollingstationservice.getPollingStationbyKey(pollingStationKey);
-// if (pollingStation == null) {
-//     return;
-// }
-
-//       this.precinctNumber = pollingStation.precinctNumber;
-
-//       this.currentTeam = this.volunteerservice.getAssociatedVolunteers();
-// // this.volunteerservice.getTeamVolunteersByPollKey(this.currentVolunteer.associatedPollingStationKey);
-
-//       console.log(this.currentTeam);
-
-//       this.totalIndividualAffidavitRecords = this.recordservice.getTotalIndividualAffidavitRecords(/* this.currentVolunteer.volunteerKey */);
-
-//       this.totalIndividualAnomalyRecords = this.recordservice.getTotalIndividualAnomalyRecords(/* this.currentVolunteer.volunteerKey */);
-
-//       this.totalIndividualAmendmentRecords = this.recordservice.getTotalIndividualAmendmentRecords(/* this.currentVolunteer.volunteerKey */);
-
-//       this.totalIndividualVoteRecords = this.recordservice.getTotalIndividualVoteRecords(/* this.currentVolunteer.volunteerKey */);
-
-//       this.totalIndividualNonVoteRecords = this.recordservice.getTotalIndividualNonVoteRecords(/* this.currentVolunteer.volunteerKey */);
-
-//       this.totalIndividualDemographicsRecords = this.recordservice.getTotalIndividualDemographicsRecords(/* this.currentVolunteer.volunteerKey */);
-
-//       this.totalIndividualRecords = this.recordservice.getTotalIndividualRecords(/* this.currentVolunteer.volunteerKey */);
-      
-
-//       this.volunteerservice.generateStationStats( /* this.currentVolunteer.associatedPollingStationKey */);
-
-//       this.totalRegisteredVolunteers = this.volunteerservice.getVolunteerCount();
-// this.totalActiveVolunteers = this.volunteerservice.getVolunteersActive();
-      
-//       //team  NOT USING Now.
-// /* 
-//          this.totalTeamAffidavitRecords = this.recordservice.getTotalTeamAffidavitRecords(this.currentTeam);
-//          this.totalTeamVoterRecords =  this.recordservice.getTotalTeamVoteRecords(this.currentTeam);
-//          this.totalTeamAnomalyRecords  = this.recordservice.getTotalTeamAnomalyRecords(this.currentTeam);
-//          this.totalTeamAmendmentRecords = this.recordservice.getTotalTeamAmendmentRecords(this.currentTeam);
-//          this.totalTeamNonVoterRecords = this.recordservice.getTotalTeamNonVoteRecords(this.currentTeam); 
-//          this.totalTeamDemographicsRecords = this.recordservice.getTotalTeamDemographicsRecords(this.currentTeam);
-//          this.totalTeamRecords = this.recordservice.getTotalTeamRecords(this.currentTeam);
-// */
-// this.initialized = true;
+    this.totalRegisteredVolunteers = 0;
+    this.totalActiveVolunteers = 0;
   }
 
   ngOnInit() {
@@ -198,10 +112,6 @@ this.initializeStuff();
         console.error(err);
       })
     }
-  }
-
-  onRefresh() {
-    this.initializeStuff();
   }
 
 }
