@@ -28,19 +28,9 @@ export class AddNewRecordPage implements OnInit {
     this.currentVolunteer = this.userSvc.getUser();
   }
 
-      onSubmitVoterRecord() {
-              var that = this;
-              // this.recordservice.setToNonVote(false);
-
-                    try {
-                        that.navCtrl.push('VoteRecordPage', {
-                        })
-
-                    } catch (EE) {
-                        console.log('error in Submitting, exc='+ EE.toString())
-                    }
-
-        }
+  onSubmitVoterRecord() {
+    this.navCtrl.push('VoteRecordPage')
+  }
 
         onSubmitNonVoterRecord() {
                     var that = this;
@@ -56,6 +46,17 @@ export class AddNewRecordPage implements OnInit {
                     }
 
         }
+
+        onSubmitAmendmentRecord() { 
+          var that = this;
+          try {
+              that.navCtrl.push('AmendmentRecordPage', {
+              })
+
+          } catch (EE) {
+              console.log('error in Submitting, exc='+ EE.toString())
+          } 
+}
           
         onSubmitAnomalyRecord() {
                     var that = this;
@@ -66,18 +67,11 @@ export class AddNewRecordPage implements OnInit {
                     } catch (EE) {
                         console.log('error in Submitting, exc='+ EE.toString())
                     } 
-        } 
-        
-        onSubmitAmendmentRecord() { 
-                    var that = this;
-                    try {
-                        that.navCtrl.push('AmendmentRecordPage', {
-                        })
+        }
 
-                    } catch (EE) {
-                        console.log('error in Submitting, exc='+ EE.toString())
-                    } 
-      }
+        onSubmitCERRecord() {
+
+        }
 
 
 } // class end 

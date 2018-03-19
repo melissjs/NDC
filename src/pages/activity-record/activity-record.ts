@@ -39,6 +39,7 @@ export class ActivityRecordPage implements OnInit {
   totalTeamAnomalyRecords: number;
   totalTeamAmendmentRecords: number;
   totalTeamNonVoterRecords: number;
+  totalTeamOutsideVoterRecords: number;
   totalTeamRecords: number;
   totalTeamDemographicsRecords: number;
 
@@ -67,6 +68,7 @@ export class ActivityRecordPage implements OnInit {
     this.totalTeamDemographicsRecords = 0;
     this.totalTeamVoterRecords = 0;
     this.totalTeamNonVoterRecords = 0;
+    this.totalTeamOutsideVoterRecords = 0;
     this.totalTeamRecords = 0;
 
 
