@@ -15,63 +15,32 @@ import { RecordServiceProvider } from '../../providers/record-service/record-ser
   templateUrl: 'add-new-record.html',
 })
 
-export class AddNewRecordPage implements OnInit {
+export class AddNewRecordPage {
 
   pageTitle: string;
-  currentVolunteer: User;
 
   constructor(private navCtrl: NavController, private recordservice: RecordServiceProvider, public authSvc: AuthServiceProvider, private userSvc: UserServiceProvider) {
     this.pageTitle = "Add New Record";
-  }
-
-  ngOnInit() {
-    this.currentVolunteer = this.userSvc.getUser();
   }
 
   onSubmitVoterRecord() {
     this.navCtrl.push('VoteRecordPage')
   }
 
-        onSubmitNonVoterRecord() {
-                    var that = this;
-                    // this.recordservice.setToNonVote(true);
-                    // console.log('hello' + this.recordservice.getNonVoteBool());
-      
-                    try {
-                        that.navCtrl.push('VoteRecordPage', {
-                        })
+  onSubmitNonVoterRecord() {
+    this.navCtrl.push('VoteRecordPage')
+  }
 
-                    } catch (EE) {
-                        console.log('error in Submitting, exc='+ EE.toString())
-                    }
+  onSubmitAmendmentRecord() { 
+    this.navCtrl.push('AmendmentRecordPage')
+  }
+  
+  onSubmitAnomalyRecord() {
+    this.navCtrl.push('AnomalyRecordPage')
+  }
 
-        }
+  onSubmitCERRecord() {
+    this.navCtrl.push('CERRecordPage')
+  }
 
-        onSubmitAmendmentRecord() { 
-          var that = this;
-          try {
-              that.navCtrl.push('AmendmentRecordPage', {
-              })
-
-          } catch (EE) {
-              console.log('error in Submitting, exc='+ EE.toString())
-          } 
 }
-          
-        onSubmitAnomalyRecord() {
-                    var that = this;
-                    try {
-                        that.navCtrl.push('AnomalyRecordPage', {
-                        })
-
-                    } catch (EE) {
-                        console.log('error in Submitting, exc='+ EE.toString())
-                    } 
-        }
-
-        onSubmitCERRecord() {
-
-        }
-
-
-} // class end 
