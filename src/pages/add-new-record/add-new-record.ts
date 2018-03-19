@@ -37,7 +37,7 @@ export class AddNewRecordPage {
   }
 
   onSubmitCERRecord() {
-    this.navCtrl.push('CERRecordPage')
+    this.navCtrl.push('CerRecordPage')
   }
 
 }
