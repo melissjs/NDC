@@ -52,9 +52,6 @@ export class AccountSettingsPage implements OnInit {
   profileToggle: boolean;
   accountToggle: boolean;
   resume: Resume;
-  // active: boolean;
-  // inactive: boolean;
-  // deleted: boolean;
   status: string;
 
 
@@ -69,42 +66,41 @@ export class AccountSettingsPage implements OnInit {
     this.profileToggle = false;
     this.resumeToggle = false;
     this.accountToggle = false;
-    // this.active = true;
-    // this.inactive = false;
-    // this.deleted = false;
   }
 
   ngOnInit(){
-    this.status = 'active';
-    //POLLINGSTATION
-    if (this.auditSvc.getAudit()) {
-      this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
-      if (!this.usersPollingstation) {
-        this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
-        .subscribe((res: any) => {
-          this.usersPollingstation = res;
+    if (this.userSvc.getUser()) {
+      this.status = 'active';
+      //POLLINGSTATION
+      if (this.auditSvc.getAudit()) {
+        this.usersPollingstation = this.psSvc.getUsersPollingstation() || this.psSvc.getPollingStationByKey(this.auditSvc.getAudit().pollingstationId);
+        if (!this.usersPollingstation) {
+          this.psSvc.sgetUsersPollingStationByKey(this.auditSvc.getAudit().pollingstationId)
+          .subscribe((res: any) => {
+            this.usersPollingstation = res;
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err);
+          })
+        }
+      }
+
+      // RESUME
+      if (this.rrSvc.getResume()) {
+        this.resume = this.rrSvc.getResume();
+        console.log('from gettttttttt', this.resume);
+      }
+      else {
+        this.rrSvc.sgetResume()
+        .subscribe((res) => {
+          this.resume = res;
+          console.log('from sgetttttttttt', res);
+          this.resume ? null : this.resume = this.rrSvc.getNewResume();
         },
         (err: HttpErrorResponse) => {
-          console.log(err);
+          console.error('Error', err)
         })
       }
-    }
-
-    // RESUME
-    if (this.rrSvc.getResume()) {
-      this.resume = this.rrSvc.getResume();
-      console.log('from gettttttttt', this.resume);
-    }
-    else {
-      this.rrSvc.sgetResume()
-      .subscribe((res) => {
-        this.resume = res;
-        console.log('from sgetttttttttt', res);
-        this.resume ? null : this.resume = this.rrSvc.getNewResume();
-      },
-      (err: HttpErrorResponse) => {
-        console.error('Error', err)
-      })
     }
   }
 
