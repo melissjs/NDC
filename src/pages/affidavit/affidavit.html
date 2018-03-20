@@ -30,31 +30,28 @@
         </ion-item>
       </ion-list>
     </ion-card>
-
-<ion-card>
-<ion-list>
-
-<ion-item>
-<ion-label stacked>*Comments: </ion-label>
-<ion-textarea formControlName="comments"></ion-textarea>
-</ion-item>
-<ion-item>
-<ion-label stacked>*Email:</ion-label>
-<ion-input type="text" formControlName="emailAddress"></ion-input>
-</ion-item>
-<ion-item>
-<ion-icon name="md-camera" item-right></ion-icon> 
-<ion-icon name="md-image" item-right></ion-icon>
-<ion-label stacked>*Photo Receipt: </ion-label>
-<ion-input type="text" formControlName="photoReceipt"></ion-input>
-</ion-item>
-</ion-list>
-
-</ion-card>  
-<ion-item>
-  <button ion-button type="submit" [disabled]="!affidavitForm.valid" (click)="onSubmit(affidavitForm.value)" block large>
-    Submit 
-  </button>
-</ion-item>
+    <ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>*Comments: </ion-label>
+          <ion-textarea formControlName="comments"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>*Email:</ion-label>
+          <ion-input type="text" formControlName="emailAddress"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="md-camera" item-right></ion-icon> 
+          <ion-icon name="md-image" item-right></ion-icon>
+          <ion-label stacked>*Photo Receipt: </ion-label>
+          <ion-input type="text" formControlName="photoReceipt"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card>  
+    <ion-item>
+      <button ion-button type="submit" [disabled]="!affidavitForm.valid" (click)="onSubmit(affidavitForm.value)" block large>
+        Submit 
+      </button>
+    </ion-item>
   </form>
 </ion-content>
