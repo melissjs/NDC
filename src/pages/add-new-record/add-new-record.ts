@@ -24,6 +24,10 @@ export class AddNewRecordPage {
     this.navCtrl.push('AffidavitPage')
   }
 
+  onSubmitAllVoterRecord() {
+    this.navCtrl.push('VoteRecordPage')
+  }
+
   onSubmitVoterRecord() {
     this.navCtrl.push('VoteRecordPage')
   }
