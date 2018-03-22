@@ -5,7 +5,7 @@
 <ion-content padding class="backgroundColor">
   <ion-card padding *ngIf="authSvc.isLoggedIn() && currentVolunteer.userRoles.includes('auditor')">
     <ion-item>
-      <button ion-button type="button" (click)="onSubmitVoterRecord()" block large>
+      <button ion-button type="button" (click)="onSubmitAffidavitRecord()" block large>
         Affidavit Record
       </button>
       <button ion-button type="button" (click)="onSubmitVoterRecord()" block large>

@@ -20,6 +20,10 @@ export class AddNewRecordPage {
     this.currentVolunteer = this.userSvc.getUser();
   }
 
+  onSubmitAffidavitRecord() {
+    this.navCtrl.push('AffidavitPage')
+  }
+
   onSubmitVoterRecord() {
     this.navCtrl.push('VoteRecordPage')
   }
