@@ -28,13 +28,13 @@ export class AddNewRecordPage {
     this.navCtrl.push('VoteRecordPage')
   }
 
-  onSubmitVoterRecord() {
-    this.navCtrl.push('VoteRecordPage')
-  }
+  // onSubmitVoterRecord() {
+  //   this.navCtrl.push('VoteRecordPage')
+  // }
 
-  onSubmitNonVoterRecord() {
-    this.navCtrl.push('VoteRecordPage')
-  }
+  // onSubmitNonVoterRecord() {
+  //   this.navCtrl.push('VoteRecordPage')
+  // }
 
   onSubmitAmendmentRecord() { 
     this.navCtrl.push('AmendmentRecordPage')
