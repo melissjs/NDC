@@ -108,7 +108,7 @@ export class AuditServiceProvider {
     .map((res: ResponseObj) => {
       this.audit = undefined;
       localStorage.removeItem('auditLS');
-      // remove refs to users ps
+      // remove refs to users ps // IS THIS LIKE REDUX ACTION?
       this.pollingstationSvc.rmUsersPollingstation();
       // console.log('audddddd', this.audit)
       if (this.auditTeam){
