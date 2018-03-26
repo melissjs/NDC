@@ -3,26 +3,23 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
-        
-<ion-list>
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Voter Record Number (optional):</ion-label>    
+        <ion-input type="text" [(ngModel)]="voteRecordKey" (click)="onChangeVRK(voteRecordKey)"></ion-input>
+      </ion-item>
 
-<ion-item>
-<ion-label stacked>Voter Record Number (optional):</ion-label>    
-<ion-input type="text" [(ngModel)]="voteRecordKey" (click)="onChangeVRK(voteRecordKey)"></ion-input>
-</ion-item>
-
-<ion-item>
-       <ion-label stacked>Incorrect Selection:</ion-label>
-
+      <ion-item>
+        <ion-label stacked>Incorrect Selection:</ion-label>
         <ion-select text-wrap [(ngModel)]="incorrectSelection" (change)="onChangeIncorrectSelection(incorrectSelection)">
-        <ion-option value="donaldTrump">Donald Trump</ion-option>
-        <ion-option value="garyJohnson">Gary Johnson</ion-option>
-        <ion-option value="hillaryClinton">Hillary Clinton</ion-option>
-        <ion-option value="jillStein">Jill Stein</ion-option>
-        <ion-option value="writeIn">Other</ion-option>
+          <ion-option value="donaldTrump">Donald Trump</ion-option>
+          <ion-option value="garyJohnson">Gary Johnson</ion-option>
+          <ion-option value="hillaryClinton">Hillary Clinton</ion-option>
+          <ion-option value="jillStein">Jill Stein</ion-option>
+          <ion-option value="writeIn">Other</ion-option>
         </ion-select>
-</ion-item>
+      </ion-item>
 
 <!-- Show line if they need to write in a candidate -->
     <ion-item *ngIf="incorrectSelection=='writeIn'">
